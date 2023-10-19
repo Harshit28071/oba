@@ -2,6 +2,7 @@
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
+
 $states = [];
 $stmt = $conn->prepare("SELECT `id`, `state` FROM `state`");
 //$stmt->bind_param("is",$cid);
