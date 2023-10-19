@@ -2,6 +2,7 @@
 require_once("../../common/database.php");
 $db = new Database();
 $conn = $db->connect();
+$error="";
 // Receive username and password from POST request
 if(isset($_POST['signin'])){
 $username = $_POST['username'];
@@ -22,29 +23,34 @@ if(count($result) > 0){
         $insertQuery = "UPDATE  user SET token = ? ,token_creation_time = ? WHERE id = ?";
         $insertStmt = $conn->prepare($insertQuery);
         $insertStmt->bind_param('ssi', $token,$tokenCreationTime,$result[0]['id']);
-        
         $insertStmt->execute();
 
         //Send success response to frontend
-        echo json_encode(["token" => $token]);
+        // echo json_encode(["token" => $token]);
         session_start();
         $_SESSION["s_id"] =$result[0]['id'];
         $_SESSION["s_username"] =$result[0]['username'];
         $_SESSION["s_role"] =$result[0]['role'];
         $_SESSION["s_token"] =$result[0]['token'];
-        echo $_SESSION["s_token"];
-        $_SESSION["s_username"];
+        
+          if($_SESSION["s_role"] == '1'){
 
+            header("location:./dashboard.php");
+          }else{
+            header("location:http://localhost/oba/oba/oba/apis/pages/admin/user_login.php");
+            
+          }
       
     }else {
         // Invalid username or password
-        echo json_encode(["error" => "Invalid username or password "]);
+        json_encode(["error" => "Invalid username or password"]);
         $error = "Invalid Username Password";
     }
   }
 else {
   // Username not found
-  echo json_encode(["error" => "Invalid username or password"]);
+  json_encode(["error" => "Invalid username or password"]);
+   $error = "Invalid Username Password";
    }
   
 // Close the database connection
@@ -99,6 +105,8 @@ $conn->close();
             </div>
           </div>
         </div>
+        <span class="text-danger"><?php echo $error; ?></span>
+       
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
@@ -144,7 +152,6 @@ $conn->close();
 <!-- Bootstrap 4 -->
 <script src="../../theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../theme/dist/js/adminlte.min.js"></script>
-  
+<script src="../../theme/dist/js/adminlte.min.js"></script>  
 </body>
 </html>
