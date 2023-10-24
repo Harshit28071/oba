@@ -3,10 +3,9 @@ session_start();
  require_once("../../common/database.php");
  $db = new Database();
  $conn = $db->connect();
- if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
-  header("location:./user_login.php");
-  
-}
+//  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
+//   header("location:./user_login.php");
+//}
  ?>
 <!DOCTYPE html>
 <html lang="en">

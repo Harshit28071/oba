@@ -31,7 +31,7 @@ if(count($result) > 0){
         $_SESSION["s_id"] =$result[0]['id'];
         $_SESSION["s_username"] =$result[0]['username'];
         $_SESSION["s_role"] =$result[0]['role'];
-        $_SESSION["s_token"] =$result[0]['token'];
+        $_SESSION["s_token"] =$token;
         
           if($_SESSION["s_role"] == '1'){
 

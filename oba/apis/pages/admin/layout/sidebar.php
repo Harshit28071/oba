@@ -48,7 +48,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="./manage_unit.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Unit</p>
                 </a>

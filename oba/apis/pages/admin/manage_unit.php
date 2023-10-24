@@ -49,7 +49,7 @@ session_start();
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="#" id="add-new-role">Add Role</a></li>
+              <li class="breadcrumb-item active"><a href="#" id="add-new-unit">Add Unit</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -58,7 +58,7 @@ session_start();
     <!-- /.content-header -->
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Manage Role</h3>
+                <h3 class="card-title">Manage Unit</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -67,11 +67,11 @@ session_start();
                     <tr>
                      
                       <th>ID</th>
-                      <th>Role</th>
+                      <th>Unit</th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody id="load-table">
+                  <tbody id="load-table-unit">
                   </tbody>
                 </table>
               </div>
@@ -81,29 +81,29 @@ session_start();
    <!-- /.content -->
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>
-  <div class="modal fade" id="modal-Edit-role">
+  <div class="modal fade" id="modal-Edit-unit">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT ROLE</h4>
+              <h4 class="modal-title">EDIT Unit</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                <!-- form start -->
-               <form id="edit-role-form">
+               <form id="edit-unit-form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Edit Role</label>
-                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role">
-                    <input type="text" class="form-control" name="editidrole" id="edit-id" hidden>
+                    <label for="exampleInputEmail1">Edit Unit</label>
+                    <input type="text" class="form-control" name="editunitname" id="edit-unit" placeholder="Enter Unit">
+                    <input type="text" class="form-control" name="editidunit" id="edit-id-unit" hidden>
                     <span id="validatione" class="text-danger"></span>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
+                  <button type="submit" class="btn btn-warning" id="edit-unit-save">Save Changes</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -116,11 +116,11 @@ session_start();
       <!-- /.modal -->
   <!----------------------------------------Edit Model Close------------------------------------------------>
   <!----------------------------------------Add Model------------------------------------------------>
-  <div class="modal fade" id="modal-add-role">
+  <div class="modal fade" id="modal-add-unit">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">ADD ROLE</h4>
+              <h4 class="modal-title">ADD UNIT</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -128,17 +128,17 @@ session_start();
             <div class="modal-body">
                <!-- form start -->
                 <!-- form start -->
-                <form id="add-role-form">
+                <form id="add-unit-form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Role</label>
-                    <input type="text" class="form-control" name="Addrole" id="Add-role" placeholder="Enter Role">
-                    <span id="validation" class="text-danger"></span>
+                    <label for="exampleInputEmail1">Add Unit</label>
+                    <input type="text" class="form-control" name="Addunit" id="Add-unit" placeholder="Enter Unit">
+                    <span id="validationu" class="text-danger"></span>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-primary" id="add-role-sub">Add</button>
+                  <button type="submit" class="btn btn-primary" id="add-unit-sub">Add</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -151,11 +151,11 @@ session_start();
       <!-- /.modal -->
   <!----------------------------------------Add Model Close------------------------------------------------>
   <!----------------------------------------Remove Model------------------------------------------------>
-  <div class="modal fade" id="modal-remove-role">
+  <div class="modal fade" id="modal-remove-unit">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE ROLE</h4>
+              <h4 class="modal-title">REMOVE UNIT</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -166,14 +166,14 @@ session_start();
                 <form id="add-remove-form">
                 <div class="card-body">
                   <div class="form-group">
-                  <input type="text" class="form-control" name="removeroleid" id="remove-id" hidden>
-                   <h3>Are you sure, You want to delete this role?</h3>
+                  <input type="text" class="form-control" name="removeunitid" id="unit-remove-id" hidden>
+                   <h3>Are you sure, You want to delete this unit ?</h3>
                     
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-role-sub">Remove</button>
+                  <button type="submit" class="btn btn-danger" id="remove-unit-sub">Remove</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
               </form>
@@ -201,25 +201,25 @@ session_start();
     $(document).ready(function(){
        
 //Fetch All Records
-function loadTable(){
-    $("#load-table").html("");
+function loadTableunit(){
+    $("#load-table-unit").html("");
     $.ajax({
-        url : "../../apis/select/fetch_role.php",
+        url : "../../apis/select/get_units.php",
         type : "GET",
         dataType : "json",
         success : function(data){
             console.log(data);
             $.each(data,function(key,value){
-             $("#load-table").append("<tr>"+
-                                  "<td>" + value.id +"</td>" +
-                                   "<td>" + value.role +"</td>"+ 
-                                  "<td><a href='#' class='edit-role' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-role'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+             $("#load-table-unit").append("<tr>"+
+                                  "<td>" + value.uid +"</td>" +
+                                   "<td>" + value.uname +"</td>"+ 
+                                  "<td><a href='#' class='edit-unit' data-uniteid='"+ value.uid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-unit'  data-unitrid='"+ value.uid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");
             });
         }
     });
 }
-loadTable();
+loadTableunit();
 //Fetch All Records Close
 //function for form data to json object
 function jsonData(targetform){
@@ -237,115 +237,114 @@ function jsonData(targetform){
        // console.log(json_string);
         return json_string;
 }
-//Fetch Single Record : Show Model
-$(document).on("click",".edit-role",function(){
-    $('#modal-Edit-role').modal('show');
-    var role_id = $(this).data("eid");
-    var obj = {roleid : role_id};
+// //Fetch Single Record : Show Model
+$(document).on("click",".edit-unit",function(){
+    $('#modal-Edit-unit').modal('show');
+    var unit_id = $(this).data("uniteid");
+    var obj = {unitid : unit_id};
     var myJson = JSON.stringify(obj);
-   // console.log(myJson);
+    console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_role.php",
+       url :"../../apis/select/fetch_single_unit.php",
        type : "POST",
        data : myJson,
        dataType : "json",
        success : function(data){
         //console.log(data);
-        $("#edit-id").val(data[0].id);
-        $("#edit-role").val(data[0].role);
+        $("#edit-id-unit").val(data[0].uid);
+        $("#edit-unit").val(data[0].unitname);
        }
-    })
-    //Update Role
-    $("#edit-role-save").on("click",function(e){
+     })
+   //Update Role
+    $("#edit-unit-save").on("click",function(e){
         e.preventDefault();
-        var jsonobj =jsonData("#edit-role-form");
+        var jsonobj =jsonData("#edit-unit-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
         $("#validatione").html("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/update/update_role.php",
+            url : "../../apis/update/update_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
             success : function(data){
                 //console.log(data);
-                if(data == 1){
-                $('#modal-Edit-role').modal('hide');
-                loadTable();}
+                $('#modal-Edit-unit').modal('hide');
+                loadTableunit();    
         }
         });
        }
     });
 
-//Update Role Close
+// //Update Role Close
 });
-//Fetch Single Record : Show Model Close
-
+// //Fetch Single Record : Show Model Close
 //Add Role
-$(document).on("click","#add-new-role",function(){
-    $('#modal-add-role').modal('show');
-    $("#add-role-sub").on("click",function(e){
+$(document).on("click","#add-new-unit",function(){
+    $('#modal-add-unit').modal('show');
+    $("#add-unit-sub").on("click",function(e){
         e.preventDefault();
-        var jsonobj =jsonData("#add-role-form");
+        var jsonobj =jsonData("#add-unit-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validation").html("Fill The Input");
+        $("#validationu").html("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/add/add_role.php",
+            url : "../../apis/add/add_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
             success : function(data){
-                $('#modal-add-role').modal('hide');
-                loadTable();
+                $('#modal-add-unit').modal('hide');
+                loadTableunit();
             }
         });
        }
     })
 });
-//Add Role Close
-//Delete Role 
-$(document).on("click",".remove-role",function(){
-  $('#modal-remove-role').modal('show');
-    var role_id = $(this).data("rid");
-    var obj = {roleid : role_id};
+// //Add Role Close
+// //Delete Role 
+$(document).on("click",".remove-unit",function(){
+  $('#modal-remove-unit').modal('show');
+    var unit_id  = $(this).data("unitrid");
+    var obj = {unitid : unit_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_role.php",
+       url :"../../apis/select/fetch_single_unit.php",
        type : "POST",
        data : myJson,
        dataType : "json",
        success : function(data){
-        //console.log(data);
-        $("#remove-id").val(data[0].id);
-        //$("#edit-role").val(data[0].role);
+        console.log(data);
+        $("#unit-remove-id").val(data[0].uid);
+       
        }
     });
-    //delete role
-    $("#remove-role-sub").on("click",function(e){
+     //delete role
+    $("#remove-unit-sub").on("click",function(e){
         e.preventDefault();
         var jsonobj =jsonData("#add-remove-form");
         //console.log(jsonobj);
         $.ajax({
-            url : "../../apis/delete/delete_role.php",
+            url : "../../apis/delete/delete_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
             success : function(data){
                 //console.log(data);
                 if(data == 1){
-                $('#modal-remove-role').modal('hide');
-                loadTable();
-              }
+                $('#modal-remove-unit').modal('hide');
+                loadTableunit();
+            }
         }
         });
        
     });
-});
+   });
 //Delete Role Close
     });
+//claose document . ready function
 </script>
 </body>
 </html>

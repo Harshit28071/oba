@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
