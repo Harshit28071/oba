@@ -9,6 +9,8 @@ $state_id =$data['editidstate'];
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
+$urlredirect ="../../pages/admin/user_login.php";
+include("../../common/check_token.php");
 $stmt = $conn->prepare("update `state` set `state` = ? where id = ?");
 $stmt->bind_param("si",$state_update,$state_id);
 $stmt->execute();

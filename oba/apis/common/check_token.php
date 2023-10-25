@@ -1,8 +1,8 @@
 <?php
 // Start the session
-session_start();
-//echo $_SESSION["s_username"];
-//echo $_SESSION["s_token"];
+// session_start();
+// echo $_SESSION["s_username"];
+// echo $_SESSION["s_token"];
 //Check if username and token are set in the session
 // if (isset($_SESSION["s_username"]) && isset($_SESSION["s_token"])) {
 //     // Prepare and execute a statement to check the username and token

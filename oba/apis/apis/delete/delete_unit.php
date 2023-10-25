@@ -7,7 +7,8 @@ $role_id =$data['removeunitid'];
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
-
+$urlredirect ="../../pages/admin/user_login.php";
+include("../../common/check_token.php");
 $stmt = $conn->prepare("delete from `units` where id = ?");
 $stmt->bind_param("i",$role_id);
 $stmt->execute();

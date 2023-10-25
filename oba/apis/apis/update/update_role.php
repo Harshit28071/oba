@@ -9,6 +9,8 @@ $role_id =$data['editidrole'];
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
+$urlredirect ="../../pages/admin/user_login.php";
+include("../../common/check_token.php");
 $stmt = $conn->prepare("update `roles` set `role` = ? where id = ?");
 $stmt->bind_param("si",$role_update,$role_id);
 $stmt->execute();

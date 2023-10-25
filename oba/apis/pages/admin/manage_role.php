@@ -39,6 +39,7 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+     <section class="content">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -48,14 +49,15 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="#" id="add-new-role">Add Role</a></li>
+              <li class="breadcrumb-item active"><a href="#" id="add-new-role" class="btn btn-primary">Add Role</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
+
     </div>
     <!-- /.content-header -->
+   
     <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Manage Role</h3>
@@ -79,6 +81,7 @@ session_start();
             </div>
             <!-- /.card -->
    <!-- /.content -->
+   </section>
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>
   <div class="modal fade" id="modal-Edit-role">
@@ -185,7 +188,6 @@ session_start();
       </div>
       <!-- /.modal -->
   <!----------------------------------------Remove Model Close-------------------------------------------------------------->
-  <!-- /.content-wrapper -->
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -298,6 +300,7 @@ $(document).on("click","#add-new-role",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+                $("#add-role-form").trigger("reset")
                 $('#modal-add-role').modal('hide');
                 loadTable();
             }

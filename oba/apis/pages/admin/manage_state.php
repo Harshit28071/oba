@@ -39,6 +39,7 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+  <section class="content">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -48,8 +49,8 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="#" id="add-new-state">Add State</a></li>
+              
+              <li class="breadcrumb-item active"><a href="#" id="add-new-state" class="btn btn-primary">Add State</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -79,6 +80,7 @@ session_start();
             </div>
             <!-- /.card -->
    <!-- /.content -->
+  </section>
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>
   <div class="modal fade" id="modal-Edit-state">
@@ -298,6 +300,7 @@ $(document).on("click","#add-new-state",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+              $("#addstateform").trigger("reset")
                 $('#modal-add-state').modal('hide');
                 loadTableState();
             }

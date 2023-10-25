@@ -7,6 +7,8 @@ $role_id =$data['removeroleid'];
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
+$urlredirect ="../../pages/admin/user_login.php";
+include("../../common/check_token.php");
 $stmt = $conn->prepare("delete from `roles` where id = ?");
 $stmt->bind_param("i",$role_id);
 $stmt->execute();
