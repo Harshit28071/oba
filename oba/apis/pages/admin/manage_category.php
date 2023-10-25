@@ -146,7 +146,7 @@ session_start();
                 <form id="add-category-form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Category</label>
+                    <label for="exampleInputEmail1">Add Category Name</label>
                     <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category">
                     
                   </div>
@@ -164,7 +164,7 @@ session_start();
                     <span id="validation_cat" class="text-danger"></span>
                   </div>
                   <div class="form-group">
-                        <label>Select</label>
+                        <label>Add Parenet Category</label>
                         <select class="form-control" name="parent_cat">
                           <option value="0">Default</option>
                           <?php 
