@@ -39,7 +39,7 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <section class="content">
+  
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -56,6 +56,8 @@ session_start();
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    <section class="content">
+      <div class="container-fluid">
     <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Manage Unit</h3>
@@ -79,6 +81,7 @@ session_start();
             </div>
             <!-- /.card -->
    <!-- /.content -->
+   </div>
    </section>
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>

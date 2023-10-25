@@ -39,7 +39,6 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <section class="content">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -57,6 +56,8 @@ session_start();
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    <section class="content">
+      <div class="container-fluid">
     <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Manage State</h3>
@@ -80,7 +81,8 @@ session_start();
             </div>
             <!-- /.card -->
    <!-- /.content -->
-  </section>
+    </div>
+    </section>
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>
   <div class="modal fade" id="modal-Edit-state">
@@ -210,14 +212,16 @@ function loadTableState(){
         type : "GET",
         dataType : "json",
         success : function(data){
+          var html ='';
             console.log(data);
             $.each(data,function(key,value){
-             $("#load-table-state").append("<tr>"+
+              html = html + ("<tr>"+
                                   "<td>" + value.sid +"</td>" +
                                    "<td>" + value.statename +"</td>"+ 
                                   "<td><a href='#' class='edit-state' data-stateid='"+ value.sid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-state'  data-stateremoveid='"+ value.sid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");
             });
+            $("#load-table-state").html(html);  
         }
     });
 }
