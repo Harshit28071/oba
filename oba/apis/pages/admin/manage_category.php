@@ -11,8 +11,11 @@ session_start();
     $stmt->execute();
     $stmt->bind_result($id,$name);
     $options = "";
+    $options_edit ="";
     while($stmt->fetch()){
         $options .="<option value='$id'>$name</option>";
+        $options_edit .="<option value='$id' selected>$name</option>";
+
       }
  ?>
 <!DOCTYPE html>
@@ -56,7 +59,7 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Category</a></li>
+              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Product Category</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -68,7 +71,7 @@ session_start();
       <div class="container-fluid">
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Manage Category</h3>
+                <h3 class="card-title">Manage Product Category</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -77,7 +80,7 @@ session_start();
                     <tr>
                      
                       <th>ID</th>
-                      <th>Name</th>
+                      <th>Product Category Name</th>
                       <th>Image</th>
                       <th>Parent ID</th>
                       <th>Action</th>
@@ -96,29 +99,53 @@ session_start();
    </section>
   </div>
   <!----------------------------------------Edit Model------------------------------------------------>
-  <div class="modal fade" id="modal-Edit-role">
+  <div class="modal fade" id="modal-Edit-category">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT ROLE</h4>
+              <h4 class="modal-title">EDIT PRODUCT CATEGORY</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                <!-- form start -->
-               <form id="edit-role-form">
+               <form id="edit-category-form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Edit Role</label>
-                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role">
-                    <input type="text" class="form-control" name="editidrole" id="edit-id" hidden>
-                    <span id="validatione" class="text-danger"></span>
+                    <label for="exampleInputEmail1">Edit Product Category</label>
+                    <input type="text" class="form-control" name="editcatname" id="edit-cat-name" placeholder="Enter Category">
+                    <input type="hidden" class="form-control" name="editidcat" id="edit-id-cat" >
+                    <span id="validatione_edit" class="text-danger"></span>
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Edit Product Category Image</label>
+                    <div class="input-group">
+                      <input type="hidden"  class="form-control" id="cat-file-old" name="editoldcatfile" >
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="cat-file" name="editcatfile" >
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                    <span id="validation_cat_edit" class="text-danger"></span>
+                  </div>
+                  <div class="form-group">
+                        <label>Add Parent Product Category</label>
+                        <select class="form-control" name="parentcatedit" id="pid">
+                          <option value="0">Default</option>
+                          <?php 
+                          echo $options_edit;
+                          ?>
+                         
+                        </select>
+                      </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
+                  <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Saves Changes">               
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </form>
@@ -135,7 +162,7 @@ session_start();
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">ADD CATEGORY</h4>
+              <h4 class="modal-title">ADD PRODUCT CATEGORY</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -146,12 +173,12 @@ session_start();
                 <form id="add-category-form">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Category Name</label>
+                    <label for="exampleInputEmail1">Add Product Category Name</label>
                     <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category">
                     
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Add Category Image</label>
+                    <label for="exampleInputFile">Add Product Category Image</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
@@ -164,9 +191,9 @@ session_start();
                     <span id="validation_cat" class="text-danger"></span>
                   </div>
                   <div class="form-group">
-                        <label>Add Parenet Category</label>
+                        <label>Add Parent Product Category</label>
                         <select class="form-control" name="parent_cat">
-                          <option value="0">Default</option>
+                          <option id="option-id-edit" value="0">Default</option>
                           <?php 
                           echo $options;
                           $stmt->close();
@@ -190,11 +217,11 @@ session_start();
       <!-- /.modal -->
   <!----------------------------------------Add Model Close------------------------------------------------>
   <!----------------------------------------Remove Model------------------------------------------------>
-  <div class="modal fade" id="modal-remove-role">
+  <div class="modal fade" id="modal-remove-cat">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE ROLE</h4>
+              <h4 class="modal-title">REMOVE PRODUCT CATEGORY</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -202,17 +229,18 @@ session_start();
             <div class="modal-body">
                <!-- form start -->
                 <!-- form start -->
-                <form id="add-remove-form">
+                <form id="remove-category-form">
                 <div class="card-body">
                   <div class="form-group">
-                  <input type="text" class="form-control" name="removeroleid" id="remove-id" hidden>
-                   <h3>Are you sure, You want to delete this role?</h3>
+                  <input type="hidden" class="form-control" name="removecatid" id="category-remove-id">
+                  <input type="hidden"  class="form-control" id="cat-file-remove" name="removeofile" >
+                   <h3>Are you sure, You want to delete this category?</h3>
                     
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-role-sub">Remove</button>
+                <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
               </form>
@@ -255,6 +283,7 @@ session_start();
                 if(response.status == 1){
                     $('#add-category-form')[0].reset();
                     $('#modal-add-category').modal('hide');
+                    loadTableCategory()
                    
                 }else{
                   var error = response.message;
@@ -266,7 +295,7 @@ session_start();
         });
     });
 //Fetch All Records
-function loadTable(){
+function loadTableCategory(){
     $("#load-table-category").html("");
     $.ajax({
         url : "../../apis/select/get_category.php",
@@ -282,141 +311,111 @@ function loadTable(){
                                    "<td>" + value.name +"</td>"+ 
                                    "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='160px' height='90px'></td>"+ 
                                    "<td>" + value.parent_id +"</td>"+ 
-                                  "<td><a href='#' class='edit-role' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-role'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='#' class='edit-category' data-categoryeid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-category'  data-categoryremoveid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");
             });
             $("#load-table-category").html(html);  
         }
     });
 }
-loadTable();
+loadTableCategory();
 // //Fetch All Records Close
-// //function for form data to json object
-// function jsonData(targetform){
-//     var arr =$(targetform).serializeArray();
-//       //  console.log(arr);
-//       var obj ={};
-//       for(var a=0; a < arr.length; a++){
-//         if(arr[a].value == ""){
-//             return false;
-//         }
-//             obj[arr[a].name] = arr[a].value;
-//         }
-//       //  console.log(obj);
-//         var json_string = JSON.stringify(obj);
-//        // console.log(json_string);
-//         return json_string;
-// }
-// //Fetch Single Record : Show Model
-// $(document).on("click",".edit-role",function(){
-//     $('#modal-Edit-role').modal('show');
-//     var role_id = $(this).data("eid");
-//     var obj = {roleid : role_id};
-//     var myJson = JSON.stringify(obj);
-//    // console.log(myJson);
-//     $.ajax({
-//        url :"../../apis/select/fetch_single_role.php",
-//        type : "POST",
-//        data : myJson,
-//        dataType : "json",
-//        success : function(data){
-//         //console.log(data);
-//         $("#edit-id").val(data[0].id);
-//         $("#edit-role").val(data[0].role);
-//        }
-//     })
-//     //Update Role
-//     $("#edit-role-save").on("click",function(e){
-//         e.preventDefault();
-//         var jsonobj =jsonData("#edit-role-form");
-//         //console.log(jsonobj);
-//        if(jsonobj == false ){
-//         $("#validatione").html("Fill The Input");
-//        }else{
-//         $.ajax({
-//             url : "../../apis/update/update_role.php",
-//             type : "POST",
-//             data : jsonobj,
-//             dataType : "json", 
-//             success : function(data){
-//                 //console.log(data);
-//                 if(data == 1){
-//                 $('#modal-Edit-role').modal('hide');
-//                 loadTable();}
-//         }
-//         });
-//        }
-//     });
-
-// //Update Role Close
-// });
-// //Fetch Single Record : Show Model Close
-
-// //Add Role
-// $(document).on("click","#add-new-role",function(){
-//     $('#modal-add-role').modal('show');
-//     $("#add-role-sub").on("click",function(e){
-//         e.preventDefault();
-//         var jsonobj =jsonData("#add-role-form");
-//         //console.log(jsonobj);
-//        if(jsonobj == false ){
-//         $("#validation").html("Fill The Input");
-//        }else{
-//         $.ajax({
-//             url : "../../apis/add/add_role.php",
-//             type : "POST",
-//             data : jsonobj,
-//             dataType : "json", 
-//             success : function(data){
-//                 $("#add-role-form").trigger("reset");
-//                 $('#modal-add-role').modal('hide');
-//                 loadTable();
-//             }
-//         });
-//        }
-//     })
-// });
-// //Add Role Close
-// //Delete Role 
-// $(document).on("click",".remove-role",function(){
-//   $('#modal-remove-role').modal('show');
-//     var role_id = $(this).data("rid");
-//     var obj = {roleid : role_id};
-//     var myJson = JSON.stringify(obj);
-//     $.ajax({
-//        url :"../../apis/select/fetch_single_role.php",
-//        type : "POST",
-//        data : myJson,
-//        dataType : "json",
-//        success : function(data){
-//         //console.log(data);
-//         $("#remove-id").val(data[0].id);
-//         //$("#edit-role").val(data[0].role);
-//        }
-//     });
-//     //delete role
-//     $("#remove-role-sub").on("click",function(e){
-//         e.preventDefault();
-//         var jsonobj =jsonData("#add-remove-form");
-//         //console.log(jsonobj);
-//         $.ajax({
-//             url : "../../apis/delete/delete_role.php",
-//             type : "POST",
-//             data : jsonobj,
-//             dataType : "json", 
-//             success : function(data){
-//                 //console.log(data);
-//                 if(data == 1){
-//                 $('#modal-remove-role').modal('hide');
-//                 loadTable();
-//               }
-//         }
-//         });
-       
-//     });
-// });
-// //Delete Role Close
+//Fetch Single Record : Show Model
+$(document).on("click",".edit-category",function(){
+    $('#modal-Edit-category').modal('show');
+    var cat_id = $(this).data("categoryeid");
+    var obj = {categoryeid : cat_id};
+    var myJson = JSON.stringify(obj);
+   // console.log(myJson);
+    $.ajax({
+       url :"../../apis/select/fetch_single_category.php",
+       type : "POST",
+       data : myJson,
+       dataType : "json",
+       success : function(data){
+        //console.log(data);
+        $("#edit-id-cat").val(data[0].id);
+        $("#edit-cat-name").val(data[0].cname);
+        $("#cat-file-old").val(data[0].cimage);
+        $("#pid").val(data[0].cparentid);
+      
+       }
     });
+    //Fetch Single Record : Show Model
+  //Update Category
+$('#edit-category-form').on('submit',function(e){
+            e.preventDefault();
+            $.ajax({
+            type: 'POST',
+            url: '../../apis/update/update_category.php',
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){
+                
+                if(response.status == 1){
+                   $('#edit-category-form')[0].reset();
+                    $('#modal-Edit-category').modal('hide');
+                    loadTableCategory()
+                   
+                }else{
+                  var error = response.message;
+                  $("#validation_cat_edit").html(error);
+                }
+                
+            }
+            })
+        });
+    });
+
+//Update Category Close
+// fetch singlr record for remove product category
+$(document).on("click",".remove-category",function(){
+  $('#modal-remove-cat').modal('show');
+    var cat_r_id = $(this).data("categoryremoveid");
+    var obj = {categoryeid: cat_r_id};
+    var myJson = JSON.stringify(obj);
+    $.ajax({
+       url :"../../apis/select/fetch_single_category.php",
+       type : "POST",
+       data : myJson,
+       dataType : "json",
+       success : function(data){
+        //console.log(data);
+        $("#category-remove-id").val(data[0].id);
+        $("#cat-file-remove").val(data[0].cimage);
+        
+       }
+    });
+
+   });
+//
+//Delete Role 
+$('#remove-category-form').on('submit',function(e){
+            e.preventDefault();
+            $.ajax({
+            type: 'POST',
+            url: '../../apis/delete/delete_category.php',
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){
+                
+                if(response == 1){
+                  //  $('#edit-category-form')[0].reset();
+                    $('#modal-remove-cat').modal('hide');
+                    loadTableCategory()
+                }
+                
+            }
+            })
+        });
+    });
+     //Delete Role Close
 </script>
 </body>
 </html>
