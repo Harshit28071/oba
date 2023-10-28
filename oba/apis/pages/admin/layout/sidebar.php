@@ -65,6 +65,12 @@
                   <p>Manage Firm</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="./manage_product.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Product</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

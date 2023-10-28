@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload and Preview</title>
+    <style>
+        .image-container {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            border: 2px solid #ccc;
+            padding: 5px;
+        }
+
+        .image-container img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            background: #fff;
+            padding: 2px 5px;
+            border: 1px solid #ccc;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        #upload-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Upload and Preview</h1>
+    <input type="file" id="imageInput" multiple>
+    <label for="imageInput" id="upload-button">Upload Images</label>
+    <div id="imagePreview"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#imageInput').on('change', function (e) {
+                var files = e.target.files;
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var image = $('<div class="image-container"><img src="' + e.target.result + '"><span class="remove-image">Remove</span></div>');
+
+                        // Add a click event to the "Remove" button
+                        image.find('.remove-image').click(function () {
+                            $(this).parent().remove(); // Remove the image container
+                        });
+
+                        $('#imagePreview').append(image);
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Calculation</title>
+</head>
+<body>
+    <h1>Calculate Product</h1>
+    <label for="numberInput">Number:</label>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <label for="unitInput">Unit:</label>
+    <input type="text" id="unitInput" placeholder="Enter a unit (e.g., kg)" disabled>
+    <button id="calculateButton" disabled>Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        const numberInput = document.getElementById("numberInput");
+        const unitInput = document.getElementById("unitInput");
+        const calculateButton = document.getElementById("calculateButton");
+
+        numberInput.addEventListener("input", function() {
+            if (numberInput.value.trim() !== "") {
+                unitInput.removeAttribute("disabled");
+                calculateButton.removeAttribute("disabled");
+            } else {
+                unitInput.setAttribute("disabled", "true");
+                calculateButton.setAttribute("disabled", "true");
+            }
+        });
+
+        calculateButton.addEventListener("click", function() {
+            const number = parseFloat(numberInput.value);
+            const unit = unitInput.value;
+
+            if (!isNaN(number) && unit.toLowerCase() === "kg") {
+                const result = number * 1000; // Replace 5 with your desired calculation
+                document.getElementById("result").textContent = "Result: " + result;
+            } else {
+                document.getElementById("result").textContent = "Invalid input. Please enter a number and 'kg' as the unit.";
+            }
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    <label for="quantityInput">Quantity:</label>
+    <input type="number" id="quantityInput" placeholder="Enter a number">
+    <label for="unitInput">Unit:</label>
+    <select id="unitInput" disabled>
+        <option value="kg">kg</option>
+        <option value="grams">grams</option>
+        <option value="pounds">pounds</option>
+    </select>
+    <button id="convertButton" disabled>Convert</button>
+    <p id="result"></p>
+
+    <script>
+        const quantityInput = document.getElementById("quantityInput");
+       // const unitInput = document.getElementById("unitInput");
+        const convertButton = document.getElementById("convertButton");
+
+        quantityInput.addEventListener("input", function() {
+            if (quantityInput.value.trim() !== "") {
+                unitInput.removeAttribute("disabled");
+                convertButton.removeAttribute("disabled");
+            } else {
+                unitInput.setAttribute("disabled", "true");
+                convertButton.setAttribute("disabled", "true");
+            }
+        });
+
+        
+
+            
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Second Input</title>
+</head>
+<body>
+    <h1>Enable Second Input</h1>
+    <label for="firstInput">First Input:</label>
+    <input type="text" id="firstInput" placeholder="Enter something">
+    <label for="secondInput">Second Input:</label>
+    <input type="text" id="secondInput" placeholder="This will be enabled when the first input is filled" disabled>
+
+    <script>
+        const firstInput = document.getElementById("firstInput");
+        const secondInput = document.getElementById("secondInput");
+
+        firstInput.addEventListener("input", function() {
+            if (firstInput.value.trim() !== "") {
+                secondInput.removeAttribute("disabled");
+            } else {
+                secondInput.setAttribute("disabled", "true");
+            }
+        });
+    </script>
+</body>
+</html>
+<input type="text" id="input1" onkeyup="checkInput()" placeholder="Input 1">
+<input type="text" id="input2" placeholder="Input 2" disabled>
+
+<script>
+function checkInput() {
+  var input1 = document.getElementById("input1");
+  var input2 = document.getElementById("input2");
+
+  if (input1.value.trim() === "") {
+    input2.disabled = true;
+  } else {
+    input2.disabled = false;
+  }
+}
+</script>

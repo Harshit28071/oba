@@ -23,4 +23,39 @@
   <link rel="stylesheet" href="../../theme/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../theme/plugins/summernote/summernote-bs4.min.css">
+  <style>
+        .image-container {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            border: 2px solid #ccc;
+            padding: 5px;
+        }
+
+        .image-container img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            background: #fff;
+            padding: 2px 5px;
+            border: 1px solid #ccc;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        #upload-button {
+           
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
