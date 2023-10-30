@@ -2,27 +2,33 @@
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
+$urlredirect ="../../pages/admin/user_login.php";
+include("../../common/check_token.php");
+header('Content-Type: application/json');
+header('Access-Controle-Allow-Methods: POST');
+// header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
+$data = json_decode(file_get_contents("php://input"),true);
 //validate requires fields 
-if(empty($_POST["username"])){
-    $errors ='Username is require';
-    echo json_encode($errors);
-    die();
-}
-if(empty($_POST["password"])){
-    $errors ='Password is require';
-    echo json_encode($errors);
-    die();
-}
-if(empty($_POST["role"])){
-    $errors ='Role is require';
-    echo json_encode($errors);
-    die();
-}
-$username =$_POST["username"];
-$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
-$phone =$_POST["mobile_number"];
-$email= $_POST["email"];
-$role =$_POST["role"];
+// if(empty($_POST["username"])){
+//     $data =['message' => 'Field is require'];
+//     echo json_encode($data);
+//     die();
+// }
+// if(empty($_POST["password"])){
+//     $data =['message' => 'Field is require'];
+//     echo json_encode($data);
+//     die();
+// }
+// if(empty($_POST["role"])){
+//     $data =['message' => 'Field is require'];
+//     echo json_encode($data);
+//     die();
+// }
+$username =$data["username"];
+$pwd = password_hash($data["password"], PASSWORD_DEFAULT);
+$phone =$data["mobile_number"];
+$email= $data["email"];
+$role =$data["role"];
 $stmt = $conn->prepare("INSERT INTO `user`(username,password,mobile_number,email,role) VALUES (?,?,?,?,?)");
 $stmt->bind_param("sssss",$username,$pwd,$phone,$email,$role);
 $stmt->execute();

@@ -8,7 +8,7 @@ $stmt->execute();
 $stmt->bind_result($id,$username,$mobile_no,$email,$role);
 
 while($stmt->fetch()){
-    array_push($users,[$id,$username,$mobile_no,$email,$role]);
+    array_push($users,['id' =>$id,'username' => $username,'mobile' => $mobile_no,'email' =>$email,'role' => $role]);
 }
 $stmt->close();
 $conn->close();
