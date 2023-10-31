@@ -81,7 +81,7 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Product </a></li>
+              <li class="breadcrumb-item active"><a href="./add_product.php"  class="btn btn-primary">Add Product </a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -100,9 +100,10 @@ session_start();
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
                       <th>Product Name</th>
+                      <th>Product Low Price</th>
+                      <th>Product High Price</th>
+                      <th>Product Image</th>
                       <th>Action</th>
                       <th>Add And View Product Image</th>
                       
@@ -583,36 +584,8 @@ session_start();
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
-<script>
-    //Script For Multipler Eanble Disable
-function checkInput(){
-  var secondunit = document.getElementById("secondaryunit");
-  var multi = document.getElementById("multiplier");
-
-  if (secondunit.value.trim() === "") {
-    multi.disabled = true;
-  } else {
-    multi.disabled = false;
-  }
- 
-}
-function checkInputEdit(){
-  var secondunit = document.getElementById("editsecondaryunit");
-  var multi = document.getElementById("multiplieredit");
-
-  if (secondunit.value.trim() === "") {
-    multi.disabled = true;
-  } else {
-    multi.disabled = false;
-  }
- 
-}
-
-//Script For Multipler Eanble Disable
-</script>
 <script type="text/javascript">
     $(document).ready(function(){
 //Add Multiple Images Of Product
@@ -674,11 +647,13 @@ function loadTableProduct(){
           var html ='';
             console.log(data);
             $.each(data,function(key,value){
-              imgurl =value.image_url;
+              imgurl =value.default_image_url;
               html = html +("<tr>"+
-                                  "<td>" + value.id +"</td>" +
-                                   "<td>" + value.name +"</td>"+ 
-                                   "<td><a href='#' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='#' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                   "<td>" + value.name +"</td>"+
+                                   "<td>" + value.low_price +"</td>"+ 
+                                   "<td>" + value.max_price +"</td>"+ 
+                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ imgurl +"' width='160px' height='90px'></td>"+ 
+                                   "<td><a href='./view_product.php?id= "+ value.id +"' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='./edit_product.php?id= "+ value.id +"' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                    "<td><a href='#' class='addimgmulti' data-productviewid='"+ value.id +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a> "+ 
                                   "</tr>");
             });
@@ -687,133 +662,7 @@ function loadTableProduct(){
     });
 }
 loadTableProduct();
-//Add product
-$(document).on("click","#add-new-category",function(){
-        $('#modal-add-product').modal('show');
-        $('#add-product-form').on('submit',function(e){
-            e.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: '../../apis/add/add_product.php',
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(response){
-                
-                if(response.status == 1){
-                    $('#add-product-form')[0].reset();
-                    $('#modal-add-product').modal('hide');
-                    loadTableProduct();
-                   
-                }else{
-                  var error = response.message;
-                  $("#validation_cat").html(error);
-                }
-                
-            }
-            })
-        });
-    });
-    //ADD PRODUCT CLOSE
-//Fetch Single Record : Show Model
-//view model open
-$(document).on("click",".View-product",function(){
-    $('#modal-view-product').modal('show');
-    var p_id = $(this).data("productviewid");
-    var obj = {p_id : p_id};
-    var myJson = JSON.stringify(obj);
-   // console.log(myJson);
-    $.ajax({
-       url :"../../apis/select/fetch_single_product.php",
-       type : "POST",
-       data : myJson,
-       dataType : "json",
-       success : function(data){
-        $("#vname").val(data[0].name);
-        $("#vcat").val(data[0].category_id);
-        $("#vunit").val(data[0].unit_id);
-        $("#viewsecondaryunit").val(data[0].secondary_unit_id);
-        $("#multiplierview").val(data[0].multiplier);
-        $("#lowpview").val(data[0].low_price);
-        $("#maxpview").val(data[0].max_price);
-        $("#mrpview").val(data[0].mrp);
-        $("#hsnview").val(data[0].hsn_code);
-        $("#gstrateview").val(data[0].gst_rate);
-        $("#firmidview").val(data[0].firm_id);
-        $("#gstpriceview").val(data[0].gst_price);
-        $("#hidden-p-img").val(data[0].default_image_url);
-        var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
-        $('#view-p-main-img').attr("src",pimg);
-        
-       }
-    });
-  });
-  //view model close
-  //    //Fetch Single Record : Show Model
-  //Update Product
-  $(document).on("click",".edit-product",function(){
-    $('#modal-Edit-Details').modal('show');
-    var p_id = $(this).data("productviewid");
-    var obj = {p_id : p_id};
-    var myJson = JSON.stringify(obj);
-   // console.log(myJson);
-    $.ajax({
-       url :"../../apis/select/fetch_single_product.php",
-       type : "POST",
-       data : myJson,
-       dataType : "json",
-       success : function(data){
-        $("#ide").val(data[0].id);
-        $("#name-edit").val(data[0].name);
-        $("#catedit").val(data[0].category_id);
-        $("#unitedit").val(data[0].unit_id);
-        $("#editsecondaryunit").val(data[0].secondary_unit_id);
-        $("#multiplieredit").val(data[0].multiplier);
-        $("#lowpedit").val(data[0].low_price);
-        $("#maxpedit").val(data[0].max_price);
-        $("#mrpedit").val(data[0].mrp);
-        $("#hsnedit").val(data[0].hsn_code);
-        $("#gstrateedit").val(data[0].gst_rate);
-        $("#firmidedit").val(data[0].firm_id);
-        $("#gstpriceedit").val(data[0].gst_price);
-        $("#hidden-p-img").val(data[0].default_image_url);
-        var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
-        $('#edit-p-main-img').attr("src",pimg);
-        
-       }
-    });
-  });
-$('#edit-product-form').on('submit',function(e){
-            e.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: '../../apis/update/update_product.php',
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(response){
-                
-                if(response.status == 1){
-                   $('#edit-product-form')[0].reset();
-                    $('#modal-Edit-Details').modal('hide');
-                    loadTableProduct();
-                   
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
-                }
-                
-            }
-            })
-        });
-    });
-
-//Update Category Close
-// fetch singlr record for remove product product
+//Fetch Single Record For Remove Product
 $(document).on("click",".remove-product",function(){
   $('#modal-product-remove').modal('show');
     var p_id = $(this).data("productviewid");
@@ -833,7 +682,6 @@ $(document).on("click",".remove-product",function(){
     });
 
    });
-//
 //Delete Product 
 $('#remove-product-form').on('submit',function(e){
             e.preventDefault();
@@ -856,14 +704,9 @@ $('#remove-product-form').on('submit',function(e){
             }
             })
 //Delete Product
-//Add Multiple Image For Product
-
         });
-    
-
-
+      });
 </script>
-
     <script>
         $(document).ready(function () {
             $('#imageInput').on('change', function (e) {

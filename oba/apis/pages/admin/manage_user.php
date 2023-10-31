@@ -233,7 +233,7 @@ $quary ="SELECT id,role FROM roles";
                 <form id="user-remove-form">
                 <div class="card-body">
                   <div class="form-group">
-                  <input type="text" class="form-control" name="id_remove_user" id="user-id-remove" autocomplete="off">
+                  <input type="hidden" class="form-control" name="id_remove_user" id="user-id-remove" autocomplete="off">
                    <h3>Are you sure, You want to delete this user?</h3>
                     
                   </div>
