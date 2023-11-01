@@ -3,7 +3,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $category = [];
-$stmt =$conn->prepare("SELECT id,name,image_url,parent_id FROM category ORDER BY id DESC;");
+$stmt =$conn->prepare("SELECT id,name,image_url,parent_id FROM category ORDER BY name ASC;");
 $stmt->execute();
 $stmt->bind_result($id,$name,$image_url,$parent_id);
 

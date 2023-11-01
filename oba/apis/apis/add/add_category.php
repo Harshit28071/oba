@@ -20,9 +20,9 @@ if(isset($_POST['c_name']) || isset($_POST['parent_cat']) || isset($_POST['file'
     // Check whether submitted data is not empty 
     if(!empty($_POST["c_name"])){ 
         // Validate category name 
-       if(($_POST["c_name"]) <= 1){
-        $errors ='Atleast Fill 2 charcters';
-       echo json_encode($errors);
+       if(strlen($name) <= 1){
+        $response['message'] ='Atleast Fill 2 charcters';
+       echo json_encode($response);
         die();
          }else{ 
             $uploadStatus = 1; 

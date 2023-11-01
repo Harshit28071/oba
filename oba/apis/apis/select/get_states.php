@@ -8,7 +8,7 @@ $db = new Database();
 $conn = $db->connect();
 
 $states = [];
-$stmt = $conn->prepare("SELECT `id`, `state` FROM `state` ORDER BY id DESC;");
+$stmt = $conn->prepare("SELECT `id`, `state` FROM `state` ORDER BY state ASC;");
 //$stmt->bind_param("is",$cid);
 $stmt->execute();
 $stmt->bind_result($id,$state);

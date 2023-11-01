@@ -45,7 +45,7 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Role</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -58,18 +58,12 @@ session_start();
     </div>
     <!-- /.content-header -->
     <section class="content">
-      <div class="container-fluid">
-    <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Role</h3>
-              </div>
-              <!-- /.card-header -->
+     <div class="container-fluid">
+      <div class="card">
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
                       <th>Role</th>
                       <th>Action</th>
                     </tr>
@@ -89,30 +83,26 @@ session_start();
   <div class="modal fade" id="modal-Edit-role">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="edit-role-form">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT ROLE</h4>
+              <h5 class="modal-title">EDIT ROLE</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-               <form id="edit-role-form">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Edit Role</label>
-                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role">
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Role</label>
+                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role" autocomplete="off">
                     <input type="text" class="form-control" name="editidrole" id="edit-id" hidden>
                     <span id="validatione" class="text-danger"></span>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
+                   </div>
             </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -124,30 +114,25 @@ session_start();
   <div class="modal fade" id="modal-add-role">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="add-role-form">
             <div class="modal-header">
-              <h4 class="modal-title">ADD ROLE</h4>
+              <h5 class="modal-title">ADD ROLE</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-role-form">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Role</label>
-                    <input type="text" class="form-control" name="Addrole" id="Add-role" placeholder="Enter Role">
+                    <label for="exampleInputEmail1">Role</label>
+                    <input type="text" class="form-control" name="Addrole" id="Add-role" placeholder="Enter Role"  autocomplete="off">
                     <span id="validation" class="text-danger"></span>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
+            </div>
+            <div class="modal-footer justify-content-between">
                   <button type="submit" class="btn btn-primary" id="add-role-sub">Add</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -159,29 +144,24 @@ session_start();
   <div class="modal fade" id="modal-remove-role">
         <div class="modal-dialog">
           <div class="modal-content">
+           <form id="add-remove-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE ROLE</h4>
+              <h5 class="modal-title">REMOVE ROLE</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-remove-form">
-                <div class="card-body">
-                  <div class="form-group">
-                  <input type="text" class="form-control" name="removeroleid" id="remove-id" hidden>
-                   <h3>Are you sure, You want to delete this role?</h3>
-                    
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-role-sub">Remove</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
+              <div class="form-group">
+              <input type="text" class="form-control" name="removeroleid" id="remove-id" hidden>
+              <h5>Are you sure, You want to delete this role?</h5>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="submit" class="btn btn-danger" id="remove-role-sub">Remove</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -216,7 +196,7 @@ function loadTable(){
             console.log(data);
             $.each(data,function(key,value){
               html = html +("<tr>"+
-                                  "<td>" + value.id +"</td>" +
+                                  
                                    "<td>" + value.role +"</td>"+ 
                                   "<td><a href='#' class='edit-role' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-role'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");

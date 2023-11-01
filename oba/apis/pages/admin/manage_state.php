@@ -44,7 +44,7 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage State</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -59,17 +59,12 @@ session_start();
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage State</h3>
-              </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
-                      <th>Role</th>
+                      <th>State</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -88,65 +83,56 @@ session_start();
   <div class="modal fade" id="modal-Edit-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="edit-state-form">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT STATES</h4>
+              <h5 class="modal-title">EDIT STATES</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-               <form id="edit-state-form">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="#">Edit States</label>
+                    <div class="form-group">
+                    <label for="#">State</label>
                     <input type="text" class="form-control" name="editstatename" id="edit-state" placeholder="Enter State">
                     <input type="text" class="form-control" name="editidstate" id="edit-id-states" hidden>
                     <span id="validation-state-edit" class="text-danger"></span>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
+                    </div>
+            </div>
+            <div class="modal-footer justify-content-between">
                   <button type="submit" class="btn btn-warning" id="edit-state-save">Save Changes</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            </div>
               </form>
             </div>
           </div>
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>
       <!-- /.modal -->
   <!----------------------------------------Edit Model Close------------------------------------------------>
   <!----------------------------------------Add Model------------------------------------------------>
   <div class="modal fade" id="modal-add-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="addstateform">
             <div class="modal-header">
-              <h4 class="modal-title">ADD STATES</h4>
+              <h5 class="modal-title">ADD STATES</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="addstateform">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add State</label>
+                    <label for="exampleInputEmail1">State</label>
                     <input type="text" class="form-control" name="Addstate" id="Add-state" placeholder="Enter State">
                     <span id="validationsa" class="text-danger"></span>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
+            </div>
+            <div class="modal-footer justify-content-between">
                   <button type="submit" class="btn btn-primary" id="add-state-sub">Add</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -158,30 +144,24 @@ session_start();
   <div class="modal fade" id="modal-remove-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="state-remove-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE STATE</h4>
+              <h5 class="modal-title">REMOVE STATE</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="state-remove-form">
-                <div class="card-body">
                   <div class="form-group">
                   <input type="text" class="form-control" name="removestateid" id="remove-state-id" hidden>
-                   <h3>Are you sure, You want to delete this State?</h3>
-                    
+                   <h5>Are you sure, You want to delete this State?</h5>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-state-sub">Remove</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-danger" id="remove-state-sub">Remove</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+           </div>
+           </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -216,7 +196,6 @@ function loadTableState(){
             console.log(data);
             $.each(data,function(key,value){
               html = html + ("<tr>"+
-                                  "<td>" + value.sid +"</td>" +
                                    "<td>" + value.statename +"</td>"+ 
                                   "<td><a href='#' class='edit-state' data-stateid='"+ value.sid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-state'  data-stateremoveid='"+ value.sid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");

@@ -45,7 +45,7 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Unit</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -59,16 +59,10 @@ session_start();
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Unit</h3>
-              </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
                       <th>Unit</th>
                       <th>Action</th>
                     </tr>
@@ -88,30 +82,26 @@ session_start();
   <div class="modal fade" id="modal-Edit-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="edit-unit-form">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT Unit</h4>
+              <h5 class="modal-title">EDIT UNIT</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-               <form id="edit-unit-form">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Edit Unit</label>
+                    <label for="exampleInputEmail1">Unit</label>
                     <input type="text" class="form-control" name="editunitname" id="edit-unit" placeholder="Enter Unit">
                     <input type="text" class="form-control" name="editidunit" id="edit-id-unit" hidden>
                     <span id="validatione" class="text-danger"></span>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-warning" id="edit-unit-save">Save Changes</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-warning" id="edit-unit-save">Save Changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -123,30 +113,25 @@ session_start();
   <div class="modal fade" id="modal-add-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="add-unit-form">
             <div class="modal-header">
-              <h4 class="modal-title">ADD UNIT</h4>
+              <h5 class="modal-title">ADD UNIT</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-unit-form">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Unit</label>
+                    <label for="exampleInputEmail1">Unit</label>
                     <input type="text" class="form-control" name="Addunit" id="Add-unit" placeholder="Enter Unit">
                     <span id="validationu" class="text-danger"></span>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-primary" id="add-unit-sub">Add</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-primary" id="add-unit-sub">Add</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
+          </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -158,30 +143,24 @@ session_start();
   <div class="modal fade" id="modal-remove-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="add-remove-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE UNIT</h4>
+              <h5 class="modal-title">REMOVE UNIT</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-remove-form">
-                <div class="card-body">
+            <div class="modal-body"> 
                   <div class="form-group">
                   <input type="text" class="form-control" name="removeunitid" id="unit-remove-id" hidden>
-                   <h3>Are you sure, You want to delete this unit ?</h3>
-                    
+                   <h5>Are you sure, You want to delete this unit ?</h5>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-unit-sub">Remove</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-danger" id="remove-unit-sub">Remove</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -215,7 +194,6 @@ function loadTableunit(){
             console.log(data);
             $.each(data,function(key,value){
              $("#load-table-unit").append("<tr>"+
-                                  "<td>" + value.uid +"</td>" +
                                    "<td>" + value.uname +"</td>"+ 
                                   "<td><a href='#' class='edit-unit' data-uniteid='"+ value.uid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-unit'  data-unitrid='"+ value.uid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");

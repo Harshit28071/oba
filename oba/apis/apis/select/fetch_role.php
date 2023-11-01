@@ -3,7 +3,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $users = [];
-$stmt =$conn->prepare("SELECT id,role FROM roles ORDER BY id DESC;");
+$stmt =$conn->prepare("SELECT id,role FROM roles ORDER BY role ASC;");
 $stmt->execute();
 $stmt->bind_result($id,$role);
 

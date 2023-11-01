@@ -55,11 +55,11 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Product Category</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Product Category</a></li>
+              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Category</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,17 +70,11 @@ session_start();
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Product Category</h3>
-              </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
-                      <th>Product Category Name</th>
+                      <th>Category </th>
                       <th>Image</th>
                       <th>Parent ID</th>
                       <th>Action</th>
@@ -102,24 +96,22 @@ session_start();
   <div class="modal fade" id="modal-Edit-category">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="edit-category-form">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT PRODUCT CATEGORY</h4>
+              <h5 class="modal-title">EDIT PRODUCT CATEGORY</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-               <form id="edit-category-form">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Edit Product Category</label>
+                    <label for="exampleInputEmail1"> Category</label>
                     <input type="text" class="form-control" name="editcatname" id="edit-cat-name" placeholder="Enter Category">
                     <input type="hidden" class="form-control" name="editidcat" id="edit-id-cat" >
                     <span id="validatione_edit" class="text-danger"></span>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Edit Product Category Image</label>
+                    <label for="exampleInputFile">Category Image</label>
                     <div class="input-group">
                       <input type="hidden"  class="form-control" id="cat-file-old" name="editoldcatfile" >
                       <div class="custom-file">
@@ -133,23 +125,20 @@ session_start();
                     <span id="validation_cat_edit" class="text-danger"></span>
                   </div>
                   <div class="form-group">
-                        <label>Add Parent Product Category</label>
+                        <label>Select Parent Category</label>
                         <select class="form-control" name="parentcatedit" id="pid">
                           <option value="0">Default</option>
                           <?php 
                           echo $options_edit;
                           ?>
-                         
                         </select>
                       </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
+            </div>
+            <div class="modal-footer justify-content-between">
                   <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Saves Changes">               
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -161,24 +150,22 @@ session_start();
   <div class="modal fade" id="modal-add-category">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="add-category-form">
             <div class="modal-header">
-              <h4 class="modal-title">ADD PRODUCT CATEGORY</h4>
+              <h5 class="modal-title">ADD PRODUCT CATEGORY</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-category-form">
-                <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Add Product Category Name</label>
+                    <label for="exampleInputEmail1">Category</label>
                     <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category">
-                    
+                    <span id="validation_cat_name" class="text-danger"></span>
                   </div>
+                  
                   <div class="form-group">
-                    <label for="exampleInputFile">Add Product Category Image</label>
+                    <label for="exampleInputFile"> Category Image</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
@@ -191,7 +178,7 @@ session_start();
                     <span id="validation_cat" class="text-danger"></span>
                   </div>
                   <div class="form-group">
-                        <label>Add Parent Product Category</label>
+                        <label>Select Parent Category</label>
                         <select class="form-control" name="parent_cat">
                           <option id="option-id-edit" value="0">Default</option>
                           <?php 
@@ -201,14 +188,12 @@ session_start();
                           ?>
                         </select>
                       </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">               
+            </div> 
+            <div class="modal-footer justify-content-between">
+                 <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">               
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-              </form>
-            </div>
+                </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -220,31 +205,25 @@ session_start();
   <div class="modal fade" id="modal-remove-cat">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="remove-category-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE PRODUCT CATEGORY</h4>
+              <h5 class="modal-title">REMOVE PRODUCT CATEGORY</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="remove-category-form">
-                <div class="card-body">
                   <div class="form-group">
                   <input type="hidden" class="form-control" name="removecatid" id="category-remove-id">
                   <input type="hidden"  class="form-control" id="cat-file-remove" name="removeofile" >
-                   <h3>Are you sure, You want to delete this category?</h3>
-                    
+                   <h5>Are you sure, You want to delete this category?</h5>
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -286,8 +265,13 @@ session_start();
                     loadTableCategory()
                    
                 }else{
+                  var err =response.message
+                  $("#validation_cat_name").html(err);
                   var error = response.message;
                   $("#validation_cat").html(error);
+                 
+
+                  
                 }
                 
             }
@@ -307,7 +291,6 @@ function loadTableCategory(){
             $.each(data,function(key,value){
               imgurl =value.image_url;
               html = html +("<tr>"+
-                                  "<td>" + value.id +"</td>" +
                                    "<td>" + value.name +"</td>"+ 
                                    "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='160px' height='90px'></td>"+ 
                                    "<td>" + value.parent_id +"</td>"+ 

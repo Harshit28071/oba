@@ -3,7 +3,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $firm = [];
-$stmt =$conn->prepare("SELECT * FROM firm ORDER BY id DESC;");
+$stmt =$conn->prepare("SELECT * FROM firm ORDER BY name ASC;");
 $stmt->execute();
 $stmt->bind_result($id,$name,$gstin ,$address,$fssai,$mobile,$bank_name,$account_number,$ifsc,$bank_address,$logo,$signature_image,$email,$state,$state_code);
 

@@ -77,7 +77,7 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -92,10 +92,6 @@ session_start();
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Product </h3>
-              </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
@@ -103,10 +99,11 @@ session_start();
                       <th>Product Name</th>
                       <th>Product Low Price</th>
                       <th>Product High Price</th>
+                      <th>Unit</th>
                       <th>Product Image</th>
                       <th>Action</th>
                       <th>Add And View Product Image</th>
-                      
+                      <th>Availability</th>
 
                     </tr>
                   </thead>
@@ -121,417 +118,29 @@ session_start();
       </div>
    </section>
   </div>
-  <!-----------------------------------View Modal Details-------------------------------------------------------------------->
-  <div class="modal fade" id="modal-view-product">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">VIEW PRODUCT DETAILS</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                
-                <div class="card-body">
-                <form id="product-form">
-                <div class="row">
-                  <div class="col-6 form-group">
-                  <label>Product Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Product Name" name="pname" autocomplete="off" id="vname" required>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Product Category</label>
-                        <select class="form-control" name="pcategory" id="vcat" required>
-                          <?php echo $options_edit;?>
-                        </select>
-                      </div>
-                    </div>
-                 
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label>Select Unit</label>
-                        <select class="form-control" name="punit" id="vunit">
-                          <?php echo $options_edit_unit; ?>
-                        </select>
-                      </div>
-                    </div>
-                  
-                  <div class="col-4 form-group">
-                 
-                    <!-- <input type="text" class="form-control" placeholder="Enter Secondary Unit "    autocomplete="off" required> -->
-                    <div class="form-group">
-                    <label>Secondary Unit</label>
-                        <select class="form-control" name="secunit" oninput="checkInput()" id="viewsecondaryunit">
-                        <option>no select</option> 
-                        <?php echo $options_edit_unit; ?>
-                        </select>
-                      </div>
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplierview" autocomplete="off" disabled>
-                    
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Low Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Low Price" name="lowprice" autocomplete="off" id="lowpview">
-                  </div>
-                  <div class="col-4 form-group">
-                  <label>Max Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Max Price" name="maxprice" autocomplete="off" id="maxpview">
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>MRP</label>
-                    <input type="text" class="form-control" placeholder="Enter MRP" name="pmrp" autocomplete="off" id="mrpview">
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Hsn Code</label>
-                    <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncode" autocomplete="off" id="hsnview" required>
-                    <span id="ifsc-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Gst Rate</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrate" autocomplete="off" id="gstrateview" required>
-                    <span id="bank-add-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Firm</label>
-                        <select class="form-control" name="firmid" id="firmidview">
-                          <?php echo $options_edit_firm; ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-6 form-group">
-                  <label>Gst Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstprice" autocomplete="off" id="gstpriceview">
-                    <span id="state-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  <div class="col-12 form-group">
-                  <label for="exampleInputFile">View Product Image</label>
-                  <div class="form-group">
-                    <img src="" id="view-p-main-img" class="form-control" style="width:200px; height:140px;">
-                  </div>    
-                </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">            
-                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-                </div>
-              </form>
-              </div>
-            </div>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!--------------------------------------View Modal Close---------------------------------------------------------------------->
-  <!----------------------------------------------Edit Model------------------------------------------------------>
-  <div class="modal fade" id="modal-Edit-Details">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">EDIT PRODUCT DETAILS</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-               <!-- form start -->
-               <div class="card-body">
-                <form id="edit-product-form">
-                <div class="row">
-                  <div class="col-6 form-group">
-                  <label>Product Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Product Name" name="pnameedit" autocomplete="off" id="name-edit" required>
-                    <input type="hidden" class="form-control" placeholder="Enter Product Name" name="idedit" autocomplete="off" id="ide" required>
-
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Product Category</label>
-                        <select class="form-control" name="pcategoryedit" id="catedit" required>
-                          <?php echo $options_edit;?>
-                        </select>
-                      </div>
-                    </div>
-                 
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label>Select Unit</label>
-                        <select class="form-control" name="punitedit" id="unitedit">
-                          <?php echo $options_edit_unit; ?>
-                        </select>
-                      </div>
-                    </div>
-                  
-                  <div class="col-4 form-group">
-                    <div class="form-group">
-                    <label>Secondary Unit</label>
-                        <select class="form-control" name="secunitedit" oninput="checkInputEdit()" id="editsecondaryunit">
-                        <option>no select</option> 
-                        <?php echo $options_edit_unit; ?>
-                        </select>
-                      </div>
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off" disabled>
-                    
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Low Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Low Price" name="lowpriceedit" autocomplete="off" id="lowpedit">
-                  </div>
-                  <div class="col-4 form-group">
-                  <label>Max Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Max Price" name="maxpriceedit" autocomplete="off" id="maxpedit">
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>MRP</label>
-                    <input type="text" class="form-control" placeholder="Enter MRP" name="pmrpedit" autocomplete="off" id="mrpedit">
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Hsn Code</label>
-                    <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncodeedit" autocomplete="off" id="hsnedit" required>
-                    <span id="ifsc-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Gst Rate</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrateedit" autocomplete="off" id="gstrateedit" required>
-                    <span id="bank-add-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Firm</label>
-                        <select class="form-control" name="firmidedit" id="firmidedit">
-                          <?php echo $options_edit_firm; ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-6 form-group">
-                  <label>Gst Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstpriceedit" autocomplete="off" id="gstpriceedit">
-                    <span id="state-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  <div class="col-12 form-group">
-                    <label for="exampleInputFile">Change Product Image</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="productoldimage" name="productimagenew" >
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                   
-                  </div>
-                  <div class="col-12 form-group">
-                  <label for="exampleInputFile">View Product Image</label>
-                  <div class="form-group">
-                    <img src="" id="edit-p-main-img" class="form-control" style="width:200px; height:140px;">
-                    <input type="hidden" id="hidden-p-img" class="form-control" name="oldimageproduct">
-                  </div>    
-                </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">    
-                <input type="submit"  class="btn btn-warning btn-lg" id="edit-product-sub" value="Save Changes">               
-                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-                </div>
-              </form>
-              </div>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!----------------------------------------Edit Model Close------------------------------------------------>
-  <!----------------------------------------Add Model------------------------------------------------>
-  <div class="modal fade" id="modal-add-product">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">ADD PRODUCT</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                
-                <div class="card-body">
-                <form id="add-product-form">
-                <div class="row">
-                  <div class="col-6 form-group">
-                  <label>Product Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Product Name" name="pname" autocomplete="off" id="" required>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Product Category</label>
-                        <select class="form-control" name="pcategory" required>
-                          <?php echo $options;?>
-                        </select>
-                      </div>
-                    </div>
-                 
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label>Select Unit</label>
-                        <select class="form-control" name="punit">
-                          <?php echo $options_unit; ?>
-                        </select>
-                      </div>
-                    </div>
-                  
-                  <div class="col-4 form-group">
-                 
-                    <!-- <input type="text" class="form-control" placeholder="Enter Secondary Unit "    autocomplete="off" required> -->
-                    <div class="form-group">
-                    <label>Secondary Unit</label>
-                        <select class="form-control" name="secunit" oninput="checkInput()" id="secondaryunit">
-                        <option>no select</option> 
-                        <?php echo $options_unit; ?>
-                        </select>
-                      </div>
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplier" autocomplete="off" disabled>
-                    
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>Low Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Low Price" name="lowprice" autocomplete="off" id="">
-                  </div>
-                  <div class="col-4 form-group">
-                  <label>Max Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Max Price" name="maxprice" autocomplete="off" id="">
-                  </div>
-                  
-                  <div class="col-4 form-group">
-                  <label>MRP</label>
-                    <input type="text" class="form-control" placeholder="Enter MRP" name="pmrp" autocomplete="off" id="">
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Hsn Code</label>
-                    <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncode" autocomplete="off" id="" required>
-                    <span id="ifsc-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  
-                  <div class="col-6 form-group">
-                  <label>Gst Rate</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrate" autocomplete="off" id="" required>
-                    <span id="bank-add-val" class="text-danger font-weight-bold"></span>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Select Firm</label>
-                        <select class="form-control" name="firmid">
-                          <?php echo $options_firm; ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-6 form-group">
-                  <label>Gst Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstprice" autocomplete="off" id="f-state">
-                    
-                  </div>
-                  <div class="col-12 form-group">
-                    <label for="exampleInputFile">Upload Product Image</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="p-img" name="productimage" >
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                   
-                  </div>
-                 
-                </div>
-                
-                
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                <input type="submit"  class="btn btn-primary btn-lg" id="add-product-sub" value="Add Product">               
-                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-                </div>
-                
-              </form>
-              </div>
-            </div>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!----------------------------------------Add Model Close------------------------------------------------>
   <!----------------------------------------Remove Model------------------------------------------------>
   <div class="modal fade" id="modal-product-remove">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="remove-product-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE PRODUCT</h4>
+              <h5 class="modal-title">REMOVE PRODUCT</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="remove-product-form">
-                <div class="card-body">
+            <div class="modal-body">  
                   <div class="form-group">
-                  
                   <input type="hidden" class="form-control" placeholder="Enter Product Name" name="idremove" autocomplete="off" id="removeid" required>
                   <input type="hidden" id="hidden-p-img-remove" class="form-control" name="removeimage">
-                   <h3>Are you sure, You want to delete this Product?</h3>
-                    
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                <input type="submit" class="btn btn-danger" id="remove-product-sub" value="Remove">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
+                   <h5>Are you sure, You want to delete this Product?</h5>
+                  </div>             
             </div>
+            <div class="modal-footer justify-content-between">
+            <input type="submit" class="btn btn-danger" id="remove-product-sub" value="Remove">               
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -543,31 +152,26 @@ session_start();
   <div class="modal fade" id="modal-add-multiple-img">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
+          <form id="multi-image-form">
             <div class="modal-header">
-              <h4 class="modal-title">Add Product Multiple Image</h4>
+              <h5 class="modal-title">Add Product Multiple Image</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-               
-                <form id="multi-image-form">
                 <input type="hidden" id="product-id" name="productidimgem">
                 <input type="file" id="imageInput" name="files[]" multiple>
                 <div class="col-12 form-group">
                 <label for="imageInput" id="upload-button" class="btn btn-warning">Upload Images &nbsp; &nbsp;<i class="fas fa-plus"></i></label>
                 </div>
                <div id="imagePreview"></div>
-
-               
-                <div class="card-footer justify-content-between">
-                <input type="submit" class="btn btn-primary" id="addmulti-image-sub" value="Add Images">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>    
-                </form>       
             </div>
+            <div class="modal-footer justify-content-between">
+            <input type="submit" class="btn btn-primary" id="addmulti-image-sub" value="Add Images">               
+             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>   
           </div>
           <!-- /.modal-content -->
         </div>
@@ -652,9 +256,11 @@ function loadTableProduct(){
                                    "<td>" + value.name +"</td>"+
                                    "<td>" + value.low_price +"</td>"+ 
                                    "<td>" + value.max_price +"</td>"+ 
+                                   "<td>" + value.unit_name +"</td>"+ 
                                    "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ imgurl +"' width='160px' height='90px'></td>"+ 
                                    "<td><a href='./view_product.php?id= "+ value.id +"' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='./edit_product.php?id= "+ value.id +"' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                    "<td><a href='#' class='addimgmulti' data-productviewid='"+ value.id +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a> "+ 
+                                   "<td>" + value.available +"</td>"+
                                   "</tr>");
             });
             $("#load-table-product").html(html);  

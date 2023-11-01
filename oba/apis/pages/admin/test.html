@@ -203,3 +203,15 @@ function checkInput() {
   }
 }
 </script>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-outline-light">Save changes</button>
+  </div>
+  SELECT product.id,product.name,product.low_price,product.max_price,product.default_image_url,units.name FROM product LEFT JOIN units ON product.id = units.id
+  <!-- data-toggle-button
+  "<td>"+ if(value.available == 1){ 
+    +"<p><a href='../../apis/update/update_product_status.php.php?id='" + value.id +"'&status=0' class='btn btn-success'>Inactive</p>"+
+   }else{
+   + "<p><a href='../../apis/update/update_product_status.php.php?id='" + value.id +"'&status=1' class='btn btn-success'>Active</p>"+
+   }
+   +"<td>"+ -->

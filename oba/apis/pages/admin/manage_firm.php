@@ -49,13 +49,12 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-     
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Firm</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -70,19 +69,12 @@ session_start();
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Firm </h3>
-              </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                     
-                      <th>ID</th>
                       <th>Firm Name</th>
                       <th>Action</th>
-
                     </tr>
                   </thead>
                   <tbody id="load-table-firm">
@@ -100,34 +92,26 @@ session_start();
   <div class="modal fade" id="modal-remove-firm">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="remove-firm-form">
             <div class="modal-header">
-              <h4 class="modal-title">REMOVE FIRM</h4>
+              <h5 class="modal-title">REMOVE FIRM</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="remove-firm-form">
-                <div class="card-body">
                   <div class="form-group">
                   <input type="hidden" class="form-control" placeholder="" name="firmremoveid" autocomplete="off" id="f-id-remove">
                   <input type="hidden" class="form-control" id="logo-image-remove" name="removelogoimgold" >
                   <input type="hidden" class="form-control" id="sign-image-remove" name="removesignimgold" >
-                  
-
-                   <h3>Are you sure, You want to delete this Firm Record ?</h3>
-                    
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
+                   <h5>Are you sure, You want to delete this Firm Record ?</h5>
+                  </div>              
             </div>
+            <div class="modal-footer justify-content-between">
+                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -246,7 +230,6 @@ function loadTableFirm(){
             $.each(data,function(key,value){
               imgurl =value.image_url;
               html = html +("<tr>"+
-                                  "<td>" + value.id +"</td>" +
                                    "<td>" + value.name +"</td>"+ 
                                   "<td><a href='viewfirmdetails.php?id= "+ value.id +"' class='View-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp; <a href='edit_firm.php?id="+ value.id +"' class='edit-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-firm'  data-firmviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                   "</tr>");

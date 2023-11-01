@@ -77,7 +77,7 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h3 class="m-0">Edit Product Details</h3>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -92,9 +92,6 @@ session_start();
     <section class="content">
       <div class="container-fluid">
       <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Edit Product Details</h3>
-              </div>
               <div class="card-body">
                 <form id="edit-product-form">
                 <div class="row">

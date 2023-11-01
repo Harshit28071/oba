@@ -56,7 +56,7 @@ $quary ="SELECT id,role FROM roles";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Manage Users</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -71,10 +71,6 @@ $quary ="SELECT id,role FROM roles";
     <section class="content">
       <div class="container-fluid">
     <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Manage Users</h3>
-              </div>
-              <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
@@ -102,16 +98,14 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-Edit-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="edit-user-form">
             <div class="modal-header">
-              <h4 class="modal-title">EDIT USER</h4>
+              <h5 class="modal-title">EDIT USER</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-               <form id="edit-user-form">
-                <div class="card-body">
                     <div class="row">
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
@@ -141,14 +135,12 @@ $quary ="SELECT id,role FROM roles";
                         </select>
                       </div>
                 </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-primary" id="edit-user-save">Submit</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-primary" id="edit-user-save">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -160,17 +152,14 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-add-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="add-user-form">
             <div class="modal-header">
-              <h4 class="modal-title">ADD NEW USER</h4>
+              <h5 class="modal-title">ADD NEW USER</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="add-user-form">
-                <div class="card-body">
                     <div class="row">
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
@@ -202,14 +191,12 @@ $quary ="SELECT id,role FROM roles";
                         </select>
                       </div>
                 </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-primary" id="add-user-sub">Submit</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-primary" id="add-user-sub">Submit</button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -221,6 +208,7 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-remove-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <form id="user-remove-form">
             <div class="modal-header">
               <h4 class="modal-title">REMOVE ROLE</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -228,23 +216,16 @@ $quary ="SELECT id,role FROM roles";
               </button>
             </div>
             <div class="modal-body">
-               <!-- form start -->
-                <!-- form start -->
-                <form id="user-remove-form">
-                <div class="card-body">
                   <div class="form-group">
                   <input type="hidden" class="form-control" name="id_remove_user" id="user-id-remove" autocomplete="off">
                    <h3>Are you sure, You want to delete this user?</h3>
-                    
                   </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer justify-content-between">
-                  <button type="submit" class="btn btn-danger" id="remove-user-sub">Remove</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-              </form>
             </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-danger" id="remove-user-sub">Remove</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>

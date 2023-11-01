@@ -49,13 +49,12 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-     
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h3 class="m-0">Add Firm</h3>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -70,9 +69,6 @@ session_start();
     <section class="content">
       <div class="container-fluid">
       <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Add Firm</h3>
-              </div>
       <div class="card-body">
                 <form id="add-firm-form" onsubmit="return validation()">
                 <div class="row">
@@ -173,20 +169,17 @@ session_start();
                   </div>
                 </div>
                 <span id="validation_cat_edit" class="text-danger font-weight-bold"></span>
-                
-                <!-- /.card-body -->
                 <div class="card-footer justify-content-between">
                 <input type="submit"  class="btn btn-primary btn-lg" id="add-firm-sub" value="Add">               
-                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
                 </div>
-                
               </form>
               </div>
+               <!-- /.card-body -->
               </div>
    <!-- /.content -->
       </div>
+      </section>
       </div>
-   </section>
   </div>
   
  <?php require_once("./layout/footer.php"); ?>
