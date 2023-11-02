@@ -93,18 +93,17 @@ session_start();
       <div class="container-fluid">
     <div class="card">
               <div class="card-body p-0">
-                <table class="table table-striped">
+                <table class="table table-striped" id="example1">
                   <thead>
                     <tr>
-                      <th>Product Name</th>
-                      <th>Product Low Price</th>
-                      <th>Product High Price</th>
+                      <th> Name</th>
+                      <th> Low Price</th>
+                      <th> High Price</th>
                       <th>Unit</th>
-                      <th>Product Image</th>
+                      <th> Image</th>
                       <th>Action</th>
-                      <th>Add And View Product Image</th>
+                      <th>Add And View  Image</th>
                       <th>Availability</th>
-
                     </tr>
                   </thead>
                   <tbody id="load-table-product">
@@ -191,7 +190,7 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
-    $(document).ready(function(){
+$(document).ready(function(){
 //Add Multiple Images Of Product
 $(document).on("click",".addimgmulti",function(){
     $("#modal-add-multiple-img").modal("show");
@@ -252,22 +251,33 @@ function loadTableProduct(){
             console.log(data);
             $.each(data,function(key,value){
               imgurl =value.default_image_url;
+              var available = 'checked';
+              if(!value.available){
+                available = 'unchecked';
+              }
               html = html +("<tr>"+
                                    "<td>" + value.name +"</td>"+
                                    "<td>" + value.low_price +"</td>"+ 
                                    "<td>" + value.max_price +"</td>"+ 
                                    "<td>" + value.unit_name +"</td>"+ 
-                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ imgurl +"' width='160px' height='90px'></td>"+ 
+                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ imgurl +"' width='90px' height='60px'></td>"+ 
                                    "<td><a href='./view_product.php?id= "+ value.id +"' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='./edit_product.php?id= "+ value.id +"' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                    "<td><a href='#' class='addimgmulti' data-productviewid='"+ value.id +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a> "+ 
-                                   "<td>" + value.available +"</td>"+
-                                  "</tr>");
+                                   "<td><div class='custom-control custom-switch custom-switch-off-danger custom-switch-on-success'><input type='checkbox' class='custom-control-input' "+ available +" id='customSwitch3'><label class='custom-control-label' for='customSwitch3'></label></div></td></tr>");
             });
             $("#load-table-product").html(html);  
         }
     });
 }
 loadTableProduct();
+ //Data Table Script
+ $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    
+  });
 //Fetch Single Record For Remove Product
 $(document).on("click",".remove-product",function(){
   $('#modal-product-remove').modal('show');
@@ -338,5 +348,6 @@ $('#remove-product-form').on('submit',function(e){
             });
         });
     </script>
+   
 </body>
 </html>

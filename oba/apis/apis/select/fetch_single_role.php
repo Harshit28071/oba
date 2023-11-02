@@ -7,7 +7,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $users = [];
-$stmt =$conn->prepare("SELECT * FROM roles WHERE id = ?");
+$stmt =$conn->prepare("SELECT id,role FROM roles WHERE id = ?");
 $stmt->bind_param("i",$role_id);
 $stmt->bind_result($id,$role);
 $stmt->execute();

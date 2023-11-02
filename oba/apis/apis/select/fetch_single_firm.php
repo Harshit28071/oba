@@ -6,7 +6,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $firm_s = [];
-$stmt =$conn->prepare("SELECT * FROM firm  WHERE id = ?");
+$stmt =$conn->prepare("SELECT id,name,gstin,address,fssai,mobile,bank_name,account_number,ifsc,bank_address,logo,signature_image,email,state,state_code FROM firm  WHERE id = ?");
 $stmt->bind_param("i",$f_id);
 $stmt->bind_result($id,$name,$gstin ,$address,$fssai,$mobile,$bank_name,$account_number,$ifsc,$bank_address,$logo,$signature_image,$email,$state,$state_code);
 $stmt->execute();

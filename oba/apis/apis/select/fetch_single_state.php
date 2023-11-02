@@ -7,7 +7,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $states = [];
-$stmt =$conn->prepare("SELECT * FROM state WHERE id = ?");
+$stmt =$conn->prepare("SELECT id,state FROM state WHERE id = ?");
 $stmt->bind_param("i",$state_id);
 $stmt->bind_result($id,$state);
 $stmt->execute();

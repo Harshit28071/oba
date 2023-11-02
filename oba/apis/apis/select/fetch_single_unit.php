@@ -7,7 +7,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $unitsarr = [];
-$stmt =$conn->prepare("SELECT * FROM units WHERE id = ?");
+$stmt =$conn->prepare("SELECT id,name FROM units WHERE id = ?");
 $stmt->bind_param("i",$unit_id);
 $stmt->bind_result($id,$unit);
 $stmt->execute();
