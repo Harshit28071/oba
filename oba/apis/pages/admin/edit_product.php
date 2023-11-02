@@ -131,7 +131,7 @@ session_start();
                   
                   <div class="col-4 form-group">
                   <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off" disabled>
+                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off" hidden>
                     
                   </div>
                   
@@ -219,9 +219,9 @@ session_start();
   var multi = document.getElementById("multiplieredit");
 
   if (secondunit.value.trim() === "") {
-    multi.disabled = true;
+    multi.hidden =true;
   } else {
-    multi.disabled = false;
+    multi.hidden = false;
   }
  
 

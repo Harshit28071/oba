@@ -32,8 +32,8 @@ if(isset($_POST['pname']) || isset($_POST['pcategory']) || isset($_POST['punit']
     // Check whether submitted data is not empty 
     if(!empty($_POST["pname"])){ 
         // Validate category name 
-       if(($_POST["pname"]) <= 1){
-        $errors ='Atleast Fill 2 charcters';
+       if((strlen($_POST["pname"])) <= 1){
+        $errors['message'] ='Atleast Fill 2 charcters';
        echo json_encode($errors);
         die();
          }else{ 

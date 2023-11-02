@@ -96,6 +96,7 @@ session_start();
                   <div class="col-6 form-group">
                   <label>Product Name</label>
                     <input type="text" class="form-control" placeholder="Enter Product Name" name="pname" autocomplete="off" id="" required>
+                    <span id="validation_product" class="text-danger"></span>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
@@ -129,7 +130,7 @@ session_start();
                   
                   <div class="col-4 form-group">
                   <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplier" autocomplete="off" disabled>
+                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplier" autocomplete="off" hidden>
                     
                   </div>
                   
@@ -209,9 +210,10 @@ function checkInput(){
   var multi = document.getElementById("multiplier");
 
   if (secondunit.value.trim() === "") {
-    multi.disabled = true;
+    //multi.disabled = true;
+    multi.hidden =true;
   } else {
-    multi.disabled = false;
+    multi.hidden = false;
   }
 }
 </script>
@@ -237,7 +239,7 @@ function checkInput(){
                    
                 }else{
                   var error = response.message;
-                  $("#validation_cat").html(error);
+                  $("#validation_product").html(error);
                 }
                 
             }

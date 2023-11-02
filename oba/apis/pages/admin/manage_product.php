@@ -96,14 +96,16 @@ session_start();
                 <table class="table table-striped" id="example1">
                   <thead>
                     <tr>
+                       
                       <th> Name</th>
+                      <th> Category</th>
                       <th> Low Price</th>
                       <th> High Price</th>
-                      <th>Unit</th>
+                      <th> Unit</th>
                       <th> Image</th>
-                      <th>Action</th>
-                      <th>Add And View  Image</th>
-                      <th>Availability</th>
+                      <th> Availability</th>
+                      <th> Action</th>
+                      
                     </tr>
                   </thead>
                   <tbody id="load-table-product">
@@ -224,7 +226,7 @@ $(document).on("click",".addimgmulti",function(){
                     $("#multi-image-form").trigger("reset");
                     $('#modal-add-multiple-img').modal('hide');
                     location.reload();
-                    loadTableProduct();
+                   // loadTableProduct();
                    
                 }else{
                   var error = response.message;
@@ -269,13 +271,52 @@ function loadTableProduct(){
         }
     });
 }
-loadTableProduct();
+//loadTableProduct();
  //Data Table Script
  $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      'processing': true,
+	'serverSide': true,
+	'serverMethod': 'post',
+	'ajax': {
+		  'url':'../../apis/select/get_product.php'
+		 },
+		 'columns': [
+		         	{ data: 'name' },
+		         	{ data: 'category'},
+		         	{ data: 'low_price' },
+		         	{ data: 'max_price' },
+		         	{ data: 'unit' },
+		            { data: 'default_image_url', 
+                  render: function (data, type, row, meta){
+                    return type === 'display' ?
+                    "<img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ data +"' width='90px' height='60px'>"
+                    : data;
+                  }
+                },
+		            {
+                  data: 'available',
+                  render: function (data, type, row, meta){
+                    return type === 'display' ?
+                    "<div class='custom-control custom-switch custom-switch-off-danger custom-switch-on-success'><input type='checkbox' class='custom-control-input' "+ data +" id='customSwitch3'><label class='custom-control-label' for='customSwitch3'></label></div>"
+                    : data;
+                  }
+                },
+		            { data: 'id',
+                  render: function (data, type, row, meta){
+                    return type === 'display' ?
+                    "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ data +"'><i class='fas fa-eye'></i></a> "
+                    :data;
+                  }
+                 
+                }
+		      	]
+    });
+    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     
   });
 //Fetch Single Record For Remove Product
@@ -314,7 +355,7 @@ $('#remove-product-form').on('submit',function(e){
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
                     $('#modal-product-remove').modal('hide');
-                    loadTableProduct();
+                    //loadTableProduct();
                 }
                 
             }
