@@ -164,6 +164,7 @@ session_start();
                       <div class="form-group">
                         <label>Select Firm</label>
                         <select class="form-control" name="firmid" id="firmidview" readonly>
+                          <option value="0">No Firm Selected</option>
                           <?php echo $options_edit_firm; ?>
                         </select>
                       </div>

@@ -12,7 +12,7 @@ $response = array(
 ); 
  
 // If form is submitted 
-if(isset($_POST['editidcat']) || isset($_POST['editcatname']) || isset($_FILES["editcatfile"]["name"]) || isset($_POST['editoldcatfile']) || isset($_POST['parentcatedit'])){ 
+if(isset($_POST['editidcat']) && isset($_POST['editcatname'])){ 
     // Get the submitted form data 
         $cat_update_id =$_POST['editidcat'];
         $cat_name = $_POST['editcatname']; 

@@ -197,7 +197,7 @@ function loadTableState(){
             $.each(data,function(key,value){
               html = html + ("<tr>"+
                                    "<td>" + value.statename +"</td>"+ 
-                                  "<td><a href='#' class='edit-state' data-stateid='"+ value.sid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-state'  data-stateremoveid='"+ value.sid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='#' class='edit-state' data-stateid='"+ value.sid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-state'  data-stateremoveid='"+ value.sid +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
             $("#load-table-state").html(html);  

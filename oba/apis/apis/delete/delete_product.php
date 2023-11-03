@@ -12,7 +12,9 @@ $stmt->bind_param("i",$remove_p_id);
 $stmt->execute();
 $id = $stmt->affected_rows;
 if($id == 1){
+    if(!empty($remove_image_product)){
     unlink("../../pages/admin/uploads/".$remove_image_product);
+}
 }
 $stmt->close();
 $conn->close();

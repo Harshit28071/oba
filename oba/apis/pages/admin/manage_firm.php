@@ -231,7 +231,7 @@ function loadTableFirm(){
               imgurl =value.image_url;
               html = html +("<tr>"+
                                    "<td>" + value.name +"</td>"+ 
-                                  "<td><a href='viewfirmdetails.php?id= "+ value.id +"' class='View-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp; <a href='edit_firm.php?id="+ value.id +"' class='edit-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-firm'  data-firmviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='viewfirmdetails.php?id= "+ value.id +"' class='View-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp; <a href='edit_firm.php?id="+ value.id +"' class='edit-firm' data-firmviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-firm'  data-firmviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
             $("#load-table-firm").html(html);  

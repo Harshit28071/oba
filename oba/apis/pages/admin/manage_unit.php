@@ -195,7 +195,7 @@ function loadTableunit(){
             $.each(data,function(key,value){
              $("#load-table-unit").append("<tr>"+
                                    "<td>" + value.uname +"</td>"+ 
-                                  "<td><a href='#' class='edit-unit' data-uniteid='"+ value.uid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-unit'  data-unitrid='"+ value.uid +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='#' class='edit-unit' data-uniteid='"+ value.uid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-unit'  data-unitrid='"+ value.uid +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
         }

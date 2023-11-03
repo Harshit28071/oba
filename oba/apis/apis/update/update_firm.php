@@ -12,7 +12,7 @@ $response = array(
 ); 
  
 // If form is submitted 
-if(isset($_POST['firmeditid']) ||isset($_POST['firmnameedit']) || isset($_POST['gstinedit']) || isset($_POST['addressedit']) || isset($_POST['fssaiedit']) || isset($_POST['mobileedit'])|| isset($_POST['emailedit'])|| isset($_POST['banknameedit'])|| isset($_POST['accountnumberedit'])||isset($_POST['ifscedit'])|| isset($_POST['bankaddressedit'])|| isset($_POST['stateedit'])|| isset($_POST['statecodeedit'])||isset($_FILES["logoimageedit"]["name"])||isset($_FILES["signimgedit"]["name"]) || isset($_POST['logoimgold']) || isset($_POST['signimgold']) ){ 
+if(isset($_POST['firmeditid']) && isset($_POST['firmnameedit']) && isset($_POST['gstinedit']) && isset($_POST['addressedit']) && isset($_POST['fssaiedit']) && isset($_POST['mobileedit']) && isset($_POST['banknameedit']) && isset($_POST['accountnumberedit']) && isset($_POST['ifscedit']) && isset($_POST['bankaddressedit']) && isset($_POST['stateedit']) && isset($_POST['statecodeedit'])){ 
     // Get the submitted form data 
     $firm_edit_id =$_POST['firmeditid'];
     $firmname_edit = $_POST['firmnameedit']; 
@@ -76,8 +76,9 @@ if(isset($_POST['firmeditid']) ||isset($_POST['firmnameedit']) || isset($_POST['
                 if(in_array($fileType, $allowTypes)){ 
                     // Upload file to the server 
                     if(move_uploaded_file($_FILES["logoimageedit"]["tmp_name"], $targetFilePath)){ 
-                        $uploadedFile = $fileName; 
-                        unlink("../../pages/admin/uploads/".$logo_old_img);
+                        $uploadedFile = $fileName;
+                        if(!empty($logo_old_img)){  
+                        unlink("../../pages/admin/uploads/".$logo_old_img);}
                     }else{ 
                         $uploadStatus = 0; 
                         $response['message'] = 'Sorry, there was an error uploading your file.'; 
@@ -99,8 +100,9 @@ if(isset($_POST['firmeditid']) ||isset($_POST['firmnameedit']) || isset($_POST['
                 if(in_array($fileType, $allowTypes)){ 
                     // Upload file to the server 
                     if(move_uploaded_file($_FILES["signimgedit"]["tmp_name"], $targetFilePathSign)){ 
-                        $uploadedFileSign = $fileNameSign; 
-                        unlink("../../pages/admin/uploads/".$sign_old_img);
+                        $uploadedFileSign = $fileNameSign;
+                        if(!empty($sign_old_img)){ 
+                        unlink("../../pages/admin/uploads/".$sign_old_img);}
 
                     }else{ 
                         $uploadStatus = 0; 

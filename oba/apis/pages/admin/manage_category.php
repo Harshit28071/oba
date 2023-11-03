@@ -6,7 +6,7 @@ session_start();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
     header("location:./user_login.php");
     }
-    $quary ="SELECT id,name FROM category";
+    $quary ="SELECT id,name FROM category WHERE parent_id ='0'";
     $stmt = $conn->prepare($quary);
     $stmt->execute();
     $stmt->bind_result($id,$name);
@@ -292,9 +292,9 @@ function loadTableCategory(){
               imgurl =value.image_url;
               html = html +("<tr>"+
                                    "<td>" + value.name +"</td>"+ 
-                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='160px' height='90px'></td>"+ 
+                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='30px' height='30px'></td>"+ 
                                    "<td>" + value.parent_id +"</td>"+ 
-                                  "<td><a href='#' class='edit-category' data-categoryeid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-category'  data-categoryremoveid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='#' class='edit-category' data-categoryeid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-category'  data-categoryremoveid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
             $("#load-table-category").html(html);  

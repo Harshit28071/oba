@@ -12,7 +12,7 @@ $response = array(
 ); 
  
 // If form is submitted 
-if(isset($_POST['c_name']) || isset($_POST['parent_cat']) || isset($_POST['file'])){ 
+if(isset($_POST['c_name'])){ 
     // Get the submitted form data 
     $name = $_POST['c_name']; 
     $parent_category = $_POST['parent_cat']; 

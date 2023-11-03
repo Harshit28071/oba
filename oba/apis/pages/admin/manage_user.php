@@ -164,18 +164,18 @@ $quary ="SELECT id,role FROM roles";
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
                   
-                    <input type="text" class="form-control" name="username" id="user-name" placeholder="Enter Username" autocomplete="off">
+                    <input type="text" class="form-control" name="username" id="user-name" placeholder="Enter Username" autocomplete="off" required>
 
                     <span id="unamev" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Set Password</label>
-                    <input type="text" class="form-control" name="password" id="pass-word" placeholder="Enter Password" autocomplete="off">
+                    <input type="text" class="form-control" name="password" id="pass-word" placeholder="Enter Password" autocomplete="off" required>
                     <span id="upwdv" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Enter Mobile</label>
-                    <input type="text" class="form-control" name="mobile_number" id="mobile-number" placeholder="Enter Mobile Number" autocomplete="off">
+                    <input type="text" class="form-control" name="mobile_number" id="mobile-number" placeholder="Enter Mobile Number" autocomplete="off" required>
                     <span id="umobilev" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
@@ -185,7 +185,7 @@ $quary ="SELECT id,role FROM roles";
                   </div>
                   <div class="col-12  form-group">
                         <label>Select Role</label>
-                        <select class="form-control" name="role" id="user-role">
+                        <select class="form-control" name="role" id="user-role" required>
                          <?php echo $options; ?>
                          <!-- <option value="0">Defult</option> -->
                         </select>
@@ -264,7 +264,7 @@ function loadTableUser(){
                                    "<td>" + value.mobile+"</td>"+ 
                                    "<td>" + value.email+"</td>"+ 
                                    "<td>" + value.role +"</td>"+ 
-                                  "<td><a href='#' class='edit-user' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-user'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                  "<td><a href='#' class='edit-user' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-user'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
             $("#load-table-user").html(html);  

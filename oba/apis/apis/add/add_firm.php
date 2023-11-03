@@ -12,7 +12,7 @@ $response = array(
 ); 
  
 // If form is submitted 
-if(isset($_POST['firmname']) || isset($_POST['gstin']) || isset($_POST['address']) || isset($_POST['fssai']) || isset($_POST['mobile'])|| isset($_POST['email'])|| isset($_POST['bankname'])|| isset($_POST['accountnumber'])||isset($_POST['ifsc'])|| isset($_POST['bankaddress'])|| isset($_POST['state'])|| isset($_POST['statecode'])||isset($_FILES["logoimage"]["name"])||isset($_FILES["signimg"]["name"])){ 
+if(isset($_POST['firmname']) && isset($_POST['gstin']) && isset($_POST['address']) && isset($_POST['fssai']) && isset($_POST['mobile']) && isset($_POST['bankname']) && isset($_POST['accountnumber']) && isset($_POST['ifsc']) && isset($_POST['bankaddress']) && isset($_POST['state']) && isset($_POST['statecode'])){ 
     // Get the submitted form data 
     $firmname = $_POST['firmname']; 
     $gstin = $_POST['gstin']; 

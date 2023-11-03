@@ -260,7 +260,7 @@ $(document).ready(function(){
             success: function(response){
                 if(response.status == 1){
                    //$('#edit-category-form')[0].reset();
-                    window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_firm.php");
+                    window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
                 }else{

@@ -294,7 +294,7 @@ function loadTableProduct(){
 		            { data: 'default_image_url', 
                   render: function (data, type, row, meta){
                     return type === 'display' ?
-                    "<img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ data +"' width='90px' height='60px'>"
+                    "<img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ data +"' width='30px' height='30px'>"
                     : data;
                   }
                 },
@@ -309,7 +309,7 @@ function loadTableProduct(){
 		            { data: 'id',
                   render: function (data, type, row, meta){
                     return type === 'display' ?
-                    "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ data +"'><i class='fas fa-eye'></i></a> "
+                    "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-camera'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ data +"'><i class='fas fa-images'></i></a> "
                     :data;
                   }
                  

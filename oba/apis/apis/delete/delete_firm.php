@@ -3,7 +3,7 @@ $remove__id = $_POST['firmremoveid'];
 $remove_image_logo =$_POST['removelogoimgold'];
 $remove_image_sign =$_POST['removesignimgold'];
 
-if(isset($_POST['firmremoveid']) || isset($_POST['removelogoimgold']) || isset($_POST['removesignimgold'])){
+if(isset($_POST['firmremoveid'])){
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
@@ -13,10 +13,11 @@ $stmt = $conn->prepare("delete from `firm` where id = ?");
 $stmt->bind_param("i",$remove__id);
 $stmt->execute();
 $id = $stmt->affected_rows;
-if($id == 1){
+if($stmt){
+    if(!empty($remove_image_logo) && !empty($remove_image_sign)){
     unlink("../../pages/admin/uploads/".$remove_image_logo);
     unlink("../../pages/admin/uploads/".$remove_image_sign);
-
+    }
 }
 $stmt->close();
 $conn->close();

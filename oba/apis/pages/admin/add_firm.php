@@ -70,35 +70,35 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
-                <form id="add-firm-form" onsubmit="return validation()">
+                <form id="add-firm-form">
                 <div class="row">
                   <div class="col-4 form-group">
                   <label>Firm Name</label>
-                    <input type="text" class="form-control" placeholder="Firm Name" name="firmname" autocomplete="off" id="f-name">
+                    <input type="text" class="form-control" placeholder="Firm Name" name="firmname" autocomplete="off" id="f-name" required>
                     <span id="name-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-4 form-group">
                     <label>GSTIN</label>
-                    <input type="text" class="form-control" placeholder="Enter GSTIN" name="gstin" autocomplete="off" id="f-gst">
+                    <input type="text" class="form-control" placeholder="Enter GSTIN" name="gstin" autocomplete="off" id="f-gst" required>
                     <span id="G-val" class="text-danger font-weight-bold"></span>
                   </div>
                  
                   <div class="col-4 form-group">
                     <label>Address</label>
-                    <input type="text" class="form-control" placeholder="Enter Address"name="address" autocomplete="off" id="f-add">
+                    <input type="text" class="form-control" placeholder="Enter Address"name="address" autocomplete="off" id="f-add" required>
                     <span id="add-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-4 form-group">
                   <label>FSSAI</label>
-                    <input type="text" class="form-control" placeholder="Enter FSSAI " name="fssai" autocomplete="off" id="f-fssai">
+                    <input type="text" class="form-control" placeholder="Enter FSSAI " name="fssai" autocomplete="off" id="f-fssai" required>
                     <span id="fssai-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-4 form-group">
                   <label>Mobile</label>
-                    <input type="text" class="form-control" placeholder="Enter Mobile" name="mobile" autocomplete="off" id="f-mobile">
+                    <input type="text" class="form-control" placeholder="Enter Mobile" name="mobile" autocomplete="off" id="f-mobile" required>
                     <span id="mo-val-al" class="text-danger font-weight-bold"></span>
                   </div>
                   
@@ -108,37 +108,37 @@ session_start();
                   </div>
                   <div class="col-4 form-group">
                   <label>Bank Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Bank Name" name="bankname" autocomplete="off" id="f-bankname">
+                    <input type="text" class="form-control" placeholder="Enter Bank Name" name="bankname" autocomplete="off" id="f-bankname" required>
                     <span id="bank-name-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-4 form-group">
                   <label>Account Number</label>
-                    <input type="text" class="form-control" placeholder="Enter Account Number" name="accountnumber" autocomplete="off" id="f-acc-no">
+                    <input type="text" class="form-control" placeholder="Enter Account Number" name="accountnumber" autocomplete="off" id="f-acc-no" required>
                     <span id="acc-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-4 form-group">
                   <label>IFSC</label>
-                    <input type="text" class="form-control" placeholder="Enter IFSC Code" name="ifsc" autocomplete="off" id="f-ifsc">
+                    <input type="text" class="form-control" placeholder="Enter IFSC Code" name="ifsc" autocomplete="off" id="f-ifsc" required>
                     <span id="ifsc-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-12 form-group">
                   <label>Bank Address</label>
-                    <input type="text" class="form-control" placeholder="Enter Bank Address " name="bankaddress" autocomplete="off" id="f-bank-add">
+                    <input type="text" class="form-control" placeholder="Enter Bank Address " name="bankaddress" autocomplete="off" id="f-bank-add" required>
                     <span id="bank-add-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-6 form-group">
                   <label>State</label>
-                    <input type="text" class="form-control" placeholder="Enter State" name="state" autocomplete="off" id="f-state">
+                    <input type="text" class="form-control" placeholder="Enter State" name="state" autocomplete="off" id="f-state" required>
                     <span id="state-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-6 form-group">
                   <label>State Code</label>
-                    <input type="text" class="form-control" placeholder="Enter State Code" name="statecode" autocomplete="off" id="f-state-code">
+                    <input type="text" class="form-control" placeholder="Enter State Code" name="statecode" autocomplete="off" id="f-state-code" required>
                     <span id="state-val-code" class="text-danger font-weight-bold"></span>
                   </div>
                   
@@ -196,61 +196,61 @@ session_start();
 <script type="text/javascript">
 //Fetch Single Record : Show Model
 //view model open
-function validation(){
-    var fname =document.getElementById('f-name').value;
-    var fgst =document.getElementById('f-gst').value;
-    var fadd =document.getElementById('f-add').value;
-    var fssai =document.getElementById('f-fssai').value;
-    var mobile =document.getElementById('f-mobile').value;
-    var bankname =document.getElementById('f-bankname').value;
-    var faccno =document.getElementById('f-acc-no').value;
-    var bifsc =document.getElementById('f-ifsc').value;
-    var fbankadd =document.getElementById('f-bank-add').value;
-    var fstate =document.getElementById('f-state').value;
-    var fstatecode =document.getElementById('f-state-code').value;
-    if(fname == ""){
-      document.getElementById('name-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fgst == ""){
-      document.getElementById('G-val').innerHTML = "*Field is required*";
-      return false;
-    } if(fadd == ""){
-      document.getElementById('add-val').innerHTML = "*Field is required*";
-      return false;
-    } if(fssai == ""){
-      document.getElementById('fssai-val').innerHTML = "*Field is required*";
-      return false;
-    } 
-    if(mobile == ""){
-      document.getElementById('mo-val-al').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(bankname == ""){
-      document.getElementById('bank-name-val').innerHTML = "*Field is required*";
-      return false;
-    } 
-    if(faccno == ""){
-      document.getElementById('acc-val').innerHTML = "*Field is required*";
-      return false;
-    }
-     if(bifsc == ""){
-      document.getElementById('ifsc-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fbankadd == ""){
-      document.getElementById('bank-add-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fstate == ""){
-      document.getElementById('state-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fstatecode == ""){
-      document.getElementById('state-val-code').innerHTML = "*Field is required*";
-      return false;
-    }
-  }
+// function validation(){
+//     var fname =document.getElementById('f-name').value;
+//     var fgst =document.getElementById('f-gst').value;
+//     var fadd =document.getElementById('f-add').value;
+//     var fssai =document.getElementById('f-fssai').value;
+//     var mobile =document.getElementById('f-mobile').value;
+//     var bankname =document.getElementById('f-bankname').value;
+//     var faccno =document.getElementById('f-acc-no').value;
+//     var bifsc =document.getElementById('f-ifsc').value;
+//     var fbankadd =document.getElementById('f-bank-add').value;
+//     var fstate =document.getElementById('f-state').value;
+//     var fstatecode =document.getElementById('f-state-code').value;
+//     if(fname == ""){
+//       document.getElementById('name-val').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//     if(fgst == ""){
+//       document.getElementById('G-val').innerHTML = "*Field is required*";
+//       return false;
+//     } if(fadd == ""){
+//       document.getElementById('add-val').innerHTML = "*Field is required*";
+//       return false;
+//     } if(fssai == ""){
+//       document.getElementById('fssai-val').innerHTML = "*Field is required*";
+//       return false;
+//     } 
+//     if(mobile == ""){
+//       document.getElementById('mo-val-al').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//     if(bankname == ""){
+//       document.getElementById('bank-name-val').innerHTML = "*Field is required*";
+//       return false;
+//     } 
+//     if(faccno == ""){
+//       document.getElementById('acc-val').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//      if(bifsc == ""){
+//       document.getElementById('ifsc-val').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//     if(fbankadd == ""){
+//       document.getElementById('bank-add-val').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//     if(fstate == ""){
+//       document.getElementById('state-val').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//     if(fstatecode == ""){
+//       document.getElementById('state-val-code').innerHTML = "*Field is required*";
+//       return false;
+//     }
+//   }
 $(document).ready(function(){
    
        // validation();
@@ -268,7 +268,7 @@ $(document).ready(function(){
                 
                 if(response.status == 1){
                     $('#add-firm-form')[0].reset();
-                    window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_firm.php");
+                    window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
                 }else{
