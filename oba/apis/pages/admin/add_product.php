@@ -94,13 +94,13 @@ session_start();
                 <form id="add-product-form">
                 <div class="row">
                   <div class="col-6 form-group">
-                  <label>Product Name</label>
+                  <label>Name</label>
                     <input type="text" class="form-control" placeholder="Enter Product Name" name="pname" autocomplete="off" id="" required>
                     <span id="validation_product" class="text-danger"></span>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Select Product Category</label>
+                        <label>Select Category</label>
                         <select class="form-control" name="pcategory" required>
                           <?php echo $options;?>
                         </select>
@@ -122,7 +122,7 @@ session_start();
                     <div class="form-group">
                     <label>Secondary Unit</label>
                         <select class="form-control" name="secunit" oninput="checkInput()" id="secondaryunit">
-                        <option>no select</option> 
+                        <option value="0">no select</option> 
                         <?php echo $options_unit; ?>
                         </select>
                       </div>
@@ -130,7 +130,7 @@ session_start();
                   
                   <div class="col-4 form-group">
                   <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplier" autocomplete="off" hidden>
+                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplier"  id="multiplier" autocomplete="off">
                     
                   </div>
                   
@@ -163,6 +163,7 @@ session_start();
                       <div class="form-group">
                         <label>Select Firm</label>
                         <select class="form-control" name="firmid">
+                          <option value="0" selected >No Select</option>
                           <?php echo $options_firm; ?>
                         </select>
                       </div>
@@ -205,17 +206,17 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
     //Script For Multipler Eanble Disable
-function checkInput(){
-  var secondunit = document.getElementById("secondaryunit");
-  var multi = document.getElementById("multiplier");
+// function checkInput(){
+//   var secondunit = document.getElementById("secondaryunit");
+//   var multi = document.getElementById("multiplier");
 
-  if (secondunit.value.trim() === "") {
-    //multi.disabled = true;
-    multi.hidden =true;
-  } else {
-    multi.hidden = false;
-  }
-}
+//   if (secondunit.value.trim() === "") {
+//     //multi.disabled = true;
+//     multi.hidden =true;
+//   } else {
+//     multi.hidden = false;
+//   }
+// }
 </script>
 <script type="text/javascript">
  $(document).ready(function(){

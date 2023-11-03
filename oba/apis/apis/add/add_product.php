@@ -12,7 +12,7 @@ $response = array(
 ); 
  
 // If form is submitted 
-if(isset($_POST['pname']) || isset($_POST['pcategory']) || isset($_POST['punit']) || isset($_POST['secunit']) || isset($_POST['multiplier']) || isset($_POST['lowprice']) || isset($_POST['maxprice']) || isset($_POST['pmrp']) || isset($_POST['phsncode']) || isset($_POST['gstrate']) || isset($_POST['firmid']) || isset($_POST['gstprice']) || isset($_FILES["productimage"]["name"]) ){ 
+if(isset($_POST['pname']) && isset($_POST['pcategory']) && isset($_POST['punit'])){ 
     // Get the submitted form data 
     $p_name = $_POST['pname']; 
     $p_category = $_POST['pcategory']; 
@@ -27,7 +27,11 @@ if(isset($_POST['pname']) || isset($_POST['pcategory']) || isset($_POST['punit']
     $p_firm_id = $_POST['firmid']; 
     $p_gst_price = $_POST['gstprice']; 
     $p_image = $_FILES["productimage"]["name"];
-
+    //if secondary unit not selected then  
+        if($p_sec_unit == 0){
+            $p_sec_unit =$p_unit;
+           // echo $p_sec_unit;
+        }
      
     // Check whether submitted data is not empty 
     if(!empty($_POST["pname"])){ 

@@ -9,7 +9,7 @@ $response = array(
     'status' => 0, 
     'message' => 'Form submission failed, please try again.' 
 ); 
-if( isset($_POST['idedit']) || isset($_POST['pnameedit']) || isset($_POST['pcategoryedit']) || isset($_POST['punitedit']) || isset($_POST['secunitedit']) || isset($_POST['multiplieredit']) || isset($_POST['lowpriceedit']) || isset($_POST['maxpriceedit']) || isset($_POST['pmrpedit']) || isset($_POST['phsncodeedit']) || isset($_POST['gstrateedit']) || isset($_POST['firmidedit']) || isset($_POST['gstpriceedit']) || isset($_FILES["productimagenew"]["name"]) || isset($_POST['oldimageproduct']) ){ 
+if( isset($_POST['idedit']) && isset($_POST['pnameedit']) && isset($_POST['pcategoryedit']) && isset($_POST['punitedit'])){ 
     // Get the submitted form data 
     $edit_id =$_POST['idedit'];
     $edit_name = $_POST['pnameedit']; 
@@ -26,6 +26,9 @@ if( isset($_POST['idedit']) || isset($_POST['pnameedit']) || isset($_POST['pcate
     $edit_gst_price = $_POST['gstpriceedit']; 
     $edit_image_new = $_FILES["productimagenew"]["name"];
     $product_old_image = $_POST["oldimageproduct"];
+    if($edit_sec_unit == 0){
+        $edit_sec_unit = $edit_unit;
+    }
     if($edit_image_new != ""){
         $update_filename = $_FILES["productimagenew"]["name"];
 

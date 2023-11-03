@@ -96,14 +96,14 @@ session_start();
                 <form id="edit-product-form">
                 <div class="row">
                   <div class="col-6 form-group">
-                  <label>Product Name</label>
+                  <label>Name</label>
                     <input type="text" class="form-control" placeholder="Enter Product Name" name="pnameedit" autocomplete="off" id="name-edit" required>
                     <input type="hidden" class="form-control" placeholder="Enter Product Name" name="idedit" autocomplete="off" id="ide" required>
 
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Select Product Category</label>
+                        <label>Select  Category</label>
                         <select class="form-control" name="pcategoryedit" id="catedit" required>
                           <?php echo $options_edit;?>
                         </select>
@@ -122,8 +122,8 @@ session_start();
                   <div class="col-4 form-group">
                     <div class="form-group">
                     <label>Secondary Unit</label>
-                        <select class="form-control" name="secunitedit" oninput="checkInputEdit()" id="editsecondaryunit">
-                        <option>no select</option> 
+                        <select class="form-control" name="secunitedit" id="editsecondaryunit">
+                        <option value="0">No Select</option> 
                         <?php echo $options_edit_unit; ?>
                         </select>
                       </div>
@@ -131,7 +131,7 @@ session_start();
                   
                   <div class="col-4 form-group">
                   <label>Multiplier</label>
-                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off" hidden>
+                    <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off">
                     
                   </div>
                   
@@ -164,6 +164,7 @@ session_start();
                       <div class="form-group">
                         <label>Select Firm</label>
                         <select class="form-control" name="firmidedit" id="firmidedit">
+                          <option value="0"><option>
                           <?php echo $options_edit_firm; ?>
                         </select>
                       </div>
@@ -174,7 +175,7 @@ session_start();
                     <span id="state-val" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-12 form-group">
-                    <label for="exampleInputFile">Change Product Image</label>
+                    <label for="exampleInputFile">Change Image</label>
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="productoldimage" name="productimagenew" >
@@ -187,7 +188,7 @@ session_start();
                    
                   </div>
                   <div class="col-12 form-group">
-                  <label for="exampleInputFile">View Product Image</label>
+                  <label for="exampleInputFile">View Image</label>
                   <div class="form-group">
                     <img src="" id="edit-p-main-img" class="form-control" style="width:200px; height:140px;">
                     <input type="hidden" id="hidden-p-img" class="form-control" name="oldimageproduct">
@@ -214,24 +215,21 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
     //Script For Multipler Eanble Disable
-    function checkInputEdit(){
-  var secondunit = document.getElementById("editsecondaryunit");
-  var multi = document.getElementById("multiplieredit");
+//     function checkInputEdit(){
+//   var secondunit = document.getElementById("editsecondaryunit");
+//   var multi = document.getElementById("multiplieredit");
 
-  if (secondunit.value.trim() === "") {
-    multi.hidden =true;
-  } else {
-    multi.hidden = false;
-  }
+//   if (secondunit.value.trim() === "") {
+//     multi.hidden =true;
+//   } else {
+//     multi.hidden = false;
+//   }
  
 
-}
+// }
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-
-        
-
     const urlparams = new URLSearchParams(window.location.search);
     const id = urlparams.get('id');
    // console.log(id);
