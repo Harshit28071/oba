@@ -241,8 +241,7 @@ $(document).on("click",".edit-state",function(){
        }
     })
     //Update Role
-    $("#edit-state-save").on("click",function(){
-       // e.preventDefault();
+    $("#edit-state-form").on("submit",function(e){
         var jsonobj =jsonData("#edit-state-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
@@ -262,6 +261,7 @@ $(document).on("click",".edit-state",function(){
         }
         });
        }
+       e.preventDefault();
     });
 
 // //Update State Close
@@ -271,8 +271,7 @@ $(document).on("click",".edit-state",function(){
 // //Add State
 $(document).on("click","#add-new-state",function(){
     $('#modal-add-state').modal('show');
-    $("#add-state-sub").on("click",function(){
-      //  e.preventDefault();
+    $("#addstateform").on("submit",function(e){
         var jsonobj =jsonData("#addstateform");
         console.log(jsonobj);
        if(jsonobj == false ){
@@ -291,7 +290,9 @@ $(document).on("click","#add-new-state",function(){
             }
         });
        }
+       e.preventDefault();
     })
+   
 });
 // //Add Role Close
 // //Delete Role 

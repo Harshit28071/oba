@@ -6,15 +6,17 @@ session_start();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
     header("location:./user_login.php");
     }
-    $quary ="SELECT id,name FROM category WHERE parent_id ='0'";
+    $quary ="SELECT id,state FROM state";
     $stmt = $conn->prepare($quary);
     $stmt->execute();
-    $stmt->bind_result($id,$name);
+    $stmt->bind_result($id,$state);
     $options = "";
     $options_edit ="";
+    $selected = "";
     while($stmt->fetch()){
-        $options .="<option value='$id'>$name</option>";
-        $options_edit .="<option value='$id' selected>$name</option>";
+        $selected = ($state === 'UP') ? 'selected': '' ;
+        $options .="<option value='$id' $selected>$state</option>";
+     //   $options_edit .="<option value='$id'>$name</option>";
 
       }
  ?>
@@ -55,11 +57,11 @@ session_start();
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Manage Category</h1>
+            <h1 class="m-0">Manage Customer</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="#" id="add-new-category" class="btn btn-primary">Add Category</a></li>
+              <li class="breadcrumb-item active"><a href="./add_customer.php" id="" class="btn btn-primary">Add Customer</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -162,26 +164,10 @@ session_start();
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category</label>
                     <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category" required>
-                    <span id="validation_cat_name" class="text-danger"></span>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputFile"> Category Image</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                    <span id="validation_cat" class="text-danger"></span>
                   </div>
                   <div class="form-group">
                         <label>Select Parent Category</label>
                         <select class="form-control" name="parent_cat">
-                          <option id="option-id-edit" value="0">Default</option>
                           <?php 
                           echo $options;
                           $stmt->close();

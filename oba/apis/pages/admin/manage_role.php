@@ -185,7 +185,7 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
-    $(document).ready(function(){
+$(document).ready(function(){
        
 //Fetch All Records
 function loadTable(){
@@ -245,7 +245,7 @@ $(document).on("click",".edit-role",function(){
        }
     })
     //Update Role
-    $("#edit-role-save").on("click",function(){
+    $("#edit-role-form").on("submit",function(e){
        
         var jsonobj =jsonData("#edit-role-form");
         //console.log(jsonobj);
@@ -266,6 +266,7 @@ $(document).on("click",".edit-role",function(){
         }
         });
        }
+       e.preventDefault();
     });
 
 //Update Role Close
@@ -275,7 +276,7 @@ $(document).on("click",".edit-role",function(){
 //Add Role
 $(document).on("click","#add-new-role",function(){
     $('#modal-add-role').modal('show');
-    $("#add-role-sub").on("click",function(){
+    $("#add-role-form").on("submit",function(e){
         //e.preventDefault();
         var jsonobj =jsonData("#add-role-form");
         //console.log(jsonobj);
@@ -295,7 +296,9 @@ $(document).on("click","#add-new-role",function(){
             }
         });
        }
+       e.preventDefault();
     })
+   
 });
 //Add Role Close
 //Delete Role 

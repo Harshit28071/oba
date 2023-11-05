@@ -6,17 +6,6 @@ session_start();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
     header("location:./user_login.php");
     }
-    $quary ="SELECT id,name FROM category";
-    $stmt = $conn->prepare($quary);
-    $stmt->execute();
-    $stmt->bind_result($id,$name);
-    $options = "";
-    $options_edit ="";
-    while($stmt->fetch()){
-        $options .="<option value='$id'>$name</option>";
-        $options_edit .="<option value='$id' selected>$name</option>";
-
-      }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,7 +157,7 @@ session_start();
                     </div>
                   </div>
                 </div>
-                <span id="validation_cat_edit" class="text-danger font-weight-bold"></span>
+                
                 
                 <input type="submit"  class="btn btn-primary btn-lg float-right " id="add-firm-sub" value="Add">               
                

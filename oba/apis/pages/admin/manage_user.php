@@ -179,7 +179,7 @@ $quary ="SELECT id,role FROM roles";
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Enter Email</label>
-                    <input type="text" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off" required>
+                    <input type="email" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off" required>
                     <span id="uemailv" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-12  form-group">
@@ -313,14 +313,10 @@ $(document).on("click",".edit-user",function(){
        }
     })
 //     //Update Role
-    $("#edit-user-save").on("click",function(){
-       
+    $("#edit-user-form").on("submit",function(e){
         var jsonobj =jsonData("#edit-user-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        // $("#unamevedit").html("Fill The Input");
-        //  $("#upwdvedit").html("Fill The Input");
-        //  $("#umobilevedit").html("Fill The Input"); 
         console.log("Fill The Input");         
        }else{
         $.ajax({
@@ -336,6 +332,7 @@ $(document).on("click",".edit-user",function(){
         }
         });
        }
+       e.preventDefault();
     });
 
 // //Update Role Close
@@ -345,15 +342,11 @@ $(document).on("click",".edit-user",function(){
 // //Add Role
 $(document).on("click","#add-new-user",function(){
     $('#modal-add-user').modal('show');
-    $("#add-user-sub").on("click",function(){
+    $("#add-user-form").on("submit",function(e){
         //e.preventDefault();
         var jsonobj =jsonData("#add-user-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        // $("#unamev").html("Fill The Input");
-        // $("#upwdv").html("Fill The Input");
-        // $("#umobilev").html("Fill The Input");
-        // $("#uemailv").html("Fill The Input");
         console.log("Fill The Input");
        }else{
         $.ajax({
@@ -368,7 +361,9 @@ $(document).on("click","#add-new-user",function(){
             }
         });
        }
+       e.preventDefault();
     })
+   
 });
 // //Add Role Close
 // //Delete Role 

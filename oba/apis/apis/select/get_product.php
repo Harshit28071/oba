@@ -29,9 +29,9 @@ $draw = $_POST['draw'];
    // Search
    $searchQuery = " ";
    if($searchValue != ''){
-      $searchQuery = " AND (name LIKE :name OR 
-           category LIKE :category) ";
-      $searchArray = array( 
+      $searchQuery = " AND (product.name LIKE :name OR
+           category.name LIKE :category) ";
+      $searchArray = array(
            'name'=>"%$searchValue%",
            'category'=>"%$searchValue%"
       );
@@ -44,14 +44,15 @@ $draw = $_POST['draw'];
    $totalRecords = $records['allcount'];
 
    // Total number of records with filtering
-   $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM product WHERE 1 ".$searchQuery);
+   $stmt = $conn->prepare("SELECT COUNT(product.id) AS allcount FROM product left JOIN category on product.category_id = category.id WHERE 1 ".$searchQuery);
+   
    $stmt->execute($searchArray);
    $records = $stmt->fetch();
    $totalRecordwithFilter = $records['allcount'];
 
    // Fetch records
    $stmt = $conn->prepare("SELECT product.id,product.name,product.low_price,product.max_price,product.default_image_url,product.available,
-units.name as unit,category.name as category FROM product right JOIN units ON product.unit_id = units.id right join category on product.category_id = category.id
+units.name as unit,category.name as category FROM product left JOIN units ON product.unit_id = units.id left join category on product.category_id = category.id
 WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
 

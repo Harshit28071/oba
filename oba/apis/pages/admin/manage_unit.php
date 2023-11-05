@@ -240,7 +240,7 @@ $(document).on("click",".edit-unit",function(){
        }
      })
    //Update Role
-    $("#edit-unit-save").on("click",function(){
+    $("#edit-unit-form").on("submit",function(e){
         //e.preventDefault();
         var jsonobj =jsonData("#edit-unit-form");
         //console.log(jsonobj);
@@ -260,7 +260,8 @@ $(document).on("click",".edit-unit",function(){
         }
         });
        }
-    });
+       e.preventDefault();
+    })
 
 // //Update Role Close
 });
@@ -268,7 +269,7 @@ $(document).on("click",".edit-unit",function(){
 //Add Role
 $(document).on("click","#add-new-unit",function(){
     $('#modal-add-unit').modal('show');
-    $("#add-unit-sub").on("click",function(){
+    $("#add-unit-form").on("submit",function(e){
       //  e.preventDefault();
         var jsonobj =jsonData("#add-unit-form");
         //console.log(jsonobj);
@@ -288,6 +289,7 @@ $(document).on("click","#add-new-unit",function(){
             }
         });
        }
+       e.preventDefault();
     })
 });
 // //Add Role Close
