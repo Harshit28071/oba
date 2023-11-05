@@ -106,7 +106,7 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1"> Category</label>
-                    <input type="text" class="form-control" name="editcatname" id="edit-cat-name" placeholder="Enter Category">
+                    <input type="text" class="form-control" name="editcatname" id="edit-cat-name" placeholder="Enter Category" required>
                     <input type="hidden" class="form-control" name="editidcat" id="edit-id-cat" >
                     <span id="validatione_edit" class="text-danger"></span>
                   </div>
@@ -135,8 +135,9 @@ session_start();
                       </div>
             </div>
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Saves Changes">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 
             </div>
             </form>
           </div>
@@ -160,7 +161,7 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category</label>
-                    <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category">
+                    <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category" required>
                     <span id="validation_cat_name" class="text-danger"></span>
                   </div>
                   
@@ -190,8 +191,8 @@ session_start();
                       </div>
             </div> 
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                  <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
                 </form>
           </div>
@@ -220,8 +221,8 @@ session_start();
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">
             </div>
             </form>
           </div>
@@ -264,14 +265,6 @@ session_start();
                     $('#modal-add-category').modal('hide');
                     loadTableCategory()
                    
-                }else{
-                  var err =response.message
-                  $("#validation_cat_name").html(err);
-                  var error = response.message;
-                  $("#validation_cat").html(error);
-                 
-
-                  
                 }
                 
             }
@@ -343,9 +336,6 @@ $('#edit-category-form').on('submit',function(e){
                     $('#modal-Edit-category').modal('hide');
                     loadTableCategory()
                    
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
                 }
                 
             }

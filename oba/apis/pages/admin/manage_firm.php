@@ -107,9 +107,9 @@ session_start();
                    <h5>Are you sure, You want to delete this Firm Record ?</h5>
                   </div>              
             </div>
-            <div class="modal-footer justify-content-between">
-                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove">               
+            <div class="modal-footer justify-content-between">              
                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <input type="submit" class="btn btn-danger" id="remove-role-sub" value="Remove"> 
             </div>
             </form>
           </div>
@@ -131,92 +131,9 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
-  function validation(){
-    var fname =document.getElementById('f-name').value;
-    var fgst =document.getElementById('f-gst').value;
-    var fadd =document.getElementById('f-add').value;
-    var fssai =document.getElementById('f-fssai').value;
-    var mobile =document.getElementById('f-mobile').value;
-    var bankname =document.getElementById('f-bankname').value;
-    var faccno =document.getElementById('f-acc-no').value;
-    var bifsc =document.getElementById('f-ifsc').value;
-    var fbankadd =document.getElementById('f-bank-add').value;
-    var fstate =document.getElementById('f-state').value;
-    var fstatecode =document.getElementById('f-state-code').value;
-    if(fname == ""){
-      document.getElementById('name-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fgst == ""){
-      document.getElementById('G-val').innerHTML = "*Field is required*";
-      return false;
-    } if(fadd == ""){
-      document.getElementById('add-val').innerHTML = "*Field is required*";
-      return false;
-    } if(fssai == ""){
-      document.getElementById('fssai-val').innerHTML = "*Field is required*";
-      return false;
-    } 
-    if(mobile == ""){
-      document.getElementById('mo-val-al').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(bankname == ""){
-      document.getElementById('bank-name-val').innerHTML = "*Field is required*";
-      return false;
-    } 
-    if(faccno == ""){
-      document.getElementById('acc-val').innerHTML = "*Field is required*";
-      return false;
-    }
-     if(bifsc == ""){
-      document.getElementById('ifsc-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fbankadd == ""){
-      document.getElementById('bank-add-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fstate == ""){
-      document.getElementById('state-val').innerHTML = "*Field is required*";
-      return false;
-    }
-    if(fstatecode == ""){
-      document.getElementById('state-val-code').innerHTML = "*Field is required*";
-      return false;
-    }
-  }
+  
     $(document).ready(function(){
     //Add Firm
-    $(document).on("click","#add-new-firm",function(){
-        $('#modal-add-firm').modal('show');
-       // validation();
-        $('#add-firm-form').on('submit',function(e){
-            e.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: '../../apis/add/add_firm.php',
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(response){
-                
-                if(response.status == 1){
-                    $('#add-firm-form')[0].reset();
-                    $('#modal-add-firm').modal('hide');
-                    loadTableFirm();
-                   
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
-                }
-                
-            }
-            })
-        });
-    });
 //Fetch All Records
 function loadTableFirm(){
     $("#load-table-firm").html("");

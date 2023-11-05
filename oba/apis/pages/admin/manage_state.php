@@ -93,14 +93,14 @@ session_start();
             <div class="modal-body">
                     <div class="form-group">
                     <label for="#">State</label>
-                    <input type="text" class="form-control" name="editstatename" id="edit-state" placeholder="Enter State">
+                    <input type="text" class="form-control" name="editstatename" id="edit-state" placeholder="Enter State" required>
                     <input type="text" class="form-control" name="editidstate" id="edit-id-states" hidden>
                     <span id="validation-state-edit" class="text-danger"></span>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
-                  <button type="submit" class="btn btn-warning" id="edit-state-save">Save Changes</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-warning" id="edit-state-save">Save Changes</button>
             </div>
               </form>
             </div>
@@ -124,13 +124,13 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">State</label>
-                    <input type="text" class="form-control" name="Addstate" id="Add-state" placeholder="Enter State">
+                    <input type="text" class="form-control" name="Addstate" id="Add-state" placeholder="Enter State" required>
                     <span id="validationsa" class="text-danger"></span>
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-                  <button type="submit" class="btn btn-primary" id="add-state-sub">Add</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="add-state-sub">Add</button> 
             </div>
             </form>
           </div>
@@ -158,8 +158,8 @@ session_start();
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-danger" id="remove-state-sub">Remove</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger" id="remove-state-sub">Remove</button>  
            </div>
            </form>
           </div>
@@ -241,12 +241,13 @@ $(document).on("click",".edit-state",function(){
        }
     })
     //Update Role
-    $("#edit-state-save").on("click",function(e){
-        e.preventDefault();
+    $("#edit-state-save").on("click",function(){
+       // e.preventDefault();
         var jsonobj =jsonData("#edit-state-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validation-state-edit").html("Fill The Input");
+        //$("#validation-state-edit").html("Fill The Input");
+        console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/update/update_state.php",
@@ -263,19 +264,20 @@ $(document).on("click",".edit-state",function(){
        }
     });
 
-// //Update Role Close
+// //Update State Close
  });
 // //Fetch Single Record : Show Model Close
 
-// //Add Role
+// //Add State
 $(document).on("click","#add-new-state",function(){
     $('#modal-add-state').modal('show');
-    $("#add-state-sub").on("click",function(e){
-        e.preventDefault();
+    $("#add-state-sub").on("click",function(){
+      //  e.preventDefault();
         var jsonobj =jsonData("#addstateform");
         console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validationsa").html("Fill The Input");
+        //$("#validationsa").html("Fill The Input");
+        console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/add/add_state.php",

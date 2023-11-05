@@ -187,7 +187,7 @@ session_start();
                   </div>
                 </div>
                 <!-- /.card-body -->
-                <input type="submit"  class="btn btn-primary btn-lg" id="add-product-sub" value="Add Product">
+                <input type="submit"  class="btn btn-primary btn-lg float-right" id="add-product-sub" value="Add Product">
               </form>
               </div>
       </div>
@@ -236,11 +236,7 @@ session_start();
                     $('#add-product-form')[0].reset();
                     //$('#modal-add-product').modal('hide');
                     window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
-                    loadTableProduct();
-                   
-                }else{
-                  var error = response.message;
-                  $("#validation_product").html(error);
+                    loadTableProduct();  
                 }
                 
             }

@@ -185,7 +185,7 @@ session_start();
                     </div>
                   </div>
                 </div>
-                <input type="submit"  class="btn btn-warning btn-lg" id="add-firm-sub" value="Save Changes">
+                <input type="submit"  class="btn btn-warning btn-lg float-right" id="add-firm-sub" value="Save Changes">
                 <!-- /.card-body -->                
               </form>
               </div>
@@ -263,11 +263,7 @@ $(document).ready(function(){
                     window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
                 }
-                
             }
             })
         });

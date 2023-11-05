@@ -169,9 +169,9 @@ session_start();
                   </div>
                 </div>
                 <span id="validation_cat_edit" class="text-danger font-weight-bold"></span>
-                <div class="card-footer justify-content-between">
-                <input type="submit"  class="btn btn-primary btn-lg" id="add-firm-sub" value="Add">               
-                </div>
+                
+                <input type="submit"  class="btn btn-primary btn-lg float-right " id="add-firm-sub" value="Add">               
+               
               </form>
               </div>
                <!-- /.card-body -->
@@ -196,61 +196,6 @@ session_start();
 <script type="text/javascript">
 //Fetch Single Record : Show Model
 //view model open
-// function validation(){
-//     var fname =document.getElementById('f-name').value;
-//     var fgst =document.getElementById('f-gst').value;
-//     var fadd =document.getElementById('f-add').value;
-//     var fssai =document.getElementById('f-fssai').value;
-//     var mobile =document.getElementById('f-mobile').value;
-//     var bankname =document.getElementById('f-bankname').value;
-//     var faccno =document.getElementById('f-acc-no').value;
-//     var bifsc =document.getElementById('f-ifsc').value;
-//     var fbankadd =document.getElementById('f-bank-add').value;
-//     var fstate =document.getElementById('f-state').value;
-//     var fstatecode =document.getElementById('f-state-code').value;
-//     if(fname == ""){
-//       document.getElementById('name-val').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//     if(fgst == ""){
-//       document.getElementById('G-val').innerHTML = "*Field is required*";
-//       return false;
-//     } if(fadd == ""){
-//       document.getElementById('add-val').innerHTML = "*Field is required*";
-//       return false;
-//     } if(fssai == ""){
-//       document.getElementById('fssai-val').innerHTML = "*Field is required*";
-//       return false;
-//     } 
-//     if(mobile == ""){
-//       document.getElementById('mo-val-al').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//     if(bankname == ""){
-//       document.getElementById('bank-name-val').innerHTML = "*Field is required*";
-//       return false;
-//     } 
-//     if(faccno == ""){
-//       document.getElementById('acc-val').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//      if(bifsc == ""){
-//       document.getElementById('ifsc-val').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//     if(fbankadd == ""){
-//       document.getElementById('bank-add-val').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//     if(fstate == ""){
-//       document.getElementById('state-val').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//     if(fstatecode == ""){
-//       document.getElementById('state-val-code').innerHTML = "*Field is required*";
-//       return false;
-//     }
-//   }
 $(document).ready(function(){
    
        // validation();
@@ -271,11 +216,7 @@ $(document).ready(function(){
                     window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
                 }
-                
             }
             })
         });

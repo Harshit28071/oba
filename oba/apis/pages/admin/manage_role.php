@@ -93,14 +93,15 @@ session_start();
             <div class="modal-body">
                    <div class="form-group">
                     <label for="exampleInputEmail1">Role</label>
-                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role" autocomplete="off">
+                    <input type="text" class="form-control" name="editrolename" id="edit-role" placeholder="Enter Role" autocomplete="off" required>
                     <input type="text" class="form-control" name="editidrole" id="edit-id" hidden>
                     <span id="validatione" class="text-danger"></span>
                    </div>
             </div>
             <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-warning" id="edit-role-save">Save Changes</button>
+           
             </div>
             </form>
           </div>
@@ -124,13 +125,14 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Role</label>
-                    <input type="text" class="form-control" name="Addrole" id="Add-role" placeholder="Enter Role"  autocomplete="off">
+                    <input type="text" class="form-control" name="Addrole" id="Add-role" placeholder="Enter Role"  autocomplete="off" required>
                     <span id="validation" class="text-danger"></span>
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" id="add-role-sub">Add</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  
             </div>
             </form>
           </div>
@@ -158,8 +160,9 @@ session_start();
               </div>
             </div>
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-danger" id="remove-role-sub">Remove</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            
             </div>
             </form>
             </div>
@@ -242,12 +245,13 @@ $(document).on("click",".edit-role",function(){
        }
     })
     //Update Role
-    $("#edit-role-save").on("click",function(e){
-        e.preventDefault();
+    $("#edit-role-save").on("click",function(){
+       
         var jsonobj =jsonData("#edit-role-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validatione").html("Fill The Input");
+        //$("#validatione").html("Fill The Input");
+        console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/update/update_role.php",
@@ -271,12 +275,13 @@ $(document).on("click",".edit-role",function(){
 //Add Role
 $(document).on("click","#add-new-role",function(){
     $('#modal-add-role').modal('show');
-    $("#add-role-sub").on("click",function(e){
-        e.preventDefault();
+    $("#add-role-sub").on("click",function(){
+        //e.preventDefault();
         var jsonobj =jsonData("#add-role-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validation").html("Fill The Input");
+        // $("#validation").html("Fill The Input");
+        console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/add/add_role.php",

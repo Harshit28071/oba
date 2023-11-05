@@ -92,14 +92,14 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Unit</label>
-                    <input type="text" class="form-control" name="editunitname" id="edit-unit" placeholder="Enter Unit">
+                    <input type="text" class="form-control" name="editunitname" id="edit-unit" placeholder="Enter Unit" required>
                     <input type="text" class="form-control" name="editidunit" id="edit-id-unit" hidden>
                     <span id="validatione" class="text-danger"></span>
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-warning" id="edit-unit-save">Save Changes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-warning" id="edit-unit-save">Save Changes</button> 
             </div>
             </form>
           </div>
@@ -123,13 +123,14 @@ session_start();
             <div class="modal-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Unit</label>
-                    <input type="text" class="form-control" name="Addunit" id="Add-unit" placeholder="Enter Unit">
+                    <input type="text" class="form-control" name="Addunit" id="Add-unit" placeholder="Enter Unit" required>
                     <span id="validationu" class="text-danger"></span>
                   </div>
           </div>
           <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" id="add-unit-sub">Add</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
             </div>
           </form>
           </div>
@@ -157,8 +158,9 @@ session_start();
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-danger" id="remove-unit-sub">Remove</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger" id="remove-unit-sub">Remove</button>
+            
             </div>
             </form>
           </div>
@@ -238,12 +240,13 @@ $(document).on("click",".edit-unit",function(){
        }
      })
    //Update Role
-    $("#edit-unit-save").on("click",function(e){
-        e.preventDefault();
+    $("#edit-unit-save").on("click",function(){
+        //e.preventDefault();
         var jsonobj =jsonData("#edit-unit-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validatione").html("Fill The Input");
+       // $("#validatione").html("Fill The Input");
+       console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/update/update_unit.php",
@@ -265,12 +268,13 @@ $(document).on("click",".edit-unit",function(){
 //Add Role
 $(document).on("click","#add-new-unit",function(){
     $('#modal-add-unit').modal('show');
-    $("#add-unit-sub").on("click",function(e){
-        e.preventDefault();
+    $("#add-unit-sub").on("click",function(){
+      //  e.preventDefault();
         var jsonobj =jsonData("#add-unit-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#validationu").html("Fill The Input");
+       // $("#validationu").html("Fill The Input");
+       console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/add/add_unit.php",

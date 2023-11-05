@@ -280,11 +280,7 @@ $('#edit-product-form').on('submit',function(e){
                    window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
                     loadTableProduct();
                    
-                }else{
-                  var error = response.message;
-                  $("#validation_cat_edit").html(error);
                 }
-                
             }
             })
         });

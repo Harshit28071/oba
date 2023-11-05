@@ -75,7 +75,6 @@ $quary ="SELECT id,role FROM roles";
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>ID</th>
                       <th>User</th>
                       <th>Mobile Number</th>
                       <th>Email</th>
@@ -110,22 +109,22 @@ $quary ="SELECT id,role FROM roles";
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
                     <input type="hidden" class="form-control" name="id" id="user-id-edit" placeholder="Enter Username" autocomplete="off">
-                    <input type="text" class="form-control" name="usernameedit" id="user-name-edit" placeholder="Enter Username" autocomplete="off">
+                    <input type="text" class="form-control" name="usernameedit" id="user-name-edit" placeholder="Enter Username" autocomplete="off" required>
                     <span id="unamevedit" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Set Password</label>
-                    <input type="password" class="form-control" name="passwordedit" id="pass-word-edit" placeholder="Enter Password" autocomplete="off">
+                    <input type="password" class="form-control" name="passwordedit" id="pass-word-edit" placeholder="Enter Password" autocomplete="off" required>
                     <span id="upwdvedit" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Enter Mobile</label>
-                    <input type="text" class="form-control" name="mobile_numberedit" id="mobile-number-edit" placeholder="Enter Mobile Number" autocomplete="off">
+                    <input type="text" class="form-control" name="mobile_numberedit" id="mobile-number-edit" placeholder="Enter Mobile Number" autocomplete="off" required>
                     <span id="umobilevedit" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Enter Email</label>
-                    <input type="email" class="form-control" name="emailedit" id="user-email-edit" placeholder="Enter Email" autocomplete="off">
+                    <input type="email" class="form-control" name="emailedit" id="user-email-edit" placeholder="Enter Email" autocomplete="off" required>
                   </div>
                   <div class="col-12  form-group">
                         <label>Select Role</label>
@@ -137,8 +136,8 @@ $quary ="SELECT id,role FROM roles";
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-primary" id="edit-user-save">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="edit-user-save">Submit</button>
             </div>
             </form>
           </div>
@@ -180,7 +179,7 @@ $quary ="SELECT id,role FROM roles";
                   </div>
                   <div class="col-6 form-group">
                     <label for="exampleInputEmail1">Enter Email</label>
-                    <input type="text" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off">
+                    <input type="text" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off" required>
                     <span id="uemailv" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-12  form-group">
@@ -193,8 +192,8 @@ $quary ="SELECT id,role FROM roles";
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary" id="add-user-sub">Submit</button>
-             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </form>
           </div>
@@ -222,8 +221,8 @@ $quary ="SELECT id,role FROM roles";
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-danger" id="remove-user-sub">Remove</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger" id="remove-user-sub">Remove</button>
             </div>
             </form>
           </div>
@@ -259,7 +258,7 @@ function loadTableUser(){
             console.log(data);
             $.each(data,function(key,value){
               html = html +("<tr>"+
-                                  "<td>" + value.id +"</td>" +
+                                  
                                    "<td>" + value.username+"</td>"+ 
                                    "<td>" + value.mobile+"</td>"+ 
                                    "<td>" + value.email+"</td>"+ 
@@ -314,14 +313,15 @@ $(document).on("click",".edit-user",function(){
        }
     })
 //     //Update Role
-    $("#edit-user-save").on("click",function(e){
-        e.preventDefault();
+    $("#edit-user-save").on("click",function(){
+       
         var jsonobj =jsonData("#edit-user-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#unamevedit").html("Fill The Input");
-         $("#upwdvedit").html("Fill The Input");
-         $("#umobilevedit").html("Fill The Input");          
+        // $("#unamevedit").html("Fill The Input");
+        //  $("#upwdvedit").html("Fill The Input");
+        //  $("#umobilevedit").html("Fill The Input"); 
+        console.log("Fill The Input");         
        }else{
         $.ajax({
             url : "../../apis/update/update_user.php",
@@ -345,15 +345,16 @@ $(document).on("click",".edit-user",function(){
 // //Add Role
 $(document).on("click","#add-new-user",function(){
     $('#modal-add-user').modal('show');
-    $("#add-user-sub").on("click",function(e){
-        e.preventDefault();
+    $("#add-user-sub").on("click",function(){
+        //e.preventDefault();
         var jsonobj =jsonData("#add-user-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
-        $("#unamev").html("Fill The Input");
-        $("#upwdv").html("Fill The Input");
-        $("#umobilev").html("Fill The Input");
-        $("#uemailv").html("Fill The Input");
+        // $("#unamev").html("Fill The Input");
+        // $("#upwdv").html("Fill The Input");
+        // $("#umobilev").html("Fill The Input");
+        // $("#uemailv").html("Fill The Input");
+        console.log("Fill The Input");
        }else{
         $.ajax({
             url : "../../apis/add/add_user.php",

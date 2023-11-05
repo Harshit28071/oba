@@ -138,8 +138,9 @@ session_start();
                   </div>             
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="submit" class="btn btn-danger" id="remove-product-sub" value="Remove">               
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <input type="submit" class="btn btn-danger" id="remove-product-sub" value="Remove">               
+            
             </div>
             </form>
           </div>
@@ -169,8 +170,8 @@ session_start();
                <div id="imagePreview"></div>
             </div>
             <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             <input type="submit" class="btn btn-primary" id="addmulti-image-sub" value="Add Images">               
-             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
             </form>   
           </div>
@@ -228,9 +229,6 @@ $(document).on("click",".addimgmulti",function(){
                     location.reload();
                    // loadTableProduct();
                    
-                }else{
-                  var error = response.message;
-                 // $("#validation_cat").html(error);
                 }
                 
             }
