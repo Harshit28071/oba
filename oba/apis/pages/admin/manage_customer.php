@@ -73,12 +73,12 @@ session_start();
       <div class="container-fluid">
     <div class="card">
               <div class="card-body p-0">
-                <table class="table table-striped">
+                <table class="table table-striped" id="customertab">
                   <thead>
                     <tr>
-                      <th>Category </th>
-                      <th>Image</th>
-                      <th>Parent ID</th>
+                      <th>Name</th>
+                      <th>Mobile</th>
+                      <th>Type</th>
                       <th>Action</th>
 
                     </tr>
@@ -94,105 +94,11 @@ session_start();
       </div>
    </section>
   </div>
-  <!----------------------------------------Edit Model------------------------------------------------>
-  <div class="modal fade" id="modal-Edit-category">
-        <div class="modal-dialog">
-          <div class="modal-content">
-          <form id="edit-category-form">
-            <div class="modal-header">
-              <h5 class="modal-title">EDIT PRODUCT CATEGORY</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1"> Category</label>
-                    <input type="text" class="form-control" name="editcatname" id="edit-cat-name" placeholder="Enter Category" required>
-                    <input type="hidden" class="form-control" name="editidcat" id="edit-id-cat" >
-                    <span id="validatione_edit" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">Category Image</label>
-                    <div class="input-group">
-                      <input type="hidden"  class="form-control" id="cat-file-old" name="editoldcatfile" >
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="cat-file" name="editcatfile" >
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                    <span id="validation_cat_edit" class="text-danger"></span>
-                  </div>
-                  <div class="form-group">
-                        <label>Select Parent Category</label>
-                        <select class="form-control" name="parentcatedit" id="pid">
-                          <option value="0">Default</option>
-                          <?php 
-                          echo $options_edit;
-                          ?>
-                        </select>
-                      </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Saves Changes">               
-                 
-            </div>
-            </form>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!----------------------------------------Edit Model Close------------------------------------------------>
-  <!----------------------------------------Add Model------------------------------------------------>
-  <div class="modal fade" id="modal-add-category">
-        <div class="modal-dialog">
-          <div class="modal-content">
-          <form id="add-category-form">
-            <div class="modal-header">
-              <h5 class="modal-title">ADD PRODUCT CATEGORY</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Category</label>
-                    <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category" required>
-                  </div>
-                  <div class="form-group">
-                        <label>Select Parent Category</label>
-                        <select class="form-control" name="parent_cat">
-                          <?php 
-                          echo $options;
-                          $stmt->close();
-                          $conn->close();
-                          ?>
-                        </select>
-                      </div>
-            </div> 
-            <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">               
-                </div>
-                </form>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!----------------------------------------Add Model Close------------------------------------------------>
   <!----------------------------------------Remove Model------------------------------------------------>
-  <div class="modal fade" id="modal-remove-cat">
+  <div class="modal fade" id="modal-remove-custome">
         <div class="modal-dialog">
           <div class="modal-content">
-          <form id="remove-category-form">
+          <form id="remove-customer-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE PRODUCT CATEGORY</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -201,9 +107,9 @@ session_start();
             </div>
             <div class="modal-body">
                   <div class="form-group">
-                  <input type="hidden" class="form-control" name="removecatid" id="category-remove-id">
-                  <input type="hidden"  class="form-control" id="cat-file-remove" name="removeofile" >
-                   <h5>Are you sure, You want to delete this category?</h5>
+                  <input type="hidden" class="form-control" name="removecustid" id="customer-remove-id">
+                 
+                   <h5>Are you sure, You want to delete this customer?</h5>
                   </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -231,120 +137,55 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
     $(document).ready(function(){
-    //Add Category
-    $(document).on("click","#add-new-category",function(){
-        $('#modal-add-category').modal('show');
-        $('#add-category-form').on('submit',function(e){
-            e.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: '../../apis/add/add_category.php',
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(response){
-                
-                if(response.status == 1){
-                    $('#add-category-form')[0].reset();
-                    $('#modal-add-category').modal('hide');
-                    loadTableCategory()
-                   
-                }
-                
-            }
-            })
-        });
-    });
+    
 //Fetch All Records
-function loadTableCategory(){
-    $("#load-table-category").html("");
-    $.ajax({
-        url : "../../apis/select/get_category.php",
-        type : "GET",
-        dataType : "json",
-        success : function(data){
-          var html ='';
-            console.log(data);
-            $.each(data,function(key,value){
-              imgurl =value.image_url;
-              html = html +("<tr>"+
-                                   "<td>" + value.name +"</td>"+ 
-                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='30px' height='30px'></td>"+ 
-                                   "<td>" + value.parent_id +"</td>"+ 
-                                  "<td><a href='#' class='edit-category' data-categoryeid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-category'  data-categoryremoveid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
-                                  "</tr>");
-            });
-            $("#load-table-category").html(html);  
-        }
+$(function () {
+    $("#customertab").DataTable({
+      "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      'processing': true,
+	'serverSide': true,
+	'serverMethod': 'post',
+	'ajax': {
+		  'url':'../../apis/select/get_customer.php'
+		 },
+		 'columns': [
+		         	{ data: 'name' },
+		         	{ data: 'mobile_number'},
+		         	{ data: 'type' },
+		            { data: 'id',
+                  render: function (data, type, row, meta){
+                    return type === 'display' ?
+                    "<a href='./view_customer.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_customer.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-customer'  data-customerremoveid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>"
+                    :data;
+                  }
+                 
+                }
+		      	]
     });
-}
-loadTableCategory();
+    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    
+  });
 // //Fetch All Records Close
 //Fetch Single Record : Show Model
-$(document).on("click",".edit-category",function(){
-    $('#modal-Edit-category').modal('show');
-    var cat_id = $(this).data("categoryeid");
-    var obj = {categoryeid : cat_id};
-    var myJson = JSON.stringify(obj);
-   // console.log(myJson);
-    $.ajax({
-       url :"../../apis/select/fetch_single_category.php",
-       type : "POST",
-       data : myJson,
-       dataType : "json",
-       success : function(data){
-        //console.log(data);
-        $("#edit-id-cat").val(data[0].id);
-        $("#edit-cat-name").val(data[0].cname);
-        $("#cat-file-old").val(data[0].cimage);
-        $("#pid").val(data[0].cparentid);
-      
-       }
-    });
-    //Fetch Single Record : Show Model
-  //Update Category
-$('#edit-category-form').on('submit',function(e){
-            e.preventDefault();
-            $.ajax({
-            type: 'POST',
-            url: '../../apis/update/update_category.php',
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            success: function(response){
-                
-                if(response.status == 1){
-                   $('#edit-category-form')[0].reset();
-                    $('#modal-Edit-category').modal('hide');
-                    loadTableCategory()
-                   
-                }
-                
-            }
-            })
-        });
-    });
 
-//Update Category Close
 // fetch singlr record for remove product category
-$(document).on("click",".remove-category",function(){
-  $('#modal-remove-cat').modal('show');
-    var cat_r_id = $(this).data("categoryremoveid");
-    var obj = {categoryeid: cat_r_id};
+$(document).on("click",".remove-customer",function(){
+  $('#modal-remove-custome').modal('show');
+    var cust_r_id = $(this).data("customerremoveid");
+    var obj = {cust_id: cust_r_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_category.php",
+       url :"../../apis/select/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",
        success : function(data){
         //console.log(data);
-        $("#category-remove-id").val(data[0].id);
-        $("#cat-file-remove").val(data[0].cimage);
+        $("#customer-remove-id").val(data[0].id);
+       
         
        }
     });
@@ -352,11 +193,11 @@ $(document).on("click",".remove-category",function(){
    });
 //
 //Delete Role 
-$('#remove-category-form').on('submit',function(e){
+$('#remove-customer-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_category.php',
+            url: '../../apis/delete/delete_customer.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -366,8 +207,8 @@ $('#remove-category-form').on('submit',function(e){
                 
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
-                    $('#modal-remove-cat').modal('hide');
-                    loadTableCategory()
+                    $('#modal-remove-custome').modal('hide');
+                    
                 }
                 
             }

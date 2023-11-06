@@ -121,7 +121,7 @@ if(isset($_POST['firmeditid']) && isset($_POST['firmnameedit']) && isset($_POST[
                 $db = new Database();
                 $conn = $db->connect();
                  
-                // Insert form data in the database 
+                // Update form data in the database 
                 $sqlQ = "UPDATE  firm SET name = ? , gstin =? ,address = ?,fssai = ?,mobile = ?,bank_name = ?,account_number = ? ,ifsc = ?,bank_address = ?,logo = ?,signature_image = ?,email = ?,state = ?,state_code = ? WHERE id = ?"; 
                 $stmt = $conn->prepare($sqlQ); 
                 $stmt->bind_param("ssssssssssssssi", $firmname_edit,$gstin_edit,$address_edit,$fssai_edit,$mobile_edit,$bankname_edit,$accountnumber_edit,$ifsc_edit,$bankadd_edit,$update_filename_logo,$update_filename_sign,$email_edit,$statename_edit,$statecode_edit,$firm_edit_id); 

@@ -213,9 +213,6 @@ function checkInput(){
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-
-//view model open
-
     const urlparams = new URLSearchParams(window.location.search);
     const id = urlparams.get('id');
    // console.log(id);

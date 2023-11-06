@@ -264,7 +264,7 @@ session_start();
     });
   });
 $('#edit-product-form').on('submit',function(e){
-            e.preventDefault();
+            
             $.ajax({
             type: 'POST',
             url: '../../apis/update/update_product.php',
@@ -283,6 +283,7 @@ $('#edit-product-form').on('submit',function(e){
                 }
             }
             })
+            e.preventDefault();
         });
     
 

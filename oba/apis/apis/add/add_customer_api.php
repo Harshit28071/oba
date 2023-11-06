@@ -1,4 +1,4 @@
-<? 
+<?php 
 include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
@@ -12,8 +12,8 @@ if(isset($_POST['CustName'])){
     $customer_state = $_POST['custstate'];
     $customer_city = $_POST['custcity'];
     $customer_add = $_POST['custAddress'];
-    $customer_type = $_POST['custType'];
-    $distributor_id = $_POST['disName'];
+    $customer_type = $_POST['custType'] ?? "";
+    $distributor_id = isset($_POST['disName']) ? $_POST['disName']:"" ;
     $firm_name = $_POST['firmName'];
     $firm_gstin = $_POST['custgstin'];
     //Add Customer Quary

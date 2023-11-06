@@ -218,3 +218,15 @@ function checkInput() {
     <!-- style='color:red;'style='color:red;'
     <i class="fa-solid fa-camera"></i>
     <i class="fa-solid fa-images"></i> -->
+   
+        <!-- //Check User Type 
+        $("#disop").change(function(){
+        var select = $(this).val();
+        //console.log(select);
+        if(select == 'Retailer' || select == 'Wholesaler' || select == 'Oth'){
+         $("#dis-select-box").prop("disabled",false);
+        }else{
+          $("#dis-select-box").prop("disabled",true);
+      
+        }
+       }) -->
