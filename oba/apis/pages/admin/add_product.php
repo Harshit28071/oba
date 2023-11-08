@@ -121,7 +121,7 @@ session_start();
                     <!-- <input type="text" class="form-control" placeholder="Enter Secondary Unit "    autocomplete="off" required> -->
                     <div class="form-group">
                     <label>Secondary Unit</label>
-                        <select class="form-control" name="secunit" oninput="checkInput()" id="secondaryunit">
+                        <select class="form-control" name="secunit"  id="secondaryunit">
                         <option value="0">no select</option> 
                         <?php echo $options_unit; ?>
                         </select>
@@ -205,8 +205,8 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script>
-    //Script For Multipler Eanble Disable
-// function checkInput(){
+   //Script For Multipler Eanble Disable
+//function checkInput(){
 //   var secondunit = document.getElementById("secondaryunit");
 //   var multi = document.getElementById("multiplier");
 
@@ -217,6 +217,16 @@ session_start();
 //     multi.hidden = false;
 //   }
 // }
+$("#secondaryunit").change(function(){
+  var select = $(this).val();
+  //console.log(select);
+  if(select == 0){
+   $("#multiplier").prop("disabled",false);
+  }else{
+    $("#multiplier").prop("disabled",true);
+
+  }
+ })
 </script>
 <script type="text/javascript">
  $(document).ready(function(){

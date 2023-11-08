@@ -3,7 +3,7 @@ include('../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $category = [];
-$stmt =$conn->prepare("SELECT id,name,image_url,parent_id FROM category ORDER BY name ASC;");
+$stmt =$conn->prepare("SELECT a.id,a.name,a.image_url,IFNULL(b.name,'-') FROM category a left join category b on a.parent_id = b.id ORDER BY a.name ASC;");
 $stmt->execute();
 $stmt->bind_result($id,$name,$image_url,$parent_id);
 

@@ -181,6 +181,37 @@ session_start();
       </div>
       <!-- /.modal -->
   <!----------------------------------------- Multiple Image Colse Modal-------------------------------------------------------------------------------->
+  <!----------------------------------------- Multiple Image View and remove Modal-------------------------------------------------------------------------------->
+  <div class="modal fade" id="modal-view-multiple-img">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          <form id="multi-image-form">
+            <div class="modal-header">
+              <h5 class="modal-title">View And Remove Product Multiple Image</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div class="col-4">
+            <input type="text" id="product-multi-id" name="multiimg-product-id">
+            <img src="./" alt="no">
+            <input type="submit" value="remove" name="removeimg" class="btn btn-danger">
+            </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <input type="submit" class="btn btn-primary" id="addmulti-image-sub" value="Add Images">               
+            </div>
+            </form>   
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+  <!----------------------------------------- Multiple Image View and remove Modal-------------------------------------------------------------------------------->
+
 
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
@@ -212,7 +243,7 @@ $(document).on("click",".addimgmulti",function(){
 
     });
     $('#multi-image-form').on('submit',function(e){
-            e.preventDefault();
+          
             $.ajax({
             type: 'POST',
             url: '../../apis/add/add_multiple_images.php',
@@ -226,16 +257,18 @@ $(document).on("click",".addimgmulti",function(){
                 if(response.status == 1){
                     $("#multi-image-form").trigger("reset");
                     $('#modal-add-multiple-img').modal('hide');
-                    location.reload();
-                   // loadTableProduct();
+                    //location.reload();
+                   
                    
                 }
                 
             }
             })
+            e.preventDefault();
         });
     
 })
+loadTableProduct();
 //Add Multiple Images Of Product
 
 
@@ -307,7 +340,7 @@ function loadTableProduct(){
 		            { data: 'id',
                   render: function (data, type, row, meta){
                     return type === 'display' ?
-                    "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-camera'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ data +"'><i class='fas fa-images'></i></a> "
+                    "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-camera'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='remove_multiimg_product.php?id="+ data +"' class='multi-view-img' data-productid='"+ data +"'><i class='fas fa-images'></i></a> "
                     :data;
                   }
                  
@@ -360,6 +393,7 @@ $('#remove-product-form').on('submit',function(e){
             })
 //Delete Product
         });
+        
       });
 </script>
     <script>

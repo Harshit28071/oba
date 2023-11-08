@@ -56,7 +56,9 @@ if(isset($_POST['editidcat']) && isset($_POST['editcatname'])){
                                 // Upload file to the server 
                                 if(move_uploaded_file($_FILES["editcatfile"]["tmp_name"], $targetFilePath)){ 
                                     $uploadedFile = $fileName; 
+                                    if(!empty($category_image_old)){  
                                     unlink("../../pages/admin/uploads/".$category_image_old);
+                                }
                                 }else{ 
                                     $uploadStatus = 0; 
                                     $response['message'] = 'Sorry, there was an error uploading your file.'; 

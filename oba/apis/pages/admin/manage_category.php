@@ -30,7 +30,7 @@ session_start();
   </div>
 
   <!-- Navbar -->
-  <?php 
+  <?php
   require_once("./layout/navbar.php") ?>
   <!-- /.navbar -->
 
@@ -68,7 +68,11 @@ session_start();
     </div>
     <!-- /.content-header -->
     <section class="content">
+     
       <div class="container-fluid">
+             <div id="loader" style="display:none;" class="overlay">
+<i class="fa fa-refresh fa-spin"></i>
+</div>
     <div class="card">
               <div class="card-body p-0">
                 <table class="table table-striped">
@@ -116,11 +120,11 @@ session_start();
                       <input type="hidden"  class="form-control" id="cat-file-old" name="editoldcatfile" >
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="cat-file" name="editcatfile" >
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <label class="custom-file-label" for="cat-file">Choose file</label>
                       </div>
-                      <div class="input-group-append">
+                      <!--<div class="input-group-append">
                         <span class="input-group-text">Upload</span>
-                      </div>
+                      </div>-->
                     </div>
                     <span id="validation_cat_edit" class="text-danger"></span>
                   </div>
@@ -128,15 +132,16 @@ session_start();
                         <label>Select Parent Category</label>
                         <select class="form-control" name="parentcatedit" id="pid">
                           <option value="0">Default</option>
-                          <?php 
+                          <?php
                           echo $options_edit;
                           ?>
                         </select>
                       </div>
             </div>
+           
             <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Saves Changes">               
+                  <input type="submit" class="btn btn-warning" id="edit-category-sub" value="Save Changes">              
                  
             </div>
             </form>
@@ -144,6 +149,8 @@ session_start();
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
+       
+       
       </div>
       <!-- /.modal -->
   <!----------------------------------------Edit Model Close------------------------------------------------>
@@ -164,7 +171,7 @@ session_start();
                     <input type="text" class="form-control" name="c_name" id="Add-role" placeholder="Enter Category" required>
                     <span id="validation_cat_name" class="text-danger"></span>
                   </div>
-                  
+                 
                   <div class="form-group">
                     <label for="exampleInputFile"> Category Image</label>
                     <div class="input-group">
@@ -182,17 +189,17 @@ session_start();
                         <label>Select Parent Category</label>
                         <select class="form-control" name="parent_cat">
                           <option id="option-id-edit" value="0">Default</option>
-                          <?php 
+                          <?php
                           echo $options;
                           $stmt->close();
                           $conn->close();
                           ?>
                         </select>
                       </div>
-            </div> 
+            </div>
             <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">               
+                 <input type="submit" class="btn btn-primary" id="add-category-sub" value="Add">              
                 </div>
                 </form>
           </div>
@@ -259,14 +266,14 @@ session_start();
             cache: false,
             processData:false,
             success: function(response){
-                
+               
                 if(response.status == 1){
                     $('#add-category-form')[0].reset();
                     $('#modal-add-category').modal('hide');
                     loadTableCategory()
                    
                 }
-                
+               
             }
             })
         });
@@ -284,9 +291,9 @@ function loadTableCategory(){
             $.each(data,function(key,value){
               imgurl =value.image_url;
               html = html +("<tr>"+
-                                   "<td>" + value.name +"</td>"+ 
-                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='30px' height='30px'></td>"+ 
-                                   "<td>" + value.parent_id +"</td>"+ 
+                                   "<td>" + value.name +"</td>"+
+                                   "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+imgurl+"' width='30px' height='30px'></td>"+
+                                   "<td>" + value.parent_id +"</td>"+
                                   "<td><a href='#' class='edit-category' data-categoryeid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-category'  data-categoryremoveid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
@@ -314,12 +321,14 @@ $(document).on("click",".edit-category",function(){
         $("#edit-cat-name").val(data[0].cname);
         $("#cat-file-old").val(data[0].cimage);
         $("#pid").val(data[0].cparentid);
-      
+     
        }
     });
     //Fetch Single Record : Show Model
   //Update Category
 $('#edit-category-form').on('submit',function(e){
+    $("#loader").show();
+   
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -330,14 +339,14 @@ $('#edit-category-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+                 $("#loader").hide();
                 if(response.status == 1){
                    $('#edit-category-form')[0].reset();
                     $('#modal-Edit-category').modal('hide');
-                    loadTableCategory()
+                    loadTableCategory();
                    
                 }
-                
+               
             }
             })
         });
@@ -359,13 +368,13 @@ $(document).on("click",".remove-category",function(){
         //console.log(data);
         $("#category-remove-id").val(data[0].id);
         $("#cat-file-remove").val(data[0].cimage);
-        
+       
        }
     });
 
    });
 //
-//Delete Role 
+//Delete Role
 $('#remove-category-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
@@ -377,18 +386,26 @@ $('#remove-category-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+               
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
                     $('#modal-remove-cat').modal('hide');
                     loadTableCategory()
                 }
-                
+               
             }
             })
         });
     });
      //Delete Role Close
+     
+     
+      $('#cat-file').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
 </script>
 </body>
 </html>
