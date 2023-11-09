@@ -2,11 +2,13 @@
 require_once("../../common/database.php");
 $db = new Database();
 $conn = $db->connect();
+
 $error="";
 // Receive username and password from POST request
 if(isset($_POST['signin'])){
 $username = $_POST['username'];
 $password = $_POST['password'];
+
 // Hash the received password
 //$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 // Query the database to check if username and password match
@@ -15,6 +17,7 @@ $stmt->bind_param("s",$username);
 $stmt->execute();
 $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 if(count($result) > 0){
+
  if (password_verify($password, $result[0]['password'])){
         // Username and password match
         $token = bin2hex(random_bytes(32)); // Generate a random token
@@ -33,13 +36,12 @@ if(count($result) > 0){
         $_SESSION["s_role"] =$result[0]['role'];
         $_SESSION["s_token"] =$token;
         
-          if($_SESSION["s_role"] == '1'){
-
-            header("location:./dashboard.php");
-          }else{
-            header("location:http://localhost/oba/oba/oba/apis/pages/admin/user_login.php");
-            
-          }
+        switch($_SESSION["s_role"]){
+          case 1: header("location:./dashboard.php"); break;
+          case 4: header("location:../salesman/dashboard.php"); break;
+          default:  header("location:./user_login.php");
+        }
+         
       
     }else {
         // Invalid username or password
