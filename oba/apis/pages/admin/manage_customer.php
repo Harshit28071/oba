@@ -194,6 +194,10 @@ $(document).on("click",".remove-customer",function(){
 //
 //Delete Role 
 $('#remove-customer-form').on('submit',function(e){
+        toastr.options = {
+                          "positionClass": "toast-top-right",
+                          "preventDuplicates": true
+                         };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -208,9 +212,16 @@ $('#remove-customer-form').on('submit',function(e){
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
                     $('#modal-remove-custome').modal('hide');
+                   // DataTable();
+                    toastr.success('Customer Deleted Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
                     
                 }
                 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });

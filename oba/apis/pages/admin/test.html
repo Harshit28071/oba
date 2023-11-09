@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -229,4 +229,32 @@ function checkInput() {
           $("#dis-select-box").prop("disabled",true);
       
         }
-       }) -->
+       }) --> 
+       <!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Toastr CSS and JS from a CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+<body>
+    <script>
+        // Initialize Toastr with custom options
+        toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+
+        // Your code with AJAX and Toastr notifications
+        $.ajax({
+            type: 'GET',
+            url: 'your_api_endpoint',
+            success: function(data) {
+                toastr.success('Request was successful!');
+            },
+            error: function(error) {
+                toastr.error('An error occurred.');
+            }
+        });
+    </script>
+</body>

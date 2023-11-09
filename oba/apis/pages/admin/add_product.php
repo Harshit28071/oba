@@ -91,6 +91,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
               <div class="card-body">
+              <div id="loader-add-product" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="add-product-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -217,20 +220,25 @@ session_start();
 //     multi.hidden = false;
 //   }
 // }
-$("#secondaryunit").change(function(){
-  var select = $(this).val();
-  //console.log(select);
-  if(select == 0){
-   $("#multiplier").prop("disabled",false);
-  }else{
-    $("#multiplier").prop("disabled",true);
+// $("#secondaryunit").change(function(){
+//   var select = $(this).val();
+//   //console.log(select);
+//   if(select == 0){
+//    $("#multiplier").prop("disabled",false);
+//   }else{
+//     $("#multiplier").prop("disabled",true);
 
-  }
- })
+//   }
+//  })
 </script>
 <script type="text/javascript">
  $(document).ready(function(){
     $('#add-product-form').on('submit',function(e){
+      $("#loader-add-product").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -241,18 +249,32 @@ $("#secondaryunit").change(function(){
             cache: false,
             processData:false,
             success: function(response){
+             $("#loader-add-product").hide();
                 
                 if(response.status == 1){
                     $('#add-product-form')[0].reset();
                     //$('#modal-add-product').modal('hide');
-                    window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
-                    loadTableProduct();  
+                    toastr.success('Product Added Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                    // window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
+                    // loadTableProduct();  
                 }
                 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });
+  
 
+        $('#p-img').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
   });
   </script>
 </body>

@@ -83,6 +83,9 @@ session_start();
   <div class="modal fade" id="modal-Edit-role">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-edit-role" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="edit-role-form">
             <div class="modal-header">
               <h5 class="modal-title">EDIT ROLE</h5>
@@ -115,6 +118,9 @@ session_start();
   <div class="modal fade" id="modal-add-role">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-add-role" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="add-role-form">
             <div class="modal-header">
               <h5 class="modal-title">ADD ROLE</h5>
@@ -146,6 +152,9 @@ session_start();
   <div class="modal fade" id="modal-remove-role">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-role" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
            <form id="add-remove-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE ROLE</h5>
@@ -185,8 +194,10 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
+     //toaster message
+ 
 $(document).ready(function(){
-       
+  
 //Fetch All Records
 function loadTable(){
     $("#load-table").html("");
@@ -245,8 +256,13 @@ $(document).on("click",".edit-role",function(){
        }
     })
     //Update Role
+    
     $("#edit-role-form").on("submit",function(e){
-       
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+        $("#loader-edit-role").show();
         var jsonobj =jsonData("#edit-role-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
@@ -260,10 +276,19 @@ $(document).on("click",".edit-role",function(){
             dataType : "json", 
             success : function(data){
                 //console.log(data);
-                if(data == 1){
+               
+                $("#loader-edit-role").hide();
+                if(data == 1)
+                {
+                $("#edit-role-form").trigger("reset");
                 $('#modal-Edit-role').modal('hide');
-                loadTable();}
-        }
+                loadTable();
+                toastr.success('Role Updated Succesfully');
+              }
+           },
+          error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        }
        e.preventDefault();
@@ -274,9 +299,15 @@ $(document).on("click",".edit-role",function(){
 //Fetch Single Record : Show Model Close
 
 //Add Role
+
 $(document).on("click","#add-new-role",function(){
     $('#modal-add-role').modal('show');
     $("#add-role-form").on("submit",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-add-role").show();
         //e.preventDefault();
         var jsonobj =jsonData("#add-role-form");
         //console.log(jsonobj);
@@ -290,9 +321,20 @@ $(document).on("click","#add-new-role",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+                $("#loader-add-role").hide();
+                if(data.status == 201)
+                {
                 $("#add-role-form").trigger("reset");
                 $('#modal-add-role').modal('hide');
                 loadTable();
+                toastr.success('Role Added Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+                }
+                
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
         });
        }
@@ -319,7 +361,12 @@ $(document).on("click",".remove-role",function(){
        }
     });
     //delete role
-    $("#remove-role-sub").on("click",function(e){
+    $("#add-remove-form").on("submit",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-remove-role").show();
         e.preventDefault();
         var jsonobj =jsonData("#add-remove-form");
         //console.log(jsonobj);
@@ -329,12 +376,20 @@ $(document).on("click",".remove-role",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+            $("#loader-remove-role").hide();              
                 //console.log(data);
                 if(data == 1){
+                  $("#add-remove-form").trigger("reset");
                 $('#modal-remove-role').modal('hide');
                 loadTable();
+                toastr.success('Role Deleted Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
               }
-        }
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        
     });

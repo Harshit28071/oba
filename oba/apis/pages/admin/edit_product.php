@@ -93,6 +93,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
               <div class="card-body">
+              <div id="loader-edit-product" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="edit-product-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -195,7 +198,7 @@ session_start();
                   </div>    
                 </div>
                 </div>
-                <input type="submit"  class="btn btn-warning btn-lg" id="edit-product-sub" value="Save Changes">               
+                <input type="submit"  class="btn btn-warning btn-lg  float-right" id="edit-product-sub" value="Save Changes">               
                 <!-- /.card-body -->
               </form>
               </div>
@@ -230,6 +233,12 @@ session_start();
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
+      $('#productoldimage').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
     const urlparams = new URLSearchParams(window.location.search);
     const id = urlparams.get('id');
    // console.log(id);
@@ -262,9 +271,13 @@ session_start();
         
        }
     });
-  });
+  
 $('#edit-product-form').on('submit',function(e){
-            
+  $("#loader-edit-product").show();
+  toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             $.ajax({
             type: 'POST',
             url: '../../apis/update/update_product.php',
@@ -274,21 +287,29 @@ $('#edit-product-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+             $("#loader-edit-product").hide();
                 if(response.status == 1){
                    $('#edit-product-form')[0].reset();
+                   toastr.success('Edit Product Succesfully');
+                  //  toastr .delay(1000)
+                  //  toastr .fadeOut(1000);
                    window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
                     loadTableProduct();
                    
                 }
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
+
             e.preventDefault();
+
         });
     
 
 //Update Category Close
-
+});
   </script>
 </body>
 </html>

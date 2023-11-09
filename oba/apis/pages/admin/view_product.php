@@ -93,6 +93,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
+      <div id="loader-view-product" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="product-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -213,6 +216,7 @@ function checkInput(){
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
+      $("#loader-view-product").show();
     const urlparams = new URLSearchParams(window.location.search);
     const id = urlparams.get('id');
    // console.log(id);
@@ -226,6 +230,8 @@ function checkInput(){
        data : myJson,
        dataType : "json",
        success : function(data){
+      $("#loader-view-product").hide();
+
         $("#vname").val(data[0].name);
         $("#vcat").val(data[0].category_id);
         $("#vunit").val(data[0].unit_id);

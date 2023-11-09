@@ -44,3 +44,9 @@
 <script src="../../theme/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="../../theme/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../theme/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Toaster message-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+
+   
+</script>

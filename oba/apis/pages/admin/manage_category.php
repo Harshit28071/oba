@@ -70,9 +70,7 @@ session_start();
     <section class="content">
      
       <div class="container-fluid">
-             <div id="loader" style="display:none;" class="overlay">
-<i class="fa fa-refresh fa-spin"></i>
-</div>
+             
     <div class="card">
               <div class="card-body p-0">
                 <table class="table table-striped">
@@ -100,6 +98,9 @@ session_start();
   <div class="modal fade" id="modal-Edit-category">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loaderedit" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="edit-category-form">
             <div class="modal-header">
               <h5 class="modal-title">EDIT PRODUCT CATEGORY</h5>
@@ -158,6 +159,9 @@ session_start();
   <div class="modal fade" id="modal-add-category">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loaderadd" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="add-category-form">
             <div class="modal-header">
               <h5 class="modal-title">ADD PRODUCT CATEGORY</h5>
@@ -213,6 +217,9 @@ session_start();
   <div class="modal fade" id="modal-remove-cat">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="remove-category-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE PRODUCT CATEGORY</h5>
@@ -256,6 +263,11 @@ session_start();
     $(document).on("click","#add-new-category",function(){
         $('#modal-add-category').modal('show');
         $('#add-category-form').on('submit',function(e){
+          $("#loaderadd").show();
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -266,14 +278,19 @@ session_start();
             cache: false,
             processData:false,
             success: function(response){
-               
+                 $("#loaderadd").hide();
                 if(response.status == 1){
                     $('#add-category-form')[0].reset();
                     $('#modal-add-category').modal('hide');
                     loadTableCategory()
-                   
+                    toastr.success('Category Added Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
                 }
                
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });
@@ -327,8 +344,11 @@ $(document).on("click",".edit-category",function(){
     //Fetch Single Record : Show Model
   //Update Category
 $('#edit-category-form').on('submit',function(e){
-    $("#loader").show();
-   
+    $("#loaderedit").show();
+    toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -339,14 +359,18 @@ $('#edit-category-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                 $("#loader").hide();
+                 $("#loaderedit").hide();
                 if(response.status == 1){
                    $('#edit-category-form')[0].reset();
                     $('#modal-Edit-category').modal('hide');
                     loadTableCategory();
-                   
-                }
-               
+                    toastr.success('Category Updated Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                } 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });
@@ -376,6 +400,11 @@ $(document).on("click",".remove-category",function(){
 //
 //Delete Role
 $('#remove-category-form').on('submit',function(e){
+            $("#loader-remove").show();
+            toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -386,26 +415,31 @@ $('#remove-category-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-               
+              $("#loader-remove").hide();
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
                     $('#modal-remove-cat').modal('hide');
-                    loadTableCategory()
-                }
-               
+                    loadTableCategory();
+                    toastr.success('Category Deleted Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                      }   
+                  },
+                  error: function(error) {
+                  $('#modal-remove-cat').modal('hide');
+                  $('#remove-category-form')[0].reset();
+                  toastr.error('You can not delete this item');
             }
             })
         });
     });
      //Delete Role Close
-     
-     
       $('#cat-file').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
-            })
+            });
 </script>
 </body>
 </html>

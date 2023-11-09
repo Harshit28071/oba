@@ -82,6 +82,9 @@ session_start();
   <div class="modal fade" id="modal-Edit-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-edit-unit" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="edit-unit-form">
             <div class="modal-header">
               <h5 class="modal-title">EDIT UNIT</h5>
@@ -113,6 +116,9 @@ session_start();
   <div class="modal fade" id="modal-add-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-add-unit" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="add-unit-form">
             <div class="modal-header">
               <h5 class="modal-title">ADD UNIT</h5>
@@ -144,6 +150,9 @@ session_start();
   <div class="modal fade" id="modal-remove-unit">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-unit" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="add-remove-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE UNIT</h5>
@@ -241,6 +250,11 @@ $(document).on("click",".edit-unit",function(){
      })
    //Update Role
     $("#edit-unit-form").on("submit",function(e){
+      $("#loader-edit-unit").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
         //e.preventDefault();
         var jsonobj =jsonData("#edit-unit-form");
         //console.log(jsonobj);
@@ -254,10 +268,18 @@ $(document).on("click",".edit-unit",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+              $("#loader-edit-unit").hide();
                 //console.log(data);
+                $("#edit-unit-form").trigger("reset")
                 $('#modal-Edit-unit').modal('hide');
                 loadTableunit();    
-        }
+                toastr.success('Unit Updated Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        }
        e.preventDefault();
@@ -266,10 +288,15 @@ $(document).on("click",".edit-unit",function(){
 // //Update Role Close
 });
 // //Fetch Single Record : Show Model Close
-//Add Role
+//Add Unit
 $(document).on("click","#add-new-unit",function(){
     $('#modal-add-unit').modal('show');
     $("#add-unit-form").on("submit",function(e){
+      $("#loader-add-unit").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
       //  e.preventDefault();
         var jsonobj =jsonData("#add-unit-form");
         //console.log(jsonobj);
@@ -283,9 +310,16 @@ $(document).on("click","#add-new-unit",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
-              $("#add-unit-form").trigger("reset")
+              $("#loader-add-unit").hide();
+              $("#add-unit-form").trigger("reset");
                 $('#modal-add-unit').modal('hide');
                 loadTableunit();
+                toastr.success('Unit Added Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
         });
        }
@@ -311,7 +345,12 @@ $(document).on("click",".remove-unit",function(){
        }
     });
      //delete role
-    $("#remove-unit-sub").on("click",function(e){
+    $("#add-remove-form").on("submit",function(e){
+      $("#loader-remove-unit").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
         e.preventDefault();
         var jsonobj =jsonData("#add-remove-form");
         //console.log(jsonobj);
@@ -323,10 +362,22 @@ $(document).on("click",".remove-unit",function(){
             success : function(data){
                 //console.log(data);
                 if(data == 1){
+                
+                $("#loader-remove-unit").hide();
+                $("#add-remove-form").trigger("reset")
                 $('#modal-remove-unit').modal('hide');
                 loadTableunit();
-            }
-        }
+                toastr.success('Unit Deleted Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+                  }
+              },
+              error: function(error) {
+                $("#add-remove-form").trigger("reset")
+                  $('#modal-remove-unit').modal('hide');
+                  toastr.error('you can not delete this item.');
+                
+                  }
         });
        
     });

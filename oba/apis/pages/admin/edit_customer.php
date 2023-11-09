@@ -92,6 +92,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
+      <div id="loader-customer-edit" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="edit-customer-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -202,6 +205,8 @@ session_start();
 
 <script type="text/javascript">
  $(document).ready(function(){
+  
+
 const urlparams = new URLSearchParams(window.location.search);
 const id = urlparams.get('id');
 var cust_id = id;
@@ -230,6 +235,11 @@ var obj = {cust_id : cust_id};
       });
       //Update Customer
    $("#edit-customer-form").on("submit",function(e){
+    $("#loader-customer-edit").show();
+    toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
     $.ajax({
             type: 'POST',
             url: '../../apis/update/update_customer.php',
@@ -239,13 +249,17 @@ var obj = {cust_id : cust_id};
             cache: false,
             processData:false,
             success: function(response){
-                
+              $("#loader-customer-edit").hide();
                 if(response.status == 1){
                    $('#edit-customer-form')[0].reset();
                    window.location.replace("./manage_customer.php");
-                    
-                   
+                   toastr.success('Customer Updated Succesfully');
+                   toastr .delay(3000)
+                    toastr .fadeOut(3000);
                 }
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         e.preventDefault();

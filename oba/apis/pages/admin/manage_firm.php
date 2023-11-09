@@ -92,6 +92,9 @@ session_start();
   <div class="modal fade" id="modal-remove-firm">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-firm" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="remove-firm-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE FIRM</h5>
@@ -180,6 +183,11 @@ $(document).on("click",".remove-firm",function(){
 // //
 // //Delete Firm 
 $('#remove-firm-form').on('submit',function(e){
+  $("#loader-remove-firm").show();
+  toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -190,13 +198,20 @@ $('#remove-firm-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+                $("#loader-remove-firm").hide();
                 if(response == 1){
-                  //  $('#edit-category-form')[0].reset();
+                   $('#remove-firm-form')[0].reset();
                     $('#modal-remove-firm').modal('hide');
                     loadTableFirm();
+                    toastr.success('Firm Deleted Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                   
                 }
                 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });

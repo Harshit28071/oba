@@ -82,6 +82,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
+      <div id="loader-add-customer" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="add-customer-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -186,9 +189,14 @@ session_start();
 //Fetch Single Record : Show Model
 //view model open
 $(document).ready(function(){
-  
+        $("#loader-add-customer").show();
+         
        // validation();
         $('#add-customer-form').on('submit',function(e){
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
           e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -199,13 +207,21 @@ $(document).ready(function(){
             cache: false,
             processData:false,
             success: function(response){
+               $("#loader-add-customer").hide();
                 
                 if(response.status == 1){
                   $('#add-customer-form')[0].reset();
-                    window.location.replace("./manage_customer.php");
-                    loadTableFirm();
+                  toastr.success('Customer Added Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                    // window.location.replace("./manage_customer.php");
+                    // loadTableFirm();
+                    
                    
                 }
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
             

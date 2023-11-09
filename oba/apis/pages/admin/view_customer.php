@@ -82,6 +82,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
+      <div id="loader-view-customer" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="add-customer-form">
                 <div class="row">
                   <div class="col-6 form-group">
@@ -169,17 +172,24 @@ session_start();
   //Check User Type close
 </script>
 <script type="text/javascript">
+$(document).ready(function(){
+ 
+
 const urlparams = new URLSearchParams(window.location.search);
 const id = urlparams.get('id');
 var cust_id = id;
 var obj = {cust_id : cust_id};
  var myJson = JSON.stringify(obj); 
+ $("#loader-view-customer").show();
+
  $.ajax({
        url :"../../apis/select/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",
        success : function(data){
+         $("#loader-view-customer").hide();
+
         $("#Cust-name-v").val(data[0].name);
         $("#Cust-Mobile-v").val(data[0].mobile_number);
         $("#cust-state-v").val(data[0].state_id);
@@ -193,6 +203,7 @@ var obj = {cust_id : cust_id};
 
        }
       });
+    });
 </script>
 </body>
 </html>

@@ -83,6 +83,9 @@ session_start();
   <div class="modal fade" id="modal-Edit-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-edit-state" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="edit-state-form">
             <div class="modal-header">
               <h5 class="modal-title">EDIT STATES</h5>
@@ -114,6 +117,9 @@ session_start();
   <div class="modal fade" id="modal-add-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-add-state" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="addstateform">
             <div class="modal-header">
               <h5 class="modal-title">ADD STATES</h5>
@@ -144,6 +150,9 @@ session_start();
   <div class="modal fade" id="modal-remove-state">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-state" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="state-remove-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE STATE</h5>
@@ -242,6 +251,11 @@ $(document).on("click",".edit-state",function(){
     })
     //Update Role
     $("#edit-state-form").on("submit",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-edit-state").show();
         var jsonobj =jsonData("#edit-state-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
@@ -254,11 +268,20 @@ $(document).on("click",".edit-state",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+              $("#loader-edit-state").hide();
                 //console.log(data);
                 if(data == 1){
+                  $("#edit-state-form").trigger("reset")
                 $('#modal-Edit-state').modal('hide');
-                loadTableState();}
-        }
+                loadTableState();
+                toastr.success('State Updated Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+              }
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        }
        e.preventDefault();
@@ -271,7 +294,13 @@ $(document).on("click",".edit-state",function(){
 // //Add State
 $(document).on("click","#add-new-state",function(){
     $('#modal-add-state').modal('show');
+
     $("#addstateform").on("submit",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-add-state").show();
         var jsonobj =jsonData("#addstateform");
         console.log(jsonobj);
        if(jsonobj == false ){
@@ -284,9 +313,16 @@ $(document).on("click","#add-new-state",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
-              $("#addstateform").trigger("reset")
+              $("#loader-add-state").hide();
+              $("#addstateform").trigger("reset");
                 $('#modal-add-state').modal('hide');
                 loadTableState();
+                toastr.success('State Added Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
         });
        }
@@ -314,6 +350,11 @@ $(document).on("click",".remove-state",function(){
     });
 //     //delete role
     $("#remove-state-sub").on("click",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-remove-state").show();
         e.preventDefault();
         var jsonobj =jsonData("#state-remove-form");
         //console.log(jsonobj);
@@ -323,12 +364,20 @@ $(document).on("click",".remove-state",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+               $("#loader-remove-state").hide();
                 //console.log(data);
                 if(data == 1){
+                  $("#state-remove-form").trigger("reset");
                 $('#modal-remove-state').modal('hide');
                 loadTableState();
+                toastr.success('State Deleted Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
               }
-        }
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        
     });

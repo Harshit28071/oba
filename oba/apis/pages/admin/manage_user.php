@@ -97,6 +97,9 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-Edit-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-edit-user" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="edit-user-form">
             <div class="modal-header">
               <h5 class="modal-title">EDIT USER</h5>
@@ -151,6 +154,9 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-add-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-add-user" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="add-user-form">
             <div class="modal-header">
               <h5 class="modal-title">ADD NEW USER</h5>
@@ -207,6 +213,9 @@ $quary ="SELECT id,role FROM roles";
   <div class="modal fade" id="modal-remove-user">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-user" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="user-remove-form">
             <div class="modal-header">
               <h4 class="modal-title">REMOVE ROLE</h4>
@@ -312,8 +321,13 @@ $(document).on("click",".edit-user",function(){
 
        }
     })
-//     //Update Role
+//     //Update user
     $("#edit-user-form").on("submit",function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+      $("#loader-edit-user").show();
         var jsonobj =jsonData("#edit-user-form");
         //console.log(jsonobj);
        if(jsonobj == false ){
@@ -325,11 +339,21 @@ $(document).on("click",".edit-user",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+              $("#loader-edit-user").hide();
                 //console.log(data);
                 if(data == 1){
+                  $("#edit-user-form").trigger("reset"); 
                 $('#modal-Edit-user').modal('hide');
-                loadTableUser();}
-        }
+                loadTableUser();
+                toastr.success('User Updated Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+              }
+
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
         });
        }
        e.preventDefault();
@@ -343,6 +367,11 @@ $(document).on("click",".edit-user",function(){
 $(document).on("click","#add-new-user",function(){
     $('#modal-add-user').modal('show');
     $("#add-user-form").on("submit",function(e){
+      $("#loader-add-user").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
         //e.preventDefault();
         var jsonobj =jsonData("#add-user-form");
         //console.log(jsonobj);
@@ -355,9 +384,16 @@ $(document).on("click","#add-new-user",function(){
             data : jsonobj,
             dataType : "json", 
             success : function(data){
+              $("#loader-add-user").hide();
                 $("#add-user-form").trigger("reset");
                 $('#modal-add-user').modal('hide');
                 loadTableUser();
+                toastr.success('User Added Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
         });
        }
@@ -384,7 +420,12 @@ $(document).on("click",".remove-user",function(){
        }
     })
 //     //delete role
-    $("#remove-user-sub").on("click",function(e){
+    $("#user-remove-form").on("submit",function(e){
+      $("#loader-remove-user").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
         e.preventDefault();
         var jsonobj =jsonData("#user-remove-form");
         //console.log(jsonobj);
@@ -395,11 +436,20 @@ $(document).on("click",".remove-user",function(){
             dataType : "json", 
             success : function(data){
                 //console.log(data);
+                $("#loader-remove-user").hide();
                 if(data == 1){
+                  $("#user-remove-form").trigger("reset");
                 $('#modal-remove-user').modal('hide');
                 loadTableUser();
+                toastr.success('User Deleted Succesfully');
+                toastr .delay(1000)
+                toastr .fadeOut(1000);
               }
-        }
+        },
+        error: function(error) {
+            toastr.error('Something went wrong.');
+            }
+
         });
        
     });

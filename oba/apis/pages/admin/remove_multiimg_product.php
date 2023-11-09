@@ -69,7 +69,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
-      
+      <div id="loader-img-mutli-remove" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
       <form id="multi-image-delete">
       <div class="row">
      <?php while($stmt->fetch()){?>
@@ -101,7 +103,12 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
 $("#multi-image-delete").on("submit",function(e){
-  
+  $("#loader-img-mutli-remove").show();
+
+  toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
   $.ajax({
             type: 'POST',
             url: '../../apis/delete/delete_product_imges.php',
@@ -111,11 +118,17 @@ $("#multi-image-delete").on("submit",function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+             $("#loader-img-mutli-remove").hide();
                 if(response == 1){
+                  toastr.success('Image Deleted Succesfully');
+                //  toastr .delay(1000)
+                  toastr .fadeOut(1000);
                   location.reload();
                 }
                 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
             e.preventDefault();

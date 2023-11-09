@@ -123,6 +123,9 @@ session_start();
   <div class="modal fade" id="modal-product-remove">
         <div class="modal-dialog">
           <div class="modal-content">
+          <div id="loader-remove-product" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="remove-product-form">
             <div class="modal-header">
               <h5 class="modal-title">REMOVE PRODUCT</h5>
@@ -154,6 +157,9 @@ session_start();
   <div class="modal fade" id="modal-add-multiple-img">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
+          <div id="loader-multi-img" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
           <form id="multi-image-form">
             <div class="modal-header">
               <h5 class="modal-title">Add Product Multiple Image</h5>
@@ -181,38 +187,6 @@ session_start();
       </div>
       <!-- /.modal -->
   <!----------------------------------------- Multiple Image Colse Modal-------------------------------------------------------------------------------->
-  <!----------------------------------------- Multiple Image View and remove Modal-------------------------------------------------------------------------------->
-  <div class="modal fade" id="modal-view-multiple-img">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-          <form id="multi-image-form">
-            <div class="modal-header">
-              <h5 class="modal-title">View And Remove Product Multiple Image</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <div class="col-4">
-            <input type="text" id="product-multi-id" name="multiimg-product-id">
-            <img src="./" alt="no">
-            <input type="submit" value="remove" name="removeimg" class="btn btn-danger">
-            </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <input type="submit" class="btn btn-primary" id="addmulti-image-sub" value="Add Images">               
-            </div>
-            </form>   
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-  <!----------------------------------------- Multiple Image View and remove Modal-------------------------------------------------------------------------------->
-
-
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -243,7 +217,11 @@ $(document).on("click",".addimgmulti",function(){
 
     });
     $('#multi-image-form').on('submit',function(e){
-          
+      $("#loader-multi-img").show();
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             $.ajax({
             type: 'POST',
             url: '../../apis/add/add_multiple_images.php',
@@ -253,15 +231,21 @@ $(document).on("click",".addimgmulti",function(){
             cache: false,
             processData:false,
             success: function(response){
+               $("#loader-multi-img").hide();
                 
                 if(response.status == 1){
                     $("#multi-image-form").trigger("reset");
                     $('#modal-add-multiple-img').modal('hide');
                     //location.reload();
-                   
+                    toastr.success('Images Added Succesfully');
+                  //   toastr .delay(1000)
+                     toastr .fadeOut(1000);
                    
                 }
                 
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
             e.preventDefault();
@@ -372,6 +356,11 @@ $(document).on("click",".remove-product",function(){
    });
 //Delete Product 
 $('#remove-product-form').on('submit',function(e){
+            $("#loader-remove-product").show();
+            toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -382,13 +371,25 @@ $('#remove-product-form').on('submit',function(e){
             cache: false,
             processData:false,
             success: function(response){
-                
+                $("#loader-remove-product").hide();
                 if(response == 1){
-                  //  $('#edit-category-form')[0].reset();
+                
+                  $('#remove-product-form')[0].reset();
                     $('#modal-product-remove').modal('hide');
-                    //loadTableProduct();
+                    toastr.success('Product Deleted Succesfully');
+                   toastr .delay(1000)
+                   toastr .fadeOut(1000);
+                   DataTable();
                 }
                 
+            },
+            error: function(error) { 
+            $('#modal-product-remove').modal('hide');
+            toastr.error('Can not delete this item');
+            //toastr .delay(1000)
+            toastr .fadeOut(1000);
+            location.reload();
+            
             }
             })
 //Delete Product

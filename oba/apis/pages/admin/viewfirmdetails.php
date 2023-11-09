@@ -71,6 +71,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
       <div class="card-body">
+      <div id="loader-view-user" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="view-firm-form">
                 <div class="row">
                   <div class="col-4 form-group">
@@ -179,6 +182,7 @@ session_start();
 //Fetch Single Record : Show Model
 //view model open
 $(document).ready(function(){
+  $("#loader-view-user").show();
     const urlparams = new URLSearchParams(window.location.search);
     const id = urlparams.get('id');
    // console.log(id);
@@ -192,6 +196,7 @@ $(document).ready(function(){
        data : myJson,
        dataType : "json",
        success : function(data){
+        $("#loader-view-user").hide();
         $("#f-name-v").val(data[0].name);
         $("#f-gst-v").val(data[0].gstin);
         $("#f-add-v").val(data[0].address);

@@ -189,6 +189,10 @@ $(document).ready(function(){
    
        // validation();
         $('#add-firm-form').on('submit',function(e){
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -202,13 +206,31 @@ $(document).ready(function(){
                 
                 if(response.status == 1){
                     $('#add-firm-form')[0].reset();
-                    window.location.replace("./manage_firm.php");
+                    toastr.success('Firm Added Succesfully');
+                    toastr .delay(1000)
+                    toastr .fadeOut(1000);
+                    //window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
                 }
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });
+        $('#logo-img').on('change',function(){
+          //get the file name
+                var fileNamelogo = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileNamelogo);
+            });
+            $('#sign-image').on('change',function(){
+          //get the file name
+                var fileNamesing = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileNamesing);
+            });
     });
 
     

@@ -71,6 +71,9 @@ session_start();
       <div class="container-fluid">
       <div class="card card-primary">
               <div class="card-body">
+              <div id="loader-edit-firm" style="display:none;" class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+              </div>
                 <form id="edit-firm-form">
                 <div class="row">
                   <div class="col-4 form-group">
@@ -220,6 +223,7 @@ $(document).ready(function(){
     var obj = {firmviewid : firm_id};
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
+  
     $.ajax({
        url :"../../apis/select/fetch_single_firm.php",
        type : "POST",
@@ -248,6 +252,11 @@ $(document).ready(function(){
        }
     });
     $('#edit-firm-form').on('submit',function(e){
+      toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true
+        };
+            $("#loader-edit-firm").show();
             e.preventDefault();
             $.ajax({
             type: 'POST',
@@ -258,18 +267,37 @@ $(document).ready(function(){
             cache: false,
             processData:false,
             success: function(response){
+                $("#loader-edit-firm").hide();
                 if(response.status == 1){
-                   //$('#edit-category-form')[0].reset();
+                  $('#edit-firm-form')[0].reset();
+                  toastr.success('Updated Firm Succesfully');
+                  // toastr .delay(1000)
+                  // toastr .fadeOut(1000);
                     window.location.replace("./manage_firm.php");
                     loadTableFirm();
                    
                 }
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
             }
             })
         });
    
 
 //Update Category Close
+$('#logo-img-edit').on('change',function(){
+          //get the file name
+                var fileNamelogo = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileNamelogo);
+            });
+            $('#sign-image-edit').on('change',function(){
+          //get the file name
+                var fileNamesing = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileNamesing);
+            });
   });
 
 </script>
