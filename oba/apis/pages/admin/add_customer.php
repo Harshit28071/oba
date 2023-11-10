@@ -29,6 +29,18 @@ session_start();
     while($stmt->fetch()){
       $options_s .="<option value='$dis_id'>$dis_name</option>";
     }
+    //city select box
+    $quarycity ="SELECT id,name FROM city";
+    $stmt = $conn->prepare($quarycity);
+    $stmt->execute();
+    $stmt->bind_result($id,$cityname);
+    $options_city = "";
+    
+    while($stmt->fetch()){
+      
+        $options_city .="<option value='$id' >$cityname</option>";
+    
+      }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +119,13 @@ session_start();
                       
                       <div class="col-12 form-group">
                     <label>City</label>
-                    <input type="text" class="form-control" placeholder="Enter City" name="custcity" autocomplete="off" id="cust-city">
+                    <!-- <input type="text" class="form-control" placeholder="Enter City" name="custcity" autocomplete="off" id="cust-city"> -->
+                    <label>Select City</label>
+                        <select class="form-control" name="custcity" id="cust-city">
+                          <?php 
+                          echo $options_city;                        
+                          ?>
+                        </select>
                   </div>
                   </div>
                   <div class="col-6">
