@@ -21,67 +21,41 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="get_all_product.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Data Master
-                <i class="fas fa-angle-left right"></i>
+                All products 
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./manage_role.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Role</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./manage_state.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage State</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./manage_unit.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Unit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./manage_category.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Category</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
-            <a href="./manage_user.php" class="nav-link">
-              <i class="nav-icon fas fa-user-edit"></i>
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
               <p>
-              Manage User
+              All customers
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./manage_firm.php" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Manage Firm
+              Create Order Option
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./manage_product.php" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-basket"></i>
               <p>
-              Manage Product
+              My Orders
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./manage_customer.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user-edit"></i>
+             
               <p>
               Manage Customer
               </p>
