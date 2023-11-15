@@ -271,7 +271,7 @@ session_start();
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/add_category.php',
+            url: '../../apis/add/admin/add_category.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -299,7 +299,7 @@ session_start();
 function loadTableCategory(){
     $("#load-table-category").html("");
     $.ajax({
-        url : "../../apis/select/get_category.php",
+        url : "../../apis/select/admin/get_category.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -328,7 +328,7 @@ $(document).on("click",".edit-category",function(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_category.php",
+       url :"../../apis/select/admin/fetch_single_category.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -352,7 +352,7 @@ $('#edit-category-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/update/update_category.php',
+            url: '../../apis/update/admin/update_category.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -384,7 +384,7 @@ $(document).on("click",".remove-category",function(){
     var obj = {categoryeid: cat_r_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_category.php",
+       url :"../../apis/select/admin/fetch_single_category.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -408,7 +408,7 @@ $('#remove-category-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_category.php',
+            url: '../../apis/delete/admin/delete_category.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

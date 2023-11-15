@@ -111,7 +111,7 @@ $("#multi-image-delete").on("submit",function(e){
         };
   $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_product_imges.php',
+            url: '../../apis/delete/admin/delete_product_imges.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

@@ -247,7 +247,7 @@ session_start();
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_product.php",
+       url :"../../apis/select/admin/fetch_single_product.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -280,7 +280,7 @@ $('#edit-product-form').on('submit',function(e){
         };
             $.ajax({
             type: 'POST',
-            url: '../../apis/update/update_product.php',
+            url: '../../apis/update/admin/update_product.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

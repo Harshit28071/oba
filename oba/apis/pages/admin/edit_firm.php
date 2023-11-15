@@ -225,7 +225,7 @@ $(document).ready(function(){
    // console.log(myJson);
   
     $.ajax({
-       url :"../../apis/select/fetch_single_firm.php",
+       url :"../../apis/select/admin/fetch_single_firm.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -260,7 +260,7 @@ $(document).ready(function(){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/update/update_firm.php',
+            url: '../../apis/update/admin/update_firm.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

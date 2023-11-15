@@ -231,7 +231,7 @@ session_start();
 function loadTableCity(){
     $("#load-table-city").html("");
     $.ajax({
-        url : "../../apis/select/get_city.php",
+        url : "../../apis/select/admin/get_city.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -274,7 +274,7 @@ $(document).on("click",".edit-city",function(){
     var myJson = JSON.stringify(obj);
    console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_city.php",
+       url :"../../apis/select/admin/fetch_single_city.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -301,7 +301,7 @@ $(document).on("click",".edit-city",function(){
         console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/update/update_city.php",
+            url : "../../apis/update/admin/update_city.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -344,7 +344,7 @@ $(document).on("click","#add-new-city",function(){
         console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/add/add_city.php",
+            url : "../../apis/add/admin/add_city.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -376,7 +376,7 @@ $(document).on("click",".remove-city",function(){
     var obj = {Cityeid : city_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_city.php",
+       url :"../../apis/select/admin/fetch_single_city.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -397,7 +397,7 @@ $(document).on("click",".remove-city",function(){
         var jsonobj =jsonData("#city-remove-form");
         //console.log(jsonobj);
         $.ajax({
-            url : "../../apis/delete/delete_city.php",
+            url : "../../apis/delete/admin/delete_city.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 

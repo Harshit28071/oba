@@ -199,7 +199,7 @@ var obj = {cust_id : cust_id};
  $("#loader-view-customer").show();
 
  $.ajax({
-       url :"../../apis/select/fetch_single_customer.php",
+       url :"../../apis/select/admin/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",

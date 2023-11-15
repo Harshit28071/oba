@@ -196,7 +196,7 @@ $(document).ready(function(){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/add_firm.php',
+            url: '../../apis/add/admin/add_firm.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

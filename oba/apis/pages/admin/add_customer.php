@@ -218,7 +218,7 @@ $(document).ready(function(){
           e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/add_customer_api.php',
+            url: '../../apis/add/admin/add_customer_api.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

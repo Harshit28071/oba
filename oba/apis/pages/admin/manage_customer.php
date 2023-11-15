@@ -149,7 +149,7 @@ $(function () {
 	'serverSide': true,
 	'serverMethod': 'post',
 	'ajax': {
-		  'url':'../../apis/select/get_customer.php'
+		  'url':'../../apis/select/admin/get_customer.php'
 		 },
 		 'columns': [
 		         	{ data: 'name' },
@@ -178,7 +178,7 @@ $(document).on("click",".remove-customer",function(){
     var obj = {cust_id: cust_r_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_customer.php",
+       url :"../../apis/select/admin/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -201,7 +201,7 @@ $('#remove-customer-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_customer.php',
+            url: '../../apis/delete/admin/delete_customer.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -212,7 +212,7 @@ $('#remove-customer-form').on('submit',function(e){
                 if(response == 1){
                   //  $('#edit-category-form')[0].reset();
                     $('#modal-remove-custome').modal('hide');
-                   // DataTable();
+                    DataTable();
                     toastr.success('Customer Deleted Succesfully');
                     toastr .delay(1000)
                     toastr .fadeOut(1000);
