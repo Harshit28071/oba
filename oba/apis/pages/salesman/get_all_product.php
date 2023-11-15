@@ -38,65 +38,40 @@ session_start();
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-     
+ 
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">View All Product</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><a href="#"  class="btn btn-primary" id="tab-view-btn">Table </a></li>
-            <li class="breadcrumb-item active"><a href="#"  class="btn btn-primary" id="li-view">List  </a></li>
-            <li class="breadcrumb-item active"><a href="#"  class="btn btn-primary" id="third-view-btn">Example </a></li>
-
-
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-
-    </div>
+   <br>
     <!-- /.content-header -->
     <section class="content">
       <div class="container-fluid">
-       <div id="tab-view">
-    <div class="card">
-              <div class="card-body p-0">
-                <table class="table table-striped" id="example1">
-                  <thead>
-                    <tr> 
-                      <th> Name</th>
-                      <th> Category</th>
-                      <th> Max Price</th>
-                      <th> Gst Rate</th>
-                      <th> Image</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-   <!-- /.content -->
-       </div>
-  <!--List view Div -->
+        <div class="row">
+     <div class="col-md-12">
+
+
+     <form>
+<div class="input-group">
+<input type="search" id="search" class="form-control form-control-lg" placeholder="Type here">
+<div class="input-group-append">
+<button onclick="filterData()" class="btn btn-lg btn-default">
+<i class="fa fa-search"></i>
+</button>
+</div>
+</div>
+</form>
+<div id="back" style="display:none;">
+<br>
+<button type="button" class="btn btn-block btn-primary btn-xs" id="backbutton" >Back</button>
+  </div>
+  </div>
+  </div>
+  </div>
+<br>
+
+<div id="tab-view">
+
+</div>
+       
   
-       <div id="collalaps-view" class="container-fluid">
-       <div class="row">
-        
-       </div>
-       </div>
-  <!--list View Close-->
-  <!--Third view Div -->
-  <div id="third-view" >
-       <h1>hello</h1>
-      </div>
-  <!--Third View Close-->
       </div>
    </section>
   </div> 
@@ -111,6 +86,11 @@ session_start();
 <!-- jQuery -->
 
 <?php require_once("./layout/footer_links.php");?>
+<script>
+   $("#heading").text("All Products");
+  $('.custom-button').append('<li class="nav-item"><a class="nav-link" data-widget="fullscreen" href="#" role="button">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link" data-widget="fullscreen" href="#" role="button">          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link" data-widget="fullscreen" href="#" role="button">          <i class="fa fa-fw fa-th-large"></i>        </a>      </li>');
+$("#loader").show();
+  </script>
 <script src="../js/salesman js/viewproduct.js"></script>
 
 </body>

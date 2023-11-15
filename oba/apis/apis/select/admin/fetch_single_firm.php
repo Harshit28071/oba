@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents("php://input"),true);
 $f_id = $data['firmviewid'];
-include('../../common/database.php');
+include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $firm_s = [];

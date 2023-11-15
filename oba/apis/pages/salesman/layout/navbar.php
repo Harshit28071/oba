@@ -7,7 +7,7 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav custom-button">
       <h3 id="heading"></h3>
       
     </ul>

@@ -1,9 +1,8 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
 $data = json_decode(file_get_contents("php://input"),true);
 //$state_id = $data['roleid'];
-include('../../common/database.php');
+include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 

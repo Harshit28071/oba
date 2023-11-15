@@ -61,5 +61,8 @@
             padding: 10px 15px;
             cursor: pointer;
         }
+        .dataTables_filter{
+            margin-top:2%;
+        }
     </style>
 </head>

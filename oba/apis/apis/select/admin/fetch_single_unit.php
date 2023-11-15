@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 $data = json_decode(file_get_contents("php://input"),true);
 $unit_id = $data['unitid'];
-include('../../common/database.php');
+include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $unitsarr = [];

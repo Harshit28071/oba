@@ -1,5 +1,5 @@
 <?php 
-include('../../common/database2.php');
+include('../../../common/database2.php');
 $draw = $_POST['draw'];
 $row = $_POST['start'];
 $rowperpage = $_POST['length']; // Rows display per page

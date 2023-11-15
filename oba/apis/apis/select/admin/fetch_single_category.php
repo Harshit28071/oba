@@ -1,9 +1,8 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
 $data = json_decode(file_get_contents("php://input"),true);
 $cat_id = $data['categoryeid'];
-include('../../common/database.php');
+include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $category = [];

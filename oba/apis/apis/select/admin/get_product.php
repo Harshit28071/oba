@@ -1,5 +1,5 @@
 <?php
-include('../../common/database2.php');
+include('../../../common/database2.php');
 
 
 /*$product = [];
