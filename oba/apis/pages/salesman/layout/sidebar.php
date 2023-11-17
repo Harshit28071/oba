@@ -37,10 +37,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="create_order.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-              Create Order Option
+              Create Order 
               </p>
             </a>
           </li>

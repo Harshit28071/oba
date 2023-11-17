@@ -21,8 +21,10 @@ if(isset($_POST['CustName'])){
     $stmt = $conn->prepare($Quary); 
     $stmt->bind_param("ssisssssi",$customer_name,$customer_mobile,$customer_state,$customer_city,$customer_add,$firm_name,$firm_gstin,$customer_type,$distributor_id);
     $insert = $stmt->execute(); 
+    $last_insert_id =$conn->insert_id;
     if($insert){ 
         $response['status'] = 1; 
+        $response['customerId'] = $last_insert_id ; 
         $response['message'] = 'Form data submitted successfully!'; 
     } else{ 
         $response['message'] = 'Something went wrong'; 
