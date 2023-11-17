@@ -75,7 +75,7 @@ return html;
  }
 
 function filterData(){
-  debugger;
+  // debugger;
   var input = $("#search").val();
 if(input != ''){
   var data = products.filter(function(obj) {
@@ -92,7 +92,7 @@ viewFunction();
 
 function loadCollapseView(){
   var html = '';
-debugger;
+//debugger;
   for(var i=0;i<parentCategories.length;i++){
       var childs = getChilds(parentCategories[i].name);
       if(childs.length > 0){
@@ -129,7 +129,7 @@ debugger;
        html = html + getCategoryProductsHTML(parentCategories[i].name);
       }
   }
-  debugger;
+ // debugger;
   $("#tab-view").html(html);
  }
 

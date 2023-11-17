@@ -206,7 +206,7 @@ $(document).on("click",".addimgmulti",function(){
     var obj = {p_id: p_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_product.php",
+       url :"../../apis/select/admin/fetch_single_product.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -224,7 +224,7 @@ $(document).on("click",".addimgmulti",function(){
         };
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/add_multiple_images.php',
+            url: '../../apis/add/admin/add_multiple_images.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -260,7 +260,7 @@ loadTableProduct();
 function loadTableProduct(){
     $("#load-table-product").html("");
     $.ajax({
-        url : "../../apis/select/get_product.php",
+        url : "../../apis/select/admin/get_product.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -298,7 +298,7 @@ function loadTableProduct(){
 	'serverSide': true,
 	'serverMethod': 'post',
 	'ajax': {
-		  'url':'../../apis/select/get_product.php'
+		  'url':'../../apis/select/admin/get_product.php'
 		 },
 		 'columns': [
 		         	{ data: 'name' },
@@ -341,7 +341,7 @@ $(document).on("click",".remove-product",function(){
     var obj = {p_id: p_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_product.php",
+       url :"../../apis/select/admin/fetch_single_product.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -364,7 +364,7 @@ $('#remove-product-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_product.php',
+            url: '../../apis/delete/admin/delete_product.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -379,7 +379,7 @@ $('#remove-product-form').on('submit',function(e){
                     toastr.success('Product Deleted Succesfully');
                    toastr .delay(1000)
                    toastr .fadeOut(1000);
-                   DataTable();
+                  
                 }
                 
             },
@@ -393,6 +393,7 @@ $('#remove-product-form').on('submit',function(e){
             }
             })
 //Delete Product
+
         });
         
       });

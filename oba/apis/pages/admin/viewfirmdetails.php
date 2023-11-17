@@ -191,7 +191,7 @@ $(document).ready(function(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_firm.php",
+       url :"../../apis/select/admin/fetch_single_firm.php",
        type : "POST",
        data : myJson,
        dataType : "json",

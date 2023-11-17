@@ -198,17 +198,19 @@ session_start();
 function loadTableunit(){
     $("#load-table-unit").html("");
     $.ajax({
-        url : "../../apis/select/get_units.php",
+        url : "../../apis/select/admin/get_units.php",
         type : "GET",
         dataType : "json",
         success : function(data){
-            console.log(data);
+          var html ='';
+            //console.log(data);
             $.each(data,function(key,value){
-             $("#load-table-unit").append("<tr>"+
+              html = html + ("<tr>"+
                                    "<td>" + value.uname +"</td>"+ 
                                   "<td><a href='#' class='edit-unit' data-uniteid='"+ value.uid +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-unit'  data-unitrid='"+ value.uid +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
+            $("#load-table-unit").html(html);  
         }
     });
 }
@@ -238,7 +240,7 @@ $(document).on("click",".edit-unit",function(){
     var myJson = JSON.stringify(obj);
     console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_unit.php",
+       url :"../../apis/select/admin/fetch_single_unit.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -263,7 +265,7 @@ $(document).on("click",".edit-unit",function(){
        console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/update/update_unit.php",
+            url : "../../apis/update/admin/update_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -271,9 +273,10 @@ $(document).on("click",".edit-unit",function(){
               $("#loader-edit-unit").hide();
                 //console.log(data);
                 $("#edit-unit-form").trigger("reset")
-                $('#modal-Edit-unit').modal('hide');
-                loadTableunit();    
+                $('#modal-Edit-unit').modal('hide'); 
+                loadTableunit();
                 toastr.success('Unit Updated Succesfully');
+               
                 toastr .delay(1000)
                 toastr .fadeOut(1000);
         },
@@ -305,7 +308,7 @@ $(document).on("click","#add-new-unit",function(){
        console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/add/add_unit.php",
+            url : "../../apis/add/admin/add_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -326,7 +329,7 @@ $(document).on("click","#add-new-unit",function(){
        e.preventDefault();
     })
 });
-// //Add Role Close
+// //Add Unit Close
 // //Delete Role 
 $(document).on("click",".remove-unit",function(){
   $('#modal-remove-unit').modal('show');
@@ -334,7 +337,7 @@ $(document).on("click",".remove-unit",function(){
     var obj = {unitid : unit_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_unit.php",
+       url :"../../apis/select/admin/fetch_single_unit.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -355,7 +358,7 @@ $(document).on("click",".remove-unit",function(){
         var jsonobj =jsonData("#add-remove-form");
         //console.log(jsonobj);
         $.ajax({
-            url : "../../apis/delete/delete_unit.php",
+            url : "../../apis/delete/admin/delete_unit.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 

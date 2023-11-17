@@ -141,7 +141,7 @@ session_start();
 function loadTableFirm(){
     $("#load-table-firm").html("");
     $.ajax({
-        url : "../../apis/select/get_firm.php",
+        url : "../../apis/select/admin/get_firm.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -166,7 +166,7 @@ $(document).on("click",".remove-firm",function(){
     var obj = {firmviewid: remove_firm_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_firm.php",
+       url :"../../apis/select/admin/fetch_single_firm.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -191,7 +191,7 @@ $('#remove-firm-form').on('submit',function(e){
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/delete/delete_firm.php',
+            url: '../../apis/delete/admin/delete_firm.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

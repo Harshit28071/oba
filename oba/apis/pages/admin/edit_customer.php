@@ -231,7 +231,7 @@ var cust_id = id;
 var obj = {cust_id : cust_id};
  var myJson = JSON.stringify(obj); 
  $.ajax({
-       url :"../../apis/select/fetch_single_customer.php",
+       url :"../../apis/select/admin/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -260,7 +260,7 @@ var obj = {cust_id : cust_id};
         };
     $.ajax({
             type: 'POST',
-            url: '../../apis/update/update_customer.php',
+            url: '../../apis/update/admin/update_customer.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

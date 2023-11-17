@@ -202,7 +202,7 @@ $(document).ready(function(){
 function loadTable(){
     $("#load-table").html("");
     $.ajax({
-        url : "../../apis/select/fetch_role.php",
+        url : "../../apis/select/admin/fetch_role.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -245,7 +245,7 @@ $(document).on("click",".edit-role",function(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_role.php",
+       url :"../../apis/select/admin/fetch_single_role.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -270,7 +270,7 @@ $(document).on("click",".edit-role",function(){
         console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/update/update_role.php",
+            url : "../../apis/update/admin/update_role.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -316,7 +316,7 @@ $(document).on("click","#add-new-role",function(){
         console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/add/add_role.php",
+            url : "../../apis/add/admin/add_role.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -350,7 +350,7 @@ $(document).on("click",".remove-role",function(){
     var obj = {roleid : role_id};
     var myJson = JSON.stringify(obj);
     $.ajax({
-       url :"../../apis/select/fetch_single_role.php",
+       url :"../../apis/select/admin/fetch_single_role.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -371,7 +371,7 @@ $(document).on("click",".remove-role",function(){
         var jsonobj =jsonData("#add-remove-form");
         //console.log(jsonobj);
         $.ajax({
-            url : "../../apis/delete/delete_role.php",
+            url : "../../apis/delete/admin/delete_role.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 

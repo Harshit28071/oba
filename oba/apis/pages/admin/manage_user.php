@@ -259,7 +259,7 @@ $quary ="SELECT id,role FROM roles";
 function loadTableUser(){
     $("#load-table-user").html("");
     $.ajax({
-        url : "../../apis/select/get_user.php",
+        url : "../../apis/select/admin/get_user.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -305,7 +305,7 @@ $(document).on("click",".edit-user",function(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_user.php",
+       url :"../../apis/select/admin/fetch_single_user.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -334,7 +334,7 @@ $(document).on("click",".edit-user",function(){
         console.log("Fill The Input");         
        }else{
         $.ajax({
-            url : "../../apis/update/update_user.php",
+            url : "../../apis/update/admin/update_user.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -379,7 +379,7 @@ $(document).on("click","#add-new-user",function(){
         console.log("Fill The Input");
        }else{
         $.ajax({
-            url : "../../apis/add/add_user.php",
+            url : "../../apis/add/admin/add_user.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 
@@ -389,7 +389,7 @@ $(document).on("click","#add-new-user",function(){
                 $('#modal-add-user').modal('hide');
                 loadTableUser();
                 toastr.success('User Added Succesfully');
-                toastr .delay(1000)
+                // toastr .delay(1000)
                 toastr .fadeOut(1000);
             },
             error: function(error) {
@@ -410,7 +410,7 @@ $(document).on("click",".remove-user",function(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/fetch_single_user.php",
+       url :"../../apis/select/admin/fetch_single_user.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -430,7 +430,7 @@ $(document).on("click",".remove-user",function(){
         var jsonobj =jsonData("#user-remove-form");
         //console.log(jsonobj);
         $.ajax({
-            url : "../../apis/delete/delete_user.php",
+            url : "../../apis/delete/admin/delete_user.php",
             type : "POST",
             data : jsonobj,
             dataType : "json", 

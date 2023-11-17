@@ -242,7 +242,7 @@ session_start();
             e.preventDefault();
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/add_product.php',
+            url: '../../apis/add/admin/add_product.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
