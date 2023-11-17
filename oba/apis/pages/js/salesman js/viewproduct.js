@@ -39,7 +39,7 @@ function loadProducts(){
       products = data;
       currentProducts = products;
       //loadTableView(data);
-      viewFunction = loadCollapseView;
+      viewFunction = loadBoxView;
       viewFunction();
       console.log(data);        
           
