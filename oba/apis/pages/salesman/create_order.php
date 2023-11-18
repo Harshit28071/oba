@@ -38,17 +38,7 @@ while($stmt->fetch()){
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="../../theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Harihar</span>
-    </a>
-
-    <!-- Sidebar -->
-    <?php require_once("./layout/sidebar.php");?>
-    <!-- /.sidebar -->
-  </aside>
+  
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -117,7 +107,11 @@ while($stmt->fetch()){
 <script src="../js/salesman js/createorder.js"></script>
 <script>
 $("#heading").text("Create Order");
-
+$("#three-dot").css("display", "none");
+$('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button"  id="back-button">          <i class="font-weight-bold"> Back </i>        </a>       </li>');
+$("#back-button").on('click',function(){
+      history.back();
+    });
   </script>
 </body>
 </html>

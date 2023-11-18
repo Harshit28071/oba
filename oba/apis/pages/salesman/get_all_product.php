@@ -24,17 +24,7 @@ session_start();
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="../../theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Harihar</span>
-    </a>
-
-    <!-- Sidebar -->
-    <?php require_once("./layout/sidebar.php");?>
-    <!-- /.sidebar -->
-  </aside>
+  
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -88,8 +78,14 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
    $("#heading").text("All Products");
-  $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadTableView()">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>      </li>');
-$("#loader").show();
+   $("#three-dot").css("display", "none");
+   $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadTableView()">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li> <li class="nav-item"><a class="nav-link"  href="#" role="button"  id="back-button">          <i class="font-weight-bold"> Back </i>        </a>       </li>');
+   $("#loader").show();
+  
+    $("#back-button").on('click',function(){
+      history.back();
+    });
+   
   </script>
 <script src="../js/salesman js/viewproduct.js"></script>
 
