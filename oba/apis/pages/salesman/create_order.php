@@ -89,7 +89,7 @@ while($stmt->fetch()){
 <button type="button" class="btn  btn-outline-danger btn-block">Auto Generate Order</button>
 </div>
 <div class="col-6">
-<button type="button" class="btn  btn-outline-success btn-block">Create Manual Order</button>
+<button type="button" onclick="location.href = './select_order_items.php'" class="btn  btn-outline-success btn-block">Create Manual Order</button>
 </div>
 </div>
 </div>
