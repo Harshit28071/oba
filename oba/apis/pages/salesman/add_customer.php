@@ -97,15 +97,15 @@ session_start();
               </div>
                 <form id="add-customer-form" method="post">
                 <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Name</label>
                     <input type="text" class="form-control" placeholder="Customer Name" name="CustName" autocomplete="off" id="Cust-name" required>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Mobile</label>
                     <input type="text" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                    <div class="col-12 form-group">
                         <label>Select State</label>
                         <select class="form-control" name="custstate">
@@ -124,7 +124,7 @@ session_start();
                         </select>
                   </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                   <div class="col-sm-12 ">
                       <!-- textarea -->
                       <div class="form-group">
@@ -134,7 +134,7 @@ session_start();
                     </div>
                   </div>
                    
-                      <div class="col-6 form-group">
+                      <div class="col-md-6 form-group">
                         <label>Type</label>
                         <select class="form-control" name="custType" id="disop">
                           <option value="Retailer" selected>Retailer</option>
@@ -143,7 +143,7 @@ session_start();
                           <option value="Oth">Other</option>
                         </select>
                       </div>
-                      <div class="col-6 form-group">
+                      <div class="col-md-6 form-group">
                     <label>Distributor Id </label>
                     
                     <select class="form-control" name="disName" id="dis-select-box">
@@ -153,11 +153,11 @@ session_start();
                         </select>
                     
                   </div>
-                <div class="col-6 form-group">
+                <div class="col-md-6 form-group">
                   <label>Firm Name</label>
                     <input type="text" class="form-control" placeholder="Enter Firm " name="firmName" autocomplete="off" id="f-name">
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label>GSTIN</label>
                     <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
                   </div>

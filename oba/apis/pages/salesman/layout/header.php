@@ -66,5 +66,11 @@
         .dataTables_filter{
             margin-top:2%;
         }
+        .icon-button{
+            font-size: 30px;
+    font-weight: bold;
+    padding: 7px;
+    line-height: 0.75;
+        }
     </style>
 </head>
