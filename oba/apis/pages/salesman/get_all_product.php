@@ -79,7 +79,7 @@ session_start();
 <script>
    $("#heading").text("All Products");
    $("#three-dot").css("display", "none");
-   $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadTableView()">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li> <li class="nav-item"><a class="nav-link"  href="#" role="button"  id="back-button">          <i class="font-weight-bold"> Back </i>        </a>       </li>');
+   $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadTableView()">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li>');
    $("#loader").show();
   
     $("#back-button").on('click',function(){

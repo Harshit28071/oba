@@ -72,5 +72,8 @@
     padding: 7px;
     line-height: 0.75;
         }
+        .main-header,.content-wrapper{
+            margin-left: 0px !important;
+        }
     </style>
 </head>

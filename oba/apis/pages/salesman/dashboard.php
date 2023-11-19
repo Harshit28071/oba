@@ -42,6 +42,7 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
 $("#heading").text("Dashboard");
+$("#back-button").css("display", "none");
 
   </script>
 </body>

@@ -108,7 +108,7 @@ while($stmt->fetch()){
 <script>
 $("#heading").text("Create Order");
 $("#three-dot").css("display", "none");
-$('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button"  id="back-button">          <i class="font-weight-bold"> Back </i>        </a>       </li>');
+
 $("#back-button").on('click',function(){
       history.back();
     });

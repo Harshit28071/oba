@@ -24,9 +24,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h4>All products </h4>
 
-                <p> All products </p>
+                <p> </p>
               </div>
               <div class="icon">
                 <i class="fas fa-shopping-basket"></i>
@@ -39,9 +39,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h4>All customers<sup style="font-size: 20px"></sup></h4>
 
-                <p>All customers</p>
+                <p></p>
               </div>
               <div class="icon">
                 <i class="fas fa-users"></i>
@@ -54,9 +54,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
-
-                <p> Create Order </p>
+                <h4>Create Order</h4>
               </div>
               <div class="icon">
                 <i class="fas fa-cart-plus"></i>
@@ -69,8 +67,8 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
-                <p>My Orders</p>
+                <h4>My Orders</h4>
+                <p></p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -83,8 +81,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-                <p>Manage Customer </p>
+                <h4>Manage Customer</h4>
+                <p> </p>
               </div>
               <div class="icon">
                 <i class="fas fa-user-edit"></i>
@@ -96,12 +94,12 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h4>Logout<sup style="font-size: 20px"></sup></h4>
 
-                <p>Logout</p>
+                <p></p>
               </div>
               <div class="icon">
-                <i class="fas fa-users"></i>
+              <i class="fas fa-arrow-circle-right"></i>
               </div>
               <a href="./logout.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
