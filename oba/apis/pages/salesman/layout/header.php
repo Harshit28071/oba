@@ -92,5 +92,8 @@
             padding-left:2px !important;
             padding-right:2px !important;
         }
+        .main-header,.content-wrapper{
+            margin-left: 0px !important;
+        }
     </style>
 </head>

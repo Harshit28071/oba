@@ -3,7 +3,8 @@
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button" id="three-dot"><i class="fas fa-bars"></i></a>
-        
+        <a class="nav-link" href="#" role="button" id="back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+
       </li>
     </ul>
 
