@@ -173,7 +173,17 @@ session_start();
                     </div>
                     <div class="col-6 form-group">
                   <label>Gst Price</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstprice" autocomplete="off" id="f-state">
+                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstprice" autocomplete="off">
+                    
+                  </div>
+                  <div class="col-6 form-group">
+                  <label>Gst Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Gst Name" name="GstName" autocomplete="off">
+                    
+                  </div>
+                  <div class="col-6 form-group">
+                  <label>Qty_step</label>
+                    <input type="text" class="form-control" placeholder="Enter Qty_step " name="Qty_step" autocomplete="off">
                     
                   </div>
                   <div class="col-12 form-group">

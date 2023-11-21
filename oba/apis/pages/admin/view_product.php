@@ -177,6 +177,16 @@ session_start();
                     <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstprice" autocomplete="off" id="gstpriceview" readonly>
                     <span id="state-val" class="text-danger font-weight-bold"></span>
                   </div>
+                  <div class="col-6 form-group">
+                  <label>Gst Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstname" autocomplete="off" id="gstnameview" readonly>
+                    <span id="state-val" class="text-danger font-weight-bold"></span>
+                  </div>
+                  <div class="col-6 form-group">
+                  <label>Qty_step</label>
+                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="Qty_step" autocomplete="off" id="Qty-step-view" readonly>
+                    <span id="state-val" class="text-danger font-weight-bold"></span>
+                  </div>
                   <div class="col-12 form-group">
                   <label for="exampleInputFile">View Product Image</label>
                   <div class="form-group">
@@ -244,6 +254,8 @@ function checkInput(){
         $("#gstrateview").val(data[0].gst_rate);
         $("#firmidview").val(data[0].firm_id);
         $("#gstpriceview").val(data[0].gst_price);
+        $("#gstnameview").val(data[0].GST_name);
+        $("#Qty-step-view").val(data[0].qty_step);
         $("#hidden-p-img").val(data[0].default_image_url);
         var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
         $('#view-p-main-img').attr("src",pimg);
