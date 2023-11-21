@@ -36,7 +36,9 @@ session_start();
       <div class="container-fluid">
         <div class="row">
      <div class="col-md-12">
-
+<div >
+<p class="text-center font-20" id="totalAmount"></p>
+</div>
 
      <form id="searchForm">
 <div class="input-group">

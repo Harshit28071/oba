@@ -4,6 +4,7 @@ var parentCategories = [];
 var childCategories = [];
 var viewFunction;
 var currentProducts = [];
+var selectItemAmount = [];
 
 function loadCategories(){
   $.ajax({
@@ -63,50 +64,138 @@ function loadProducts(){
 function loadProductView(){
    // isme product ka view banana hai using currentProducts
     var html = '<div class="card" >'+
-    '<div class="card-body p-0" >';
+    '<div class="card-body custom-card-padding p-0" >';
       html = html + getCardViewHTML(currentProducts) + '</div></div>';
     $("#tab-view").html(html);
    
 } 
 
- function getCardViewHTML(data){
-
-  var html = '';
-for(var i=0;i<data.length;i++){
-
- html = html + '<div class="callout callout-'+data[i].orderBefore+'">'+
- '<h4>'+data[i].name+'</h4>'+
-
-'<div class="row">'+
- '<div class="col-3"><strong>Price (per '+data[i].punit+') :</strong></div>'+
- '<div class="col-9">'+
-'<div class="input-group mb-3"><div class="input-group-prepend">'+
-'<button class="btn btn-success icon-button" onclick="increasePrice('+data[i].id+')">+</button>'+
-'</div><input type="number" class="form-control" aria-label="Price" id="'+data[i].id+'_price" step=".01" min="0" value="'+data[i].itemPrice+'" >'+
-'<div class="input-group-append"><button class="btn btn-danger icon-button" onclick="decreasePrice('+data[i].id+')">-</button></div></div></div></div>'+
-
-'<div class="row">'+
- '<div class="col-3"><strong>Qty (in '+data[i].punit+') :</strong></div>'+
- '<div class="col-9">'+
-'<div class="input-group mb-3">'+
-'<div class="input-group-prepend">'+
-  '<button class="btn btn-success icon-button" onclick="increaseQty('+data[i].id+','+data[i].qty_step+')">+</button>'+
-'</div>'+
-'<input type="number" class="form-control" id="'+data[i].id+'_qty" aria-label="Quantity" step="'+data[i].qty_step+'" min="0" value="'+data[i].quantity+'" >'+
-'<div class="input-group-append">'+
- '<button class="btn btn-danger icon-button" onclick="decreaseQty('+data[i].id+','+data[i].qty_step+')">-</button>'+
-'</div>'+
-'</div></div></div>'+
-
- '</div>';
+function getItemTable(data){
+  var d= JSON.stringify(data);
+  d=d.replace(/\"/g, '\'');
+  return '<table class="table">'+
+  '<tbody class="price-table">'+
+    '<tr><td>Price</td>'+
+    '<td>'+
+    '<div class="input-group">'+
+      '<div class="input-group-prepend">'+
+        '<button class="btn btn-success icon-button" onclick="increasePrice('+data.id+')">+</button>'+
+      '</div>'+
+      '<input type="number" class="form-control price-font" aria-label="Price" id="'+data.id+'_price" step=".01" min="0" value="'+data.itemPrice+'" >'+
+      '<div class="input-group-append">'+
+          '<button class="btn btn-danger icon-button" onclick="decreasePrice('+data.id+')">-</button>'+
+      '</div>'+
+    '</div>'+
+    '</td>'+
+    '</tr>'+
+    '<tr><td>Qty</td>'+
+    '<td>'+
+    '<div class="input-group">'+
+      '<div class="input-group-prepend">'+
+        '<button class="btn btn-success icon-button" onclick="increaseQty('+data.id+','+data.qty_step+')" >+</button>'+
+      '</div>'+
+      '<input type="number" class="form-control price-font"  aria-label="Quantity" id="'+data.id+'_qty" min="0" value="'+data.quantity+'" >'+
+      '<div class="input-group-append">'+
+          '<button class="btn btn-danger icon-button" onclick="decreaseQty('+data.id+','+data.qty_step+','+d+')">-</button>'+
+      '</div>'+
+    '</div>'+
+    '</td>'+
+    '</tr>'+
+    '<tr class="font-20"><td >Total:  </td><td><strong id="'+data.id+'_total">₹&nbsp;&nbsp;&nbsp;'+ data.quantity * data.itemPrice+'</strong></td></tr>'+
+  '</tbody></table><button type="button" class="btn btn-danger btn-block" onclick="deleteItem('+d+')">Delete</button>';
 }
 
-return html;
- }
+function getItemBaselayout(data){
+  var d= JSON.stringify(data);
+  d=d.replace(/\"/g, '\'');
+  return '<span class="info-box-text font-20">Price: <strong>₹&nbsp;&nbsp;&nbsp;'+data.itemPrice+' per '+data.punit+'</strong></span>'+
+  '<button type="button" class="btn btn-success btn-block" onclick="addItem('+d+')">ADD</button>';
+}
+
+function displayTotalAmount(){
+  var total = 0;
+  for(var i=0;i<selectItemAmount.length;i++){
+      total = total + parseFloat(selectItemAmount[i].amount);
+  }
+  if(total > 0){
+    $("#totalAmount").html('<strong>Total: ₹&nbsp;&nbsp;&nbsp;'+total+'</strong>');
+  }else{
+    $("#totalAmount").html('');
+  }
+  
+}
+
+function updateTotalAmount(id,price){
+ // debugger;
+  for(var i=0;i<selectItemAmount.length;i++){
+    if(selectItemAmount[i].id == id){
+      selectItemAmount[i].amount = price;
+    }
+}
+displayTotalAmount();
+}
+
+function deleteTotalAmount(id){
+  selectItemAmount = selectItemAmount.filter(obj => obj.id != id);
+  displayTotalAmount();
+}
+
+function addItem(d){
+
+$("#"+d.id+"_content").html(getItemTable(d));
+setQty(d.id,d.qty_step);
+$("#"+d.id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+d.qty_step*d.itemPrice);
+selectItemAmount.push({
+  id:d.id,
+  amount:d.qty_step*d.itemPrice
+});
+displayTotalAmount();
+}
+
+function deleteItem(d){
+  setQty(d.id,0);
+  $("#"+d.id+"_content").html(getItemBaselayout(d)); 
+  $("#"+d.id+"_total").html('₹&nbsp;&nbsp;&nbsp;0');
+  deleteTotalAmount(d.id);
+  }
 
 function increasePrice(id){
-  $("#"+id+"_price").val(parseInt($("#"+id+"_price").val())+1);
+  var t = parseFloat($("#"+id+"_price").val())+1;
+  $("#"+id+"_price").val(t);
   updateJSON(id,"price");
+  $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseInt($("#"+id+"_qty").val())*t);
+  updateTotalAmount(id,parseInt($("#"+id+"_qty").val())*t)
+}
+
+function decreasePrice(id){
+  if($("#"+id+"_price").val() >0 ){
+    var t = parseFloat($("#"+id+"_price").val())-1;
+    $("#"+id+"_price").val(t);
+    updateJSON(id,"price");
+    $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseInt($("#"+id+"_qty").val())*t);
+    updateTotalAmount(id,parseInt($("#"+id+"_qty").val())*t)
+  }
+  
+}
+
+function increaseQty(id,step){
+  var t = parseInt($("#"+id+"_qty").val())+parseInt(step);
+  $("#"+id+"_qty").val(t);
+  updateJSON(id,"qty");
+  $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseFloat($("#"+id+"_price").val())*t);
+  updateTotalAmount(id,parseFloat($("#"+id+"_price").val())*t);
+}
+function decreaseQty(id,step,d){
+  if($("#"+id+"_qty").val() >step ){  
+    var t = parseInt($("#"+id+"_qty").val())-parseInt(step);  
+  $("#"+id+"_qty").val(t);
+    updateJSON(id,"qty");
+    $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseFloat($("#"+id+"_price").val())*t);
+    updateTotalAmount(id,parseFloat($("#"+id+"_price").val())*t);
+  }else{
+    deleteItem(d);
+    deleteTotalAmount(id);
+  }
 }
 
 function updateJSON(id,type){
@@ -115,7 +204,7 @@ function updateJSON(id,type){
   for(var i=0;i<data.length;i++){
     if(data[i].id == id){
       if(type == "price"){
-        data[i].itemPrice = parseInt($("#"+id+"_price").val());
+        data[i].itemPrice = parseFloat($("#"+id+"_price").val());
       }
       if(type == "qty"){
         data[i].quantity = parseInt($("#"+id+"_qty").val());
@@ -126,25 +215,28 @@ function updateJSON(id,type){
   }
   localStorage.setItem('OrderData',JSON.stringify(data));
 }
-function decreasePrice(id){
-  if($("#"+id+"_price").val() >0 ){
-    $("#"+id+"_price").val(parseInt($("#"+id+"_price").val())-1);
-    updateJSON(id,"price");
-  }
+
+function getCardViewHTML(data){
+
+  var html = '';
+for(var i=0;i<data.length;i++){
+
+  html = html + '<div class="info-box"><span class="info-box-icon bg-info"><h6 class="item-name">'+data[i].name+' (in '+data[i].punit+')</h6></span>'+
+'<div class="info-box-content" id="'+data[i].id+'_content">'+getItemBaselayout(data[i])+ '</div></div>';
+}
+
+return html;
+ }
+
+
+
+
+function setQty(id,value){
+     
+  $("#"+id+"_qty").val(value);
+    updateJSON(id,"qty");
   
 }
-
-function increaseQty(id,step){
-  $("#"+id+"_qty").val(parseInt($("#"+id+"_qty").val())+parseInt(step));
-  updateJSON(id,"qty");
-}
-function decreaseQty(id,step){
-  if($("#"+id+"_qty").val() >0 ){    
-  $("#"+id+"_qty").val(parseInt($("#"+id+"_qty").val())-parseInt(step));
-    updateJSON(id,"qty");
-  }
-}
-
 
 function getUnitDropDown(punit,sunit){
 
@@ -193,11 +285,12 @@ function loadCollapseView(){
     '</button>'+
     '</div>'+
     '</div>'+          
-    '<div class="card-body" style="display: none;">';
+    '<div class="card-body custom-card-padding" style="display: none;">';
      var parentEnd = '</div></div>';
      var parentExist = false;
         for(var j= 0 ;j<childs.length;j++){
           var temp = getCategoryProductsHTML(childs[j].name);
+          temp = temp.replace(/card-primary/g, 'card-warning');
           if(temp == ''){
 
           }else{
@@ -234,7 +327,7 @@ function loadCollapseView(){
     '</button>'+
     '</div>'+
     '</div>'+          
-    '<div class="card-body" style="display: none;">';
+    '<div class="card-body custom-card-padding" style="display: none;">';
     
     html =html + getCardViewHTML(productsData);
 

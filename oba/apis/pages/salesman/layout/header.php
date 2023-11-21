@@ -72,6 +72,26 @@
     padding: 7px;
     line-height: 0.75;
         }
+        .my-product{
+            display:inline-flex !important;
+            margin-bottom:10px;
+        }
+        .price-font{
+            font-size:30px;
+        }
+        .item-name{
+            margin:5px;
+        }
+        .font-20{
+            font-size:20px;
+        }
+        .price-table > tr >td {
+            padding : 0.25rem !important;
+        }
+        .custom-card-padding{
+            padding-left:2px !important;
+            padding-right:2px !important;
+        }
         .main-header,.content-wrapper{
             margin-left: 0px !important;
         }
