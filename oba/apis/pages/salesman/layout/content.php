@@ -90,20 +90,6 @@
               <a href="#" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h4>Logout<sup style="font-size: 20px"></sup></h4>
-
-                <p></p>
-              </div>
-              <div class="icon">
-              <i class="fas fa-arrow-circle-right"></i>
-              </div>
-              <a href="./logout.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
         </div>
 
         <!-- /.row -->

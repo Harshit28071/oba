@@ -26,6 +26,10 @@ if(isset($_POST['pname']) && isset($_POST['pcategory']) && isset($_POST['punit']
     $p_gst_rate = $_POST['gstrate']; 
     $p_firm_id = $_POST['firmid']; 
     $p_gst_price = $_POST['gstprice']; 
+    $p_gst_name = $_POST['GstName']; 
+    $p_Qty_step = $_POST['Qty_step']; 
+
+
     $p_image = $_FILES["productimage"]["name"];
     //if secondary unit not selected then  
         if($p_sec_unit == 0){
@@ -73,9 +77,9 @@ if(isset($_POST['pname']) && isset($_POST['pcategory']) && isset($_POST['punit']
                 $conn = $db->connect();
                  
                 // Insert form data in the database 
-                $sqlQ = "INSERT INTO product (name,unit_id,category_id,secondary_unit_id,multiplier,low_price,max_price,mrp,hsn_code,gst_rate,default_image_url,firm_id,gst_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+                $sqlQ = "INSERT INTO product (name,unit_id,category_id,secondary_unit_id,multiplier,low_price,max_price,mrp,hsn_code,gst_rate,default_image_url,firm_id,gst_price,GST_name,qty_step) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
                 $stmt = $conn->prepare($sqlQ); 
-                $stmt->bind_param("siiiddddidsid",$p_name,$p_unit,$p_category,$p_sec_unit,$p_multiplier,$p_lowprice,$p_max_price,$p_mrp,$p_hsn_code,$p_gst_rate,$uploadedFile,$p_firm_id,$p_gst_price); 
+                $stmt->bind_param("siiiddddidsidsi",$p_name,$p_unit,$p_category,$p_sec_unit,$p_multiplier,$p_lowprice,$p_max_price,$p_mrp,$p_hsn_code,$p_gst_rate,$uploadedFile,$p_firm_id,$p_gst_price,$p_gst_name,$p_Qty_step); 
                 $insert = $stmt->execute(); 
                  
                 if($insert){ 

@@ -175,7 +175,15 @@ session_start();
                     <div class="col-6 form-group">
                   <label>Gst Price</label>
                     <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstpriceedit" autocomplete="off" id="gstpriceedit">
-                    <span id="state-val" class="text-danger font-weight-bold"></span>
+                   
+                  </div>
+                  <div class="col-6 form-group">
+                  <label>Gst Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstnameedit" autocomplete="off" id="gst-name-edit"> 
+                  </div>
+                  <div class="col-6 form-group">
+                  <label>Qty_step</label>
+                    <input type="text" class="form-control" placeholder="Enter Gst Price" name="Qty_step_edit" autocomplete="off" id="Qty-step-edit"> 
                   </div>
                   <div class="col-12 form-group">
                     <label for="exampleInputFile">Change Image</label>
@@ -265,6 +273,8 @@ session_start();
         $("#gstrateedit").val(data[0].gst_rate);
         $("#firmidedit").val(data[0].firm_id);
         $("#gstpriceedit").val(data[0].gst_price);
+        $("#gst-name-edit").val(data[0].GST_name);
+        $("#Qty-step-edit").val(data[0].qty_step);
         $("#hidden-p-img").val(data[0].default_image_url);
         var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
         $('#edit-p-main-img').attr("src",pimg);
