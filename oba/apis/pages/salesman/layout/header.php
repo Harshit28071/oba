@@ -95,5 +95,26 @@
         .main-header,.content-wrapper{
             margin-left: 0px !important;
         }
+        .custom-product-name{
+            width:33% !important;
+
+        }
+        .custom-product-name > h6{
+            font-size: 20px !important;
+
+        }
+        .font-14{
+            font-size: 14px !important;
+        }
+        .top-4{
+            margin-top: 8px !important;
+        }
+        .btn-danger{
+            background-color: #FF5252 !important;
+            border-color: #FF5252 !important;
+        }
+        .bg-info{
+            background-color: #455A64!important;
+        }
     </style>
 </head>

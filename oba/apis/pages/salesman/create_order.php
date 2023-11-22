@@ -71,9 +71,6 @@ while($stmt->fetch()){
 <option selected style="text-align: center;">SELECT CUSTOMER </option>
 </select> <br>
 <div>
-<b>OR</b>
-</div><br>
-<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-outline-primary btn-block">Add Customer</button></a></div><br>
 <div class="row">
 <div class="col-6">
 <button type="button" class="btn  btn-outline-danger btn-block">Auto Generate Order</button>
@@ -82,6 +79,11 @@ while($stmt->fetch()){
 <button type="button" onclick="location.href = './select_order_items.php'" class="btn  btn-outline-success btn-block">Create Manual Order</button>
 </div>
 </div>
+<br>
+<b>OR</b>
+</div><br>
+<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-outline-primary btn-block">Add New Customer</button></a></div><br>
+
 </div>
 </div>
 </form>

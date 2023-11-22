@@ -52,14 +52,14 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning" onclick="createOrder()">
               <div class="inner">
                 <h4>Create Order</h4>
               </div>
               <div class="icon">
                 <i class="fas fa-cart-plus"></i>
               </div>
-              <a href="create_order.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

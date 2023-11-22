@@ -3,9 +3,9 @@ session_start();
  require_once("../../common/database.php");
  $db = new Database();
  $conn = $db->connect();
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-   header("location:../admin/user_login.php");
-}
+    if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
+    header("location:./user_login.php");
+    }
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +24,30 @@ session_start();
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
- 
+  
 
   <!-- Content Wrapper. Contains page content -->
-  <?php require_once("./layout/content.php");?>
-  <!-- /.content-wrapper -->
+  <div class="content-wrapper">
+ 
+    <!-- Content Header (Page header) -->
+   <br>
+    <!-- /.content-header -->
+    <section class="content">
+      <div class="container-fluid">
+     
+<p class="text-center font-20" id="totalAmount"></p>
+
+  </div>
+
+
+<div id="tab-view">
+
+</div>
+       
+  
+      </div>
+   </section>
+  </div> 
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -37,16 +56,26 @@ session_start();
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
+
 <?php require_once("./layout/footer_links.php");?>
 <script>
-$("#heading").text("Dashboard");
-$("#back-button").css("display", "none");
-function createOrder(){
-  localStorage.clear();
-  window.location.href = "./create_order.php";
-}
+   $("#heading").text("Review Order");
+  
+   $("#back-button").on('click',function(){
+      history.back();
+    });
+  
+$("#loader").show();
+  </script>
+<script src="../js/salesman js/review_order.js"></script>
+<script>
+  $("#back-button").on('click',function(){
+      history.back();
+    });
+    $('.custom-button').append('<li class="nav-item">'+
+'<button type="button" class="btn btn-block btn-danger">Save</button>'+
+'</li>');
   </script>
 </body>
 </html>

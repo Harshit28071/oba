@@ -52,7 +52,7 @@ session_start();
 </form>
 <div id="back" style="display:none;">
 <br>
-<button type="button" class="btn btn-block btn-primary btn-xs" id="backbutton" >Back</button>
+<button type="button" class="btn btn-block btn-primary" id="backbutton" >Back</button>
   </div>
   </div>
   </div>
@@ -80,11 +80,31 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
    $("#heading").text("Select Order Items");
-   $("#three-dot").css("display", "none");
+  
    $("#back-button").on('click',function(){
       history.back();
     });
-  $('.custom-button').append('</li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>      </li>');
+  $('.custom-button').append('<li class="nav-item">'+
+'<a class="nav-link" href="./review_order.php" role="button">'+
+'<i class="fas fa-cart-plus"></i>'+
+'</a>'+
+'</li>'+
+  '<li class="nav-item dropdown">'+
+        '<a class="nav-link" data-toggle="dropdown" href="#">'+
+          '<i class="fas fa-th-large"></i>'+
+        '</a>'+
+        '<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">'+
+          
+          '<a onclick="loadBoxView()" class="dropdown-item">'+
+            '<i class="fas fa-box mr-2"></i> Box View'+
+          '</a>'+
+          '<div class="dropdown-divider"></div>'+
+          '<a onclick="loadCollapseView()" class="dropdown-item">'+
+            '<i class="fas fa-list mr-2"></i> Combobox View'+
+          '</a>'+
+          
+        '</div>'+
+      '</li>');
 $("#loader").show();
   </script>
 <script src="../js/salesman js/select_order_items.js"></script>
