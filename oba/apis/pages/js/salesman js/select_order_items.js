@@ -116,7 +116,7 @@ function getItemTable(data){
     '<td>'+
     '<div class="input-group">'+
       '<div class="input-group-prepend">'+
-        '<button class="btn btn-success icon-button" onclick="increasePrice('+data.id+')">+</button>'+
+        '<button class="btn btn-danger icon-button" onclick="increasePrice('+data.id+')">+</button>'+
       '</div>'+
       '<input type="number" class="form-control price-font" aria-label="Price" id="'+data.id+'_price" step=".01" min="0" value="'+data.itemPrice+'"  onchange onpropertychange onkeyuponpaste oninput="priceChange('+data.id+')">'+
       '<div class="input-group-append">'+
@@ -129,7 +129,7 @@ function getItemTable(data){
     '<td>'+
     '<div class="input-group">'+
       '<div class="input-group-prepend">'+
-        '<button class="btn btn-success icon-button" onclick="increaseQty('+data.id+','+data.qty_step+')" >+</button>'+
+        '<button class="btn btn-danger icon-button" onclick="increaseQty('+data.id+','+data.qty_step+')" >+</button>'+
       '</div>'+
       '<input type="number" class="form-control price-font"  aria-label="Quantity" id="'+data.id+'_qty" min="0" value="'+data.quantity+'"  onchange onpropertychange onkeyuponpaste oninput="qtyChange('+data.id+')">'+
       '<div class="input-group-append">'+
@@ -147,7 +147,7 @@ function getItemBaselayout(data){
   var d= JSON.stringify(data);
   d=d.replace(/\"/g, '\'');
   return '<span class="info-box-text font-20">Rate: <strong>₹&nbsp;&nbsp;&nbsp;'+data.itemPrice+' per '+data.punit+'</strong></span>'+
-  '<button type="button" class="btn btn-success btn-block" onclick="addItem('+d+')">ADD</button>';
+  '<button type="button" class="btn btn-danger btn-block" onclick="addItem('+d+')">ADD</button>';
 }
 
 //done
@@ -415,14 +415,13 @@ return data;
   var html = '<div class="row">';
   for(var i=0;i<parentCategories.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success" onclick="loadChildCategories(\''+parentCategories[i].name +'\')">'+
+      '<div class="small-box bg-info" onclick="loadChildCategories(\''+parentCategories[i].name +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+parentCategories[i].name+'</h3>'+
       '</div>'+
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
       '</div>'+
       '</div>';
   }
@@ -449,7 +448,7 @@ html = html + "</div>";
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
+      
       '</div>'+
       '</div>';
   }

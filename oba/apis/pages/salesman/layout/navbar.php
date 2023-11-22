@@ -14,9 +14,7 @@
     <ul class="navbar-nav custom-button">
       <h3 id="heading"></h3>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-      <a href="./logout.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button> </a>
-      </li>
+    <ul class="navbar-nav ml-auto" id="logout">
+      
     </ul>
   </nav>
