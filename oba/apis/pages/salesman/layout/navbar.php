@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" >
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -11,10 +11,11 @@
 </li>
 </ul>
     <!-- Right navbar links -->
-    <ul class="navbar-nav custom-button">
-      <h3 id="heading"></h3>
-    </ul>
-    <ul class="navbar-nav ml-auto" id="logout">
+    <ul class="navbar-nav custom-button ml-auto" id="logout">
+    <li class="nav-item">
+
+</li>
+    
       
-    </ul>
+    
   </nav>

@@ -51,13 +51,12 @@ session_start();
 </div>
 </form>
 <div id="back" style="display:none;">
-<br>
 <button type="button" class="btn btn-block btn-default" id="backbutton" >Back</button>
   </div>
   </div>
   </div>
   </div>
-<br>
+
 
 <div id="tab-view">
 
@@ -82,10 +81,10 @@ session_start();
    $("#heading").text("Select Order Items");
   
    $("#back-button").on('click',function(){
-      history.back();
+      history.go(-1);
     });
   $('.custom-button').append('<li class="nav-item">'+
-'<a class="nav-link" href="./review_order.php" role="button">'+
+'<a class="nav-link" onclick="loadCart()" role="button">'+
 '<i class="fas fa-cart-plus"></i>'+
 '</a>'+
 '</li>'+

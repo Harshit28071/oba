@@ -7,6 +7,20 @@ var currentProducts = [];
 var selectItemAmount = [];
 var currentCategory = '';
 
+function loadCart(){
+  var data = localStorage.getItem('OrderData');
+  var selectedProducts = [];
+  if(data){
+    data = JSON.parse(data);
+    for(var i=0;i<data.length;i++){
+      if(data[i].quantity > 0){
+        selectedProducts.push(data[i]);
+      }
+    }
+    localStorage.setItem("selectedProducts",JSON.stringify(selectedProducts));
+  }
+  window.location.href='./review_order.php';
+}
 //done
 function loadSelectedItems(){
   var data = localStorage.getItem('OrderData');
@@ -139,15 +153,48 @@ function getItemTable(data){
     '</td>'+
     '</tr>'+
     '<tr class="font-20"><td >Total:  </td><td><strong id="'+data.id+'_total">₹&nbsp;&nbsp;&nbsp;'+ data.quantity * data.itemPrice+'</strong></td></tr>'+
-  '</tbody></table><button type="button" class="btn btn-danger btn-block" onclick="deleteItem('+d+')">Delete</button>';
+  '</tbody></table><button type="button" class="btn btn-danger btn-block" onclick="deleteItem('+d+')">Delete</button>'+
+  '<span class="info-box-text text-center top-4"><a class="badge badge-light font-14" data-toggle="collapse" href="#pricedetails'+data.id+'" aria-expanded="false" aria-controls="pricedetails'+data.id+'">'+
+    'Click to view price details'+
+  '</a>'+
+  '<div class="collapse" id="pricedetails'+data.id+'">'+
+  '<div class="card card-body">'+
+  '<table class="table"><tbody class="price-table">'+
+  '<tr><td>Max Price: </td><td>'+ data.maxPrice+'</td></tr>'+
+  '<tr><td>Min Price: </td><td>'+ data.minPrice+'</td></tr>'+
+  '<tr><td>Customer Last Price: </td><td>'+ data.customerPrice+'</td></tr></table>'+
+  '</div>'+
+'</div>'+
+  '</span>'
 }
 
 //done
 function getItemBaselayout(data){
   var d= JSON.stringify(data);
   d=d.replace(/\"/g, '\'');
+  var temp = '<div class="ribbon-wrapper">'+
+  '<div class="ribbon bg-info">'+
+    'Ordered'+
+  '</div>'+
+  '</div>';
+  if(data.orderBefore == 0){
+    temp = '';
+  }
   return '<span class="info-box-text font-20">Rate: <strong>₹&nbsp;&nbsp;&nbsp;'+data.itemPrice+' per '+data.punit+'</strong></span>'+
-  '<button type="button" class="btn btn-danger btn-block" onclick="addItem('+d+')">ADD</button>';
+  '<button type="button" class="btn btn-danger btn-block" onclick="addItem('+d+')">ADD</button>'+
+  temp+
+  '<span class="info-box-text text-center top-4"><a class="badge badge-light font-14" data-toggle="collapse" href="#pricedetails'+data.id+'" aria-expanded="false" aria-controls="pricedetails'+data.id+'">'+
+  'Click to view price details'+
+'</a>'+
+'<div class="collapse" id="pricedetails'+data.id+'">'+
+'<div class="card card-body">'+
+'<table class="table"><tbody class="price-table">'+
+'<tr><td>Max Price: </td><td>'+ data.maxPrice+'</td></tr>'+
+'<tr><td>Min Price: </td><td>'+ data.minPrice+'</td></tr>'+
+'<tr><td>Customer Last Price: </td><td>'+ data.customerPrice+'</td></tr></table>'+
+'</div>'+
+'</div>'+
+'</span>';
 }
 
 //done
@@ -441,7 +488,7 @@ html = html + "</div>";
   html = '<div class="row">';
   for(var i=0;i<childs.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success" onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')">'+
+      '<div class="small-box bg-info" onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+childs[i].name+'</h3>'+
       '</div>'+
