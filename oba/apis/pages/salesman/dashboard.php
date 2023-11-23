@@ -43,7 +43,13 @@ session_start();
 <script>
 $("#heading").text("Dashboard");
 $("#back-button").css("display", "none");
-
+$("#logout").append('<li class="nav-item">'+
+      '<a href="./logout.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button> </a>'+
+      '</li>');
+function createOrder(){
+  localStorage.clear();
+  window.location.href = "./create_order.php";
+}
   </script>
 </body>
 </html>

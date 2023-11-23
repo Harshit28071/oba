@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="../../theme/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../theme/dist/css/adminlte.min.css">
+
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../theme/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -88,12 +89,41 @@
         .price-table > tr >td {
             padding : 0.25rem !important;
         }
+        .customer-table > tr >td {
+            padding : 0.25rem !important;
+            font-size:20px !important;
+        }
         .custom-card-padding{
             padding-left:2px !important;
             padding-right:2px !important;
         }
         .main-header,.content-wrapper{
             margin-left: 0px !important;
+        }
+        .custom-product-name{
+            width:33% !important;
+
+        }
+        .custom-product-name > h6{
+            font-size: 20px !important;
+
+        }
+        .font-14{
+            font-size: 14px !important;
+        }
+        .top-4{
+            margin-top: 8px !important;
+        }
+        .btn-danger{
+            background-color: #FF5252 !important;
+            border-color: #FF5252 !important;
+        }
+        .bg-info, .btn-info{
+            background-color: #455A64!important;
+            border-color: #455A64!important;
+        }
+        #back, #searchForm{
+            margin-bottom:10px;
         }
     </style>
 </head>

@@ -2,10 +2,44 @@ var products = [];
 var categories = [];
 var parentCategories = [];
 var childCategories = [];
-var viewFunction;
+var viewFunction = loadBoxView;
 var currentProducts = [];
 var selectItemAmount = [];
+var currentCategory = '';
 
+function loadCart(){
+  var data = localStorage.getItem('OrderData');
+  var selectedProducts = [];
+  if(data){
+    data = JSON.parse(data);
+    for(var i=0;i<data.length;i++){
+      if(data[i].quantity > 0){
+        selectedProducts.push(data[i]);
+      }
+    }
+    localStorage.setItem("selectedProducts",JSON.stringify(selectedProducts));
+  }
+  window.location.href='./review_order.php';
+}
+//done
+function loadSelectedItems(){
+  var data = localStorage.getItem('OrderData');
+  if(data){
+    data = JSON.parse(data);
+    for(var i=0;i<data.length;i++){
+      if(data[i].quantity > 0){
+        selectItemAmount.push({
+          id:data[i].id,
+          amount:data[i].quantity*data[i].itemPrice
+        });
+      }
+    }
+    displayTotalAmount();
+  }
+    
+}
+
+//done
 function loadCategories(){
   $.ajax({
     url : "../../apis/select/salesman/get_all_category.php",
@@ -13,23 +47,27 @@ function loadCategories(){
     dataType : "json",
     success : function(data){
       categories = data;
-      fillCategories();  
-      var temp = localStorage.getItem('OrderData') ;
-      if(temp){
-        products = JSON.parse(temp);
-        currentProducts = products;
-          
-        viewFunction = loadCollapseView;
-        viewFunction();
-      }else{
-        loadProducts();  
-      }
-      
-          
+      localStorage.setItem('categories',JSON.stringify(data));
+      afterCategoryLoad(); 
     }
 });
 }
 
+//done
+function afterCategoryLoad(){
+  fillCategories();  
+      var temp = localStorage.getItem('OrderData') ;
+      if(temp){
+        products = JSON.parse(temp);
+        currentProducts = products;
+        viewFunction();
+        loadSelectedItems();
+      }else{
+        loadProducts();  
+      }
+}
+
+//done
 function fillCategories(){
 
   for(var i=0;i<categories.length;i++){
@@ -41,6 +79,7 @@ function fillCategories(){
   }
 }
 
+//done
 function loadProducts(){
   $.ajax({
     url : "../../apis/select/salesman/get_products_for_new_order.php",
@@ -52,15 +91,13 @@ function loadProducts(){
     success : function(data){
       products = data;
       currentProducts = products;
-        
-      viewFunction = loadCollapseView;
       viewFunction();
       localStorage.setItem('OrderData',JSON.stringify(data));        
-          
+      loadSelectedItems();
     }
 });
 }
-
+//done
 function loadProductView(){
    // isme product ka view banana hai using currentProducts
     var html = '<div class="card" >'+
@@ -70,6 +107,20 @@ function loadProductView(){
    
 } 
 
+function priceChange(id){
+  var t = parseFloat($("#"+id+"_price").val());
+  updateJSON(id,"price");
+  $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseInt($("#"+id+"_qty").val())*t);
+  updateTotalAmount(id,parseInt($("#"+id+"_qty").val())*t);
+}
+
+function qtyChange(id){
+  var t = parseInt($("#"+id+"_qty").val());
+  updateJSON(id,"qty");
+  $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseFloat($("#"+id+"_price").val())*t);
+  updateTotalAmount(id,parseFloat($("#"+id+"_price").val())*t);
+}
+//done
 function getItemTable(data){
   var d= JSON.stringify(data);
   d=d.replace(/\"/g, '\'');
@@ -79,9 +130,9 @@ function getItemTable(data){
     '<td>'+
     '<div class="input-group">'+
       '<div class="input-group-prepend">'+
-        '<button class="btn btn-success icon-button" onclick="increasePrice('+data.id+')">+</button>'+
+        '<button class="btn btn-danger icon-button" onclick="increasePrice('+data.id+')">+</button>'+
       '</div>'+
-      '<input type="number" class="form-control price-font" aria-label="Price" id="'+data.id+'_price" step=".01" min="0" value="'+data.itemPrice+'" >'+
+      '<input type="number" class="form-control price-font" aria-label="Price" id="'+data.id+'_price" step=".01" min="0" value="'+data.itemPrice+'"  onchange onpropertychange onkeyuponpaste oninput="priceChange('+data.id+')">'+
       '<div class="input-group-append">'+
           '<button class="btn btn-danger icon-button" onclick="decreasePrice('+data.id+')">-</button>'+
       '</div>'+
@@ -92,9 +143,9 @@ function getItemTable(data){
     '<td>'+
     '<div class="input-group">'+
       '<div class="input-group-prepend">'+
-        '<button class="btn btn-success icon-button" onclick="increaseQty('+data.id+','+data.qty_step+')" >+</button>'+
+        '<button class="btn btn-danger icon-button" onclick="increaseQty('+data.id+','+data.qty_step+')" >+</button>'+
       '</div>'+
-      '<input type="number" class="form-control price-font"  aria-label="Quantity" id="'+data.id+'_qty" min="0" value="'+data.quantity+'" >'+
+      '<input type="number" class="form-control price-font"  aria-label="Quantity" id="'+data.id+'_qty" min="0" value="'+data.quantity+'"  onchange onpropertychange onkeyuponpaste oninput="qtyChange('+data.id+')">'+
       '<div class="input-group-append">'+
           '<button class="btn btn-danger icon-button" onclick="decreaseQty('+data.id+','+data.qty_step+','+d+')">-</button>'+
       '</div>'+
@@ -102,16 +153,51 @@ function getItemTable(data){
     '</td>'+
     '</tr>'+
     '<tr class="font-20"><td >Total:  </td><td><strong id="'+data.id+'_total">₹&nbsp;&nbsp;&nbsp;'+ data.quantity * data.itemPrice+'</strong></td></tr>'+
-  '</tbody></table><button type="button" class="btn btn-danger btn-block" onclick="deleteItem('+d+')">Delete</button>';
+  '</tbody></table><button type="button" class="btn btn-danger btn-block" onclick="deleteItem('+d+')">Delete</button>'+
+  '<span class="info-box-text text-center top-4"><a class="badge badge-light font-14" data-toggle="collapse" href="#pricedetails'+data.id+'" aria-expanded="false" aria-controls="pricedetails'+data.id+'">'+
+    'Click to view price details'+
+  '</a>'+
+  '<div class="collapse" id="pricedetails'+data.id+'">'+
+  '<div class="card card-body">'+
+  '<table class="table"><tbody class="price-table">'+
+  '<tr><td>Max Price: </td><td>'+ data.maxPrice+'</td></tr>'+
+  '<tr><td>Min Price: </td><td>'+ data.minPrice+'</td></tr>'+
+  '<tr><td>Customer Last Price: </td><td>'+ data.customerPrice+'</td></tr></table>'+
+  '</div>'+
+'</div>'+
+  '</span>'
 }
 
+//done
 function getItemBaselayout(data){
   var d= JSON.stringify(data);
   d=d.replace(/\"/g, '\'');
-  return '<span class="info-box-text font-20">Price: <strong>₹&nbsp;&nbsp;&nbsp;'+data.itemPrice+' per '+data.punit+'</strong></span>'+
-  '<button type="button" class="btn btn-success btn-block" onclick="addItem('+d+')">ADD</button>';
+  var temp = '<div class="ribbon-wrapper">'+
+  '<div class="ribbon bg-info">'+
+    'Ordered'+
+  '</div>'+
+  '</div>';
+  if(data.orderBefore == 0){
+    temp = '';
+  }
+  return '<span class="info-box-text font-20">Rate: <strong>₹&nbsp;&nbsp;&nbsp;'+data.itemPrice+' per '+data.punit+'</strong></span>'+
+  '<button type="button" class="btn btn-danger btn-block" onclick="addItem('+d+')">ADD</button>'+
+  temp+
+  '<span class="info-box-text text-center top-4"><a class="badge badge-light font-14" data-toggle="collapse" href="#pricedetails'+data.id+'" aria-expanded="false" aria-controls="pricedetails'+data.id+'">'+
+  'Click to view price details'+
+'</a>'+
+'<div class="collapse" id="pricedetails'+data.id+'">'+
+'<div class="card card-body">'+
+'<table class="table"><tbody class="price-table">'+
+'<tr><td>Max Price: </td><td>'+ data.maxPrice+'</td></tr>'+
+'<tr><td>Min Price: </td><td>'+ data.minPrice+'</td></tr>'+
+'<tr><td>Customer Last Price: </td><td>'+ data.customerPrice+'</td></tr></table>'+
+'</div>'+
+'</div>'+
+'</span>';
 }
 
+//done
 function displayTotalAmount(){
   var total = 0;
   for(var i=0;i<selectItemAmount.length;i++){
@@ -130,6 +216,7 @@ function updateTotalAmount(id,price){
   for(var i=0;i<selectItemAmount.length;i++){
     if(selectItemAmount[i].id == id){
       selectItemAmount[i].amount = price;
+      break;
     }
 }
 displayTotalAmount();
@@ -139,7 +226,7 @@ function deleteTotalAmount(id){
   selectItemAmount = selectItemAmount.filter(obj => obj.id != id);
   displayTotalAmount();
 }
-
+//done
 function addItem(d){
 
 $("#"+d.id+"_content").html(getItemTable(d));
@@ -151,7 +238,7 @@ selectItemAmount.push({
 });
 displayTotalAmount();
 }
-
+//done
 function deleteItem(d){
   setQty(d.id,0);
   $("#"+d.id+"_content").html(getItemBaselayout(d)); 
@@ -164,7 +251,7 @@ function increasePrice(id){
   $("#"+id+"_price").val(t);
   updateJSON(id,"price");
   $("#"+id+"_total").html('₹&nbsp;&nbsp;&nbsp;'+parseInt($("#"+id+"_qty").val())*t);
-  updateTotalAmount(id,parseInt($("#"+id+"_qty").val())*t)
+  updateTotalAmount(id,parseInt($("#"+id+"_qty").val())*t);
 }
 
 function decreasePrice(id){
@@ -194,7 +281,7 @@ function decreaseQty(id,step,d){
     updateTotalAmount(id,parseFloat($("#"+id+"_price").val())*t);
   }else{
     deleteItem(d);
-    deleteTotalAmount(id);
+    //deleteTotalAmount(id);
   }
 }
 
@@ -216,13 +303,21 @@ function updateJSON(id,type){
   localStorage.setItem('OrderData',JSON.stringify(data));
 }
 
+
+//done
 function getCardViewHTML(data){
 
   var html = '';
 for(var i=0;i<data.length;i++){
 
-  html = html + '<div class="info-box"><span class="info-box-icon bg-info"><h6 class="item-name">'+data[i].name+' (in '+data[i].punit+')</h6></span>'+
-'<div class="info-box-content" id="'+data[i].id+'_content">'+getItemBaselayout(data[i])+ '</div></div>';
+  var temp = '';
+  if(data[i].quantity == 0){
+temp = getItemBaselayout(data[i]);
+  }else{
+temp = getItemTable(data[i]);
+  }
+  html = html + '<div class="info-box"><span class="info-box-icon bg-info custom-product-name"><h6 class="item-name">'+data[i].name+' (in '+data[i].punit+')</h6></span>'+
+'<div class="info-box-content" id="'+data[i].id+'_content">'+temp+ '</div></div>';
 }
 
 return html;
@@ -253,25 +348,34 @@ return html;
 }
 
 
-  $("#searchButton").click(function(e){
+$("#searchButton").click(function(e){
 
   e.preventDefault();
-  // debugger;
+   //debugger;
   var input = $("#search").val();
 if(input != ''){
   var data = products.filter(function(obj) {
-    return (obj.name.toLowerCase().includes(input.toLowerCase()));
+    if(viewFunction == loadBoxView){
+      return (obj.name.toLowerCase().includes(input.toLowerCase()) && currentCategory == obj.category);
+    }else{
+      return (obj.name.toLowerCase().includes(input.toLowerCase()));
+    }
+   
 });
 currentProducts= data;
 }else{
   currentProducts= products;
 }
-
-viewFunction();
- 
+if(viewFunction == loadBoxView){
+loadProductView();
+}else{
+  viewFunction();
+}
 });
 
 function loadCollapseView(){
+  viewFunction = loadCollapseView;
+  $("#searchForm").css("display", "block");
   var html = '';
 //debugger;
   for(var i=0;i<parentCategories.length;i++){
@@ -315,6 +419,7 @@ function loadCollapseView(){
   $("#tab-view").html(html);
  }
 
+ //done
  function getCategoryProductsHTML(category){ // is function mein product view return karna hai
   var productsData = getProducts(category); 
   var html = '';
@@ -351,19 +456,19 @@ return data;
  }
 
  function loadBoxView(){
+  viewFunction = loadBoxView;
   $("#back").css("display", "none");
   $("#searchForm").css("display", "none");
   var html = '<div class="row">';
   for(var i=0;i<parentCategories.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success">'+
+      '<div class="small-box bg-info" onclick="loadChildCategories(\''+parentCategories[i].name +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+parentCategories[i].name+'</h3>'+
       '</div>'+
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a onclick="loadChildCategories(\''+parentCategories[i].name +'\')" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
       '</div>'+
       '</div>';
   }
@@ -383,20 +488,21 @@ html = html + "</div>";
   html = '<div class="row">';
   for(var i=0;i<childs.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success">'+
+      '<div class="small-box bg-info" onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+childs[i].name+'</h3>'+
       '</div>'+
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
+      
       '</div>'+
       '</div>';
   }
 html = html + "</div>";
 $("#tab-view").html(html);
 }else{
+  currentCategory = parent;
   $("#searchForm").css("display", "block");
   currentProducts = products;
   currentProducts = getProducts(parent);
@@ -411,13 +517,21 @@ $("#tab-view").html(html);
   $(document).on("click", "#backbutton", function(){
     loadChildCategories(parent);
   });
+  currentCategory = child;
   currentProducts = products;
   currentProducts = getProducts(child);
-  loadTableView();
+  loadProductView();
  }
 
+var cat = localStorage.getItem('categories');
+if(cat){
+  categories = JSON.parse(cat);   
+  afterCategoryLoad();
+}else{
+  loadCategories();
+}
 
-loadCategories();
+
          
          
          

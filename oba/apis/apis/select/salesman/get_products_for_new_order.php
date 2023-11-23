@@ -36,10 +36,10 @@ $conn->close();
 
 for($i=0;$i<sizeof($products);$i++){
     
-    $flag= "success";
+    $flag= 1;
     $customerPrice = getCustomerPrice($products[$i][0]);
     if($customerPrice == '-'){
-        $flag = "warning";
+        $flag = 0;
     }
 
 array_push($products2,["id"=>$products[$i][0],"name"=>$products[$i][1],"category"=>$products[$i][2],
