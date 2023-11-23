@@ -14,8 +14,10 @@ $pwd = password_hash($data["passwordedit"], PASSWORD_DEFAULT);
 $phone =$data["mobile_numberedit"];
 $email= $data["emailedit"];
 $role =$data["roleedit"];
-$stmt = $conn->prepare("UPDATE user SET username = ?,password = ?,mobile_number = ?,email = ?, role = ? WHERE id = ?");
-$stmt->bind_param("ssssii",$username,$pwd,$phone,$email,$role,$u_id);
+$language =$data["Language"];
+
+$stmt = $conn->prepare("UPDATE user SET username = ?,password = ?,mobile_number = ?,email = ?, role = ?,lang = ? WHERE id = ?");
+$stmt->bind_param("ssssisi",$username,$pwd,$phone,$email,$role,$language,$u_id);
 $stmt->execute();
 $user_id= $stmt->affected_rows;
 $stmt->close();

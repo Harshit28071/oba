@@ -79,6 +79,7 @@ $quary ="SELECT id,role FROM roles";
                       <th>Mobile Number</th>
                       <th>Email</th>
                       <th>Role</th>
+                      <th>Language</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -129,11 +130,19 @@ $quary ="SELECT id,role FROM roles";
                     <label for="exampleInputEmail1">Enter Email</label>
                     <input type="email" class="form-control" name="emailedit" id="user-email-edit" placeholder="Enter Email" autocomplete="off" required>
                   </div>
-                  <div class="col-12  form-group">
+                  <div class="col-6  form-group">
                         <label>Select Role</label>
                         <select class="form-control" name="roleedit" id="user-role-edit">
                          <?php echo $options_edit; ?>
                          <!-- <option value="0">Defult</option> -->
+                        </select>
+                      </div>
+                      <div class="col-6  form-group">
+                        <label>Select Language Prefer</label>
+                        <select class="form-control" name="Language" id="user-language" required>
+                         <option value="English">English</option>
+                         <option value="Hindi">Hindi</option>
+
                         </select>
                       </div>
                 </div>
@@ -188,11 +197,21 @@ $quary ="SELECT id,role FROM roles";
                     <input type="email" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off" required>
                     <span id="uemailv" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-12  form-group">
+                  <div class="col-6  form-group">
                         <label>Select Role</label>
                         <select class="form-control" name="role" id="user-role" required>
+                        <option value="0">Choose Role</option>
                          <?php echo $options; ?>
                          <!-- <option value="0">Defult</option> -->
+                        </select>
+                      </div>
+                      <div class="col-6  form-group">
+                        <label>Select Language Prefer</label>
+                        <select class="form-control" name="Language" id="user-language" required>
+                         <option value="0">Choose Language</option>
+                         <option value="English">English</option>
+                         <option value="Hindi">Hindi</option>
+
                         </select>
                       </div>
                 </div>
@@ -271,7 +290,8 @@ function loadTableUser(){
                                    "<td>" + value.username+"</td>"+ 
                                    "<td>" + value.mobile+"</td>"+ 
                                    "<td>" + value.email+"</td>"+ 
-                                   "<td>" + value.role +"</td>"+ 
+                                   "<td>" + value.role +"</td>"+
+                                   "<td>" + value.language +"</td>"+
                                   "<td><a href='#' class='edit-user' data-eid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-user'  data-rid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'style='color:red;'></i></a></td>"+
                                   "</tr>");
             });
@@ -317,6 +337,8 @@ $(document).on("click",".edit-user",function(){
         $("#mobile-number-edit").val(data[0].mobile_number);
         $("#user-email-edit").val(data[0].email);
         $("#user-role-edit").val(data[0].role);
+        $("#user-language").val(data[0].language);
+        
         
 
        }

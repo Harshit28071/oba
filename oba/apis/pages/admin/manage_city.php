@@ -312,6 +312,7 @@ $(document).on("click",".edit-city",function(){
                   $("#edit-city-form").trigger("reset")
                 $('#modal-Edit-city').modal('hide');
                 toastr.success('State Updated Succesfully');
+                loadTableCity();
               }
         },
         error: function(error) {

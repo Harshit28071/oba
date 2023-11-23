@@ -302,9 +302,9 @@ $(document).on("click","#add-new-unit",function(){
         };
       //  e.preventDefault();
         var jsonobj =jsonData("#add-unit-form");
-        //console.log(jsonobj);
+        
        if(jsonobj == false ){
-       // $("#validationu").html("Fill The Input");
+       
        console.log("Fill The Input");
        }else{
         $.ajax({

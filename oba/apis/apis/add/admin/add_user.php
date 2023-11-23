@@ -29,8 +29,9 @@ $pwd = password_hash($data["password"], PASSWORD_DEFAULT);
 $phone =$data["mobile_number"];
 $email= $data["email"];
 $role =$data["role"];
-$stmt = $conn->prepare("INSERT INTO `user`(username,password,mobile_number,email,role) VALUES (?,?,?,?,?)");
-$stmt->bind_param("sssss",$username,$pwd,$phone,$email,$role);
+$language =$data["Language"];
+$stmt = $conn->prepare("INSERT INTO `user`(username,password,mobile_number,email,role,lang) VALUES (?,?,?,?,?,?)");
+$stmt->bind_param("ssssss",$username,$pwd,$phone,$email,$role,$language);
 $stmt->execute();
 $id = $stmt->insert_id;
 if($id)
