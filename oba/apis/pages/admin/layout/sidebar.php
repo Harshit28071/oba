@@ -94,7 +94,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./logout.php" class="nav-link">
+            <a href="./../../common/logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt" aria-hidden="true"></i>
               <p>
              Logout

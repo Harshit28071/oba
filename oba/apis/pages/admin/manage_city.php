@@ -287,6 +287,7 @@ $(document).on("click",".edit-city",function(){
 
        }
     })
+  });
     //Update Role
     $("#edit-city-form").on("submit",function(e){
       toastr.options = {
@@ -326,12 +327,13 @@ $(document).on("click",".edit-city",function(){
     });
 
 // //Update State Close
- });
+
 // //Fetch Single Record : Show Model Close
 
 // //Add City
 $(document).on("click","#add-new-city",function(){
     $('#modal-add-city').modal('show');
+  });
     $("#addcityform").on("submit",function(e){
       toastr.options = {
             "positionClass": "toast-top-right",
@@ -368,7 +370,7 @@ $(document).on("click","#add-new-city",function(){
        loadTableCity();
     })
    
-});
+
 // //Add City
 // //Delete city
 $(document).on("click",".remove-city",function(){
@@ -387,6 +389,7 @@ $(document).on("click",".remove-city",function(){
         
        }
     });
+  });
 //     //delete role
     $("#city-remove-form").on("submit",function(e){
       toastr.options = {
@@ -420,7 +423,7 @@ $(document).on("click",".remove-city",function(){
         });
        
     });
- });
+
 //Delete Role Close
     });
 </script>

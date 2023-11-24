@@ -250,6 +250,7 @@ $(document).on("click",".edit-unit",function(){
         $("#edit-unit").val(data[0].unitname);
        }
      })
+    });
    //Update Role
     $("#edit-unit-form").on("submit",function(e){
       $("#loader-edit-unit").show();
@@ -286,14 +287,15 @@ $(document).on("click",".edit-unit",function(){
         });
        }
        e.preventDefault();
-    })
+    });
 
 // //Update Role Close
-});
+
 // //Fetch Single Record : Show Model Close
 //Add Unit
 $(document).on("click","#add-new-unit",function(){
     $('#modal-add-unit').modal('show');
+  });
     $("#add-unit-form").on("submit",function(e){
       $("#loader-add-unit").show();
       toastr.options = {
@@ -327,8 +329,8 @@ $(document).on("click","#add-new-unit",function(){
         });
        }
        e.preventDefault();
-    })
-});
+    });
+
 // //Add Unit Close
 // //Delete Role 
 $(document).on("click",".remove-unit",function(){
@@ -347,6 +349,7 @@ $(document).on("click",".remove-unit",function(){
        
        }
     });
+  });
      //delete role
     $("#add-remove-form").on("submit",function(e){
       $("#loader-remove-unit").show();
@@ -383,7 +386,7 @@ $(document).on("click",".remove-unit",function(){
                   }
         });
        
-    });
+    
    });
 //Delete Role Close
     });

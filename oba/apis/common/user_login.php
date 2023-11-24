@@ -1,5 +1,5 @@
 <?php 
-require_once("../../common/database.php");
+require_once("./database.php");
 $db = new Database();
 $conn = $db->connect();
 
@@ -35,12 +35,11 @@ if(count($result) > 0){
         $_SESSION["s_username"] =$result[0]['username'];
         $_SESSION["s_role"] =$result[0]['role'];
         $_SESSION["s_language"] =$result[0]['lang'];
-
         $_SESSION["s_token"] =$token;
         
         switch($_SESSION["s_role"]){
-          case 1: header("location:./dashboard.php"); break;
-          case 4: header("location:../salesman/dashboard.php"); break;
+          case 1: header("location:./../pages/admin/dashboard.php"); break;
+          case 4: header("location:./../pages/salesman/dashboard.php"); break;
           default:  header("location:./user_login.php");
         }
          
@@ -76,11 +75,11 @@ $conn->close();
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../theme/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../theme/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="../../theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../theme/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../theme/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -132,10 +131,10 @@ $conn->close();
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="../../theme/plugins/jquery/jquery.min.js"></script>
+<script src="../theme/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../theme/dist/js/adminlte.min.js"></script>  
+<script src="../theme/dist/js/adminlte.min.js"></script>  
 </body>
 </html>

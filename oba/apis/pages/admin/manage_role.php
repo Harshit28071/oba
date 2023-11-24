@@ -255,6 +255,7 @@ $(document).on("click",".edit-role",function(){
         $("#edit-role").val(data[0].role);
        }
     })
+  });
     //Update Role
     
     $("#edit-role-form").on("submit",function(e){
@@ -295,13 +296,14 @@ $(document).on("click",".edit-role",function(){
     });
 
 //Update Role Close
-});
+
 //Fetch Single Record : Show Model Close
 
 //Add Role
 
 $(document).on("click","#add-new-role",function(){
     $('#modal-add-role').modal('show');
+  });
     $("#add-role-form").on("submit",function(e){
       toastr.options = {
             "positionClass": "toast-top-right",
@@ -328,8 +330,7 @@ $(document).on("click","#add-new-role",function(){
                 $('#modal-add-role').modal('hide');
                 loadTable();
                 toastr.success('Role Added Succesfully');
-                toastr .delay(1000)
-                toastr .fadeOut(1000);
+                
                 }
                 
             },
@@ -341,7 +342,7 @@ $(document).on("click","#add-new-role",function(){
        e.preventDefault();
     })
    
-});
+
 //Add Role Close
 //Delete Role 
 $(document).on("click",".remove-role",function(){
@@ -360,6 +361,7 @@ $(document).on("click",".remove-role",function(){
         //$("#edit-role").val(data[0].role);
        }
     });
+  });
     //delete role
     $("#add-remove-form").on("submit",function(e){
       toastr.options = {
@@ -383,8 +385,7 @@ $(document).on("click",".remove-role",function(){
                 $('#modal-remove-role').modal('hide');
                 loadTable();
                 toastr.success('Role Deleted Succesfully');
-                toastr .delay(1000)
-                toastr .fadeOut(1000);
+                
               }
         },
         error: function(error) {
@@ -393,7 +394,7 @@ $(document).on("click",".remove-role",function(){
         });
        
     });
-});
+
 //Delete Role Close
     });
 </script>
