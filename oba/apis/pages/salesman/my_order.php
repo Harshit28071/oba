@@ -3,7 +3,7 @@ session_start();
  require_once("../../common/database.php");
  $db = new Database();
  $conn = $db->connect();
- $user_id = $_SESSION['s_id'];
+
  //echo  $user_id;
   if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
    header("location:../admin/user_login.php");
@@ -92,7 +92,6 @@ session_start();
     </section>
     <!-- /.content -->
   </div>
-  <div data-id = "<?php echo $user_id; ?>" class="user-id"></div>
   <!-- /.content-wrapper -->
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
@@ -105,7 +104,7 @@ session_start();
 
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
-<script src="../js/salesman js/my_order.js"></script>
+<script src="../js/salesman js/my_order_count.js"></script>
 <script>
 $("#heading").text("My Orders");
 $("#back-button").on('click',function(){

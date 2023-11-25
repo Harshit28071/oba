@@ -1,9 +1,7 @@
 $(document).ready(function(){
-    var userId =  $(".user-id").data("id");
     $.ajax({
-        url :"../../apis/select/salesman/get_all_order.php",
+        url :"../../apis/select/salesman/total_order_count.php",
         type : "POST",
-        data : {user_id:userId},
         dataType : "json",
         success : function(data){
         
