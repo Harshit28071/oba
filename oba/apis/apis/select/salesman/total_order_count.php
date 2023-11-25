@@ -2,7 +2,6 @@
 header('Content-Type: application/json');
 session_start();
 $user_id = $_SESSION['s_id'];
-//echo $u_id;
 include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
