@@ -47,49 +47,9 @@ session_start();
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3 id="approve-count"><sup style="font-size: 20px"></sup></h3>
-                <h5>Approve Orders</h5>
-              </div>
-              <div class="icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3 id="panding-count"></h3>
-                <h5>Panding Orders</h5>
-              </div>
-              <div class="icon">
-                <i class="fas fa-cart-plus"></i>
-              </div>
-              <a href="./panding_orders.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-         
-         
-        </div>
-
-        <!-- /.row -->
-        <!-- Main row -->
-        
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
+    <div class="container" id="load-orders">
+    
+    </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -104,9 +64,9 @@ session_start();
 
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
-<script src="../js/salesman js/my_order_count.js"></script>
+<script src="../js//salesman js/panding_orders.js"></script>
 <script>
-$("#heading").text("My Orders");
+$("#heading").text("Total Panding Orders");
 $("#back-button").on('click',function(){
       history.back();
     });
