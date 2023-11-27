@@ -6,7 +6,7 @@ include('../../../common/database.php');
 $db = new Database();
 $conn = $db->connect();
 $orders = [];
-//Quary For Panding Orders
+//Quary For Pending Orders
 $stmt =$conn->prepare("SELECT COUNT(id)  FROM orders WHERE (order_status='New' OR order_status='Pending') AND invoice_id = 0 AND salesman_id = ?");
 $stmt->bind_param("i",$user_id);
 $stmt->execute();

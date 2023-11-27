@@ -2,6 +2,7 @@
 session_start();
  require_once("../../common/database.php");
  $db = new Database();
+
  $conn = $db->connect();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
     header("location:./user_login.php");
@@ -20,27 +21,23 @@ session_start();
      //   $options_edit .="<option value='$id'>$name</option>";
 
       }
-    //Quary For Distributor Select Box
-    $quary_s ="SELECT id,name FROM customer WHERE type='Distributor'";
-    $stmt = $conn->prepare($quary_s);
-    $stmt->execute();
-    $stmt->bind_result($dis_id,$dis_name);
-    $options_s = "";
-    while($stmt->fetch()){
-      $options_s .="<option value='$dis_id'>$dis_name</option>";
-    }
+    
     //city select box
     $quarycity ="SELECT id,name FROM city";
     $stmt = $conn->prepare($quarycity);
     $stmt->execute();
     $stmt->bind_result($id,$cityname);
-    $options_city = "";
+    $options_city = '<option selected style="text-align: center;" value="">Select City</option>';
     
     while($stmt->fetch()){
       
         $options_city .="<option value='$id' >$cityname</option>";
     
       }
+      if($stmt)
+      $stmt->close();
+    if($conn)
+      $conn->close();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,13 +74,13 @@ session_start();
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-6">
             <h3 class="m-0">Add Customer</h3>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="./manage_customer.php" id="back-firm" class="btn btn-primary">Back</a></li>
-            </ol>
+          <div class="col-6">
+            
+              <a href="./manage_customer.php" id="back-firm" class="btn btn-primary">Back</a>
+      
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -99,16 +96,16 @@ session_start();
               </div>
                 <form id="add-customer-form">
                 <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Name</label>
                     <input type="text" class="form-control" placeholder="Customer Name" name="CustName" autocomplete="off" id="Cust-name" required>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Mobile</label>
-                    <input type="text" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
+                    <input type="number" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
                   </div>
-                  <div class="col-6 form-group">
-                   <div class="col-12 form-group">
+                  <div class="col-md-6 form-group">
+                   <div class="col-md-12 form-group">
                         <label>Select State</label>
                         <select class="form-control" name="custstate">
                           <?php 
@@ -117,19 +114,18 @@ session_start();
                         </select>
                       </div> 
                       
-                      <div class="col-12 form-group">
-                    <label>City</label>
-                    <!-- <input type="text" class="form-control" placeholder="Enter City" name="custcity" autocomplete="off" id="cust-city"> -->
+                      <div class="col-md-12 form-group">
+                                       <!-- <input type="text" class="form-control" placeholder="Enter City" name="custcity" autocomplete="off" id="cust-city"> -->
                     <label>Select City</label>
-                        <select class="form-control" name="custcity" id="cust-city">
+                        <select class="form-control" name="custcity" id="cust-city" required>
                           <?php 
                           echo $options_city;                        
                           ?>
                         </select>
                   </div>
                   </div>
-                  <div class="col-6">
-                  <div class="col-sm-12 ">
+                  <div class="col-md-6">
+                  <div class="col-md-12 ">
                       <!-- textarea -->
                       <div class="form-group">
                         <label>Address</label>
@@ -138,7 +134,7 @@ session_start();
                     </div>
                   </div>
                    
-                      <div class="col-6 form-group">
+                      <div class="col-md-6 form-group">
                         <label>Type</label>
                         <select class="form-control" name="custType" id="disop">
                           <option value="Retailer" selected>Retailer</option>
@@ -147,21 +143,19 @@ session_start();
                           <option value="Oth">Other</option>
                         </select>
                       </div>
-                      <div class="col-6 form-group">
-                    <label>Distributor Id </label>
+                      <div class="col-md-6 form-group">
+                    <label>Distributor (Goods Source)</label>
                     
-                    <select class="form-control" name="disName" id="dis-select-box">
-                    <?php 
-                          echo $options_s;
-                          ?>
+                    <select class="form-control" name="disName" id="dis-select-box" required>
+                    <option selected style="text-align: center;">Select Distributor </option>
                         </select>
                     
                   </div>
-                <div class="col-6 form-group">
+                <div class="col-md-6 form-group">
                   <label>Firm Name</label>
                     <input type="text" class="form-control" placeholder="Enter Firm " name="firmName" autocomplete="off" id="f-name">
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label>GSTIN</label>
                     <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
                   </div>
@@ -190,6 +184,43 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script>
+ var distributors = [];
+ $.ajax({
+            type: 'POST',
+            url: '../../apis/select/admin/get_distributors.php',
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){               
+              distributors = response;
+              var html = '';
+              for(var i=0;i<distributors.length;i++){
+                  html = html + '<option value="'+distributors[i].id+'">'+distributors[i].name+'</option>';
+              }
+              $("#dis-select-box").append(html);
+            },
+            error: function(error) {
+            toastr.error('Something went wrong.');
+            }
+            })
+
+
+$("#cust-city").change(function(){
+
+    var city = $(this).val();
+    for(var i=0;i<distributors.length;i++){
+                  if(distributors[i].city == city){
+                    $('#dis-select-box  option[value="'+distributors[i].id+'"]').prop("selected", "selected");
+                    break;
+                  }else{
+                    if(distributors[i].name == "APS"){
+                    $('#dis-select-box  option[value="'+distributors[i].id+'"]').prop("selected", "selected");
+                  }
+                  }
+              }
+
+});
  //Check User Type 
  $("#disop").change(function(){
   var select = $(this).val();
@@ -198,7 +229,13 @@ session_start();
    $("#dis-select-box").prop("disabled",false);
   }else{
     $("#dis-select-box").prop("disabled",true);
-
+    for(var i=0;i<distributors.length;i++){
+                  
+                    if(distributors[i].name == "APS"){
+                    $('#dis-select-box  option[value="'+distributors[i].id+'"]').prop("selected", "selected");
+                  
+                  }
+              }
   }
  })
   //Check User Type close
@@ -236,7 +273,9 @@ $(document).ready(function(){
                     // loadTableFirm();
                     
                    
-                }
+                }else{
+              toastr.error(response.message);
+            }
             },
             error: function(error) {
             toastr.error('Something went wrong.');

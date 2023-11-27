@@ -17,17 +17,18 @@ if(isset($_POST['CustName'])){
     $firm_name = $_POST['firmName'];
     $firm_gstin = $_POST['custgstin'];
     //Add Customer Quary
-    $Quary = "INSERT INTO customer (name,mobile_number,state_id,city,address,firm_name,GSTIN,type,distributor_id) VALUES(?,?,?,?,?,?,?,?,?)";
+    $Quary = "INSERT IGNORE INTO customer (name,mobile_number,state_id,city,address,firm_name,GSTIN,type,distributor_id) VALUES(?,?,?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($Quary); 
     $stmt->bind_param("ssisssssi",$customer_name,$customer_mobile,$customer_state,$customer_city,$customer_add,$firm_name,$firm_gstin,$customer_type,$distributor_id);
     $insert = $stmt->execute(); 
     $last_insert_id =$conn->insert_id;
-    if($insert){ 
+    if($last_insert_id > 0){ 
         $response['status'] = 1; 
         $response['customerId'] = $last_insert_id ; 
         $response['message'] = 'Form data submitted successfully!'; 
-    } else{ 
-        $response['message'] = 'Something went wrong'; 
+    } else{
+        $response['status'] = 0;  
+        $response['message'] = 'Customer With this name already exist'; 
    } 
 
 }

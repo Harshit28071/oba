@@ -158,7 +158,7 @@ $(function () {
 		            { data: 'id',
                   render: function (data, type, row, meta){
                     return type === 'display' ?
-                    "<a href='./view_customer.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_customer.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-customer'  data-customerremoveid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>"
+                    "<a href='./view_customer.php?id="+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_customer.php?id="+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-customer'  data-customerremoveid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>"
                     :data;
                   }
                  

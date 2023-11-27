@@ -78,11 +78,7 @@ session_start();
           <div class="col-sm-6">
             <h3 class="m-0">Add Product Details</h3>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#" id="back-view-product" class="btn btn-primary">Back</a></li>
-            </ol>
-          </div><!-- /.col -->
+         <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -153,20 +149,20 @@ session_start();
                   
                   <div class="col-6 form-group">
                   <label>Hsn Code</label>
-                    <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncode" autocomplete="off" id="" required>
+                    <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncode" autocomplete="off" id="">
                     <span id="ifsc-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
                   <div class="col-6 form-group">
                   <label>Gst Rate</label>
-                    <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrate" autocomplete="off" id="" required>
+                    <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrate" autocomplete="off" id="">
                     <span id="bank-add-val" class="text-danger font-weight-bold"></span>
                   </div>
                   <div class="col-sm-6">
                       <div class="form-group">
                         <label>Select Firm</label>
-                        <select class="form-control" name="firmid">
-                          <option value="0" selected >No Select</option>
+                        <select class="form-control" name="firmid" required>
+                          <option selected value="" >No Select</option>
                           <?php echo $options_firm; ?>
                         </select>
                       </div>
@@ -182,7 +178,7 @@ session_start();
                     
                   </div>
                   <div class="col-6 form-group">
-                  <label>Qty_step</label>
+                  <label>Qty_step (Means kitne step se plus ke click pe incremnt hogi qty)</label>
                     <input type="text" class="form-control" placeholder="Enter Qty_step " name="Qty_step" autocomplete="off">
                     
                   </div>
@@ -200,7 +196,7 @@ session_start();
                   </div>
                 </div>
                 <!-- /.card-body -->
-                <input type="submit"  class="btn btn-primary btn-lg float-right" id="add-product-sub" value="Add Product">
+                <input type="submit"  class="btn btn-primary btn-md float-right" id="add-product-sub" value="Add Product">
               </form>
               </div>
       </div>

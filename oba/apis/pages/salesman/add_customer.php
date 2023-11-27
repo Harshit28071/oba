@@ -2,6 +2,7 @@
 session_start();
  require_once("../../common/database.php");
  $db = new Database();
+
  $conn = $db->connect();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
     header("location:./user_login.php");
@@ -20,27 +21,23 @@ session_start();
      //   $options_edit .="<option value='$id'>$name</option>";
 
       }
-    //Quary For Distributor Select Box
-    $quary_s ="SELECT id,name FROM customer WHERE type='Distributor'";
-    $stmt = $conn->prepare($quary_s);
-    $stmt->execute();
-    $stmt->bind_result($dis_id,$dis_name);
-    $options_s = "";
-    while($stmt->fetch()){
-      $options_s .="<option value='$dis_id'>$dis_name</option>";
-    }
+    
     //city select box
     $quarycity ="SELECT id,name FROM city";
     $stmt = $conn->prepare($quarycity);
     $stmt->execute();
     $stmt->bind_result($id,$cityname);
-    $options_city = "";
+    $options_city = '<option selected style="text-align: center;" value="">Select City</option>';
     
     while($stmt->fetch()){
       
         $options_city .="<option value='$id' >$cityname</option>";
     
       }
+      if($stmt)
+      $stmt->close();
+    if($conn)
+      $conn->close();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,14 +73,7 @@ session_start();
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-         
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item active"><a href="./manage_customer.php" id="back-firm" class="btn btn-primary">Back</a></li> -->
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+       
       </div><!-- /.container-fluid -->
 
     </div>
@@ -95,7 +85,7 @@ session_start();
       <div id="loader-add-customer" style="display:none;" class="overlay">
               <i class="fa fa-refresh fa-spin"></i>
               </div>
-                <form id="add-customer-form" method="post">
+                <form id="add-customer-form">
                 <div class="row">
                   <div class="col-md-6 form-group">
                   <label>Name</label>
@@ -103,10 +93,10 @@ session_start();
                   </div>
                   <div class="col-md-6 form-group">
                   <label>Mobile</label>
-                    <input type="text" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
+                    <input type="number" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
                   </div>
                   <div class="col-md-6 form-group">
-                   <div class="col-12 form-group">
+                   <div class="col-md-12 form-group">
                         <label>Select State</label>
                         <select class="form-control" name="custstate">
                           <?php 
@@ -115,9 +105,10 @@ session_start();
                         </select>
                       </div> 
                       
-                      <div class="col-12 form-group">
+                      <div class="col-md-12 form-group">
+                                       <!-- <input type="text" class="form-control" placeholder="Enter City" name="custcity" autocomplete="off" id="cust-city"> -->
                     <label>Select City</label>
-                        <select class="form-control" name="custcity" id="cust-city">
+                        <select class="form-control" name="custcity" id="cust-city" required>
                           <?php 
                           echo $options_city;                        
                           ?>
@@ -125,7 +116,7 @@ session_start();
                   </div>
                   </div>
                   <div class="col-md-6">
-                  <div class="col-sm-12 ">
+                  <div class="col-md-12 ">
                       <!-- textarea -->
                       <div class="form-group">
                         <label>Address</label>
@@ -144,12 +135,10 @@ session_start();
                         </select>
                       </div>
                       <div class="col-md-6 form-group">
-                    <label>Distributor Id </label>
+                    <label>Distributor (Goods Source)</label>
                     
-                    <select class="form-control" name="disName" id="dis-select-box">
-                    <?php 
-                          echo $options_s;
-                          ?>
+                    <select class="form-control" name="disName" id="dis-select-box" required>
+                    <option selected style="text-align: center;">Select Distributor </option>
                         </select>
                     
                   </div>
@@ -173,7 +162,7 @@ session_start();
       </section>
       </div>
   </div>
-
+  
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

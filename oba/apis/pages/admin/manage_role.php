@@ -196,7 +196,7 @@ session_start();
 <script type="text/javascript">
      //toaster message
  
-$(document).ready(function(){
+
   
 //Fetch All Records
 function loadTable(){
@@ -396,7 +396,7 @@ $(document).on("click",".remove-role",function(){
     });
 
 //Delete Role Close
-    });
+
 </script>
 </body>
 </html>

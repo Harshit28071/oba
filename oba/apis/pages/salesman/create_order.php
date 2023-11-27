@@ -111,9 +111,6 @@ while($stmt->fetch()){
 $("#heading").text("Create Order");
 $("#three-dot").css("display", "none");
 
-$("#back-button").on('click',function(){
-      history.back();
-    });
   </script>
 </body>
 </html>

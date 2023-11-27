@@ -7,8 +7,8 @@ session_start();
   header("location:./user_login.php");
   
 }
-$quary ="SELECT id,role FROM roles";
-    $stmt = $conn->prepare($quary);
+$query ="SELECT id,role FROM roles";
+    $stmt = $conn->prepare($query);
     $stmt->execute();
     $stmt->bind_result($id,$role);
     $options = "";
@@ -272,7 +272,7 @@ $quary ="SELECT id,role FROM roles";
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 <script type="text/javascript">
-    $(document).ready(function(){
+    
        
 //Fetch All Records Of Users
 function loadTableUser(){
@@ -477,7 +477,7 @@ $(document).on("click",".remove-user",function(){
     });
 });
 //Delete Role Close
-    });
+
 </script>
 </body>
 </html>
