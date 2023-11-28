@@ -1,46 +1,10 @@
 <?php
 session_start();
- require_once("../../common/database.php");
- $db = new Database();
- $conn = $db->connect();
+
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
     header("location:./user_login.php");
     }
-    //Quary For State
-    $quary ="SELECT id,state FROM state";
-    $stmt = $conn->prepare($quary);
-    $stmt->execute();
-    $stmt->bind_result($id,$state);
-    $options = "";
-    $options_edit ="";
-    //$selected = "";
-    while($stmt->fetch()){
-       
-        //$options .="<option value='$id' $selected>$state</option>";
-        $options_edit .="<option value='$id' selected> $state</option>";
-
-      }
-    //Quary For Distributor Select Box
-    $quary_s ="SELECT id,name,distributor_id FROM customer WHERE id=distributor_id";
-    $stmt = $conn->prepare($quary_s);
-    $stmt->execute();
-    $stmt->bind_result($dis_id,$dis_name,$distributor_id);
-    $options_s_v = "";
-    while($stmt->fetch()){
-      $options_s_v .="<option value='$dis_id' selected>$dis_name</option>";
-    }
-    //city select box
-    $quarycity ="SELECT id,name FROM city";
-    $stmt = $conn->prepare($quarycity);
-    $stmt->execute();
-    $stmt->bind_result($id,$cityname);
-    $options_city = "";
-    
-    while($stmt->fetch()){
-      
-        $options_city .="<option value='$id' >$cityname</option>";
-    
-      }
+   
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,11 +44,7 @@ session_start();
           <div class="col-sm-6">
             <h3 class="m-0">View Customer</h3>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="./manage_customer.php" id="back-firm" class="btn btn-primary">Back</a></li>
-            </ol>
-          </div><!-- /.col -->
+          
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
 
@@ -99,34 +59,26 @@ session_start();
               </div>
                 <form id="add-customer-form">
                 <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Name</label>
                     <input type="text" class="form-control" placeholder="Customer Name" name="CustName" autocomplete="off" id="Cust-name-v" readonly>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Mobile</label>
                     <input type="text" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile-v" readonly>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                    <div class="col-12 form-group">
                         <label> State</label>
-                        <select class="form-control" name="custstate" id="cust-state-v" disabled >
-                          <?php 
-                          echo $options_edit;
-                          ?>
-                        </select>
+                        <input type="text" class="form-control" id="state" readonly>
                       </div> 
                       
                       <div class="col-12 form-group">
                     <label>City</label>
-                        <select class="form-control" name="custcity" id="cust-city" disabled>
-                          <?php 
-                          echo $options_city;                        
-                          ?>
-                        </select>
+                    <input type="text" class="form-control" id="city" readonly>
                   </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                   <div class="col-sm-12 ">
                       <!-- textarea -->
                       <div class="form-group">
@@ -136,26 +88,21 @@ session_start();
                     </div>
                   </div>
                    
-                      <div class="col-6 form-group">
+                      <div class="col-md-6 form-group">
                         <label>Type</label>
                     <input type="text" class="form-control" name="typev" autocomplete="off" id="disop-v" readonly>
                       </div>
-                      <div class="col-6 form-group">
-                    <label>Distributor Id </label>
+                      <div class="col-md-6 form-group">
+                    <label>Distributor (Goods Source) </label>
                     
-                    <select class="form-control" name="disName" id="dis-select-box-v" disabled >
-                    <option value="0" selected>Not Selected</option>
-                    <?php 
-                         echo $options_s_v;
-                          ?>
-                        </select>
+                    <input type="text" class="form-control" id="distributor" readonly>
                     
                   </div>
-                <div class="col-6 form-group">
+                <div class="col-md-6 form-group">
                   <label>Firm Name</label>
                     <input type="text" class="form-control" placeholder="Enter Firm " name="firmName" autocomplete="off" id="f-name-v" readonly>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label>GSTIN</label>
                     <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin-v" readonly>
                   </div>
@@ -188,6 +135,9 @@ session_start();
   //Check User Type close
 </script>
 <script type="text/javascript">
+
+
+
 $(document).ready(function(){
  
 
@@ -208,13 +158,13 @@ var obj = {cust_id : cust_id};
 
         $("#Cust-name-v").val(data[0].name);
         $("#Cust-Mobile-v").val(data[0].mobile_number);
-        $("#cust-state-v").val(data[0].state_id);
-        $("#cust-city-v").val(data[0].city);
+        $("#state").val(data[0].state);
+        $("#city").val(data[0].city);
         $("#cust-add-v").val(data[0].address);
         $("#f-name-v").val(data[0].firm_name);
         $("#c-gstin-v").val(data[0].GSTIN);
         $("#disop-v").val(data[0].type);
-        $("#dis-select-box-v").val(data[0].distributor_id);
+        $("#distributor").val(data[0].distributor);
         //$("#Cust-name-v").val(data[0].name);
 
        }

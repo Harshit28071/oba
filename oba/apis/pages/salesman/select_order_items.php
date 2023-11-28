@@ -80,9 +80,7 @@ session_start();
 <script>
    $("#heading").text("Select Order Items");
   
-   $("#back-button").on('click',function(){
-      history.go(-1);
-    });
+  
   $('.custom-button').append('<li class="nav-item">'+
 '<a class="nav-link" onclick="loadCart()" role="button">'+
 '<i class="fas fa-cart-plus"></i>'+

@@ -80,9 +80,7 @@ session_start();
     </div>
     <!-----> <?php require_once("./layout/footer_links.php");?> <script>
       $("#heading").text("Review Order");
-      $("#back-button").on('click', function() {
-        history.back();
-      });
+      
       $("#loader").show();
 
       function showAddModal() {

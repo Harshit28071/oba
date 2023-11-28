@@ -71,7 +71,7 @@ session_start();
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3 id="panding-count"></h3>
-                <h5>Panding Orders</h5>
+                <h5>Pending Orders</h5>
               </div>
               <div class="icon">
                 <i class="fas fa-cart-plus"></i>
@@ -107,9 +107,7 @@ session_start();
 <script src="../js/salesman js/my_order_count.js"></script>
 <script>
 $("#heading").text("My Orders");
-$("#back-button").on('click',function(){
-      history.back();
-    });
+
   </script>
 </body>
 </html>

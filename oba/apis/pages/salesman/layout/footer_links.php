@@ -46,3 +46,9 @@
 <script src="../../theme/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Toaster message-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+
+$("#back-button").on('click',function(){
+      history.back();
+    });
+</script>
