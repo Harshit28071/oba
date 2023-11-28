@@ -78,7 +78,7 @@ if(cities){
     var flilterOrders = [];
     $("#mySelectBox").change(function(){
     var selectedCity =  $(this).find(":selected").text();
-   // $("#modal-city-select-box").modal("hide");
+   $("#modal-city-select-box").modal('hide');
         for(i=0;i<currentOrders.length;i++){
             if(currentOrders[i].city_name == selectedCity){
                 flilterOrders.push(currentOrders[i]);
