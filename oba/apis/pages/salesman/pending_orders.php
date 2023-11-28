@@ -30,13 +30,15 @@ session_start();
     <!-- Content Header (Page header) -->
           <div class="content-header">
             <div class="form-group">
+            <form id="search-customer-by-name">
             <div class="input-group input-group-lg">
-            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here">
+            <input type="search" class="form-control form-control-lg" placeholder="Type Customer Name" id="customer-name">
             <div class="input-group-append">
             <button type="submit" class="btn btn-lg btn-default">
             <i class="fa fa-search"></i>
             </button>
             </div>
+            </form>
             <div class="input-group-append">
             <button  class="btn btn-lg btn-default" id="openSelectButton">
             <i class="fa fa-filter"></i>

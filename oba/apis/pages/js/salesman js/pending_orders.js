@@ -7,7 +7,7 @@ var cities =[];
         type : "POST",
         dataType : "json",
         success : function(data){
-            currentOrders = data;
+        currentOrders = data;
         localStorage.setItem('order_data_set',JSON.stringify(data)); 
         displayOrders(data);
         }
@@ -83,11 +83,22 @@ if(cities){
             if(currentOrders[i].city_name == selectedCity){
                 flilterOrders.push(currentOrders[i]);
                
-            }
-            
+            }  
         }
         displayOrders(flilterOrders);
         
   });
   //
+  var flilterByCustmoerName = [];
+  $("#search-customer-by-name").on("submit",function(e){
+    var customerName = $("#customer-name").val();
+    for(i=0;i<currentOrders.length;i++){
+        if(currentOrders[i].customer_name == customerName){
+            flilterByCustmoerName.push(currentOrders[i]); 
+        } 
+    }
+    displayOrders(flilterByCustmoerName);
+    e.preventDefault();
+  });
+  
   
