@@ -68,7 +68,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="container" id="load-orders">
+    <div class="container" id="load-customer">
 
     </div>
     <!-- /.content -->
@@ -86,14 +86,14 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!-- jQuery -->
   <?php require_once("./layout/alert_messages.php"); ?>
   <?php require_once("./layout/footer_links.php"); ?>
-  <script src="../js/salesman js/pending_orders.js"></script>
+  <script src="../js/salesman js/manage_customer.js"></script>
   <script>
       $("#filter").on("click", function(event) {
         event.preventDefault();
         //debugger;
         $("#modal-city-select-box").modal("show");
       });   
-    $("#heading").text("Pending Orders");
+    $("#heading").text("Manage Customer");
    
   </script>
 </body>

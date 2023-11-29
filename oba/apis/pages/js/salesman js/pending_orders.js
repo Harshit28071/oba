@@ -67,6 +67,28 @@ function viewOrder(orderId, customerName, date) {
 
 function deleteOrder(orderId){
     // Show here confirm box first then on condfirm use ajax call to delete order using delete_order.php file 
+    $("#modal-warning-alert").modal('show');
+    $("#main-heading-warning").html("Remove Order");
+    $("#alert-message-warning").html("Are you sure you want to remove this order !");
+    $("#warring-done").on("click",function removeOrder() {
+        var obj = {orderId :orderId};
+        var myJson = JSON.stringify(obj);
+        $.ajax({
+            url: "../../apis/delete/salesman/delete_order.php",
+            data : myJson,
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if(data > 0){
+                    $("#modal-warning-alert").modal('hide');
+                    loadPendingOrders();
+                }
+            }
+        });
+    });
+    
+   
+
 }
 
 function loadCities() {
@@ -117,7 +139,7 @@ $("#select-city").change(function () {
 });
 
 function filterOrders(selectedCity, customerName) {
-    debugger;
+   // debugger;
     if (selectedCity == '' && customerName == '') {
         displayOrders(currentOrders);
     } else {

@@ -33,7 +33,7 @@
 </div>
 <div class="modal-footer justify-content-between">
 <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Close</button>
-<button type="button" class="btn btn-outline-dark btn-sm">OK</button>
+<button type="button" class="btn btn-outline-dark btn-sm" id="warring-done">OK</button>
 </div>
 </div>
 </div>

@@ -60,6 +60,10 @@ function myOrders(){
   localStorage.clear();
   window.location.href = "./my_order.php";
 }
+function manageCustomer(){
+  localStorage.clear();
+  window.location.href = "./manage_customer.php";
+}
   </script>
 </body>
 </html>
