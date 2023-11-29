@@ -125,5 +125,8 @@
         #back, #searchForm{
             margin-bottom:10px;
         }
+        .padding-10{
+            padding-right: 10px;
+        }
     </style>
 </head>

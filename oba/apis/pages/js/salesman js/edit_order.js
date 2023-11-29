@@ -27,7 +27,7 @@ function saveOrder(){
         if(response > 0){
           alert('order has been updated successfully');
           localStorage.clear();
-          window.location.href='./dashboard.php';
+          history.back();
         }
       },
       error: function(error) {
@@ -39,22 +39,15 @@ function saveOrder(){
   }
 }
 
-function getDate(){
-  var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
 
-today = dd + '/' + mm + '/' + yyyy;
-return today;
-}
 
 function loadCustomerDetails(){
   var html ='<div class="info-box">'+
   '<div class="info-box-content">'+
   '<table class="table"><tbody class="customer-table">'+
+  '<tr><td><strong>Order Id</strong></td><td>'+ localStorage.getItem('order_id')+'</td></tr>'+
     '<tr><td><strong>Customer</strong></td><td>'+ localStorage.getItem('customer_name')+'</td></tr>'+
-    '<tr><td><strong>Date</strong></td><td>'+ getDate()+'</td></tr>'+
+    '<tr><td><strong>Date</strong></td><td>'+ localStorage.getItem('order_date')+'</td></tr>'+
     '<tr><td><strong>Total</strong></td><td id="totalAmount"></td></tr>'+
   '</tbody></table>'+
   '</div></div>';
@@ -73,7 +66,7 @@ function addNewItem(){
   var index = $("#items option:selected").val();
   if(index && index != 'SELECT ITEM'){
 
-    var data = JSON.parse(localStorage.getItem('OrderData'));
+    var data = JSON.parse(localStorage.getItem('OrderDetails'));
 	  data = data[index];
     data.quantity = data.qty_step;
 
@@ -100,7 +93,7 @@ function addNewItem(){
 }
 
 function printItemOptions(){
-  var data = JSON.parse(localStorage.getItem('OrderData'));
+  var data = JSON.parse(localStorage.getItem('OrderDetails'));
   var html = '<option selected style="text-align: center;" >SELECT ITEM</option>';
   var category = $("#mainCategory option:selected").val();
   if(category != '' && category != 'SELECT CATEGORY'){
@@ -117,7 +110,7 @@ function printItemOptions(){
 
   $("#items").change(function(event){
       var index = $("#items option:selected").val();
-      var data = JSON.parse(localStorage.getItem('OrderData'));
+      var data = JSON.parse(localStorage.getItem('OrderDetails'));
       data = data[index];
       if(data.punit == data.sunit){
         $("#units").html('');
@@ -193,7 +186,7 @@ function loadCategories(){
       success : function(data){
         products = data;
         //showSelectedItems();
-        localStorage.setItem('OrderData',JSON.stringify(data));        
+        localStorage.setItem('OrderDetails',JSON.stringify(data));        
         loadSelectedItems();
       }
   });
@@ -201,7 +194,7 @@ function loadCategories(){
 
   function afterCategoryLoad(){
         fillCategories();  
-        var temp = localStorage.getItem('OrderData') ;
+        var temp = localStorage.getItem('OrderDetails') ;
         if(temp){
           products = JSON.parse(temp);
           loadSelectedItems();
@@ -415,7 +408,7 @@ debugger;
       
       function updateJSON(id,type,value,index){
       
-        var data = JSON.parse(localStorage.getItem('OrderData'));
+        var data = JSON.parse(localStorage.getItem('OrderDetails'));
         for(var i=0;i<data.length;i++){
           if(data[i].id == id){
             if(type == "price"){
@@ -428,7 +421,7 @@ debugger;
             break;
           }
         }
-        localStorage.setItem('OrderData',JSON.stringify(data));
+        localStorage.setItem('OrderDetails',JSON.stringify(data));
 
 
         data = JSON.parse(localStorage.getItem('selectedProducts'));

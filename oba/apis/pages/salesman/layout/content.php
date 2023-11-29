@@ -65,7 +65,7 @@
           <!-- ./col -->
           <div class="col-lg-3 ">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-danger" onclick="myOrders()">
               <div class="inner">
                 <h4>My Orders</h4>
                 <p></p>
@@ -73,7 +73,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="my_order.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

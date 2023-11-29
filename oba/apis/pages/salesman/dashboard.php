@@ -55,6 +55,11 @@ function showProducts(){
   localStorage.clear();
   window.location.href = "./show_products.php";
 }
+
+function myOrders(){
+  localStorage.clear();
+  window.location.href = "./my_order.php";
+}
   </script>
 </body>
 </html>

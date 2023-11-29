@@ -47,7 +47,7 @@ for($i=0;$i<sizeof($products);$i++){
     }
 array_push($products2,["id"=>$products[$i][0],"name"=>$products[$i][1],"category"=>$products[$i][2],
 "punit"=>$products[$i][3],"sunit"=>$products[$i][4],"itemPrice"=>$products[$i][5],"minPrice"=>$products[$i][6],
-"maxPrice"=>$products[$i][7],"customerPrice"=>$customerPrice,"quantity"=>$qty,"orderBefore"=>$flag,"qty_step"=>$products[$i][8]]);
+"maxPrice"=>$products[$i][7],"customerPrice"=>$customerPrice,"quantity"=>$products[$i][9],"orderBefore"=>$flag,"qty_step"=>$products[$i][8]]);
 
 }
 

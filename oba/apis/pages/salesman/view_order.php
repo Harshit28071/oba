@@ -28,9 +28,7 @@ session_start();
             <div id="customerDetails"></div>
             <div id="tab-view"></div>
             
-            <button type="button" onclick="editOrder()" class="btn btn-block btn-info">
-              <i class="fa fa-pencil"></i> Edit Order </button>
-            <br>
+           
           </div>
         </section>
       </div> <?php require_once("./layout/footer.php"); ?>

@@ -6,22 +6,15 @@ var childCategories = [];
 loadCustomerDetails();
 loadOrderProducts();
 
-function getDate(){
-  var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
 
-today = dd + '/' + mm + '/' + yyyy;
-return today;
-}
 
 function loadCustomerDetails(){
   var html ='<div class="info-box">'+
   '<div class="info-box-content">'+
   '<table class="table"><tbody class="customer-table">'+
+  '<tr><td><strong>Order Id</strong></td><td>'+ localStorage.getItem('order_id')+'</td></tr>'+
     '<tr><td><strong>Customer</strong></td><td>'+ localStorage.getItem('customer_name')+'</td></tr>'+
-    '<tr><td><strong>Date</strong></td><td>'+ getDate()+'</td></tr>'+
+    '<tr><td><strong>Date</strong></td><td>'+ localStorage.getItem('order_date')+'</td></tr>'+
     '<tr><td><strong>Total</strong></td><td id="totalAmount"></td></tr>'+
   '</tbody></table>'+
   '</div></div>';
@@ -41,14 +34,14 @@ function loadCustomerDetails(){
       dataType : "json",
       success : function(data){
         products = data;
-        localStorage.setItem('OrderData',JSON.stringify(data));        
+        localStorage.setItem('OrderDetails',JSON.stringify(data));        
         showSelectedItems();
       }
   });
   }
 
   function loadOrderProducts(){
-        var temp = localStorage.getItem('OrderData') ;
+        var temp = localStorage.getItem('OrderDetails') ;
         if(temp){
           products = JSON.parse(temp);
           showSelectedItems();
