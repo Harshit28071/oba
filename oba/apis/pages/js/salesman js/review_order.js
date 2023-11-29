@@ -25,20 +25,33 @@ function saveOrder(){
       processData:false,
       success: function(response){
         if(response > 0){
-          alert('order has been created successfully');
+          //alert('order has been created successfully');
+          $("#modal-success-alert").modal('show');
+          $("#main-heading").html("Order Created");
+          $("#alert-message").html("order has been created successfully");
           localStorage.clear();
-          window.location.href='./dashboard.php';
+          deshboardRedirection();
+          
         }
       },
-      error: function(error) {
-      alert('Order creation Failed');
+      error: function(error){
+      $("#modal-warning-alert").modal('show');
+      $("#main-heading-warning").html("Order Failed");
+      $("#alert-message-warning").html("Order creation Failed");
       }
-      })  
+      });
   }else{
-    alert('Please add some items');
+   // alert('Please add some items');
+   $("#modal-info-alert").modal('show');
+      $("#main-heading-info").html("Add Items");
+      $("#alert-message-info").html("Please add some items");
+      }
   }
-}
 
+// Deshboard Redirection On Click Function
+$("#done-btn").on("click",function deshboardRedirection(){
+  window.location.href='./dashboard.php';
+});
 function getDate(){
   var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -93,7 +106,10 @@ function addNewItem(){
   $('#modal-add-item').modal('hide');
  
   }else{
-    alert('Please select item');
+    //alert('Please select item');
+    $("#modal-info-alert").modal('show');
+      $("#main-heading-info").html("Add Items");
+      $("#alert-message-info").html("Please add some items")
 
   }
   

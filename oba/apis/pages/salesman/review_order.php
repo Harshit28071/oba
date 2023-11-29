@@ -78,6 +78,10 @@ session_start();
     </div>
     <!-- /.modal-dialog -->
     </div>
+    <!--Alert Model Start-->
+   <?php require_once("./layout/alert_messages.php"); ?>
+    <!--Alert Model Close-->
+
     <!-----> <?php require_once("./layout/footer_links.php");?> <script>
       $("#heading").text("Review Order");
       
