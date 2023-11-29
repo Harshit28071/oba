@@ -76,7 +76,7 @@ session_start();
               <div class="icon">
                 <i class="fas fa-cart-plus"></i>
               </div>
-              <a href="./panding_orders.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer" id="pending-order">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

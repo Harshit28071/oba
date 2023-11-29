@@ -10,4 +10,9 @@ $(document).ready(function(){
 
         }
     })
-    })
+    });
+    $("#pending-order").on("click",function(){
+        localStorage.clear();
+        window.location.href='../salesman/pending_orders.php';
+    });
+   
