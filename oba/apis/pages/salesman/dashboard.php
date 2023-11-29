@@ -50,6 +50,11 @@ function createOrder(){
   localStorage.clear();
   window.location.href = "./create_order.php";
 }
+
+function showProducts(){
+  localStorage.clear();
+  window.location.href = "./show_products.php";
+}
   </script>
 </body>
 </html>

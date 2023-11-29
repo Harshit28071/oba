@@ -20,22 +20,22 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-3 ">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-danger" onclick="showProducts()">
               <div class="inner">
-                <h4>All products </h4>
+                <h4>All Products </h4>
 
                 <p> </p>
               </div>
               <div class="icon">
                 <i class="fas fa-shopping-basket"></i>
               </div>
-              <a href="get_all_product.php" class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a class="small-box-footer"> More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-3 ">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -50,7 +50,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-3 ">
             <!-- small box -->
             <div class="small-box bg-warning" onclick="createOrder()">
               <div class="inner">
@@ -63,7 +63,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-3 ">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -77,7 +77,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-3 ">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">

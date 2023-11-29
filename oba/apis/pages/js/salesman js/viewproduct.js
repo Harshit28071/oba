@@ -2,8 +2,30 @@ var products = [];
 var categories = [];
 var parentCategories = [];
 var childCategories = [];
-var viewFunction;
+var viewFunction = loadBoxView;
 var currentProducts = [];
+var currentCategory = '';
+
+function switchView(view){
+  currentProducts = JSON.parse(localStorage.getItem('products'));
+  $("#search").val(''); 
+  switch(view){
+    case 1:
+      
+      viewFunction = loadTableView;
+      break;
+      case 2:
+       
+        viewFunction = loadCollapseView;
+        break;
+        case 3:
+          viewFunction = loadBoxView;
+          break;
+          default: viewFunction = loadBoxView;
+
+  }
+  viewFunction();
+}
 
 function loadCategories(){
   $.ajax({
@@ -12,11 +34,23 @@ function loadCategories(){
     dataType : "json",
     success : function(data){
       categories = data;
-      fillCategories();    
-      loadProducts();  
+      localStorage.setItem('categories',JSON.stringify(data));
+      afterCategoryLoad(); 
           
     }
 });
+}
+
+function afterCategoryLoad(){
+  fillCategories();  
+      var temp = localStorage.getItem('products') ;
+      if(temp){
+        products = JSON.parse(temp);
+        currentProducts = products;
+        viewFunction();
+      }else{
+        loadProducts();  
+      }
 }
 
 function fillCategories(){
@@ -37,21 +71,20 @@ function loadProducts(){
     dataType : "json",
     success : function(data){
       products = data;
+      localStorage.setItem('products',JSON.stringify(data));
       currentProducts = products;
-      //loadTableView(data);
-      viewFunction = loadBoxView;
-      viewFunction();
-      console.log(data);        
+      viewFunction();        
           
     }
 });
 }
 
 function loadTableView(){
-  var data = currentProducts;
-  var html = '<div class="card" >'+
+  $("#searchForm").css("display", "block");
+    var html = '<div class="card" >'+
   '<div class="card-body p-0" >';
-    html = html + getTableViewHTML(data) + '</div></div>';
+  //debugger;
+    html = html + getTableViewHTML(currentProducts) + '</div></div>';
   $("#tab-view").html(html);
 } 
 
@@ -74,23 +107,38 @@ html = html + tbody + '</tbody></table>';
 return html;
  }
 
-function filterData(){
-  // debugger;
+ $("#searchForm").submit(function(event){
+
+  event.preventDefault();
+
   var input = $("#search").val();
 if(input != ''){
   var data = products.filter(function(obj) {
-    return (obj.name.toLowerCase().includes(input.toLowerCase()));
+    if(viewFunction == loadBoxView){
+      return (obj.name.toLowerCase().includes(input.toLowerCase()) && currentCategory == obj.category);
+    }else{
+      return (obj.name.toLowerCase().includes(input.toLowerCase()));
+    }
 });
 currentProducts= data;
 }else{
-  currentProducts= products;
+  if(viewFunction == loadBoxView){
+    currentProducts = JSON.parse(localStorage.getItem('products'));
+    currentProducts = getProducts(currentCategory);
+  }else{
+    currentProducts= products;
+  }
+  
 }
-
+if(viewFunction == loadBoxView){
+  loadTableView();
+}else{
 viewFunction();
- 
- }
+}
+});
 
 function loadCollapseView(){
+  $("#searchForm").css("display", "block");
   var html = '';
 //debugger;
   for(var i=0;i<parentCategories.length;i++){
@@ -168,19 +216,20 @@ return data;
 return data;
  }
 
+ 
  function loadBoxView(){
+  $("#searchForm").css("display", "none");
   $("#back").css("display", "none");
   var html = '<div class="row">';
   for(var i=0;i<parentCategories.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success">'+
+      '<div class="small-box bg-info" onclick="loadChildCategories(\''+parentCategories[i].name +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+parentCategories[i].name+'</h3>'+
       '</div>'+
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a onclick="loadChildCategories(\''+parentCategories[i].name +'\')" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
       '</div>'+
       '</div>';
   }
@@ -196,24 +245,24 @@ html = html + "</div>";
     loadBoxView();
   });
   if(childs.length > 0){
- 
+    $("#searchForm").css("display", "none");
   html = '<div class="row">';
   for(var i=0;i<childs.length;i++){
       html = html + '<div class="col-lg-3 col-6">'+
-      '<div class="small-box bg-success">'+
+      '<div class="small-box bg-info" onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')">'+
       '<div class="inner">'+
       '<h3 class="text-wrap">'+childs[i].name+'</h3>'+
       '</div>'+
       '<div class="icon">'+
       '<i class="ion ion-bag"></i>'+
       '</div>'+
-      '<a onclick="loadCategoryProducts(\''+childs[i].name +'\',\''+parent +'\')" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>'+
       '</div>'+
       '</div>';
   }
 html = html + "</div>";
 $("#tab-view").html(html);
 }else{
+  currentCategory = parent;
   currentProducts = products;
   currentProducts = getProducts(parent);
   loadTableView();
@@ -233,7 +282,13 @@ $("#tab-view").html(html);
  }
 
 
-loadCategories();
+ var cat = localStorage.getItem('categories');
+ if(cat){
+   categories = JSON.parse(cat);   
+   afterCategoryLoad();
+ }else{
+   loadCategories();
+ }
          
          
          
