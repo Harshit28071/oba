@@ -63,12 +63,12 @@ while($stmt->fetch()){
       <form role="form">     
 <div class="form-group">
 <select class="form-control" id="city-value">
-<option selected style="text-align: center;">SELECT CITY </option>
+<option selected style="text-align: center;" value="">SELECT CITY </option>
 <?php echo  $options_city ?>
 </select><br>
 <div class="form-group">
 <select class="form-control" id="show-customer">
-<option selected style="text-align: center;">SELECT CUSTOMER </option>
+<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
 </select> <br>
 <div>
 <div class="row">

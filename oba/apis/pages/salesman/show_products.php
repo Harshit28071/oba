@@ -38,19 +38,18 @@ session_start();
      <div class="col-md-12">
 
 
-     <form>
+     <form id="searchForm">
 <div class="input-group">
 <input type="search" id="search" class="form-control form-control-lg" placeholder="Type here">
 <div class="input-group-append">
-<button onclick="filterData()" class="btn btn-lg btn-default">
+<button id="searchButton" class="btn btn-lg btn-default">
 <i class="fa fa-search"></i>
 </button>
 </div>
 </div>
 </form>
 <div id="back" style="display:none;">
-<br>
-<button type="button" class="btn btn-block btn-primary btn-xs" id="backbutton" >Back</button>
+<button type="button" class="btn btn-block btn-danger" id="backbutton" >Back</button>
   </div>
   </div>
   </div>
@@ -78,7 +77,7 @@ session_start();
 <?php require_once("./layout/footer_links.php");?>
 <script>
    $("#heading").text("All Products");
-   $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadTableView()">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadCollapseView()" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="loadBoxView()">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li>');
+   $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(1)">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(2)" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(3)">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li>');
    $("#loader").show();
   
   

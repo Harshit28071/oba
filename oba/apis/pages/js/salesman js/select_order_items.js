@@ -377,7 +377,7 @@ function loadCollapseView(){
   viewFunction = loadCollapseView;
   $("#searchForm").css("display", "block");
   var html = '';
-//debugger;
+debugger;
   for(var i=0;i<parentCategories.length;i++){
       var childs = getChilds(parentCategories[i].name);
       if(childs.length > 0){
