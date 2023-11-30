@@ -79,7 +79,7 @@
           <!-- ./col -->
           <div class="col-lg-3 ">
             <!-- small box -->
-            <div class="small-box bg-info"  onclick = "manageCustomer()">
+            <div class="small-box bg-info"  onclick = "allCustomers()">
               <div class="inner">
                 <h4>Manage Customer</h4>
                 <p> </p>

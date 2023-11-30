@@ -93,7 +93,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
         //debugger;
         $("#modal-city-select-box").modal("show");
       });   
-      $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="sortData()">          <i class="fa fa-fw fa-table"></i>        </a>      </li>');
+      $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="sortData()">          <i class="fa fa-sort" aria-hidden="true"></i>        </a>      </li>');
    
   </script>
 </body>

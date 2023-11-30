@@ -64,7 +64,7 @@ function getCustomers(cityid){
 //City Filter
 
 $("#select-city").change(function () {
-    debugger;
+    // debugger;
     $("#modal-city-select-box").modal('hide');
     var city_name = $('#select-city').find(":selected").text();
     localStorage.setItem('selectedCity', city_name);
@@ -92,7 +92,7 @@ function displayCustomer(data) {
     var html = '';
     var count = + 1;
     $.each(data, function (key, value) {
-        html = html + '<div class="info-box">' +
+        html = html + '<div class="info-box" onclick="customerprofile('+ value.id +')">' +
         '<div class="info-box-content">' +
         ' <span class="info-box-number">' + count++ + '.  ' + value.customer_name + '</span>' +
         '</div>' +
@@ -158,3 +158,7 @@ function filterCustomers(customerName) {
     filterCustomers($("#customer-name").val());
      e.preventDefault();
  });
+ function customerprofile(customer_id){
+    //localStorage.clear();
+    window.location.href = "./customer_profile.php?id="+customer_id ;
+  }
