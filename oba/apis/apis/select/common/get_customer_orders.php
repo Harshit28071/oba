@@ -13,7 +13,7 @@ $stmt->bind_result($o_id,$o_salesman_id,$order_date,$order_status,$order_invoice
 
 while($stmt->fetch()){
     $canedit = false;
-    if($o_salesman_id == $user_id){
+    if($o_salesman_id == $user_id && $order_invoice_id == 0){
         $canedit = true;
     }
     array_push($orders,['order_id' => $o_id,'salesman_id'=>$o_salesman_id,'order_date'=>$order_date,'order_status'=>$order_status,'order_invoice_id'=>$order_invoice_id,'order_amount'=>$order_amount,'canedit'=>$canedit]);
