@@ -86,14 +86,14 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!-- jQuery -->
   <?php require_once("./layout/alert_messages.php"); ?>
   <?php require_once("./layout/footer_links.php"); ?>
-  <script src="../js/salesman js/manage_customer.js"></script>
+  <script src="../js/salesman js/all_customers.js"></script>
   <script>
       $("#filter").on("click", function(event) {
         event.preventDefault();
         //debugger;
         $("#modal-city-select-box").modal("show");
       });   
-    $("#heading").text("Manage Customer");
+      $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="sortData()">          <i class="fa fa-fw fa-table"></i>        </a>      </li>');
    
   </script>
 </body>

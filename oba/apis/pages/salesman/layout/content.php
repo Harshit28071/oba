@@ -37,9 +37,9 @@
           <!-- ./col -->
           <div class="col-lg-3 ">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-success" onclick="allCustomers()">
               <div class="inner">
-                <h4>All customers<sup style="font-size: 20px"></sup></h4>
+                <h4>All Customers<sup style="font-size: 20px"></sup></h4>
 
                 <p></p>
               </div>

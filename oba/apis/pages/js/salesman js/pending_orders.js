@@ -108,7 +108,7 @@ function loadCities() {
 function displayCity(data) {
     var loadCityData = '<option selected style="text-align: center;" value="">SELECT CITY </option>';
     $.each(data, function (key, value) {
-        loadCityData = loadCityData + ("<option value='" + value.cname + "' id='close-modal'>" + value.cname + "</option>"
+        loadCityData = loadCityData + ("<option value='" + value.cname + "'>" + value.cname + "</option>"
         );
     });
     $("#select-city").html(loadCityData);
