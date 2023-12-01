@@ -34,39 +34,8 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
       </div>
        <!-- Main content -->
     <div class="container" id="load-single-customer">
-        <div id="singleCustomerDetails"> </div>
-        <div class="content-header">
-        <div class="form-group">
-          <div class="input-group-append">
-            <button class="btn btn-lg btn-default" onclick="filterModal()">
-              <i class="fa fa-filter"></i>
-            </button>
-          </div>
-          <div class="modal fade" id="modal-status-select-box">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h6 class="modal-title">Select Status</h6>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <select id="select-order-s" class="form-control">
-                   <option>Select Order Status</option>
-                   <option>New</option>
-                   <option>Pending</option>
-                   <option>Completed</option>
-
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div id="customerOrder"></div>
-
+        
+        <div id="singleCustomerAllDetails"> </div>
         
     </div>
     <!-- /.content -->
@@ -87,8 +56,12 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!--  -->
   <?php require_once("./layout/footer_links.php"); ?>
   <script src="../js/salesman js/customer_profile.js"></script>
+  <script src="../js/salesman js/edit_customer_details.js"></script>
+
   <script>
-    //  $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="sortData()">          <i class="fa fa-sort" aria-hidden="true"></i>        </a>      </li>');
+    const urlparams = new URLSearchParams(window.location.search);
+   var  id = urlparams.get('id')
+    $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="editCustomerDetails(' + id +')"><i class="fa fa-edit"></i></a></li>');
       $("#heading").text("Customer Details");
   </script>
 </body>
