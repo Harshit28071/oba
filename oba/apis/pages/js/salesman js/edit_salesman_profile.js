@@ -1,9 +1,3 @@
-//Edit Customer Details Rediretion
-function editCustomerDetails(customer_id){
-    localStorage.clear();
-    window.location.href = "./edit_customer_details.php?id="+customer_id ;
-}
-
 function loadcity(){
     $.ajax({
         url : "../../apis/select/admin/get_city.php",
@@ -53,7 +47,7 @@ function loadDistributor(){
         dataType : "json",
         success : function(data){
         displayDistributor(data) ;
-        loadSingleCustomer();
+        loadSingleSalesman();
         }
     });
 }
@@ -66,15 +60,12 @@ function displayDistributor(data) {
     });
     $("#dis-select-box").append(loadDistributor);
 }
-function loadSingleCustomer(){
-    const urlparams = new URLSearchParams(window.location.search);
+function loadSingleSalesman(){
     $.ajax({
-        url: "../../apis/select/common/get_single_customer.php",
+        url: "../../apis/select/common/get_single_salesman.php",
         type: "POST",
-        data: {id : urlparams.get('id')},
         dataType: "json",
         success: function (data) {
-        $("#Cust-id-edit").val(data[0].cid);
         $("#Cust-name").val(data[0].cname);
         $("#Cust-Mobile").val(data[0].cmobile);
         $("#cust-add").val(data[0].caddress);
@@ -91,7 +82,7 @@ $("#edit-customer-form").on("submit",function(e){
     $("#loader-customer-edit").show();
     $.ajax({
             type: 'POST',
-            url: '../../apis/update/salesman/edit_customer_details.php',
+            url: '../../apis/update/salesman/edit_salesman_details.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

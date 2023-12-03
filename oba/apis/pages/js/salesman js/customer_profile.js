@@ -86,9 +86,14 @@ function customerAllDetails(customer_id){
         var datetimeValue = new Date(value.order_date).toLocaleDateString("en-GB");
         var cust = value.customer_name + '  ('+value.city_name+')';
         html = html + '<div class="info-box">' +
-        '<div class="info-box-content">' +
-        ' <span class="info-box-number">' + count++ + '.  ' + value.order_status + '</span>' +
-        '<span class="info-box-text">Amount</span>' +
+        '<div class="info-box-content">' ;
+        if(value.order_status == 'New' ||value.order_status == 'Pending'){
+            html = html + ' <span class="info-box-number text-danger">' + count++ + '.  ' + value.order_status + '</span>' ;
+        }
+        if(value.order_status == 'Completed'){
+            html = html + ' <span class="info-box-number text-success">' + count++ + '.  ' + value.order_status + '</span>' ;
+        }
+        html = html + '<span class="info-box-text">Amount</span>' +
         '<span class="info-box-number">₹&nbsp;&nbsp;&nbsp;' + value.order_amount + '</span>' +
         '</div>' +
         '<div class="info-box-content align-items-end">' +
@@ -115,7 +120,7 @@ orders = localStorage.getItem('customer_orders');
 orders = JSON.parse(orders);
 function filterorder(selectOrderStatus){
     
-    if(selectOrderStatus == ''){
+    if(selectOrderStatus == 'All'){
         displayCustomerOders(orders);
     }else{
     var filterOders = [];

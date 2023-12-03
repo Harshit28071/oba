@@ -29,19 +29,14 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
-       
-      </div>
+      
        <!-- Main content -->
     <div class="container" id="load-single-customer">
         <div id="singleCustomerDetails"> </div>
-        <div class="content-header">
-        <div class="form-group">
-          <div class="input-group-append">
-            <button class="btn btn-lg btn-default" onclick="filterModal()">
-              <i class="fa fa-filter"></i>
-            </button>
-          </div>
+       
+        <div id="customerOrder"></div>
+<!-- modal for filter data  -->
+<div class="form-group">
           <div class="modal fade" id="modal-status-select-box">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -53,7 +48,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
                 </div>
                 <div class="modal-body">
                   <select id="select-order-s" class="form-control">
-                   <option>Select Order Status</option>
+                   <option class="text-center">All</option>
                    <option>New</option>
                    <option>Pending</option>
                    <option>Completed</option>
@@ -65,12 +60,10 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
           </div>
         </div>
       </div>
-        <div id="customerOrder"></div>
-
-        
+      <!-- Modal For Filtter Data Close-->
     </div>
     <!-- /.content -->
-    </div>
+    
     <!-- /.content-header -->
   <!-- /.content-wrapper -->
  
@@ -88,7 +81,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <?php require_once("./layout/footer_links.php"); ?>
   <script src="../js/salesman js/customer_profile.js"></script>
   <script>
-    //  $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="sortData()">          <i class="fa fa-sort" aria-hidden="true"></i>        </a>      </li>');
+     $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="filterModal()">          <i class="fa fa-filter"></i>        </a>      </li>');
       $("#heading").text("Customer Details");
   </script>
 </body>

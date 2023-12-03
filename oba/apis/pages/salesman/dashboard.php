@@ -44,7 +44,8 @@ session_start();
 $("#heading").text("Dashboard");
 $("#back-button").css("display", "none");
 $("#logout").append('<li class="nav-item">'+
-      '<a href="./../../common/logout.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button> </a>'+
+      '<a href="./view_salesman_profile.php"><button class="btn btn-info"><i class="fas fa-user"></i></button>  </a>'+
+      '<a href="./../../common/logout.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button>  </a>'+
       '</li>');
 function createOrder(){
   localStorage.clear();
