@@ -39,7 +39,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
       <div id="loader-edit-customer" style="display:none;" class="overlay">
               <i class="fa fa-refresh fa-spin"></i>
               </div>
-                <form id="edit-customer-form">
+                <form id="edit-customer-form" method="POST">
                 <input type="hidden" class="form-control" placeholder="Customer id" name="Custid" autocomplete="off" id="Cust-id-edit" required>
                 <div class="row">
                   <div class="col-md-6 form-group">
@@ -88,8 +88,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
                   </div>
                   <div class="col-md-6 form-group">        
                     <label>Select Firm</label>
-                        <select class="form-control" name="FirmName" id="Firm" > 
-                        </select>
+                    <input type="text" class="form-control" placeholder="Enter Firm" name="FirmName" autocomplete="off" id="Firm" />
                   </div>
                   <div class="col-md-6 form-group">
                     <label>GSTIN</label>
@@ -97,7 +96,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
                   </div>
 
                 </div>
-                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-customer" value="Update"> 
+                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-customer" value="Edit"> 
               </form>
               </div>
         

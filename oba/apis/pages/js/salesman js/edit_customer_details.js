@@ -76,10 +76,32 @@ function loadSingleCustomer(){
         $("#Cust-Mobile").val(data[0].cmobile);
         $("#cust-add").val(data[0].caddress);
         $("#c-gstin").val(data[0].cGSTIN);
-
+        $("#Firm").val(data[0].cfirm);
         }
     });
 }
+$("#edit-customer-form").on("submit",function(e){
+    $("#loader-customer-edit").show();
+    $.ajax({
+            type: 'POST',
+            url: '../../apis/update/salesman/edit_customer_details.php',
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){
+              $("#loader-customer-edit").hide();
+                if(response.status == 1){
+                   $('#edit-customer-form')[0].reset();
+                   window.location.replace("./view_customer_all_details.php");  
+                }    
+            }
+           
+            });
+        e.preventDefault();
+   });
+ 
 loadSingleCustomer();
 loadcity();
 loadState();
