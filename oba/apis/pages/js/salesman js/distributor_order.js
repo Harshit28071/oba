@@ -1,16 +1,11 @@
-     $('#city-value').change(function(){
-        loadCustomer();
-    });
+    
  function loadCustomer(){
-    var cityId = $('#city-value').val();
-    var cityName = $('#city-value').find(":selected").text();
-
+   
     $.ajax({
        type : 'POST',
-       url : '../../apis/select/salesman/get_city_customer.php',
-       data : {id:cityId},
+       url : '../../apis/select/common/get_distributors.php',
        success: function(data){
-           var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
+           var html = '<option selected style="text-align: center;" value="">SELECT DISTRIBUTOR </option>';
            $.each(data, function (index, value) {
                // APPEND OR INSERT DATA TO SELECT ELEMENT.
                html =   html + ('<option value="' + value.id + '">' + value.cname + '('+ value.cityname + ')' + '</option>');
@@ -20,9 +15,7 @@
             $('#show-customer').val(localStorage.getItem('customer_id'));
            
         }
-          // localStorage.setItem('customerList',data);
-           localStorage.setItem('city_id',cityId);
-           localStorage.setItem('city_name',cityName);
+          
           
        }
     });
@@ -30,20 +23,22 @@
     $('#show-customer').change(function(){
         var customerid = $('#show-customer').val();
         var customerName = $('#show-customer option:selected').text();
-        localStorage.setItem('customer_id',customerid);
-        localStorage.setItem('customer_name',customerName);
+        localStorage.setItem('distributor_id',customerid);
+        localStorage.setItem('distributor_name',customerName);
 
     });
     $(document).ready(function(){
-        if(localStorage.getItem('city_id')){
-            $('#city-value').val(localStorage.getItem('city_id'));
+        
             loadCustomer();
-        }
-    });
+        
+    })
 
-    function selectOrderItems(){
+    function selectOrders(){
         if($("#show-customer").val()!= ''){
-            window.location.href = './select_order_items.php';
+            localStorage.removeItem('order_data_set');
+            localStorage.removeItem('selectedOrders');
+            localStorage.removeItem('city_data');
+            window.location.href = './select_orders.php';
         }else{
             alert('Please select a customer');
         }

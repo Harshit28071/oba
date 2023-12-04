@@ -79,9 +79,9 @@
           <!-- ./col -->
           <div class="col-lg-3 ">
             <!-- small box -->
-            <div class="small-box bg-info"  onclick = "allCustomers()">
+            <div class="small-box bg-info"  onclick = "distributorOrder()">
               <div class="inner">
-                <h4>Manage Customer</h4>
+                <h4>Create Distributor Order</h4>
                 <p> </p>
               </div>
               <div class="icon">

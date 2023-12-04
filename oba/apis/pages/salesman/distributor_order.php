@@ -1,26 +1,6 @@
 <?php
 session_start();
- require_once("../../common/database.php");
- $db = new Database();
- $conn = $db->connect();
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-   header("location:../admin/user_login.php");
-}
-//city select box
-$quarycity ="SELECT id,name FROM city";
-$stmt = $conn->prepare($quarycity);
-$stmt->execute();
-$stmt->bind_result($id,$cityname);
-$options_city = "";
-
-while($stmt->fetch()){
-  
-    $options_city .="<option value='$id' >$cityname</option>";
-
-  }
-  //city select box close
-
- ?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once("./layout/header.php");?>
@@ -62,27 +42,20 @@ while($stmt->fetch()){
       <div class="card-body">
       <form role="form">     
 <div class="form-group">
-<select class="form-control" id="city-value">
-<option selected style="text-align: center;" value="">SELECT CITY </option>
-<?php echo  $options_city ?>
-</select><br>
 <div class="form-group">
 <select class="form-control" id="show-customer">
-<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
+<option selected style="text-align: center;" value="">SELECT DISTRIBUTOR </option>
 </select> <br>
 <div>
 <div class="row">
-<div class="col-6">
-<button type="button" class="btn  btn-outline-danger btn-block">Auto Generate Order</button>
-</div>
-<div class="col-6">
-<button type="button" onclick="selectOrderItems()" class="btn  btn-outline-success btn-block">Create Manual Order</button>
+<div class="col-12">
+<button type="button" onclick="selectOrders()" class="btn  btn-outline-success btn-block">Create Order</button>
 </div>
 </div>
 <br>
 <b>OR</b>
 </div><br>
-<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-outline-primary btn-block">Add New Customer</button></a></div><br>
+<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-outline-primary btn-block">Add Distributor</button></a></div><br>
 
 </div>
 </div>
@@ -106,11 +79,9 @@ while($stmt->fetch()){
 
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
-<script src="../js/salesman js/createorder.js"></script>
+<script src="../js/salesman js/distributor_order.js"></script>
 <script>
-$("#heading").text("Create Order");
-$("#three-dot").css("display", "none");
-
+$("#heading").text("Create Distributor Order");
   </script>
 </body>
 </html>

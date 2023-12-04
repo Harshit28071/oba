@@ -100,9 +100,8 @@ function loadProducts(){
 //done
 function loadProductView(){
    // isme product ka view banana hai using currentProducts
-    var html = '<div class="card" >'+
-    '<div class="card-body custom-card-padding p-0" >';
-      html = html + getCardViewHTML(currentProducts) + '</div></div>';
+    var html = '';
+      html = html + getCardViewHTML(currentProducts);
     $("#tab-view").html(html);
    
 } 

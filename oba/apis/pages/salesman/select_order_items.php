@@ -51,7 +51,7 @@ session_start();
 </div>
 </form>
 <div id="back" style="display:none;">
-<button type="button" class="btn btn-block btn-default" id="backbutton" >Back</button>
+<button type="button" class="btn btn-block btn-danger" id="backbutton" >Back</button>
   </div>
   </div>
   </div>

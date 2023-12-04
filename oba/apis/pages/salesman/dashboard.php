@@ -64,6 +64,10 @@ function allCustomers(){
   localStorage.clear();
   window.location.href = "./all_customers.php";
 }
+function distributorOrder(){
+  localStorage.clear();
+  window.location.href = "./distributor_order.php";
+}
   </script>
 </body>
 </html>

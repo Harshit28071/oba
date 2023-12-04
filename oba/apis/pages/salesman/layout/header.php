@@ -128,5 +128,15 @@
         .padding-10{
             padding-right: 10px;
         }
+        .full-space{
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .black-border >input:first-child+label::before{
+            border: 1px solid black !important;
+        }
+        .btn-danger{
+            font-size: 18px;
+        }
     </style>
 </head>
