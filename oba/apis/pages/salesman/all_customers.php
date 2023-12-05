@@ -45,7 +45,26 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
               <i class="fa fa-filter"></i>
             </button>
           </div>
-          <div class="modal fade" id="modal-city-select-box">
+       
+        </div>
+      </div>
+    
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="container" id="load-customer">
+
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <?php require_once("./layout/footer.php"); ?>
+  <!-- Control Sidebar -->
+
+  <!-- /.control-sidebar -->
+</div>
+  <!-- ./wrapper -->
+  <div class="modal fade" id="modal-city-select-box">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
                 <div class="modal-header">
@@ -62,27 +81,6 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="container" id="load-customer">
-
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <?php require_once("./layout/footer.php"); ?>
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-
   <!-- jQuery -->
   <?php require_once("./layout/alert_messages.php"); ?>
   <?php require_once("./layout/footer_links.php"); ?>

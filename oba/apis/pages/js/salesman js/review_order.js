@@ -4,20 +4,39 @@ var parentCategories = [];
 var childCategories = [];
 var selectedProducts = [];
 
+var current_customer_id = '';
+var current_customer_name = '';
+var save_url = '';
+if(localStorage.getItem('isDistributor')){
+  current_customer_id = localStorage.getItem('distributor_id');
+  current_customer_name = localStorage.getItem('distributor_name');
+  save_url = '../../apis/add/salesman/add_distributor_order.php';
+}else{
+  save_url = '../../apis/add/salesman/add_order.php';
+  current_customer_id = localStorage.getItem('customer_id');
+  current_customer_name = localStorage.getItem('customer_name');
+}
+
+
 loadCustomerDetails();
 
 function saveOrder(){
   if(selectedProducts.length > 0){
-
+    $("#save-order").prop('disabled', true);
+    var selectedOrders = localStorage.getItem('selectedOrders');
+    if(selectedOrders){
+      selectedOrders = JSON.parse(selectedOrders).toString();
+    }
     var productData = {
       products : selectedProducts,
-      customerId : localStorage.getItem('customer_id'),
-      totalAmount: getTotalAmount()
+      customerId : current_customer_id,
+      totalAmount: getTotalAmount(),
+      selectedOrders : selectedOrders
     }
 
     $.ajax({
       type: 'POST',
-      url: '../../apis/add/salesman/add_order.php',
+      url: save_url,
       data: JSON.stringify(productData),
       dataType: 'json',
       contentType: false,
@@ -66,7 +85,7 @@ function loadCustomerDetails(){
   var html ='<div class="info-box">'+
   '<div class="info-box-content">'+
   '<table class="table"><tbody class="customer-table">'+
-    '<tr><td><strong>Customer</strong></td><td>'+ localStorage.getItem('customer_name')+'</td></tr>'+
+    '<tr><td><strong>Customer</strong></td><td>'+ current_customer_name+'</td></tr>'+
     '<tr><td><strong>Date</strong></td><td>'+ getDate()+'</td></tr>'+
     '<tr><td><strong>Total</strong></td><td id="totalAmount"></td></tr>'+
   '</tbody></table>'+
@@ -203,7 +222,7 @@ function loadCategories(){
       url : "../../apis/select/salesman/get_products_for_new_order.php",
       type : "POST",
       data : {
-        customerId : localStorage.getItem('customer_id')
+        customerId : current_customer_id
       },
       dataType : "json",
       success : function(data){
@@ -463,6 +482,3 @@ if(cat){
 }else{
   loadCategories();
 }
-
-
-

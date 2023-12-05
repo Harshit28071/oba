@@ -56,7 +56,7 @@ function customerAllDetails(customer_id){
      "<tr><td><strong>Firm</strong></td><td>"+ value.cfirm +"</td></tr>"+
      "<tr><td><strong>GSTIN</strong></td><td>"+ value.cGSTIN +"</td></tr>"+
      "<tr><td><strong>Type</strong></td><td>"+ value.ctype +"</td></tr>"+
-     "<tr><td><strong>Distributor ID</strong></td><td>"+ value.distributor_name+"</td></tr>"+
+     "<tr><td><strong>Distributor(Goods Source)</strong></td><td>"+ value.distributor_name+"</td></tr>"+
      "</tbody>"+
       "</table>"+
       "</div>"+

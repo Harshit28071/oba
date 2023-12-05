@@ -88,15 +88,15 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
                   </div>
                   <div class="col-md-6 form-group">        
                     <label>Select Firm</label>
-                    <input type="text" class="form-control" placeholder="Enter Firm" name="FirmName" autocomplete="off" id="Firm" />
+                    <input type="text" class="form-control" readonly placeholder="Enter Firm" name="FirmName" autocomplete="off" id="Firm" />
                   </div>
                   <div class="col-md-6 form-group">
                     <label>GSTIN</label>
-                    <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
+                    <input type="text" class="form-control" readonly placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
                   </div>
 
                 </div>
-                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-customer" value="Edit"> 
+                <input type="submit"  class="btn btn-danger btn-md float-right" id="edit-customer" value="Update"> 
               </form>
               </div>
         

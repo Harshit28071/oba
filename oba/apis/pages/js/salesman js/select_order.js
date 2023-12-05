@@ -4,9 +4,12 @@ var selectedOrders = [];
 function loadPendingOrders() {
     //Get All Pending Orders 
     $.ajax({
-        url: "../../apis/select/salesman/get_pending_orders.php",
+        url: "../../apis/select/salesman/get_pending_distributor_orders.php",
         type: "POST",
         dataType: "json",
+        data:{
+            id:localStorage.getItem('distributor_id')
+        },
         success: function (data) {
             currentOrders = data;
             localStorage.setItem('order_data_set', JSON.stringify(data));
@@ -173,10 +176,13 @@ function createOrder(){
         },
         dataType : "json",
         success : function(data){
-          localStorage.setItem('selectedProducts',JSON.stringify(data));        
-          
+          localStorage.setItem('selectedProducts',JSON.stringify(data));         
+          localStorage.setItem('isDistributor',true);
+          window.location.href= './review_order.php';
         }
     });
+}else{
+    alert('No Order Selected. Please select a order or create order from Create Order option from dashboard.');
 }
 }
 

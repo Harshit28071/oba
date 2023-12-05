@@ -24,7 +24,7 @@
             <!-- small box -->
             <div class="small-box bg-danger" onclick="showProducts()">
               <div class="inner">
-                <h4>All Products </h4>
+                <h4>All Products / सभी प्रोडक्ट</h4>
 
                 <p> </p>
               </div>
@@ -39,7 +39,7 @@
             <!-- small box -->
             <div class="small-box bg-success" onclick="allCustomers()">
               <div class="inner">
-                <h4>All Customers<sup style="font-size: 20px"></sup></h4>
+                <h4>All Customers / सभी ग्राहक<sup style="font-size: 20px"></sup></h4>
 
                 <p></p>
               </div>
@@ -54,7 +54,7 @@
             <!-- small box -->
             <div class="small-box bg-warning" onclick="createOrder()">
               <div class="inner">
-                <h4>Create Order</h4>
+                <h4>Create Order / ऑर्डर बनाएं</h4>
               </div>
               <div class="icon">
                 <i class="fas fa-cart-plus"></i>
@@ -67,7 +67,7 @@
             <!-- small box -->
             <div class="small-box bg-danger" onclick="myOrders()">
               <div class="inner">
-                <h4>My Orders</h4>
+                <h4>My Orders / मेरे ऑर्डर्स </h4>
                 <p></p>
               </div>
               <div class="icon">
@@ -81,7 +81,7 @@
             <!-- small box -->
             <div class="small-box bg-info"  onclick = "distributorOrder()">
               <div class="inner">
-                <h4>Create Distributor Order</h4>
+                <h4>Create Distributor Order / डिस्ट्रीब्यूटर का आर्डर बनाये </h4>
                 <p> </p>
               </div>
               <div class="icon">

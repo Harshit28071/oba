@@ -30,7 +30,7 @@ session_start();
             <button type="button" class="btn btn-block btn-danger" onclick="showAddModal()">
               <i class="fa fa-plus"></i> Add More Item </button>
             <br>
-            <button type="button" onclick="saveOrder()" class="btn btn-block btn-info">
+            <button type="button" onclick="saveOrder()" id="save-order" class="btn btn-block btn-info">
               <i class="fa fa-tick"></i> Save Order </button>
             <br>
           </div>
