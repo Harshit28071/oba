@@ -4,7 +4,7 @@ session_start();
  $db = new Database();
 
  $conn = $db->connect();
-    if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "1"){
+    if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
     header("location:./user_login.php");
     }
     //Quary For State

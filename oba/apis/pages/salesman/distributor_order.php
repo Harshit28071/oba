@@ -3,7 +3,7 @@ session_start();
   ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/header.php");?>
+<?php require_once("./../common/mobile_layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -14,7 +14,7 @@ session_start();
 
   <!-- Navbar -->
   <?php 
-  require_once("./layout/navbar.php") ?>
+  require_once("./../common/mobile_layout/navbar.php") ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -49,13 +49,13 @@ session_start();
 <div>
 <div class="row">
 <div class="col-12">
-<button type="button" onclick="selectOrders()" class="btn  btn-outline-success btn-block">Create Order</button>
+<button type="button" onclick="selectOrders()" class="btn  btn-danger btn-block">Create Order</button>
 </div>
 </div>
 <br>
 <b>OR</b>
 </div><br>
-<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-outline-primary btn-block">Add Distributor</button></a></div><br>
+<div><a href="./add_customer.php" id="add-cust"><button type="button" class="btn  btn-info btn-block">Add Distributor</button></a></div><br>
 
 </div>
 </div>
@@ -78,8 +78,8 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<?php require_once("./layout/footer_links.php");?>
-<script src="../js/salesman js/distributor_order.js"></script>
+<?php require_once("./../common/mobile_layout/footer_links.php");?>
+<script src="../../js/salesman/distributor_order.js"></script>
 <script>
 $("#heading").text("Create Distributor Order");
   </script>

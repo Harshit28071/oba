@@ -41,7 +41,7 @@ session_start();
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/header.php");?>
+<?php require_once("./../common/mobile_layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -52,7 +52,7 @@ session_start();
 
   <!-- Navbar -->
   <?php 
-  require_once("./layout/navbar.php") ?>
+  require_once("./../common/mobile_layout/navbar.php") ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -64,7 +64,7 @@ session_start();
     </a>
 
     <!-- Sidebar -->
-    <?php require_once("./layout/sidebar.php");?>
+    <?php require_once("./../common/mobile_layout/sidebar.php");?>
     <!-- /.sidebar -->
   </aside>
 
@@ -163,7 +163,7 @@ session_start();
       </div>
   </div>
   
- <?php require_once("./layout/footer.php"); ?>
+ <?php require_once("./../common/mobile_layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -173,9 +173,9 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<?php require_once("./layout/footer_links.php");?>
+<?php require_once("./../common/mobile_layout/footer_links.php");?>
 <script>  $("#heading").text("Add Customer");</script>
-<script src="../js/salesman js/add_customer.js"></script>
+<script src="../../js/salesman/add_customer.js"></script>
 
 </body>
 </html>

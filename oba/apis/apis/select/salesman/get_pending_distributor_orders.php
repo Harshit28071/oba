@@ -6,7 +6,7 @@ session_start();
 $user_id = $_SESSION['s_id'];
 $id = $_POST["id"];
 $orders_status = [];
-$stmt =$conn->prepare("SELECT orders.id,orders.salesman_id,orders.date,orders.order_status,orders.invoice_id,orders.amount,customer.name,city.name,customer.id from orders LEFT JOIN customer ON orders.party_id = customer.id LEFT JOIN city ON customer.city = city.id WHERE orders.salesman_id = ? AND orders.party_id != ? AND (orders.order_status = 'New' OR orders.order_status = 'Pending') AND invoice_id = 0 order by orders.date");
+$stmt =$conn->prepare("SELECT orders.id,orders.salesman_id,orders.date,orders.order_status,orders.invoice_id,orders.amount,customer.name,city.name,customer.id from orders LEFT JOIN customer ON orders.party_id = customer.id LEFT JOIN city ON customer.city = city.id WHERE orders.salesman_id = ? AND orders.party_id != ? AND (orders.order_status = 'New') AND invoice_id = 0 order by orders.date");
 $stmt->bind_param("ii",$user_id,$id);
 $stmt->execute();
 $stmt->bind_result($o_id,$o_salesman_id,$order_date,$order_status,$order_invoice_id,$order_amount,$customer_name,$city_name,$customer_id);

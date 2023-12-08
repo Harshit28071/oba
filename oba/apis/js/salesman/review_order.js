@@ -54,9 +54,9 @@ function saveOrder(){
         }
       },
       error: function(error){
-      $("#modal-warning-alert").modal('show');
-      $("#main-heading-warning").html("Order Failed");
-      $("#alert-message-warning").html("Order creation Failed");
+      $("#modal-danger-alert").modal('show');
+      $("#main-heading-danger").html("Order Failed");
+      $("#alert-message-danger").html("Order creation Failed");
       }
       });
   }else{

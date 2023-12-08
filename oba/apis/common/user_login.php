@@ -12,7 +12,7 @@ $password = $_POST['password'];
 // Hash the received password
 //$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 // Query the database to check if username and password match
-$stmt = $conn->prepare("SELECT * FROM user WHERE username = ? LIMIT 1");
+$stmt = $conn->prepare("SELECT a.*,b.role as role_name FROM user a left join roles b on a.role = b.id WHERE username = ? LIMIT 1");
 $stmt->bind_param("s",$username);
 $stmt->execute();
 $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -33,13 +33,14 @@ if(count($result) > 0){
         session_start();
         $_SESSION["s_id"] =$result[0]['id'];
         $_SESSION["s_username"] =$result[0]['username'];
-        $_SESSION["s_role"] =$result[0]['role'];
+        $_SESSION["s_role"] =$result[0]['role_name'];
         $_SESSION["s_language"] =$result[0]['lang'];
         $_SESSION["s_token"] =$token;
         
         switch($_SESSION["s_role"]){
-          case 1: header("location:./../pages/admin/dashboard.php"); break;
-          case 4: header("location:./../pages/salesman/dashboard.php"); break;
+          case 'Admin': header("location:./../pages/admin/dashboard.php"); break;
+          case 'Salesman': header("location:./../pages/salesman/dashboard.php"); break;
+          case 'Accountant': header("location:./../pages/accountant/dashboard.php"); break;
           default:  header("location:./user_login.php");
         }
          

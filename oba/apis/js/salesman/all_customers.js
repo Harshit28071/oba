@@ -2,20 +2,7 @@ var cities = [];
 var customers = [];
 var defaultCity = 'Bijnor';
 var sort = 1;
-function loadCities() {
-    //Get All Pending Orders 
-    $.ajax({
-        url: "../../apis/select/salesman/get_all_city.php",
-        type: "POST",
-        async: "false",
-        dataType: "json",
-        success: function (data) {
-            cities = data;
-            localStorage.setItem('city_data', JSON.stringify(data));
-            displayCity(data);
-        }
-    })
-}
+
 //Display city
 function displayCity(data) {
     var loadCityData = '';

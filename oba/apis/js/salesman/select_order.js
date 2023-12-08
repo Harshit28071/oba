@@ -2,7 +2,6 @@ var currentOrders = [];
 var cities = [];
 var selectedOrders = [];
 function loadPendingOrders() {
-    //Get All Pending Orders 
     $.ajax({
         url: "../../apis/select/salesman/get_pending_distributor_orders.php",
         type: "POST",
@@ -79,7 +78,7 @@ function displayOrders(data) {
     $("#load-orders").html(html);
 
 }
-
+ 
 
 function viewOrder(orderId, customerName, date) {
         localStorage.setItem('order_id',orderId);
@@ -91,28 +90,7 @@ function viewOrder(orderId, customerName, date) {
 
 }
 
-function loadCities() {
-    //Get All Pending Orders 
-    $.ajax({
-        url: "../../apis/select/salesman/get_all_city.php",
-        type: "POST",
-        dataType: "json",
-        success: function (data) {
-            cities = data;
-            localStorage.setItem('city_data', JSON.stringify(data));
-            displayCity(data);
-        }
-    })
-}
-//Display city
-function displayCity(data) {
-    var loadCityData = '<option selected style="text-align: center;" value="">SELECT CITY </option>';
-    $.each(data, function (key, value) {
-        loadCityData = loadCityData + ("<option value='" + value.cname + "'>" + value.cname + "</option>"
-        );
-    });
-    $("#select-city").html(loadCityData);
-}
+
 var temp = localStorage.getItem('selectedOrders');
 if(temp){
     selectedOrders = JSON.parse(temp);

@@ -3,13 +3,13 @@ session_start();
  require_once("../../common/database.php");
  $db = new Database();
  $conn = $db->connect();
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-   header("location:.../common/user_login.php");
+  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman"){
+   header("location:../admin/user_login.php");
 }
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("../common/mobile_layout/header.php");?>
+<?php require_once("./layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -20,7 +20,7 @@ session_start();
 
   <!-- Navbar -->
   <?php 
-  require_once("../common/mobile_layout/navbar.php") ?>
+  require_once("./layout/navbar.php") ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -29,7 +29,7 @@ session_start();
   <!-- Content Wrapper. Contains page content -->
   <?php require_once("./layout/content.php");?>
   <!-- /.content-wrapper -->
- <?php require_once("../common/mobile_layout/footer.php"); ?>
+ <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -39,7 +39,7 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<?php require_once("../common/mobile_layout/footer_links.php");?>
+<?php require_once("./layout/footer_links.php");?>
 <script>
 $("#heading").text("Dashboard");
 $("#back-button").css("display", "none");

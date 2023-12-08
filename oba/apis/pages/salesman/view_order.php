@@ -8,14 +8,14 @@ session_start();
     }
  ?>
 <!DOCTYPE html>
-<html lang="en"> <?php require_once("./layout/header.php");?> <body class="hold-transition sidebar-mini layout-fixed">
+<html lang="en"> <?php require_once("./../common/mobile_layout/header.php");?> <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- Preloader -->
       <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="../../theme/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
       </div>
       <!-- Navbar --> <?php 
-  require_once("./layout/navbar.php") ?>
+  require_once("./../common/mobile_layout/navbar.php") ?>
       <!-- /.navbar -->
       <!-- Main Sidebar Container -->
       <!-- Content Wrapper. Contains page content -->
@@ -31,7 +31,7 @@ session_start();
            
           </div>
         </section>
-      </div> <?php require_once("./layout/footer.php"); ?>
+      </div> <?php require_once("./../common/mobile_layout/footer.php"); ?>
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
@@ -42,13 +42,13 @@ session_start();
     <!-- jQuery -->
     <!---- MODALs--->
   
-    <!-----> <?php require_once("./layout/footer_links.php");?> <script>
+    <!-----> <?php require_once("./../common/mobile_layout/footer_links.php");?> <script>
       $("#heading").text("Order Details");
       
       function showAddModal() {
         $('#modal-add-item').modal('show');
       }
     </script>
-    <script src="../js/salesman js/view_order.js"></script>
+    <script src="../../js/salesman/view_order.js"></script>
   </body>
 </html>

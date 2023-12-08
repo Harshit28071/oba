@@ -241,6 +241,9 @@ html = html + "</div>";
   var childs = getChilds(parent);
   var html = '';
   $("#back").css("display", "block");
+  /*$(document).on("click", "#backbutton", function(){
+    loadBoxView();
+  });*/
   $(document).on("click", "#backbutton", function(){
     loadBoxView();
   });

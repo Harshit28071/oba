@@ -8,7 +8,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/header.php"); ?>
+<?php require_once("./../common/mobile_layout/header.php"); ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -20,7 +20,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
 
     <!-- Navbar -->
     <?php
-    require_once("./layout/navbar.php") ?>
+    require_once("./../common/mobile_layout/navbar.php") ?>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -47,7 +47,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
           </div>
        
         </div>
-      </div>
+      </div> 
     
     <!-- /.content-header -->
 
@@ -58,7 +58,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php require_once("./layout/footer.php"); ?>
+  <?php require_once("./../common/mobile_layout/footer.php"); ?>
   <!-- Control Sidebar -->
 
   <!-- /.control-sidebar -->
@@ -82,9 +82,10 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
             </div>
           </div>
   <!-- jQuery -->
-  <?php require_once("./layout/alert_messages.php"); ?>
-  <?php require_once("./layout/footer_links.php"); ?>
-  <script src="../js/salesman js/all_customers.js"></script>
+  <?php require_once("./../common/mobile_layout/alert_messages.php"); ?>
+  <?php require_once("./../common/mobile_layout/footer_links.php"); ?>
+  <script src="../../js/salesman/common.js"></script>
+  <script src="../../js/salesman/all_customers.js"></script>
   <script>
       $("#filter").on("click", function(event) {
         event.preventDefault();

@@ -17,7 +17,7 @@ function saveOrder(){
 
     $.ajax({
       type: 'POST',
-      url: '../../apis/add/salesman/update_order.php',
+      url: '../../apis/update/salesman/update_order.php',
       data: JSON.stringify(productData),
       dataType: 'json',
       contentType: false,

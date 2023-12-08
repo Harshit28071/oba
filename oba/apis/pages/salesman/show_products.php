@@ -9,7 +9,7 @@ session_start();
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/header.php");?>
+<?php require_once("./../common/mobile_layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -20,7 +20,7 @@ session_start();
 
   <!-- Navbar -->
   <?php 
-  require_once("./layout/navbar.php") ?>
+  require_once("./../common/mobile_layout/navbar.php") ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -64,7 +64,7 @@ session_start();
       </div>
    </section>
   </div> 
- <?php require_once("./layout/footer.php"); ?>
+ <?php require_once("./../common/mobile_layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -74,7 +74,7 @@ session_start();
 <!-- ./wrapper -->
 <!-- jQuery -->
 
-<?php require_once("./layout/footer_links.php");?>
+<?php require_once("./../common/mobile_layout/footer_links.php");?>
 <script>
    $("#heading").text("All Products");
    $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(1)">          <i class="fa fa-fw fa-table"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(2)" >          <i class="fa fa-fw fa-th-list"></i>        </a>      </li><li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="switchView(3)">          <i class="fa fa-fw fa-th-large"></i>        </a>       </li>');
@@ -83,7 +83,7 @@ session_start();
   
    
   </script>
-<script src="../js/salesman js/viewproduct.js"></script>
+<script src="../../js/salesman/viewproduct.js"></script>
 
 </body>
 </html>
