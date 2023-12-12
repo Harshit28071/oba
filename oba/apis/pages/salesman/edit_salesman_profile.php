@@ -40,63 +40,22 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
               <i class="fa fa-refresh fa-spin"></i>
               </div>
                 <form id="edit-customer-form" method="POST">
-                <input type="hidden" class="form-control" placeholder="Customer id" name="Custid" autocomplete="off" id="Cust-id-edit" required>
+                <input type="hidden" class="form-control" placeholder="" name="salesmanidtid" autocomplete="off" id="Cust-id-edit" required>
                 <div class="row">
                   <div class="col-md-6 form-group">
                   <label>Name</label>
-                    <input type="text" class="form-control" placeholder="Customer Name" name="CustName" autocomplete="off" id="Cust-name" required>
+                    <input type="text" class="form-control" name="SalesmanName" autocomplete="off" id="salesman-name" required>
                   </div>
                   <div class="col-md-6 form-group">
                   <label>Mobile</label>
-                    <input type="number" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
+                    <input type="number" class="form-control" placeholder="salesman Mobile" name="SalesmanMobile" autocomplete="off" id="salesman-Mobile">
                   </div>
                   <div class="col-md-6 form-group">
-                        <label>Select State</label>
-                        <select class="form-control" name="custstate" id="state"> </select>
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="salesman Mobile" name="SalesmanEmail" autocomplete="off" id="salesman-email">
                   </div>
-                  <div class="col-md-6 form-group">        
-                    <label>Select City</label>
-                        <select class="form-control" name="custcity" id="city" > 
-                        </select>
-                  </div>
-                  <div class="col-md-6">
-                  
-                      <!-- textarea -->
-                      <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" rows="5" placeholder="Enter ..." id="cust-add" name="custAddress"></textarea>
-                      </div>
-                
-                  </div>
-                   
-                      <div class="col-md-6 form-group">
-                        <label>Type</label>
-                        <select class="form-control" name="custType" id="disop">
-                          <option value="Retailer" selected>Retailer</option>
-                          <option value="Distributor">Distributor</option>
-                          <option value="Wholesaler">Wholesaler</option>
-                          <option value="Oth">Other</option>
-                        </select>
-                      </div>
-                      <div class="col-md-6 form-group">
-                    <label>Distributor (Goods Source)</label>
-                    
-                    <select class="form-control" name="disName" id="dis-select-box" required>
-                    <option selected style="text-align: center;">Select Distributor </option>
-                        </select>
-                    
-                  </div>
-                  <div class="col-md-6 form-group">        
-                    <label>Select Firm</label>
-                    <input type="text" class="form-control" placeholder="Enter Firm" name="FirmName" autocomplete="off" id="Firm" />
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label>GSTIN</label>
-                    <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
-                  </div>
-
                 </div>
-                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-customer" value="Edit"> 
+                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-salesman" value="Edit"> 
               </form>
               </div>
         
