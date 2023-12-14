@@ -157,7 +157,7 @@ session_start();
               </div>
            <form id="add-remove-form">
             <div class="modal-header">
-              <h5 class="modal-title">REMOVE ROLE</h5>
+              <h5 class="modal-title">REMOVE DATA</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -165,7 +165,7 @@ session_start();
             <div class="modal-body">
               <div class="form-group">
               <input type="text" class="form-control" name="removeid" id="remove-id" hidden>
-              <h5>Are you sure, You want to delete this role?</h5>
+              <h5>Are you sure, You want to delete this data ?</h5>
               </div>
             </div>
             <div class="modal-footer justify-content-between">
