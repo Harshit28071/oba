@@ -79,7 +79,7 @@ session_start();
 
 <!-- jQuery -->
 <?php require_once("./../common/mobile_layout/footer_links.php");?>
-<script src="../../js/salesman/distributor_order.js"></script>
+<script src="/new/oba/js/salesman/distributor_order.js"></script>
 <script>
 $("#heading").text("Create Distributor Order");
   </script>

@@ -21,7 +21,7 @@ function checkInput(){
     var myJson = JSON.stringify(obj);
    // console.log(myJson);
     $.ajax({
-       url :"../../apis/select/admin/fetch_single_product.php",
+       url :"/new/oba/apis/select/admin/fetch_single_product.php",
        type : "POST",
        data : myJson,
        dataType : "json",
@@ -43,7 +43,7 @@ function checkInput(){
         $("#gstnameview").val(data[0].GST_name);
         $("#Qty-step-view").val(data[0].qty_step);
         $("#hidden-p-img").val(data[0].default_image_url);
-        var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
+        var pimg ="/new/oba/uploads/"+data[0].default_image_url;
         $('#view-p-main-img').attr("src",pimg);
         
        }

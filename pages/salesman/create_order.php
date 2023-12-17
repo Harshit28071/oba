@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../common/database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
 $db = new Database();
 $conn = $db->connect();
 if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
@@ -107,7 +107,7 @@ while ($stmt->fetch()) {
 
   <!-- jQuery -->
   <?php require_once("./../common/mobile_layout/footer_links.php"); ?>
-  <script src="../../js/salesman/createorder.js"></script>
+  <script src="/new/oba/js/salesman/createorder.js"></script>
   <script>
     $("#heading").text("Create Order");
     $("#three-dot").css("display", "none");

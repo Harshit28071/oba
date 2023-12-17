@@ -90,8 +90,8 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!-- jQuery -->
   <?php require_once("./../common/mobile_layout/alert_messages.php"); ?>
   <?php require_once("./../common/mobile_layout/footer_links.php"); ?>
-  <script src="../../js/salesman/common.js"></script>
-  <script src="../../js/salesman/select_order.js"></script>
+  <script src="/new/oba/js/salesman/common.js"></script>
+  <script src="/new/oba/js/salesman/select_order.js"></script>
   
   <script>
       $("#filter").on("click", function(event) {

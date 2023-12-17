@@ -15,8 +15,8 @@ $stmt->execute();
 $id = $stmt->affected_rows;
 if($stmt){
     if(!empty($remove_image_logo) && !empty($remove_image_sign)){
-    unlink("../../../pages/admin/uploads/".$remove_image_logo);
-    unlink("../../../pages/admin/uploads/".$remove_image_sign);
+    unlink("/new/oba/uploads/".$remove_image_logo);
+    unlink("/new/oba/uploads/".$remove_image_sign);
     }
 }
 $stmt->close();

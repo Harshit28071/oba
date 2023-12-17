@@ -1,11 +1,11 @@
 <?php
 session_start();
- require_once("../../common/database.php");
+ require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
  $db = new Database();
 
  $conn = $db->connect();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-    header("location:./user_login.php");
+    header("location:/new/oba/common/user_login.php");
     }
     //Quary For State
     $quary ="SELECT id,state FROM state";
@@ -175,7 +175,7 @@ session_start();
 <!-- jQuery -->
 <?php require_once("./../common/mobile_layout/footer_links.php");?>
 <script>  $("#heading").text("Add Customer");</script>
-<script src="../../js/salesman/add_customer.js"></script>
+<script src="/new/oba/js/salesman/add_customer.js"></script>
 
 </body>
 </html>

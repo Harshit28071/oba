@@ -1,5 +1,5 @@
 <?php
-$uploadDir = '../../../pages/admin/uploads/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/";
 $allowTypes = array('jpg', 'png', 'jpeg'); 
 $response = array( 
     'status' => 0, 

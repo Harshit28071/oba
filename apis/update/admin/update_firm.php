@@ -1,6 +1,6 @@
 <?php 
 // File upload folder 
-$uploadDir = '../../../pages/admin/uploads/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/"; 
  
 // Allowed file types 
 $allowTypes = array('jpg', 'png', 'jpeg'); 
@@ -78,7 +78,7 @@ if(isset($_POST['firmeditid']) && isset($_POST['firmnameedit']) && isset($_POST[
                     if(move_uploaded_file($_FILES["logoimageedit"]["tmp_name"], $targetFilePath)){ 
                         $uploadedFile = $fileName;
                         if(!empty($logo_old_img)){  
-                        unlink("../../pages/admin/uploads/".$logo_old_img);}
+                        unlink("/new/oba/uploads/".$logo_old_img);}
                     }else{ 
                         $uploadStatus = 0; 
                         $response['message'] = 'Sorry, there was an error uploading your file.'; 
@@ -102,7 +102,7 @@ if(isset($_POST['firmeditid']) && isset($_POST['firmnameedit']) && isset($_POST[
                     if(move_uploaded_file($_FILES["signimgedit"]["tmp_name"], $targetFilePathSign)){ 
                         $uploadedFileSign = $fileNameSign;
                         if(!empty($sign_old_img)){ 
-                        unlink("../../pages/admin/uploads/".$sign_old_img);}
+                        unlink("/new/oba/uploads/".$sign_old_img);}
 
                     }else{ 
                         $uploadStatus = 0; 

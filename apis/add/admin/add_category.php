@@ -1,6 +1,6 @@
 <?php 
 // File upload folder 
-$uploadDir = '../../../pages/admin/uploads/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/";
  
 // Allowed file types 
 $allowTypes = array('jpg', 'png', 'jpeg'); 

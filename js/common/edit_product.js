@@ -13,7 +13,7 @@
   var myJson = JSON.stringify(obj);
  // console.log(myJson);
   $.ajax({
-     url :"../../apis/select/admin/fetch_single_product.php",
+     url :"/new/oba/apis/select/admin/fetch_single_product.php",
      type : "POST",
      data : myJson,
      dataType : "json",
@@ -34,7 +34,7 @@
       $("#gst-name-edit").val(data[0].GST_name);
       $("#Qty-step-edit").val(data[0].qty_step);
       $("#hidden-p-img").val(data[0].default_image_url);
-      var pimg ="http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+data[0].default_image_url;
+      var pimg ="/new/oba/uploads/"+data[0].default_image_url;
       $('#edit-p-main-img').attr("src",pimg);
       
      }
@@ -48,7 +48,7 @@ toastr.options = {
       };
           $.ajax({
           type: 'POST',
-          url: '../../apis/update/admin/update_product.php',
+          url: '/new/oba/apis/update/admin/update_product.php',
           data: new FormData(this),
           dataType: 'json',
           contentType: false,
@@ -61,7 +61,7 @@ toastr.options = {
                  toastr.success('Edit Product Succesfully');
                 //  toastr .delay(1000)
                 //  toastr .fadeOut(1000);
-                 window.location.replace("http://localhost/oba/oba/oba/apis/pages/admin/manage_product.php#");
+                 history.back();
                   loadTableProduct();
                  
               }

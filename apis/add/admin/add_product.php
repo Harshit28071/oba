@@ -1,6 +1,7 @@
 <?php 
 // File upload folder 
-$uploadDir = '../../../pages/admin/uploads/'; 
+$destination_path = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/";
+//$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/"; 
  
 // Allowed file types 
 $allowTypes = array('jpg', 'png', 'jpeg'); 
@@ -52,7 +53,8 @@ if(isset($_POST['pname']) && isset($_POST['pcategory']) && isset($_POST['punit']
             if(!empty($_FILES["productimage"]["name"])){ 
                 // File path config 
                 $fileName = basename($_FILES["productimage"]["name"]); 
-                $targetFilePath = $uploadDir . $fileName; 
+                //$targetFilePath = $destination_path . $fileName;
+                $targetFilePath = $destination_path . $fileName; 
                 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
                  
                 // Allow certain file formats to upload 

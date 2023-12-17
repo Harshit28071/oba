@@ -1,10 +1,10 @@
 <?php
 session_start();
- require_once("../../common/database.php");
+ require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
  $db = new Database();
  $conn = $db->connect();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
-    header("location:./user_login.php");
+    header("location:/new/oba/common/user_login.php");
     }
     $quary ="SELECT id,state FROM state";
     $stmt = $conn->prepare($quary);
@@ -22,7 +22,7 @@ session_start();
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/haeder.php");?>
+<?php require_once("./layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 

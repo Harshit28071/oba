@@ -1,12 +1,12 @@
 <?php
 session_start();
   if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
-   header("location:./user_login.php");
+   header("location:/new/oba/common/user_login.php");
 }
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/haeder.php");?>
+<?php require_once("./layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 

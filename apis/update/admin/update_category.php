@@ -1,6 +1,6 @@
 <?php 
 // File upload folder 
-$uploadDir = '../../../pages/admin/uploads/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/"; 
  
 // Allowed file types 
 $allowTypes = array('jpg', 'png', 'jpeg'); 
@@ -57,7 +57,7 @@ if(isset($_POST['editidcat']) && isset($_POST['editcatname'])){
                                 if(move_uploaded_file($_FILES["editcatfile"]["tmp_name"], $targetFilePath)){ 
                                     $uploadedFile = $fileName; 
                                     if(!empty($category_image_old)){  
-                                    unlink("../../pages/admin/uploads/".$category_image_old);
+                                    unlink("/new/oba/uploads/".$category_image_old);
                                 }
                                 }else{ 
                                     $uploadStatus = 0; 

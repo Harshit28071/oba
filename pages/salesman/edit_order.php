@@ -1,10 +1,10 @@
 <?php
 session_start();
- require_once("../../common/database.php");
+ require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
  $db = new Database();
  $conn = $db->connect();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-    header("location:./user_login.php");
+    header("location:/new/oba/common/user_login.php");
     }
  ?>
 <!DOCTYPE html>
@@ -87,6 +87,6 @@ session_start();
         $('#modal-add-item').modal('show');
       }
     </script>
-    <script src="../../js/salesman/edit_order.js"></script>
+    <script src="/new/oba/js/salesman/edit_order.js"></script>
   </body>
 </html>

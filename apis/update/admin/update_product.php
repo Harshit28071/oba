@@ -1,5 +1,5 @@
 <?php
-$uploadDir = '../../../pages/admin/uploads/'; 
+$uploadDir = $_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/"; 
  
 // Allowed file types 
 $allowTypes = array('jpg', 'png', 'jpeg'); 
@@ -52,7 +52,7 @@ if( isset($_POST['idedit']) && isset($_POST['pnameedit']) && isset($_POST['pcate
             // update  form data in the database 
             $sqlQ = "UPDATE product  SET name = ?,unit_id  = ?,category_id  = ? ,secondary_unit_id = ?,multiplier = ?,low_price = ?,max_price = ?,mrp = ?,hsn_code = ?,gst_rate = ?, default_image_url = ?, firm_id = ?,gst_price = ?,GST_name = ?, qty_step = ? WHERE id  = ?"; 
             $stmt = $conn->prepare($sqlQ); 
-            $stmt->bind_param("siiiddddidsidsii",$edit_name,$edit_unit,$edit_category,$edit_sec_unit,$edit_multiplier,$edit_lowprice,$edit_max_price,$edit_mrp,$edit_hsn_code,$edit_gst_rate,$update_filename,$edit_firm_id,$edit_gst_price,$edit_id,$gstnameedit,$Qty_step_edit); 
+            $stmt->bind_param("siiiddddidsidsii",$edit_name,$edit_unit,$edit_category,$edit_sec_unit,$edit_multiplier,$edit_lowprice,$edit_max_price,$edit_mrp,$edit_hsn_code,$edit_gst_rate,$update_filename,$edit_firm_id,$edit_gst_price,$gstnameedit,$Qty_step_edit,$edit_id); 
             $stmt->execute();
             $id = $stmt->affected_rows;
             
@@ -69,7 +69,7 @@ if( isset($_POST['idedit']) && isset($_POST['pnameedit']) && isset($_POST['pcate
                             // Upload file to the server 
                             if(move_uploaded_file($_FILES["productimagenew"]["tmp_name"], $targetFilePath)){ 
                                 $uploadedFile = $fileName; 
-                                unlink("../../pages/admin/uploads/".$product_old_image);
+                                unlink($uploadDir.$product_old_image);
                             }else{ 
                                 $uploadStatus = 0; 
                                 $response['message'] = 'Sorry, there was an error uploading your file.'; 

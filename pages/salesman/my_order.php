@@ -1,6 +1,6 @@
 <?php
 session_start();
- require_once("../../common/database.php");
+ require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
  $db = new Database();
  $conn = $db->connect();
 
@@ -133,7 +133,7 @@ session_start();
 
 <!-- jQuery -->
 <?php require_once("./../common/mobile_layout/footer_links.php");?>
-<script src="../../js/salesman/my_order_count.js"></script>
+<script src="/new/oba/js/salesman/my_order_count.js"></script>
 <script>
 $("#heading").text("My Orders");
 

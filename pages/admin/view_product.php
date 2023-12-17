@@ -1,13 +1,13 @@
 <?php
 session_start();
 if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
-  header("location:./user_login.php");
+  header("location:/new/oba/common/user_login.php");
   }
-require_once("../../common/database.php");
-require_once("../common/php/fetch_master_data.php");?>
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/common/php/fetch_master_data.php");?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/haeder.php");?>
+<?php require_once("./layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -46,6 +46,6 @@ require_once("../common/php/fetch_master_data.php");?>
 <!-- ./wrapper -->
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
-<script src="../../js/common/view_product.js"></script>
+<script src="/new/oba/js/common/view_product.js"></script>
 </body>
 </html>

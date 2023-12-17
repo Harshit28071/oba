@@ -12,8 +12,9 @@ $stmt->bind_param("i",$remove_cat_id);
 $stmt->execute();
 $id = $stmt->affected_rows;
 if($id == 1){
+ 
     if(!empty($remove_image)){
-    unlink("../../../pages/admin/uploads/".$remove_image);
+    unlink("/new/oba/uploads/".$remove_image);
 }
 }
 $stmt->close();

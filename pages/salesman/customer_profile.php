@@ -75,7 +75,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!-- jQuery -->
   <?php require_once("./../common/mobile_layout/alert_messages.php"); ?>
   <?php require_once("./../common/mobile_layout/footer_links.php"); ?>
-  <script src="../../js/salesman/customer_profile.js"></script>
+  <script src="/new/oba/js/salesman/customer_profile.js"></script>
   <script>
      $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="filterModal()">          <i class="fa fa-filter"></i>        </a>      </li>');
       $("#heading").text("Customer Details");

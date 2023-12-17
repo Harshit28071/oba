@@ -55,7 +55,7 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   <!-- jQuery -->
   <!--  -->
   <?php require_once("./../common/mobile_layout/footer_links.php"); ?>
-  <script src="../../js/salesman/salesman_profile.js"></script>
+  <script src="/new/oba/js/salesman/salesman_profile.js"></script>
   <script>
       $('.custom-button').append('<li class="nav-item"><a class="nav-link"  href="#" role="button" onclick="editSalesmanProfile()"><i class="fa fa-edit"></i></a></li>');
       $("#heading").text("Profile");

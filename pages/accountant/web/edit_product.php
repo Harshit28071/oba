@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("../../../common/database.php");
-require_once("../common/php/fetch_master_data.php");?>
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/common/php/fetch_master_data.php");?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/haeder.php");?>
+<?php require_once("./layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -32,7 +32,7 @@ require_once("../common/php/fetch_master_data.php");?>
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <?php require_once("../common/web_layout/edit_product_content.php"); ?>
+  <?php require_once("../../common/web_layout/edit_product_content.php"); ?>
  <?php require_once("./layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -44,6 +44,6 @@ require_once("../common/php/fetch_master_data.php");?>
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 
-<script src="../../js/common/edit_product.js"></script>
+<script src="/new/oba/js/common/edit_product.js"></script>
 </body>
 </html>

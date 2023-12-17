@@ -14,7 +14,7 @@ if($id == 1)
 {
     if(!empty($remove_image_name))
     {
-    unlink("../../../pages/admin/uploads/".$remove_image_name);
+    unlink("/new/oba/uploads/".$remove_image_name);
     }else{
         $id = 1; 
     }

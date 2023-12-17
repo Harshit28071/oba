@@ -6,7 +6,7 @@
         var obj = {p_id: p_id};
         var myJson = JSON.stringify(obj);
         $.ajax({
-           url :"../../apis/select/admin/fetch_single_product.php",
+           url :"/new/oba/apis/select/admin/fetch_single_product.php",
            type : "POST",
            data : myJson,
            dataType : "json",
@@ -28,7 +28,7 @@
         };
             $.ajax({
             type: 'POST',
-            url: '../../apis/add/admin/add_multiple_images.php',
+            url: '/new/oba/apis/add/admin/add_multiple_images.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
@@ -63,7 +63,7 @@
     function loadTableProduct(){
         $("#load-table-product").html("");
         $.ajax({
-            url : "/apis/select/admin/get_product.php",
+            url : "/new/oba/apis/select/admin/get_product.php",
             type : "GET",
             dataType : "json",
             success : function(data){
@@ -80,8 +80,8 @@
                                        "<td>" + value.low_price +"</td>"+ 
                                        "<td>" + value.max_price +"</td>"+ 
                                        "<td>" + value.unit_name +"</td>"+ 
-                                       "<td><img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ imgurl +"' width='90px' height='60px'></td>"+ 
-                                       "<td><a href='./view_product.php?id= "+ value.id +"' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='./edit_product.php?id= "+ value.id +"' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
+                                       "<td><img src='/new/oba/uploads/"+ imgurl +"' width='90px' height='60px'></td>"+ 
+                                       "<td><a href='./view_product.php?id="+ value.id +"' class='View-product' data-productviewid='"+ value.id +"'><i class='fas fa-eye'></i></a>  &nbsp; &nbsp;<a href='./edit_product.php?id="+ value.id +"' class='edit-product' data-productviewid='"+ value.id +"'><i class='fas fa-edit'></i></a> &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ value.id +"'><i class='fa fa-trash' aria-hidden='true'></i></a></td>"+
                                        "<td><a href='#' class='addimgmulti' data-productviewid='"+ value.id +"'><i class='fas fa-image'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='#' class='View-im' data-firmviewid='"+ value.id +"'><i class='fas fa-eye'></i></a> "+ 
                                        "<td><div class='custom-control custom-switch custom-switch-off-danger custom-switch-on-success'><input type='checkbox' class='custom-control-input' "+ available +" id='customSwitch3'><label class='custom-control-label' for='customSwitch3'></label></div></td></tr>");
                 });
@@ -101,7 +101,7 @@
         'serverSide': true,
         'serverMethod': 'post',
         'ajax': {
-              'url':'../../apis/select/admin/get_product.php'
+              'url':'/new/oba/apis/select/admin/get_product.php'
              },
              'columns': [
                          { data: 'name' },
@@ -112,7 +112,7 @@
                         { data: 'default_image_url', 
                       render: function (data, type, row, meta){
                         return type === 'display' ?
-                        "<img src='http://localhost/oba/oba/oba/apis/pages/admin/uploads/"+ data +"' width='30px' height='30px'>"
+                        "<img src='/new/oba/uploads/"+ data +"' width='30px' height='30px'>"
                         : data;
                       }
                     },
@@ -127,7 +127,7 @@
                         { data: 'id',
                       render: function (data, type, row, meta){
                         return type === 'display' ?
-                        "<a href='./view_product.php?id= "+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id= "+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-camera'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='remove_multiimg_product.php?id="+ data +"' class='multi-view-img' data-productid='"+ data +"'><i class='fas fa-images'></i></a> "
+                        "<a href='./view_product.php?id="+ data +"' class='View-product' data-productviewid='"+ data +"'><i class='fas fa-eye'></i></a> &nbsp; &nbsp; &nbsp;<a href='./edit_product.php?id="+ data +"' class='edit-product' data-productviewid='"+ data +"'><i class='fas fa-edit'></i></a>&nbsp; &nbsp; &nbsp;<a href='#' class='remove-product'  data-productviewid='"+ data +"'><i class='fa fa-trash' aria-hidden='true' style='color:red;'></i></a>&nbsp;&nbsp;&nbsp; <a href='#' class='addimgmulti' data-productviewid='"+ data +"'><i class='fas fa-camera'></i></a>&nbsp; &nbsp; &nbsp; &nbsp;<a href='remove_multiimg_product.php?id="+ data +"' class='multi-view-img' data-productid='"+ data +"'><i class='fas fa-images'></i></a> "
                         :data;
                       }
                      
@@ -144,7 +144,7 @@
         var obj = {p_id: p_id};
         var myJson = JSON.stringify(obj);
         $.ajax({
-           url :"../../apis/select/admin/fetch_single_product.php",
+           url :"/new/oba/apis/select/admin/fetch_single_product.php",
            type : "POST",
            data : myJson,
            dataType : "json",
@@ -167,7 +167,7 @@
                 e.preventDefault();
                 $.ajax({
                 type: 'POST',
-                url: '../../apis/delete/admin/delete_product.php',
+                url: '/new/oba/apis/delete/admin/delete_product.php',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -175,16 +175,18 @@
                 processData:false,
                 success: function(response){
                     $("#loader-remove-product").hide();
-                    if(response == 1){
-                    
-                      $('#remove-product-form')[0].reset();
+                    $('#remove-product-form')[0].reset();
                         $('#modal-product-remove').modal('hide');
-                        toastr.success('Product Deleted Succesfully');
-                       toastr .delay(1000)
-                       toastr .fadeOut(1000);
+                    if(response == 1){                   
                       
+                        toastr.success('Product Deleted Succesfully');
+                       
+                      
+                    }else{
+                      toastr.danger('Product Deleted Failed');
                     }
-                    
+                    toastr .delay(1000)
+                       toastr .fadeOut(1000);
                 },
                 error: function(error) { 
                 $('#modal-product-remove').modal('hide');
