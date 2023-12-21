@@ -16,9 +16,9 @@ if(isset($_POST['CustName'])){
     $distributor_id = isset($_POST['disName']) ? $_POST['disName']:"" ;
     $firm_name = $_POST['firmName'];
     $firm_gstin = $_POST['custgstin'];
-    //Add Customer Quary
-    $Quary = "INSERT IGNORE INTO customer (name,mobile_number,state_id,city,address,firm_name,GSTIN,type,distributor_id) VALUES(?,?,?,?,?,?,?,?,?)";
-    $stmt = $conn->prepare($Quary); 
+    //Add Customer query
+    $query = "INSERT IGNORE INTO customer (name,mobile_number,state_id,city,address,firm_name,GSTIN,type,distributor_id) VALUES(?,?,?,?,?,?,?,?,?)";
+    $stmt = $conn->prepare($query); 
     $stmt->bind_param("ssisssssi",$customer_name,$customer_mobile,$customer_state,$customer_city,$customer_add,$firm_name,$firm_gstin,$customer_type,$distributor_id);
     $insert = $stmt->execute(); 
     $last_insert_id =$conn->insert_id;

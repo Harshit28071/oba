@@ -12,7 +12,7 @@ header('Access-Controle-Allow-Methods: POST');
     $salesman_name_edit = $_POST['SalesmanName'];
     $salesman_mobile_edit = $_POST['SalesmanMobile'];
     $salesman_email_edit = $_POST['SalesmanEmail'];
-    //Update Quary
+    //Update query
     $SQL_UP ="UPDATE user SET username = ?,mobile_number = ?,email = ? WHERE id = ?";
     $stmt = $conn->prepare($SQL_UP);
     $stmt->bind_param("sssi",$salesman_name_edit,$salesman_mobile_edit,$salesman_email_edit,$salesman_id);

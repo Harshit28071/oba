@@ -11,7 +11,7 @@ $completed_count = 0;
 $pending_count = 0;
 $cancel_count = 0;
 
-//Quary For Pending Orders
+//query For Pending Orders
 $stmt =$conn->prepare("SELECT COUNT(id)  FROM orders WHERE (order_status='New') AND invoice_id = 0 AND salesman_id = ?");
 $stmt->bind_param("i",$user_id);
 $stmt->execute();
@@ -29,7 +29,7 @@ while($stmt->fetch()){
 }
 
 
-//Quary For Approved Orders
+//query For Approved Orders
 $stmt = $conn->prepare("SELECT COUNT(id) FROM orders WHERE (order_status='Completed')  AND invoice_id != 0 AND salesman_id = ?");
 $stmt->bind_param("i",$user_id);
 $stmt->execute();

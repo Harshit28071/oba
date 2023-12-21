@@ -6,8 +6,8 @@ session_start();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
     header("location:/new/oba/common/user_login.php");
     }
-    $quary ="SELECT id,name FROM category";
-    $stmt = $conn->prepare($quary);
+    $query ="SELECT id,name FROM category";
+    $stmt = $conn->prepare($query);
     $stmt->execute();
     $stmt->bind_result($id,$name);
     $options = "";

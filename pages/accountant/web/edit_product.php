@@ -1,7 +1,12 @@
 <?php
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/common/php/fetch_master_data.php");?>
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/common/php/fetch_master_data.php");
+
+$options_edit = loadCategory();
+$options_edit_unit = loadUnits();
+$options_edit_firm = loadFirms();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once("./layout/header.php");?>

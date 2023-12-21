@@ -7,8 +7,8 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
   header("location:../admin/user_login.php");
 }
 //city select box
-$quarycity = "SELECT id,name FROM city";
-$stmt = $conn->prepare($quarycity);
+$querycity = "SELECT id,name FROM city";
+$stmt = $conn->prepare($querycity);
 $stmt->execute();
 $stmt->bind_result($id, $cityname);
 $options_city = "";

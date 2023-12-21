@@ -6,8 +6,8 @@ session_start();
  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
   header("location:/new/oba/common/user_login.php");
 }
-  $quary_state ="SELECT id,state FROM state";
-    $stmt = $conn->prepare($quary_state);
+  $query_state ="SELECT id,state FROM state";
+    $stmt = $conn->prepare($query_state);
     $stmt->execute();
     $stmt->bind_result($id,$state);
     $options_state = "";

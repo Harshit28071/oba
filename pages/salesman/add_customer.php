@@ -7,9 +7,9 @@ session_start();
     if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
     header("location:/new/oba/common/user_login.php");
     }
-    //Quary For State
-    $quary ="SELECT id,state FROM state";
-    $stmt = $conn->prepare($quary);
+    //query For State
+    $query ="SELECT id,state FROM state";
+    $stmt = $conn->prepare($query);
     $stmt->execute();
     $stmt->bind_result($id,$state);
     $options = "";
@@ -23,8 +23,8 @@ session_start();
       }
     
     //city select box
-    $quarycity ="SELECT id,name FROM city";
-    $stmt = $conn->prepare($quarycity);
+    $querycity ="SELECT id,name FROM city";
+    $stmt = $conn->prepare($querycity);
     $stmt->execute();
     $stmt->bind_result($id,$cityname);
     $options_city = '<option selected style="text-align: center;" value="">Select City</option>';

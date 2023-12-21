@@ -10,11 +10,11 @@ $stmt = $conn->prepare("delete from `hd_images` where id = ?");
 $stmt->bind_param("i",$remove_image_id);
 $stmt->execute();
 $id = $stmt->affected_rows;
-if($id == 1)
+if($id > 0)
 {
     if(!empty($remove_image_name))
     {
-    unlink("/new/oba/uploads/".$remove_image_name);
+    unlink($_SERVER['DOCUMENT_ROOT']."/new/oba/uploads/".$remove_image_name);
     }else{
         $id = 1; 
     }
