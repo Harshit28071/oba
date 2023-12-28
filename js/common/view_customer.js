@@ -13,16 +13,23 @@ var obj = {cust_id : cust_id};
        success : function(data){
          $("#loader-view-customer").hide();
 
-        $("#Cust-name-v").val(data[0].name);
-        $("#Cust-Mobile-v").val(data[0].mobile_number);
-        $("#state").val(data[0].state);
-        $("#city").val(data[0].city);
-        $("#cust-add-v").val(data[0].address);
-        $("#f-name-v").val(data[0].firm_name);
-        $("#c-gstin-v").val(data[0].GSTIN);
-        $("#disop-v").val(data[0].type);
-        $("#distributor").val(data[0].distributor);
+        $("#Cust-name-v").text(data[0].name);
+        $("#Cust-Mobile-v").text(data[0].mobile_number);
+        $("#state").text(data[0].state);
+        $("#city").text(data[0].city);
+        $("#cust-add-v").text(data[0].address);
+        $("#f-name-v").text(data[0].firm_name);
+        $("#c-gstin-v").text(data[0].GSTIN);
+        $("#disop-v").text(data[0].type);
+        $("#distributor").text(data[0].distributor);
         //$("#Cust-name-v").val(data[0].name);
 
        }
       });
+      function loadeditbtn(){
+        $("#c").html("");
+        var html ='';
+        html = html +('<a href="edit_customer.php?id= '+ id +'" class="btn btn-warning">Edit</a>');
+        $("#edit-customer-details").html(html);
+      }
+      loadeditbtn();

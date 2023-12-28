@@ -59,7 +59,7 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="./manage_firm.php" id="back-firm" class="btn btn-primary">Back</a></li>
+            
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

@@ -7,6 +7,11 @@
           <div class="col-sm-6">
             <h3 class="m-0">View Product Details</h3>
           </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active" id="edit-product-details"></li>
+            </ol>
+          </div><!-- /.col -->
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -15,7 +20,83 @@
     <!-- /.content-header -->
     <section class="content">
       <div class="container-fluid">
-      <div class="card card-primary">
+      <div class="row">
+          <div class="col-12">
+            <div class="card">
+             
+                <table class="table table-striped table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                      <td class="font-weight-bold">Product Name</td>
+                      <td id="vname"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Category</td>
+                      <td id="vcat"></td>
+
+                      
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Unit</td>
+                      <td id="vunit"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Secondary Unit</td>
+                     <td id="viewsecondaryunit"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Multiplier</td>
+                      <td  id="multiplierview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Low Price</td>
+                      <td id="lowpview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Max Price</td>
+                      <td id="maxpview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">MRP</td>
+                      <td   id="mrpview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Hsn Code</td>
+                      <td id="hsnview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Gst Rate</td>
+                      <td  id="gstrateview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold"> Firm</td>
+                      <td id="firmidview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Gst Price</td>
+                      <td  id="gstpriceview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Gst Name</td>
+                      <td id="gstnameview"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Qty_step</td>
+                      <td  id="Qty-step-view"></td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">View Product Image</td>
+                      <td> <img src=""  id="view-p-main-img" style="width: 60px; height:60px"/></td> 
+                    </tr>
+                  </tbody>
+                </table>
+             
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      <!-- <div class="card card-primary">
       <div class="card-body">
       <div id="loader-view-product" style="display:none;" class="overlay">
               <i class="fa fa-refresh fa-spin"></i>
@@ -30,7 +111,7 @@
                       <div class="form-group">
                         <label>Select Product Category</label>
                         <select class="form-control" name="pcategory" id="vcat" readonly>
-                          <?php echo $options_edit;?>
+                          <? // php echo $options_edit;?>
                         </select>
                       </div>
                     </div>
@@ -46,12 +127,12 @@
                   
                   <div class="col-4 form-group">
                  
-                    <!-- <input type="text" class="form-control" placeholder="Enter Secondary Unit "    autocomplete="off" required> -->
+                     <input type="text" class="form-control" placeholder="Enter Secondary Unit "    autocomplete="off" required> 
                     <div class="form-group">
                     <label>Secondary Unit</label>
                         <select class="form-control" name="secunit" readonly id="viewsecondaryunit">
                         <option>no select</option> 
-                        <?php echo $options_edit_unit; ?>
+                        <?php // echo $options_edit_unit; ?>
                         </select>
                       </div>
                   </div>
@@ -118,10 +199,10 @@
                   </div>    
                 </div>
                 </div>
-                <!-- /.card-body -->
+                 /.card-body
               </form>
               </div>
-      </div>
+      </div> -->
       </div>
    </section>
   </div>
