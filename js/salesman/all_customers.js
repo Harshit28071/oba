@@ -64,7 +64,7 @@ function loadCustomer(city_id) {
    
     //console.log(city_id);
     $.ajax({
-        url: "../../apis/select/salesman/get_all_customer_with_order_amount.php",
+        url: "/new/oba/apis/select/salesman/get_all_customer_with_order_amount.php",
         type: "POST",
         data: {cityId: city_id},
         dataType: "json",

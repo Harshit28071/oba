@@ -10,9 +10,9 @@ var save_url = '';
 if(localStorage.getItem('isDistributor')){
   current_customer_id = localStorage.getItem('distributor_id');
   current_customer_name = localStorage.getItem('distributor_name');
-  save_url = '../../apis/add/salesman/add_distributor_order.php';
+  save_url = '/new/oba/apis/add/salesman/add_distributor_order.php';
 }else{
-  save_url = '../../apis/add/salesman/add_order.php';
+  save_url = '/new/oba/apis/add/salesman/add_order.php';
   current_customer_id = localStorage.getItem('customer_id');
   current_customer_name = localStorage.getItem('customer_name');
 }
@@ -49,7 +49,7 @@ function saveOrder(){
           $("#main-heading").html("Order Created");
           $("#alert-message").html("order has been created successfully");
           localStorage.clear();
-          deshboardRedirection();
+          dashboardRedirection();
           
         }
       },
@@ -68,7 +68,7 @@ function saveOrder(){
   }
 
 // Deshboard Redirection On Click Function
-$("#done-btn").on("click",function deshboardRedirection(){
+$("#done-btn").on("click",function dashboardRedirection(){
   window.location.href='./dashboard.php';
 });
 function getDate(){
@@ -99,7 +99,7 @@ var html = '<option selected style="text-align: center;">SELECT CATEGORY</option
 html = html + '<option value="'+data[i].name+'">'+data[i].name+'</option>';
   }
 $("#mainCategory").html(html);
-}
+} 
 
 function addNewItem(){
   var index = $("#items option:selected").val();
@@ -194,7 +194,7 @@ $("#items").html('');
 
 function loadCategories(){
     $.ajax({
-      url : "../../apis/select/salesman/get_all_category.php",
+      url : "/new/oba/apis/select/salesman/get_all_category.php",
       type : "GET",
       dataType : "json",
       success : function(data){
@@ -219,7 +219,7 @@ function loadCategories(){
 
   function loadProducts(){
     $.ajax({
-      url : "../../apis/select/salesman/get_products_for_new_order.php",
+      url : "/new/oba/apis/select/salesman/get_products_for_new_order.php",
       type : "POST",
       data : {
         customerId : current_customer_id

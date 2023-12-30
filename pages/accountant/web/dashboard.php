@@ -7,7 +7,7 @@ if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant"){
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once("./layout/header.php");?>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed iframe-mode-fullscreen">
 <div class="wrapper">
 
   <!-- Preloader -->

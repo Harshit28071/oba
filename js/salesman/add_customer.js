@@ -1,7 +1,7 @@
 var distributors = [];
  $.ajax({
             type: 'POST',
-            url: '../../apis/select/admin/get_distributors.php',
+            url: '/new/oba/apis/select/admin/get_distributors.php',
             dataType: 'json',
             contentType: false,
             cache: false,
@@ -70,7 +70,7 @@ $("#disop").change(function(){
       e.preventDefault();
         $.ajax({
         type: 'POST',
-        url: '../../apis/add/admin/add_customer_api.php',
+        url: '/new/oba/apis/add/admin/add_customer_api.php',
         data: new FormData(this),
         dataType: 'json',
         contentType: false,

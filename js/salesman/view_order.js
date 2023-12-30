@@ -26,7 +26,7 @@ function loadCustomerDetails(){
 
   function loadProducts(){
     $.ajax({
-      url : "../../apis/select/salesman/get_order_products.php",
+      url : "/new/oba/apis/select/salesman/get_order_products.php",
       type : "POST",
       data : {
         orderId : localStorage.getItem('order_id')

@@ -84,13 +84,7 @@ $(document).ready(function(){
         
       });
     });
-    // //Fetch All Records Close
-    //Fetch Single Record : Show Model
-    
-    // fetch singlr record for remove product category
-
-    //
-    //Delete Role 
+ 
 
      
     

@@ -17,7 +17,7 @@ function saveOrder(){
 
     $.ajax({
       type: 'POST',
-      url: '../../apis/update/salesman/update_order.php',
+      url: '/new/oba/apis/update/salesman/update_order.php',
       data: JSON.stringify(productData),
       dataType: 'json',
       contentType: false,
@@ -152,7 +152,7 @@ $("#items").html('');
 
 function loadCategories(){
     $.ajax({
-      url : "../../apis/select/salesman/get_all_category.php",
+      url : "/new/oba/apis/select/salesman/get_all_category.php",
       type : "GET",
       dataType : "json",
       success : function(data){
@@ -177,7 +177,7 @@ function loadCategories(){
 
   function loadProducts(){
     $.ajax({
-      url : "../../apis/select/salesman/get_products_for_new_order.php",
+      url : "/new/oba/apis/select/salesman/get_products_for_new_order.php",
       type : "POST",
       data : {
         customerId : localStorage.getItem('customer_id')
@@ -223,7 +223,7 @@ function getTotalAmount(){
 
   function getSelectedItems(){
     $.ajax({
-      url : "../../apis/select/salesman/get_selected_products.php",
+      url : "/new/oba/apis/select/salesman/get_selected_products.php",
       type : "POST",
       data : {
         orderId : localStorage.getItem('order_id'),

@@ -6,7 +6,7 @@ var obj = {cust_id : cust_id};
  $("#loader-view-customer").show();
 
  $.ajax({
-       url :"../../apis/select/admin/fetch_single_customer.php",
+       url :"/new/oba/apis/select/admin/fetch_single_customer.php",
        type : "POST",
        data : myJson,
        dataType : "json",

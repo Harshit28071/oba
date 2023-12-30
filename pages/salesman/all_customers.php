@@ -2,7 +2,7 @@
 session_start();
 
 //echo  $user_id;
-if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
+if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
   header("location:../../common/user_login.php");
 }
 ?>

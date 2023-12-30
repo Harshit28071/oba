@@ -1,6 +1,6 @@
 function loadCities() { 
     $.ajax({
-        url: "../../apis/select/salesman/get_all_city.php",
+        url: "/new/oba/apis/select/salesman/get_all_city.php",
         type: "POST",
         async: "false",
         dataType: "json",

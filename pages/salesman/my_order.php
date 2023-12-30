@@ -5,8 +5,8 @@ session_start();
  $conn = $db->connect();
 
  //echo  $user_id;
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
-   header("location:../admin/user_login.php");
+  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman"){
+   header("location:/new/oba/common/user_login.php");
 }
  ?>
 <!DOCTYPE html>

@@ -6,7 +6,7 @@ $("#heading").text(orderStatus+" Orders");
 
 function loadOrders() {
     $.ajax({
-        url: "../../apis/select/salesman/get_orders.php",
+        url: "/new/oba/apis/select/salesman/get_orders.php",
         type: "POST",
         data: {
             status:orderStatus
@@ -86,7 +86,7 @@ function deleteOrder(orderId){
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "../../apis/delete/salesman/delete_order.php",
+            url: "/new/oba/apis/delete/salesman/delete_order.php",
             data : myJson,
             type: "POST",
             dataType: "json",
@@ -109,7 +109,7 @@ function sendForBilling(orderId){
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "../../apis/update/salesman/send_for_billing.php",
+            url: "/new/oba/apis/update/salesman/send_for_billing.php",
             data : myJson,
             type: "POST",
             dataType: "json",

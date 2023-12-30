@@ -3,7 +3,7 @@ session_start();
  require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
  $db = new Database();
  $conn = $db->connect();
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4"){
+  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman"){
    header("location:.../common/user_login.php");
 }
  ?>

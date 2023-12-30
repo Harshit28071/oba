@@ -6,7 +6,7 @@ function editCustomerDetails(customer_id){
 
 function loadcity(){
     $.ajax({
-        url : "../../apis/select/admin/get_city.php",
+        url : "/new/oba/apis/select/admin/get_city.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -27,7 +27,7 @@ function displayCity(data) {
 //Load State Data
 function loadState(){
     $.ajax({
-        url : "../../apis/select/admin/get_states.php",
+        url : "/new/oba/apis/select/admin/get_states.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -48,7 +48,7 @@ function displayState(data) {
 //Select Distributor Name 
 function loadDistributor(){
     $.ajax({
-        url : "../../apis/select/common/get_distributor.php",
+        url : "/new/oba/apis/select/common/get_distributor.php",
         type : "GET",
         dataType : "json",
         success : function(data){
@@ -69,7 +69,7 @@ function displayDistributor(data) {
 function loadSingleCustomer(){
     const urlparams = new URLSearchParams(window.location.search);
     $.ajax({
-        url: "../../apis/select/common/get_single_customer.php",
+        url: "/new/oba/apis/select/common/get_single_customer.php",
         type: "POST",
         data: {id : urlparams.get('id')},
         dataType: "json",
@@ -91,7 +91,7 @@ $("#edit-customer-form").on("submit",function(e){
     $("#loader-customer-edit").show();
     $.ajax({
             type: 'POST',
-            url: '../../apis/update/salesman/edit_customer_details.php',
+            url: '/new/oba/apis/update/salesman/edit_customer_details.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,

@@ -3,7 +3,7 @@ var orders = [];
 function loadSingleCustomer(){
     const urlparams = new URLSearchParams(window.location.search);
     $.ajax({
-        url: "../../apis/select/common/get_single_customer.php",
+        url: "/new/oba/apis/select/common/get_single_customer.php",
         type: "POST",
         data: {id : urlparams.get('id')},
         dataType: "json",
@@ -69,7 +69,7 @@ function customerAllDetails(customer_id){
   function loadCustomerOders(){
     const urlparams = new URLSearchParams(window.location.search);
     $.ajax({
-        url: "../../apis/select/common/get_customer_orders.php",
+        url: "/new/oba/apis/select/common/get_customer_orders.php",
         type: "POST",
         data: {customerId : urlparams.get('id')},
         dataType: "json",
@@ -134,7 +134,7 @@ function sendForBilling(orderId){
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "../../apis/update/salesman/send_for_billing.php",
+            url: "/new/oba/apis/update/salesman/send_for_billing.php",
             data : myJson,
             type: "POST",
             dataType: "json",
@@ -210,7 +210,7 @@ function deleteOrder(orderId){
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "../../apis/delete/salesman/delete_order.php",
+            url: "/new/oba/apis/delete/salesman/delete_order.php",
             data : myJson,
             type: "POST",
             dataType: "json",

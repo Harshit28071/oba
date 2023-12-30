@@ -3,8 +3,8 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
 $db = new Database();
 $conn = $db->connect();
-if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "4") {
-  header("location:../admin/user_login.php");
+if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
+  header("location:/new/oba/common/user_login.php");
 }
 //city select box
 $querycity = "SELECT id,name FROM city";

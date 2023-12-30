@@ -3,7 +3,7 @@
    
     $.ajax({
        type : 'POST',
-       url : '../../apis/select/common/get_distributors.php',
+       url : '/new/oba/apis/select/common/get_distributors.php',
        success: function(data){
            var html = '<option selected style="text-align: center;" value="">SELECT DISTRIBUTOR </option>';
            $.each(data, function (index, value) {

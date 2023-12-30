@@ -6,7 +6,7 @@ $db = new Database();
 $conn = $db->connect();
 $id = $_POST['id'];
 $customer = [];
-$stmt =$conn->prepare("SELECT customer.id,customer.name,city.name FROM customer LEFT JOIN city ON customer.city = city.id WHERE city = ? ");
+$stmt =$conn->prepare("SELECT customer.id,customer.name,city.name FROM customer LEFT JOIN city ON customer.city = city.id WHERE city = ? order by customer.name");
 $stmt->bind_param("i",$id);
 $stmt->bind_result($id,$name,$cityName,);
 $stmt->execute();

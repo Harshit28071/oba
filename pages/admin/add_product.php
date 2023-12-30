@@ -4,6 +4,10 @@ if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Admin"){
   header("location:/new/oba/common/user_login.php");
   }
 require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/common/php/fetch_master_data.php");
+$options = loadCategory();
+$options_unit = loadUnits();
+$options_firm = loadFirms();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url :"../../apis/select/salesman/total_order_count.php",
+        url :"/new/oba/apis/select/salesman/total_order_count.php",
         type : "POST",
         dataType : "json",
         success : function(data){

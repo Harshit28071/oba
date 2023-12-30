@@ -4,7 +4,7 @@ function editSalesmanProfile(){
 }
 function loadSalesmanData(){
     $.ajax({
-        url: "../../apis/select/common/get_single_salesman.php",
+        url: "/new/oba/apis/select/common/get_single_salesman.php",
         type: "POST",
         dataType: "json",
         success: function (data) {

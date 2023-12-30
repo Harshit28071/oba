@@ -1,13 +1,13 @@
      $('#city-value').change(function(){
         loadCustomer();
-    });
+    }); 
  function loadCustomer(){
     var cityId = $('#city-value').val();
     var cityName = $('#city-value').find(":selected").text();
 
     $.ajax({
        type : 'POST',
-       url : '../../apis/select/salesman/get_city_customer.php',
+       url : '/new/oba/apis/select/salesman/get_city_customer.php',
        data : {id:cityId},
        success: function(data){
            var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';

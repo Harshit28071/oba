@@ -39,6 +39,34 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Orders
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./create_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./my_orders.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My Orders</p>
+                </a>
+              </li>
+          
+             
+            </ul>
+          </li>
+
+         
           <li class="nav-item">
             <a href="./../../common/logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt" aria-hidden="true"></i>

@@ -11,13 +11,13 @@ function loadCategory()
   $stmt = $conn->prepare($query);
   $stmt->execute();
   $stmt->bind_result($id, $name);
-  $options = "";
-  $options_edit = "";
+  $options = "<option value=''>Select Category</option>";
+
   while ($stmt->fetch()) {
     $options .= "<option value='$id'>$name</option>";
-    $options_edit .= "<option value='$id' selected>$name</option>";
+    
   }
-  return $options_edit;
+  return $options;
 }
 function loadUnits()
 {
@@ -29,15 +29,14 @@ function loadUnits()
   $stmt = $conn->prepare($query_unit);
   $stmt->execute();
   $stmt->bind_result($id, $name);
-  $options_unit = "";
+  $options_unit = "<option value=''>Select Unit</option>";;
   $options_edit_unit = "";
   while ($stmt->fetch()) {
     $options_unit .= "<option value='$id'>$name</option>";
-    $options_edit_unit .= "<option value='$id' selected>$name</option>";
   }
-  return $options_edit_unit;
+  return $options_unit;
 }
-
+ 
 function loadFirms()
 {
   global $conn;
@@ -48,13 +47,12 @@ function loadFirms()
   $stmt = $conn->prepare($query_firm);
   $stmt->execute();
   $stmt->bind_result($id, $name);
-  $options_firm = "";
+  $options_firm = "<option value=''>Select Firm</option>";
   $options_edit_firm = "";
   while ($stmt->fetch()) {
     $options_firm .= "<option value='$id'>$name</option>";
-    $options_edit_firm .= "<option value='$id' selected>$name</option>";
   }
-  return $options_edit_firm;
+  return $options_firm;
 }
 
 function loadState(){

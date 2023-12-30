@@ -29,7 +29,7 @@ function switchView(view){
 
 function loadCategories(){
   $.ajax({
-    url : "../../apis/select/salesman/get_all_category.php",
+    url : "/new/oba/apis/select/salesman/get_all_category.php",
     type : "GET",
     dataType : "json",
     success : function(data){
@@ -66,7 +66,7 @@ function fillCategories(){
 
 function loadProducts(){
   $.ajax({
-    url : "../../apis/select/salesman/get_all_product.php",
+    url : "/new/oba/apis/select/salesman/get_all_product.php",
     type : "GET",
     dataType : "json",
     success : function(data){

@@ -3,7 +3,7 @@ var cities = [];
 var selectedOrders = [];
 function loadPendingOrders() {
     $.ajax({
-        url: "../../apis/select/salesman/get_pending_distributor_orders.php",
+        url: "/new/oba/apis/select/salesman/get_pending_distributor_orders.php",
         type: "POST",
         dataType: "json",
         data:{
@@ -146,7 +146,7 @@ $("#search-customer-by-name").on("submit", function (e) {
 function createOrder(){
     if(selectedOrders.length > 0){
     $.ajax({
-        url : "../../apis/select/salesman/prepare_distributor_order.php",
+        url : "/new/oba/apis/select/salesman/prepare_distributor_order.php",
         type : "POST",
         data : {
           orders : selectedOrders.toString(),

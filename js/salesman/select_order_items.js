@@ -24,6 +24,7 @@ function loadCart(){
 //done
 function loadSelectedItems(){
   var data = localStorage.getItem('OrderData');
+  selectItemAmount = [];
   if(data){
     data = JSON.parse(data);
     for(var i=0;i<data.length;i++){
@@ -39,10 +40,10 @@ function loadSelectedItems(){
     
 }
 
-//done
+//done 
 function loadCategories(){
   $.ajax({
-    url : "../../apis/select/salesman/get_all_category.php",
+    url : "/new/oba/apis/select/salesman/get_all_category.php",
     type : "GET",
     dataType : "json",
     success : function(data){
@@ -82,7 +83,7 @@ function fillCategories(){
 //done
 function loadProducts(){
   $.ajax({
-    url : "../../apis/select/salesman/get_products_for_new_order.php",
+    url : "/new/oba/apis/select/salesman/get_products_for_new_order.php",
     type : "POST",
     data : {
       customerId : localStorage.getItem('customer_id')
@@ -194,7 +195,7 @@ function getItemBaselayout(data){
 '</div>'+
 '</div>'+
 '</span>';
-}
+}  
 
 //done
 function displayTotalAmount(){

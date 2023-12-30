@@ -1,6 +1,6 @@
 function loadSingleSalesman(){
     $.ajax({
-        url: "../../apis/select/common/get_single_salesman.php",
+        url: "/new/oba/apis/select/common/get_single_salesman.php",
         type: "POST",
         dataType: "json",
         success: function (data) {
@@ -15,7 +15,7 @@ $("#edit-customer-form").on("submit",function(e){
     $("#loader-customer-edit").show();
     $.ajax({
             type: 'POST',
-            url: '../../apis/update/salesman/edit_salesman_details.php',
+            url: '/new/oba/apis/update/salesman/edit_salesman_details.php',
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
