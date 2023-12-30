@@ -59,7 +59,7 @@ session_start();
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="./manage_firm.php" id="back-firm" class="btn btn-primary">Back</a></li>
+            
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,7 +76,7 @@ session_start();
               </div>
                 <form id="edit-firm-form">
                 <div class="row">
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Firm Name</label>
                     <input type="text" class="form-control" placeholder="Firm Name" name="firmnameedit" autocomplete="off" id="f-name-edit">
                     <input type="hidden" class="form-control" placeholder="Firm Name" name="firmeditid" autocomplete="off" id="f-id-edit">
@@ -84,47 +84,47 @@ session_start();
                     <span id="name-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                     <label>GSTIN</label>
                     <input type="text" class="form-control" placeholder="Enter GSTIN" name="gstinedit" autocomplete="off" id="f-gst-edit">
                     <span id="G-val" class="text-danger font-weight-bold"></span>
                   </div>
                  
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                     <label>Address</label>
                     <input type="text" class="form-control" placeholder="Enter Address"name="addressedit" autocomplete="off" id="f-add-edit">
                     <span id="add-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>FSSAI</label>
                     <input type="text" class="form-control" placeholder="Enter FSSAI " name="fssaiedit" autocomplete="off" id="f-fssai-edit">
                     <span id="fssai-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Mobile</label>
                     <input type="text" class="form-control" placeholder="Enter Mobile" name="mobileedit" autocomplete="off" id="f-mobile-edit">
                     <span id="mo-val-al" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Email</label>
                     <input type="email" class="form-control" placeholder="Enter Email" name="emailedit" autocomplete="off" id="v-email-edit">
                   </div>
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Bank Name</label>
                     <input type="text" class="form-control" placeholder="Enter Bank Name" name="banknameedit" autocomplete="off" id="f-bankname-edit">
                     <span id="bank-name-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Account Number</label>
                     <input type="text" class="form-control" placeholder="Enter Account Number" name="accountnumberedit" autocomplete="off" id="f-acc-no-edit">
                     <span id="acc-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>IFSC</label>
                     <input type="text" class="form-control" placeholder="Enter IFSC Code" name="ifscedit" autocomplete="off" id="f-ifsc-edit">
                     <span id="ifsc-val" class="text-danger font-weight-bold"></span>
@@ -136,18 +136,18 @@ session_start();
                     <span id="bank-add-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>State</label>
                     <input type="text" class="form-control" placeholder="Enter State" name="stateedit" autocomplete="off" id="f-state-edit">
                     <span id="state-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>State Code</label>
                     <input type="text" class="form-control" placeholder="Enter State Code" name="statecodeedit" autocomplete="off" id="f-state-code-edit">
                     <span id="state-val-code" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputFile"> Edit Logo Image</label>
                     <div class="input-group">
                       <div class="custom-file">
@@ -160,7 +160,7 @@ session_start();
                     </div>
                     <span id="logo-image-validation" class="text-danger"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputFile">Edit Signature Image</label>
                     <div class="input-group">
                       <div class="custom-file">
@@ -172,7 +172,7 @@ session_start();
                       </div>
                     </div>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Firm Logo</label>
                     <div class="input-group">
                       <img src=""  id="logo-img-view-edit" style="width: 120px; height:90px"/>
@@ -180,7 +180,7 @@ session_start();
                      
                     </div>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label>Signture</label>
                     <div class="input-group">
                     <img src=""  id="signture-img-view-edit" style="width: 120px; height:90px"/>

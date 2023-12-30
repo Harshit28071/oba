@@ -110,34 +110,34 @@ $query ="SELECT id,role FROM roles";
             </div>
             <div class="modal-body">
                     <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
                     <input type="hidden" class="form-control" name="id" id="user-id-edit" placeholder="Enter Username" autocomplete="off">
                     <input type="text" class="form-control" name="usernameedit" id="user-name-edit" placeholder="Enter Username" autocomplete="off" required>
                     <span id="unamevedit" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Set Password</label>
                     <input type="password" class="form-control" name="passwordedit" id="pass-word-edit" placeholder="Enter Password" autocomplete="off" required>
                     <span id="upwdvedit" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Enter Mobile</label>
                     <input type="text" class="form-control" name="mobile_numberedit" id="mobile-number-edit" placeholder="Enter Mobile Number" autocomplete="off" required>
                     <span id="umobilevedit" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Enter Email</label>
                     <input type="email" class="form-control" name="emailedit" id="user-email-edit" placeholder="Enter Email" autocomplete="off" required>
                   </div>
-                  <div class="col-6  form-group">
+                  <div class="col-md-6  form-group">
                         <label>Select Role</label>
                         <select class="form-control" name="roleedit" id="user-role-edit">
                          <?php echo $options_edit; ?>
                          <!-- <option value="0">Defult</option> -->
                         </select>
                       </div>
-                      <div class="col-6  form-group">
+                      <div class="col-md-6  form-group">
                         <label>Select Language Prefer</label>
                         <select class="form-control" name="Language" id="user-language" required>
                          <option value="English">English</option>
@@ -175,29 +175,29 @@ $query ="SELECT id,role FROM roles";
             </div>
             <div class="modal-body">
                     <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Username</label>
                   
                     <input type="text" class="form-control" name="username" id="user-name" placeholder="Enter Username" autocomplete="off" required>
 
                     <span id="unamev" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Set Password</label>
                     <input type="text" class="form-control" name="password" id="pass-word" placeholder="Enter Password" autocomplete="off" required>
                     <span id="upwdv" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Enter Mobile</label>
                     <input type="text" class="form-control" name="mobile_number" id="mobile-number" placeholder="Enter Mobile Number" autocomplete="off" required>
                     <span id="umobilev" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                     <label for="exampleInputEmail1">Enter Email</label>
                     <input type="email" class="form-control" name="email" id="user-email" placeholder="Enter Email" autocomplete="off" required>
                     <span id="uemailv" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-6  form-group">
+                  <div class="col-md-6  form-group">
                         <label>Select Role</label>
                         <select class="form-control" name="role" id="user-role" required>
                         <option value="0">Choose Role</option>
@@ -205,7 +205,7 @@ $query ="SELECT id,role FROM roles";
                          <!-- <option value="0">Defult</option> -->
                         </select>
                       </div>
-                      <div class="col-6  form-group">
+                      <div class="col-md-6  form-group">
                         <label>Select Language Prefer</label>
                         <select class="form-control" name="Language" id="user-language" required>
                          <option value="0">Choose Language</option>

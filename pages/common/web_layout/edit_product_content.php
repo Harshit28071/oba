@@ -22,13 +22,13 @@
               </div>
                 <form id="edit-product-form">
                 <div class="row">
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Name</label>
                     <input type="text" class="form-control" placeholder="Enter Product Name" name="pnameedit" autocomplete="off" id="name-edit" required>
                     <input type="hidden" class="form-control" placeholder="Enter Product Name" name="idedit" autocomplete="off" id="ide" required>
 
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-md-6">
                       <div class="form-group">
                         <label>Select  Category</label>
                         <select class="form-control" name="pcategoryedit" id="catedit" required>
@@ -37,7 +37,7 @@
                       </div>
                     </div>
                  
-                    <div class="col-sm-4">
+                    <div class="col-md-4">
                       <div class="form-group">
                         <label>Select Unit</label>
                         <select class="form-control" name="punitedit" id="unitedit">
@@ -46,7 +46,7 @@
                       </div>
                     </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                     <div class="form-group">
                     <label>Secondary Unit</label>
                         <select class="form-control" name="secunitedit" id="editsecondaryunit">
@@ -56,38 +56,38 @@
                       </div>
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Multiplier</label>
                     <input type="text" class="form-control" placeholder="Enter Multiplier" name="multiplieredit"  id="multiplieredit" autocomplete="off">
                     
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Low Price</label>
                     <input type="text" class="form-control" placeholder="Enter Low Price" name="lowpriceedit" autocomplete="off" id="lowpedit">
                   </div>
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>Max Price</label>
                     <input type="text" class="form-control" placeholder="Enter Max Price" name="maxpriceedit" autocomplete="off" id="maxpedit">
                   </div>
                   
-                  <div class="col-4 form-group">
+                  <div class="col-md-4 form-group">
                   <label>MRP</label>
                     <input type="text" class="form-control" placeholder="Enter MRP" name="pmrpedit" autocomplete="off" id="mrpedit">
                   </div>
                   
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Hsn Code</label>
                     <input type="text" class="form-control" placeholder="Enter Hsn Code" name="phsncodeedit" autocomplete="off" id="hsnedit" required>
                     <span id="ifsc-val" class="text-danger font-weight-bold"></span>
                   </div>
                   
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Gst Rate</label>
                     <input type="text" class="form-control" placeholder="Enter Gst Rate " name="gstrateedit" autocomplete="off" id="gstrateedit" required>
                     <span id="bank-add-val" class="text-danger font-weight-bold"></span>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-md-6">
                       <div class="form-group">
                         <label>Select Firm</label>
                         <select class="form-control" name="firmidedit" id="firmidedit">
@@ -96,16 +96,16 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-6 form-group">
+                    <div class="col-md-6 form-group">
                   <label>Gst Price</label>
                     <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstpriceedit" autocomplete="off" id="gstpriceedit">
                    
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Gst Name</label>
                     <input type="text" class="form-control" placeholder="Enter Gst Price" name="gstnameedit" autocomplete="off" id="gst-name-edit"> 
                   </div>
-                  <div class="col-6 form-group">
+                  <div class="col-md-6 form-group">
                   <label>Qty_step</label>
                     <input type="text" class="form-control" placeholder="Enter Gst Price" name="Qty_step_edit" autocomplete="off" id="Qty-step-edit"> 
                   </div>
