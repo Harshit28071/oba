@@ -13,16 +13,23 @@ $cid = $data["customerId"];
 $amount = $data["totalAmount"];
 $sid = $_SESSION["s_id"];
 $orders = $data["selectedOrders"];
+$products = "[";
 
-$stmt = $conn->prepare("INSERT INTO `orders`(`salesman_id`, `party_id`,  `amount`) VALUES (?,?,?)");
-$stmt->bind_param("iid",$sid,$cid,$amount);
+for($i=0;$i<sizeof($item);$i++){
+
+    if($i>0){
+        $products = $products . ',';
+    }
+    $products = $products . '{"id":'.$item[$i]["id"].', "punit":"'.$item[$i]["punit"].'", "quantity":'.$item[$i]["quantity"].', "itemPrice":'.$item[$i]["itemPrice"].'}';
+    
+}
+$products = $products . ']';
+//$products = serialize($products);
+$stmt = $conn->prepare("INSERT INTO `orders`(`salesman_id`, `party_id`,  `amount`,products) VALUES (?,?,?,?)");
+$stmt->bind_param("iids",$sid,$cid,$amount,$products);
 $stmt->execute();
 $id = $stmt->insert_id;
-for($i=0;$i<sizeof($item);$i++){
-    $stmt = $conn->prepare("INSERT INTO `order_item_mapping`( `order_id`, `product_id`, `unit`, `quantity`, `price`) VALUES (?,?,?,?,?)");
-$stmt->bind_param("iisdd",$id,$item[$i]["id"],$item[$i]["punit"],$item[$i]["quantity"],$item[$i]["itemPrice"]);
-$stmt->execute();
-}
+
 
 $stmt = $conn->prepare("update orders set order_status = 'Completed',parent_order_id = ? where id in (".$orders.")");
 $stmt->bind_param("i",$id);

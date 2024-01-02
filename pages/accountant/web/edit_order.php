@@ -69,7 +69,7 @@ $options_city = loadCity();
             </form>
           </div>
           <div class="col-6" style="text-align: end;">
-          <a onclick="saveOrder()"><button type="button" id="save-order" class="btn btn-danger btn-sm">Save Order</button></a>
+          <a onclick="updateOrder()"><button type="button" id="save-order" class="btn btn-danger btn-sm">Update Order</button></a>
           </div>
         </div>
 
@@ -142,7 +142,7 @@ $options_city = loadCity();
   <?php require_once("./layout/footer_links.php"); ?>
 
   <script src="/new/oba/js/accountant/create_web_order.js"></script>
-
+  <script src="/new/oba/js/accountant/edit_web_order.js"></script>
 </body>
 
 </html>

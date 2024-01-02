@@ -44,7 +44,15 @@ if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant"){
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<div id="confirm" class="modal">
+  <div class="modal-body">
+    Are you sure you want to cancel the order creation?
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+    <button type="button" data-dismiss="modal" class="btn" id="cancel">Cancel</button>
+  </div>
+</div>
 <!-- jQuery -->
 <?php require_once("./layout/footer_links.php");?>
 </body>

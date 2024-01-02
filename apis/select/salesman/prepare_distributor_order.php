@@ -15,7 +15,7 @@ b.max_price as maxPrice, a.price as price,b.qty_step,SUM(a.quantity)
 FROM `order_item_mapping` a 
 left join product b on a.product_id = b.id
 left join category c on b.category_id = c.id
-left join units d on b.secondary_unit_id = d.id where a.order_id in (select id from orders where id in (".$orders.") and salesman_id = ? and invoice_id = 0) group by a.product_id order by b.name");
+left join units d on b.secondary_unit_id = d.id where a.order_id in (select id from orders where id in (".$orders.") and salesman_id = ? and invoice_id = 0) group by a.product_id,a.unit order by b.name");
 $stmt->bind_param("i",$salesman);
 $stmt->execute();
 $stmt->bind_result($id,$name,$category,$punit,$sunit,$minPrice,$maxPrice,$itemPrice,$qty_step,$qty);

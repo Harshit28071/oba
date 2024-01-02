@@ -7,7 +7,7 @@ function checkInput(){
   if (secondunit.value.trim() === "") {
     multi.disabled = true;
   } else {
-    multi.disabled = false;
+    multi.disabled = false; 
   }
 }
 

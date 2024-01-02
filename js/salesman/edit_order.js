@@ -12,7 +12,8 @@ function saveOrder(){
     var productData = {
       products : selectedProducts,
       totalAmount: getTotalAmount(),
-      orderId: localStorage.getItem('order_id')
+      orderId: localStorage.getItem('order_id'),
+      customerId: localStorage.getItem('customer_id')
     }
 
     $.ajax({
@@ -220,7 +221,7 @@ function getTotalAmount(){
     }
     
   }
-
+ 
   function getSelectedItems(){
     $.ajax({
       url : "/new/oba/apis/select/salesman/get_selected_products.php",

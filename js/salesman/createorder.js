@@ -13,7 +13,7 @@
            var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
            $.each(data, function (index, value) {
                // APPEND OR INSERT DATA TO SELECT ELEMENT.
-               html =   html + ('<option value="' + value.id + '">' + value.cname + '('+ value.cityname + ')' + '</option>');
+               html =   html + ('<option value="' + value.id + '">' + value.cname + ' ('+ value.cityname + ')' + '</option>');
            });
            $('#show-customer').html(html);
            if(localStorage.getItem('customer_id')){

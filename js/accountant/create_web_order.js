@@ -4,7 +4,7 @@ var parentCategories = [];//
 var childCategories = [];//
 var selectedProducts = [];//
 
-debugger;
+
 var cat = localStorage.getItem('categories');
 
 if (cat) {
@@ -137,7 +137,7 @@ function loadProducts() {
 }
 
 function addNewItem() {
-    debugger;
+
     var index = $("#items option:selected").val();
     if (index && index != 'SELECT ITEM') {
 
@@ -176,6 +176,7 @@ function addNewItem() {
 
 
 function showselectedProducts() {
+
     var data = localStorage.getItem('selectedProducts');
     var html = '';
     var i = 0;
@@ -183,7 +184,8 @@ function showselectedProducts() {
         data = JSON.parse(data);
 
         for (i = 0; i < data.length; i++) {
-            console.log(data);
+            debugger;
+            console.log(data[i]);
             html = html + '<tr>' +
                 '<td>' + (i + 1) + '.</td>' +
                 '<td>' + data[i].name + '</td>' +
@@ -215,7 +217,7 @@ function getInput(type, value, id, index) {
 }
 
 function deleteItem(index) {
-    debugger;
+    
     var data = JSON.parse(localStorage.getItem('selectedProducts'));
     data.splice(index, 1);
 
@@ -249,6 +251,10 @@ function updateItemTotal(id, type, index) {
 
 
 function getUnitDropDown(unit, punit, sunit, id, index) {
+    
+    if(!unit){
+        unit = punit;
+    }
 
     var html = '<select class="custom-select rounded-0" id="' + id + '_unit_' + index + '" onchange="updateUnit(this,' + id + ',' + index + ')" >';
     html = html + '<option value="' + unit + '">' + unit + '</option>';
@@ -294,7 +300,7 @@ function loadCustomer() {
             var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
             $.each(data, function (index, value) {
                 // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                html = html + ('<option value="' + value.id + '">' + value.cname + '(' + value.cityname + ')' + '</option>');
+                html = html + ('<option value="' + value.id + '">' + value.cname + ' (' + value.cityname + ')' + '</option>');
             });
             $('#show-customer').html(html);
             if (localStorage.getItem('customer_id')) {
@@ -331,9 +337,9 @@ function getTotalAmount() {
         return 0;
     }
 }
-$("#done-btn").on("click",function dashboardRedirection(){
+function dashboardRedirection(){
     window.location.href='./dashboard.php';
-  });
+  }
 
 function saveOrder() {
     if ($("#show-customer").val() == "") {
@@ -388,5 +394,28 @@ function saveOrder() {
             $("#alert-message-info").html("Please add some items");
         }
     }
+}
+
+function cancelOrder(){
+
+    bootbox.confirm({
+        message: '<h4>Are you sure you want to cancel the order?</h4>',
+        buttons: {
+        confirm: {
+        label: 'Yes',
+        className: 'btn-danger'
+        },
+        cancel: {
+        label: 'No',
+        className: 'btn-primary'
+        }
+        },
+        callback: function (result) {
+            if(result){
+                localStorage.clear();
+                dashboardRedirection();
+            }
+        }
+        });
 }
 

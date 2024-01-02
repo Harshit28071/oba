@@ -12,6 +12,7 @@ $item =$data["products"];
 $oid = $data["orderId"];
 $amount = $data["totalAmount"];
 $sid = $_SESSION["s_id"];
+$customerId = $data["customerId"];
 
 
 if(sizeof($item) > 0){
@@ -19,13 +20,19 @@ if(sizeof($item) > 0){
     $stmt->bind_param("ii",$oid,$sid);
     $stmt->execute();
 
-$stmt = $conn->prepare("update `orders` set amount = ? where id = ? and salesman_id = ? and invoice_id = 0");
-$stmt->bind_param("dii",$amount,$oid,$sid);
+$stmt = $conn->prepare("update `orders` set amount = ?,party_id = ? where id = ? and salesman_id = ? and invoice_id = 0");
+$stmt->bind_param("diii",$customerId,$amount,$oid,$sid);
 $stmt->execute();
 
 for($i=0;$i<sizeof($item);$i++){
+    $unit = '';
+    if(isset($item[$i]["unit"])){
+        $unit = $item[$i]["unit"];
+    }else{
+        $unit = $item[$i]["punit"];
+    }
     $stmt = $conn->prepare("INSERT INTO `order_item_mapping`( `order_id`, `product_id`, `unit`, `quantity`, `price`) VALUES (?,?,?,?,?)");
-$stmt->bind_param("iisdd",$oid,$item[$i]["id"],$item[$i]["punit"],$item[$i]["quantity"],$item[$i]["itemPrice"]);
+$stmt->bind_param("iisdd",$oid,$item[$i]["id"],$unit,$item[$i]["quantity"],$item[$i]["itemPrice"]);
 $stmt->execute();
 }
 
