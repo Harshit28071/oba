@@ -38,9 +38,9 @@ if(count($result) > 0){
         $_SESSION["s_token"] =$token;
         
         switch($_SESSION["s_role"]){
-          case 'Admin': header("location:./../pages/admin/dashboard.php"); break;
-          case 'Salesman': header("location:./../pages/salesman/dashboard.php"); break;
-          case 'Accountant': header("location:./../pages/accountant/web/dashboard.php"); break;
+          case 'Admin': header("location:./../admin/pages/dashboard.php"); break;
+          case 'Salesman': header("location:./../salesman/pages/dashboard.php"); break;
+          case 'Accountant': header("location:./../accountant/pages/web/dashboard.php"); break;
           default:  header("location:./user_login.php");
         }
          
