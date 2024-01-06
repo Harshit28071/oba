@@ -1,15 +1,12 @@
 <?php
 session_start();
- require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/database.php");
- $db = new Database();
- $conn = $db->connect();
-  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman"){
-   header("location:../admin/user_login.php");
+  if(!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant"){
+   header("location:../common/user_login.php");
 }
  ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once("./layout/header.php");?>
+<?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/accountant/mobile/layout/header.php");?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -20,16 +17,16 @@ session_start();
 
   <!-- Navbar -->
   <?php 
-  require_once("./layout/navbar.php") ?>
+  require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/accountant/mobile/layout/navbar.php") ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
  
 
   <!-- Content Wrapper. Contains page content -->
-  <?php require_once("./layout/content.php");?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/accountant/mobile/layout/content.php");?>
   <!-- /.content-wrapper -->
- <?php require_once("./layout/footer.php"); ?>
+ <?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/accountant/mobile/layout/footer.php"); ?>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -39,35 +36,21 @@ session_start();
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<?php require_once("./layout/footer_links.php");?>
+<?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/pages/accountant/mobile/layout/footer_links.php");?>
 <script>
 $("#heading").text("Dashboard");
 $("#back-button").css("display", "none");
 $("#logout").append('<li class="nav-item">'+
-      '<a href="./view_salesman_profile.php"><button class="btn btn-info"><i class="fas fa-user"></i></button>  </a>'+
-      '<a href="./../../common/logout.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button>  </a>'+
+      '<a href="#"><button class="btn btn-info"><i class="fas fa-user"></i></button>  </a>'+
+      '<a href="/new/oba/common/user_login.php"><button class="btn btn-danger"><i class="fas fa-sign-out-alt"></i>Logout</button>  </a>'+
       '</li>');
-function createOrder(){
-  localStorage.clear();
-  window.location.href = "./create_order.php";
-}
-
-function showProducts(){
-  localStorage.clear();
-  window.location.href = "./show_products.php";
-}
-
-function myOrders(){
-  localStorage.clear();
-  window.location.href = "./my_order.php";
-}
 function allCustomers(){
   localStorage.clear();
-  window.location.href = "./all_customers.php";
+  window.location.href = "/new/oba/pages/accountant/mobile/all_customer.php";
 }
-function distributorOrder(){
+function showProducts(){
   localStorage.clear();
-  window.location.href = "./distributor_order.php";
+  window.location.href = "/new/oba/pages/accountant/mobile/all_product.php";
 }
   </script>
 </body>

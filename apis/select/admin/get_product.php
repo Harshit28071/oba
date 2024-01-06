@@ -77,7 +77,8 @@ WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :li
          "default_image_url"=>$row['default_image_url'],
          "available"=>$row['available'],
          "unit"=>$row['unit'],
-         "category"=>$row['category'],
+         "category"=>$row['category']
+         
          
       );
    }
