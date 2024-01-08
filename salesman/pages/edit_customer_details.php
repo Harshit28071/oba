@@ -50,15 +50,6 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
                   <label>Mobile</label>
                     <input type="number" class="form-control" placeholder="Customer Mobile" name="CustMobile" autocomplete="off" id="Cust-Mobile">
                   </div>
-                  <div class="col-md-6 form-group">
-                        <label>Select State</label>
-                        <select class="form-control" name="custstate" id="state"> </select>
-                  </div>
-                  <div class="col-md-6 form-group">        
-                    <label>Select City</label>
-                        <select class="form-control" name="custcity" id="city" > 
-                        </select>
-                  </div>
                   <div class="col-md-6">
                   
                       <!-- textarea -->
@@ -68,8 +59,8 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
                       </div>
                 
                   </div>
-                   
-                      <div class="col-md-6 form-group">
+                  <div class="col-md-6">
+                      <div class="col-md-12 form-group">
                         <label>Type</label>
                         <select class="form-control" name="custType" id="disop">
                           <option value="Retailer" selected>Retailer</option>
@@ -78,13 +69,23 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
                           <option value="Oth">Other</option>
                         </select>
                       </div>
-                      <div class="col-md-6 form-group">
+                      <div class="col-md-12 form-group">
                     <label>Distributor (Goods Source)</label>
                     
                     <select class="form-control" name="disName" id="dis-select-box" required>
                     <option selected style="text-align: center;">Select Distributor </option>
                         </select>
                     
+                  </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                        <label>Select State</label>
+                        <select class="form-control" name="custstate" id="state" readonly> </select>
+                  </div>
+                  <div class="col-md-6 form-group">        
+                    <label>Select City</label>
+                        <select class="form-control" name="custcity" id="city" readonly > 
+                        </select>
                   </div>
                   <div class="col-md-6 form-group">        
                     <label>Select Firm</label>
