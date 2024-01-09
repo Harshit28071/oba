@@ -48,6 +48,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/new/oba/accountant/pages/web/my_orders.php" class="nav-link">
+            <i class="nav-icon fa fa-shopping-cart"></i>
+              <p>
+              My Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/new/oba/common/user_login.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt" aria-hidden="true"></i>
               <p>
