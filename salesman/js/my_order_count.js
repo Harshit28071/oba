@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
     function orders(status){
         localStorage.clear();
-        window.location.href='../salesman/orders.php?status='+status;
+        window.location.href='/new/oba/salesman/pages/orders.php?status='+status;
     }
         
 
