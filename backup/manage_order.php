@@ -11,9 +11,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
   .margin-5{
     margin-top:5%;
   }
-  .margin-right{
-    margin-right: 5px;
-  }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -62,23 +59,23 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
         <div class="container-fluid">
           <div class="card-tabs">
             <div class="card-header p-0 pt-1">
-              <ul class="nav nav-tabs" id="order-tabs" role="tablist">
+              <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" data-toggle="pill" href="#Pending-tab" role="tab" aria-controls="Pending-tab" aria-selected="true" onclick="Orders('Pending')">Pending
+                  <a class="nav-link active"  data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true" onclick="Orders('Pending')">Pending
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="pill" href="#Completed-tab" role="tab" aria-controls="Completed-tab" aria-selected="false" onclick="Orders('Completed')">Completed</a>
+                  <a class="nav-link"  data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false" onclick="Orders('Completed')">Completed</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link"  data-toggle="pill" href="#Cancel-tab" role="tab" aria-controls="Cancel-tab" aria-selected="false" onclick="Orders('Cancel')">Cancelled</a>
+                  <a class="nav-link"  data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false" onclick="Orders('Cancel')">Cancelled</a>
                 </li>
- 
+
               </ul>
             </div>
             <div class="card-body">
-              <div class="tab-content" id="order-tabsContent">
-                <div class="tab-pane fade active show" id="Pending-tab" role="tabpanel" aria-labelledby="Pending-tab-tab">
+              <div class="tab-content" id="custom-tabs-one-tabContent">
+                <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
                   <table class="table table-striped table-bordered" id="Pending">
                     <thead>
                       <tr>
@@ -95,9 +92,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
                     </tbody>
                   </table>
 
-                 
+                  <button id="btn-load-more-Pending" class="btn btn-primary" onclick="loadMoreOrders('Pending')">Load More</button>
                 </div>
-                <div class="tab-pane fade" id="Completed-tab" role="tabpanel" aria-labelledby="Completed-tab-tab">
+                <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   <table class="table table-striped table-bordered" id="Completed">
                     <thead>
                       <tr>
@@ -106,8 +103,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
                         <th>Party Name</th>
                         <th>Amount</th>
                         <th>Created By</th>
-                        <th>Invoice / Action</th>
-                      
+                        <th>Invoice</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody id="load-Completed-orders">
@@ -115,9 +112,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
                     </tbody>
                   </table>
 
-                  
+                  <button id="btn-load-more-Completed" class="btn btn-primary" onclick="loadMoreOrders('Completed')">Load More</button>
                 </div>
-                <div class="tab-pane fade" id="Cancel-tab" role="tabpanel" aria-labelledby="Cancel-tab-tab">
+                <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                   <table class="table table-striped table-bordered" id="Cancel">
                     <thead>
                       <tr>
@@ -135,7 +132,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php"); ?>
                     </tbody>
                   </table>
 
-                  
+                  <button id="btn-load-more-Cancel" class="btn btn-primary" onclick="loadMoreOrders('Cancel')">Load More</button>
                 </div>
 
               </div>

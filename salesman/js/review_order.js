@@ -7,7 +7,7 @@ var selectedProducts = [];
 var current_customer_id = '';
 var current_customer_name = '';
 var save_url = '';
-if(localStorage.getItem('isDistributor')){
+if(localStorage.getItem('isDistributor') == 'true'){
   current_customer_id = localStorage.getItem('distributor_id');
   current_customer_name = localStorage.getItem('distributor_name');
   save_url = '/new/oba/salesman/apis/add/add_distributor_order.php';

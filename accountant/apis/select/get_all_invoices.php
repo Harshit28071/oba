@@ -12,49 +12,64 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    $columnName = $_POST['columns'][$columnIndex]['data']; // Column name
    $columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
    $searchValue = $_POST['search']['value']; // Search value
+   $city = $_POST['city'];
+   $customer = $_POST['customer'];
    $status = $_POST['status'];
    $searchArray = array();
+   $query = '';
+   if($customer != ''){
+      $query = " party_id =".$customer;
+   }else{
+      if($city != '')
+      $query = " party_id in (select id from customer where city =".$city.") ";
+   }
+   if($status != 'All'){
+      if($query == ''){
+         $query = " status ='".$status."'";
+      }else{
+         $query = $query." and status ='".$status."'";
+      }
+   }
+   if($query == ''){
+      $query = "1";
+   }
  
    // Search
    $searchQuery = " ";
    if($searchValue != ''){
-      $searchQuery = " AND (orders.date LIKE :date OR
-           customer.name LIKE :name OR user.username LIKE :username OR city 
-           LIKE :city OR orders.invoice_id LIKE :invoiceId) ";
+      $searchQuery = " AND (invoice.date LIKE :date OR
+           customer.name LIKE :name OR city 
+           LIKE :city OR invoice.invoice_number LIKE :invoiceId OR invoice.status LIKE :status) ";
       $searchArray = array(
            'name'=>"%$searchValue%",
            'date'=>"%$searchValue%",
-           'username'=>"%$searchValue%",
            'city'=>"%$searchValue%",
-           'invoiceId'=>"%$searchValue%"
-           
+           'invoiceId'=>"%$searchValue%",
+           'status'=>"%$searchValue%"
       );
    }
 
    // Total number of records without filtering
-   $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM orders where order_status = '".$status."'");
-
+   $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM invoice where ".$query);
    $stmt->execute();
    $records = $stmt->fetch();
    $totalRecords = $records['allcount'];
 
    // Total number of records with filtering
-   $stmt = $conn->prepare("SELECT COUNT(orders.id) AS allcount FROM orders 
-   LEFT JOIN customer ON orders.party_id = customer.id 
-   LEFT JOIN user ON orders.salesman_id = user.id 
+   $stmt = $conn->prepare("SELECT COUNT(invoice.id) AS allcount FROM invoice 
+   LEFT JOIN customer ON invoice.party_id = customer.id 
    left join city on customer.city = city.id 
-   WHERE (orders.order_status = '".$status."') ".$searchQuery);
+   WHERE ".$query." ".$searchQuery);
    $stmt->execute($searchArray);
    $records = $stmt->fetch();
    $totalRecordwithFilter = $records['allcount'];
 
    // Fetch records
-   $stmt = $conn->prepare("SELECT orders.id,orders.date,orders.order_status,orders.amount, customer.name,
-   user.username,customer.id as customer_id,city.name as city,city.id as city_id,orders.invoice_id from orders 
-   LEFT JOIN customer ON orders.party_id = customer.id 
-   LEFT JOIN user ON orders.salesman_id = user.id 
+   $stmt = $conn->prepare("SELECT invoice.id,invoice.date,invoice.status,invoice.amount, customer.name,
+   customer.id as customer_id,city.name as city,city.id as city_id,invoice.invoice_number from invoice 
+   LEFT JOIN customer ON invoice.party_id = customer.id 
    left join city on customer.city = city.id 
-   WHERE (orders.order_status = '".$status."') ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
+   WHERE ".$query." ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
 
    // Bind values
@@ -73,14 +88,13 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
       $data[] = array(
          "id"=>$row['id'],
          "date"=>$row['date'],
-         "order_status"=>$row['order_status'],
+         "status"=>$row['status'],
          "amount"=>$row['amount'],
-         "name"=>$row['name'],
-         "username"=>$row['username'],
+         "name"=>$row['name'],  
          "customer_id"=>$row['customer_id'],
          "city"=>$row['city'],
          "city_id"=>$row['city_id'],
-         "invoice_id"=>$row['invoice_id']        
+         "invoice_number"=>$row['invoice_number']        
          
       );
    }

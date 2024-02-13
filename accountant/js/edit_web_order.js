@@ -1,24 +1,34 @@
 function getSelectedItems(){
     $.ajax({
-      url : "/new/oba/salesman/apis/select/get_selected_products.php",
+      url : "/new/oba/common/apis/select/get_selected_products.php",
       type : "POST",
       data : {
         orderId : localStorage.getItem('order_id'),
         customerId : localStorage.getItem('customer_id')
-      },
+      }, 
       dataType : "json",
       success : function(data){
+        if(data.length > 0){
         selectedProducts = data;
         localStorage.setItem('selectedProducts',JSON.stringify(data));        
         showselectedProducts();
         displayTotalAmount();
+        }else{
+          alert('You can not edit this order.');
+          history.back();
+        }
       }
   });
   }
 
   getSelectedItems();
-  if (localStorage.getItem('city_id')) {
-    $('#city-value').val(localStorage.getItem('city_id'));
+  if (localStorage.getItem('city')) {
+debugger;
+    $("#city-value option").filter(function() {
+      //may want to use $.trim in here
+      return $(this).text() == localStorage.getItem('city');
+    }).prop('selected', true);
+
     loadCustomer();
 
 }
@@ -30,8 +40,14 @@ function updateOrder(){
         return;
     }else{ 
         var selectedProducts = localStorage.getItem('selectedProducts');
+        if (selectedProducts) {
+          selectedProducts = JSON.parse(selectedProducts);
+      } else {
+          alert('Please select at least one item');
+          return;
+      }
     if(selectedProducts.length > 0){
-  
+      $("#save-order").prop('disabled', true);
       var productData = {
         products : selectedProducts,
         totalAmount: getTotalAmount(),
@@ -41,7 +57,7 @@ function updateOrder(){
   
       $.ajax({
         type: 'POST',
-        url: '/new/oba/salesman/apis/update/update_order.php',
+        url: '/new/oba/common/apis/update/update_order.php',
         data: JSON.stringify(productData),
         dataType: 'json',
         contentType: false,

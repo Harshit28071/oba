@@ -1,4 +1,4 @@
-
+ 
 //Add Multiple Images Of Product
 $(document).on("click", ".addimgmulti", function () {
   $("#modal-add-multiple-img").modal("show");
@@ -61,6 +61,7 @@ loadTableProduct();
 
 //Fetch All Records
 function loadTableProduct() {
+  /*
   $("#load-table-product").html("");
   $.ajax({
     url: "/new/oba/admin/apis/select/get_product.php",
@@ -88,6 +89,7 @@ function loadTableProduct() {
       $("#load-table-product").html(html);
     }
   });
+  */
 }
 //loadTableProduct();
 //Data Table Script

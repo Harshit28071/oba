@@ -1,16 +1,16 @@
 var currentOrders = [];
 var cities = [];
+const limit = 20;
+let start = 0;
 const urlparams = new URLSearchParams(window.location.search);
 var orderStatus = urlparams.get('status');
 $("#heading").text(orderStatus+" Orders");
-
+ 
 function loadOrders() {
     $.ajax({
-        url: "/new/oba/salesman/apis/select/get_orders.php",
-        type: "POST",
-        data: {
-            status:orderStatus
-        },
+        url: "/new/oba/common/apis/select/get_my_orders.php",
+        type: "POST",        
+        data: {limit: limit, start : start,status : orderStatus },
         dataType: "json",
         success: function (data) {
             currentOrders = data;
@@ -24,10 +24,10 @@ function displayOrders(data) {
     var count = + 1;
     $.each(data, function (key, value) {
         var datetimeValue = new Date(value.order_date).toLocaleDateString("en-GB");
-        var cust = value.customer_name + '  ('+value.city_name+')';
+        var cust = value.customer_name + '  ('+value.city+')';
         html = html + '<div class="info-box">' +
         '<div class="info-box-content">' +
-        ' <span class="info-box-number">' + count++ + '.  ' + value.customer_name + ' (' + value.city_name + ')</span>' +
+        ' <span class="info-box-number">' + count++ + '.  ' + value.customer_name + ' (' + value.city + ')</span>' +
         '<span class="info-box-text">Amount</span>' +
         '<span class="info-box-number">₹&nbsp;&nbsp;&nbsp;' + value.order_amount + '</span>' +
         '</div>' +
@@ -78,7 +78,7 @@ function viewOrder(orderId, customerName, date) {
 }
 
 function deleteOrder(orderId){
-    // Show here confirm box first then on condfirm use ajax call to delete order using delete_order.php file 
+    
     $("#modal-danger-alert").modal('show');
     $("#main-heading-danger").html("Remove Order");
     $("#alert-message-danger").html("Are you sure you want to remove this order !");
@@ -86,7 +86,7 @@ function deleteOrder(orderId){
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "/new/oba/apis/delete/salesman/delete_order.php",
+            url: "/new/oba/common/apis/delete/delete_order.php",
             data : myJson,
             type: "POST",
             dataType: "json",
@@ -104,12 +104,11 @@ function deleteOrder(orderId){
 }
 
 function sendForBilling(orderId){
-    // Show here confirm box first then on condfirm use ajax call to delete order using delete_order.php file 
-    
+        
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "/new/oba/salesman/apis/update/send_for_billing.php",
+            url: "/new/oba/common/apis/update/send_for_billing.php",
             data : myJson,
             type: "POST",
             dataType: "json",
@@ -120,9 +119,6 @@ function sendForBilling(orderId){
             }
         });
   
-    
-   
-
 } 
 
 
@@ -159,7 +155,7 @@ function filterOrders(selectedCity, customerName) {
     } else {
         var filterOrders = [];
         for (i = 0; i < currentOrders.length; i++) {
-            if ((selectedCity != '' && currentOrders[i].city_name == selectedCity) || (customerName != '' && currentOrders[i].customer_name.toLowerCase().includes(customerName.toLowerCase()))) {
+            if ((selectedCity != '' && currentOrders[i].city == selectedCity) || (customerName != '' && currentOrders[i].customer_name.toLowerCase().includes(customerName.toLowerCase()))) {
                 filterOrders.push(currentOrders[i]);
             }
         }

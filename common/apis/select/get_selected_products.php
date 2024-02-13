@@ -5,19 +5,22 @@ $conn = $db->connect();
 $products = [];
 $products2 = [];
 $pricing = [];
+session_start();
+$salesman = $_SESSION["s_id"];
+$orderId = $_POST["orderId"];
 $customerId = $_POST["customerId"];
-
-$stmt =$conn->prepare("SELECT a.id,a.name,b.name as category,c.name as punit,d.name as sunit,a.low_price as minPrice,
-a.max_price as maxPrice, a.max_price as price,a.qty_step
-FROM `product` a 
-left join category b on a.category_id = b.id
-left join units c on a.unit_id = c.id
-left join units d on a.secondary_unit_id = d.id where a.available = 1");
+ 
+$stmt =$conn->prepare("SELECT p.id,b.name,c.name as category,p.punit,d.name as sunit,b.low_price as minPrice,b.max_price as maxPrice,p.itemPrice as price,b.qty_step,p.quantity,p.discount  FROM orders, JSON_TABLE(products, '$[*]' COLUMNS (id int(10) Path '$.id',  punit VARCHAR(50) Path '$.punit',quantity float(10) Path '$.quantity',itemPrice float(11) PATH '$.itemPrice',discount float(11) PATH '$.discount')) p 
+left join product b on p.id = b.id 
+left join category c on b.category_id = c.id
+left join units d on b.secondary_unit_id = d.id
+where orders.id = ? and orders.salesman_id = ? and orders.invoice_id = 0 and orders.order_status = 'New'");
+$stmt->bind_param("ii",$orderId,$salesman);
 $stmt->execute();
-$stmt->bind_result($id,$name,$category,$punit,$sunit,$minPrice,$maxPrice,$itemPrice,$qty_step);
+$stmt->bind_result($id,$name,$category,$punit,$sunit,$minPrice,$maxPrice,$itemPrice,$qty_step,$qty,$discount);
 
 while($stmt->fetch()){
-    array_push($products,[$id,$name,$category,$punit,$sunit,$itemPrice,$minPrice,$maxPrice,$qty_step]);
+    array_push($products,[$id,$name,$category,$punit,$sunit,$itemPrice,$minPrice,$maxPrice,$qty_step,$qty,$discount]);
 }
 
 $stmt =$conn->prepare("SELECT product_id,price,unit FROM `invoice_item_mapping` 
@@ -41,10 +44,9 @@ for($i=0;$i<sizeof($products);$i++){
     if($customerPrice == '-'){
         $flag = 0;
     }
-
 array_push($products2,["id"=>$products[$i][0],"name"=>$products[$i][1],"category"=>$products[$i][2],
 "punit"=>$products[$i][3],"sunit"=>$products[$i][4],"itemPrice"=>$products[$i][5],"minPrice"=>$products[$i][6],
-"maxPrice"=>$products[$i][7],"customerPrice"=>$customerPrice,"quantity"=>0,"orderBefore"=>$flag,"qty_step"=>$products[$i][8],"discount"=>0]);
+"maxPrice"=>$products[$i][7],"customerPrice"=>$customerPrice,"quantity"=>$products[$i][9],"orderBefore"=>$flag,"qty_step"=>$products[$i][8],"discount"=>$products[$i][10]]);
 
 }
 

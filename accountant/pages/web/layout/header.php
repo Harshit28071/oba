@@ -64,5 +64,8 @@
             padding: 10px 15px;
             cursor: pointer;
         }
+        .flex{
+            display: flex;
+        }
     </style>
 </head>

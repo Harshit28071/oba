@@ -83,6 +83,8 @@ $options_city = loadCity();
                   <th>Qty</th>
                   <th>Unit</th>
                   <th>Rate</th>
+                  <th>Discount(&#x20B9;)</th>
+                  <th>Discount(%)</th>
                   <th>Total</th>
                 </tr>
               </thead>

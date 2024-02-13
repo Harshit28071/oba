@@ -1,10 +1,8 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].'/new/oba/common/database2.php');
 session_start();
-if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
-    header("location:/new/oba/common/user_login.php");
-}
 
+   $user_id = $_SESSION['s_id'];
    $draw = $_POST['draw'];
    $row = $_POST['start'];
    $rowperpage = $_POST['length']; // Rows display per page
@@ -15,16 +13,16 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    $status = $_POST['status'];
    $searchArray = array();
  
+
    // Search
    $searchQuery = " ";
    if($searchValue != ''){
       $searchQuery = " AND (orders.date LIKE :date OR
-           customer.name LIKE :name OR user.username LIKE :username OR city 
+           customer.name LIKE :name OR city 
            LIKE :city OR orders.invoice_id LIKE :invoiceId) ";
       $searchArray = array(
            'name'=>"%$searchValue%",
            'date'=>"%$searchValue%",
-           'username'=>"%$searchValue%",
            'city'=>"%$searchValue%",
            'invoiceId'=>"%$searchValue%"
            
@@ -32,29 +30,29 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    }
 
    // Total number of records without filtering
-   $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM orders where order_status = '".$status."'");
+   $stmt = $conn->prepare("SELECT COUNT(*) AS allcount FROM orders where salesman_id =  '".$user_id."' and order_status = '".$status."'");
 
    $stmt->execute();
    $records = $stmt->fetch();
    $totalRecords = $records['allcount'];
 
+
+
    // Total number of records with filtering
    $stmt = $conn->prepare("SELECT COUNT(orders.id) AS allcount FROM orders 
    LEFT JOIN customer ON orders.party_id = customer.id 
-   LEFT JOIN user ON orders.salesman_id = user.id 
    left join city on customer.city = city.id 
-   WHERE (orders.order_status = '".$status."') ".$searchQuery);
+   WHERE (orders.order_status = '".$status."' and orders.salesman_id = '".$user_id."') ".$searchQuery);
    $stmt->execute($searchArray);
    $records = $stmt->fetch();
    $totalRecordwithFilter = $records['allcount'];
 
-   // Fetch records
+    // Fetch records
    $stmt = $conn->prepare("SELECT orders.id,orders.date,orders.order_status,orders.amount, customer.name,
-   user.username,customer.id as customer_id,city.name as city,city.id as city_id,orders.invoice_id from orders 
-   LEFT JOIN customer ON orders.party_id = customer.id 
-   LEFT JOIN user ON orders.salesman_id = user.id 
+   customer.id as customer_id,city.name as city,city.id as city_id,orders.invoice_id from orders 
+   LEFT JOIN customer ON orders.party_id = customer.id
    left join city on customer.city = city.id 
-   WHERE (orders.order_status = '".$status."') ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
+   WHERE (orders.order_status = '".$status."' and orders.salesman_id = '".$user_id."') ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
 
    // Bind values
@@ -76,7 +74,6 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
          "order_status"=>$row['order_status'],
          "amount"=>$row['amount'],
          "name"=>$row['name'],
-         "username"=>$row['username'],
          "customer_id"=>$row['customer_id'],
          "city"=>$row['city'],
          "city_id"=>$row['city_id'],
@@ -96,3 +93,6 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    echo json_encode($response);
 
 ?>
+
+
+

@@ -86,7 +86,7 @@ $("#disop").change(function(){
                 localStorage.setItem('customer_id',newCustomerId);
                 localStorage.setItem('customer_name',newCustomerName);
                 localStorage.setItem('city_id',cityId );
-                localStorage.setItem('city_name',cityName);  
+                localStorage.setItem('city',cityName);  
                 history.back();
             }else{
               toastr.error(response.message);

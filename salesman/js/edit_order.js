@@ -18,7 +18,7 @@ function saveOrder(){
 
     $.ajax({
       type: 'POST',
-      url: '/new/oba/salesman/apis/update/update_order.php',
+      url: '/new/oba/common/apis/update/update_order.php',
       data: JSON.stringify(productData),
       dataType: 'json',
       contentType: false,
@@ -224,7 +224,7 @@ function getTotalAmount(){
  
   function getSelectedItems(){
     $.ajax({
-      url : "/new/oba/salesman/apis/select/get_selected_products.php",
+      url : "/new/oba/common/apis/select/get_selected_products.php",
       type : "POST",
       data : {
         orderId : localStorage.getItem('order_id'),
@@ -232,10 +232,15 @@ function getTotalAmount(){
       },
       dataType : "json",
       success : function(data){
+        if(data.length > 0){
         selectedProducts = data;
         localStorage.setItem('selectedProducts',JSON.stringify(data));        
         showSelectedItems();
         displayTotalAmount();
+        }else{
+          alert('You can not edit this order.');
+          history.back();
+        }
       }
   });
   }

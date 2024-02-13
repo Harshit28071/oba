@@ -6,7 +6,10 @@ var selectedProducts = [];//
 
 
 var cat = localStorage.getItem('categories');
-
+if(localStorage.getItem('city_id')){
+    $('#city-value').val(localStorage.getItem('city_id'));
+    loadCustomer();
+}
 if (cat) {
     categories = JSON.parse(cat);
     afterCategoryLoad();
@@ -28,10 +31,10 @@ function loadCategories() {
         }
     });
 }
- 
+
 function afterCategoryLoad() {
     fillCategories();
-    var temp = localStorage.getItem('OrderData');
+    var temp = localStorage.getItem('InvoiceData');
     if (temp) {
         products = JSON.parse(temp);
         currentProducts = products;
@@ -87,7 +90,7 @@ $("#mainCategory").change(function (event) {
 
 
 function printItemOptions() {
-    var data = JSON.parse(localStorage.getItem('OrderData'));
+    var data = JSON.parse(localStorage.getItem('InvoiceData'));
     var html = '<option selected style="text-align: center;" >SELECT ITEM</option>';
     var category = $("#mainCategory option:selected").val();
     if (category != '' && category != 'SELECT CATEGORY') {
@@ -104,7 +107,7 @@ function printItemOptions() {
 
 $("#items").change(function (event) {
     var index = $("#items option:selected").val();
-    var data = JSON.parse(localStorage.getItem('OrderData'));
+    var data = JSON.parse(localStorage.getItem('InvoiceData'));
     data = data[index];
 
     //mycode here
@@ -131,7 +134,7 @@ function loadProducts() {
         dataType: "json",
         success: function (data) {
             products = data;
-            localStorage.setItem('OrderData', JSON.stringify(data));
+            localStorage.setItem('InvoiceData', JSON.stringify(data));
 
         }
     });
@@ -142,7 +145,7 @@ function addNewItem() {
     var index = $("#items option:selected").val();
     if (index && index != 'SELECT ITEM') {
 
-        var data = JSON.parse(localStorage.getItem('OrderData'));
+        var data = JSON.parse(localStorage.getItem('InvoiceData'));
         data = data[index];
         data.quantity = data.qty_step;
 
@@ -214,7 +217,7 @@ function showselectedProducts() {
         '<td></td>' +
         '<td></td>' +
         '</tr>';
-    $("#orderItems").html(html);
+    $("#invoiceItems").html(html);
     displayTotalAmount();
 }
 
@@ -303,7 +306,6 @@ function updateItemTotal(id, type, index) {
 
 
 
-
 function getUnitDropDown(unit, punit, sunit, id, index) {
     
     if(!unit){
@@ -336,7 +338,7 @@ function displayTotalAmount() {
         if ($("#totalAmount").length) {
             $("#totalAmount").html("&#8377;&nbsp;" + total);
         } else {
-            $("#orderItems").append('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>Total</strong></td><td id="totalAmount">&#8377;&nbsp;' + total + '</td><td></td></tr>');
+            $("#invoiceItems").append('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>Total</strong></td><td id="totalAmount">&#8377;&nbsp;' + total + '</td><td></td></tr>');
         }
 
     }
@@ -402,10 +404,10 @@ function getTotalAmount() {
     }
 }
 function dashboardRedirection(){
-    window.location.href='./my_orders.php';
+    window.location.href='./my_invoices.php';
   }
 
-function saveOrder() {
+function saveInvoice() {
     if ($("#show-customer").val() != "" && $("#show-customer").val()) {
         
         var selectedProducts = localStorage.getItem('selectedProducts');
@@ -416,37 +418,41 @@ function saveOrder() {
             return;
         }
         if (selectedProducts.length > 0) {
-            $("#save-order").prop('disabled', true);
+            $("#save-invoice").prop('disabled', true);
 
             var productData = {
                 products: selectedProducts,
                 customerId: $("#show-customer").val(),
-                totalAmount: getTotalAmount()
+                totalAmount: getTotalAmount(),
+                order_id :localStorage.getItem('order_id')
             }
 
             $.ajax({
                 type: 'POST',
-                url: '/new/oba/salesman/apis/add/add_order.php',
+                url: '/new/oba/accountant/apis/add/add_invoice.php',
                 data: JSON.stringify(productData),
                 dataType: 'json',
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    if (response > 0) {
-                        //alert('order has been created successfully');
+                    if (response != 0) {
+                        alert('invoice has been created successfully');
                         $("#modal-success-alert").modal('show');
-                        $("#main-heading").html("Order Created");
-                        $("#alert-message").html("order has been created successfully");
+                        $("#main-heading").html("Invoice Created");
+                        $("#alert-message").html("invoice has been created successfully");
                         localStorage.clear();
-                        dashboardRedirection();
-
+                        //dashboardRedirection();
+                        localStorage.setItem('invoice_number',response);
+                        window.location.replace("./generate_invoice_pdf.php");
+                    }else{
+                        alert('Invoice is not created. Please try again.');
                     }
                 },
                 error: function (error) {
                     $("#modal-danger-alert").modal('show');
-                    $("#main-heading-danger").html("Order Failed");
-                    $("#alert-message-danger").html("Order creation Failed");
+                    $("#main-heading-danger").html("Invoice Failed");
+                    $("#alert-message-danger").html("Invoice creation Failed");
                 }
             });
         } else {
@@ -461,10 +467,10 @@ function saveOrder() {
     } 
 }
 
-function cancelOrder(){
+function cancelInvoice(){
 
     bootbox.confirm({
-        message: '<h4>Are you sure you want to cancel the order? All unsaved changes will be lost.</h4>',
+        message: '<h4>Are you sure you want to cancel the invoice? All unsaved changes will be lost.</h4>',
         buttons: {
         confirm: {
         label: 'Yes',

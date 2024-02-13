@@ -19,7 +19,7 @@ for($i=0;$i<sizeof($item);$i++){
     if($i>0){
         $products = $products . ',';
     }
-    $products = $products . '{"id":'.$item[$i]["id"].', "punit":"'.$item[$i]["punit"].'", "quantity":'.$item[$i]["quantity"].', "itemPrice":'.$item[$i]["itemPrice"].'}';
+    $products = $products . '{"id":'.$item[$i]["id"].', "punit":"'.$item[$i]["punit"].'", "quantity":'.$item[$i]["quantity"].', "itemPrice":'.$item[$i]["itemPrice"].', "discount":'.$item[$i]["discount"].'}';
     
 }
 $products = $products . ']';

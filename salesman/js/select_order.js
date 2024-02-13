@@ -45,7 +45,7 @@ function displayOrders(data) {
     var count = + 1;
     $.each(data, function (key, value) {
         var datetimeValue = new Date(value.order_date).toLocaleDateString("en-GB");
-        var cust = value.customer_name + '  ('+value.city_name+')';
+        var cust = value.customer_name + '  ('+value.city+')';
         var index = selectedOrders.indexOf(value.order_id);
         
         html = html + '<div class="info-box">' +
@@ -62,7 +62,7 @@ function displayOrders(data) {
         '</div></span>'+
         '</div>' +
         '<div class="info-box-content">' +
-        ' <span class="info-box-number">' + count++ + '.  ' + value.customer_name + ' (' + value.city_name + ')</span>' +
+        ' <span class="info-box-number">' + count++ + '.  ' + value.customer_name + ' (' + value.city + ')</span>' +
         '<span class="info-box-text">Amount</span>' +
         '<span class="info-box-number">₹&nbsp;&nbsp;&nbsp;' + value.order_amount + '</span>' +
         '</div>' +
@@ -129,7 +129,7 @@ function filterOrders(selectedCity, customerName) {
     } else {
         var filterOrders = [];
         for (i = 0; i < currentOrders.length; i++) {
-            if ((selectedCity != '' && currentOrders[i].city_name == selectedCity) || (customerName != '' && currentOrders[i].customer_name.toLowerCase().includes(customerName.toLowerCase()))) {
+            if ((selectedCity != '' && currentOrders[i].city == selectedCity) || (customerName != '' && currentOrders[i].customer_name.toLowerCase().includes(customerName.toLowerCase()))) {
                 filterOrders.push(currentOrders[i]);
             }
         }

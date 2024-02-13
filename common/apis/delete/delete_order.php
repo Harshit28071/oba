@@ -12,7 +12,7 @@ $data = json_decode(file_get_contents("php://input"),true);
 $oid = $data["orderId"];
 $sid = $_SESSION["s_id"];
 
-$stmt = $conn->prepare("delete from `orders` where id = ? and salesman_id = ? and invoice_id = 0");
+$stmt = $conn->prepare("delete from `orders` where id = ? and salesman_id = ? and invoice_id = 0 and order_status = 'New'");
 $stmt->bind_param("ii",$oid,$sid);
 $stmt->execute();
 $result = $stmt->affected_rows;

@@ -20,7 +20,7 @@ function loadCustomerDetails(){
   '</div></div>';
   $("#customerDetails").html(html);
 }
-
+ 
 
 
 

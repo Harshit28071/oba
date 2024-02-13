@@ -129,12 +129,12 @@ function customerAllDetails(customer_id){
 }
 
 function sendForBilling(orderId){
-    // Show here confirm box first then on condfirm use ajax call to delete order using delete_order.php file 
+    
     
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "/new/oba/salesman/apis/update/send_for_billing.php",
+            url: "/new/oba/common/apis/update/send_for_billing.php",
             data : myJson,
             type: "POST",
             dataType: "json",
@@ -202,15 +202,15 @@ function viewOrder(orderId, customerName, date) {
 }
 
 function deleteOrder(orderId){
-    // Show here confirm box first then on condfirm use ajax call to delete order using delete_order.php file 
+   
     $("#modal-danger-alert").modal('show');
     $("#main-heading-danger").html("Remove Order");
     $("#alert-message-danger").html("Are you sure you want to remove this order !");
-    $("#warring-done").on("click",function removeOrder() {
+    $("#warning-done").on("click",function removeOrder() {
         var obj = {orderId :orderId};
         var myJson = JSON.stringify(obj);
         $.ajax({
-            url: "/new/oba/apis/delete/salesman/delete_order.php",
+            url: "/new/oba/common/apis/delete/delete_order.php",
             data : myJson,
             type: "POST",
             dataType: "json",

@@ -22,7 +22,7 @@
         }
           // localStorage.setItem('customerList',data);
            localStorage.setItem('city_id',cityId);
-           localStorage.setItem('city_name',cityName);
+           localStorage.setItem('city',cityName);
           
        }
     });

@@ -12,7 +12,7 @@ $stmt->execute();
 $stmt->bind_result($o_id,$o_salesman_id,$order_date,$order_status,$order_invoice_id,$order_amount,$customer_name,$city_name,$customer_id);
 
 while($stmt->fetch()){
-    array_push($orders_status,['order_id' => $o_id,'salesman_id'=>$o_salesman_id,'order_date'=>$order_date,'order_status'=>$order_status,'order_invoice_id'=>$order_invoice_id,'order_amount'=>$order_amount,'customer_name'=>$customer_name,'city_name' => $city_name,'customer_id'=>$customer_id]);
+    array_push($orders_status,['order_id' => $o_id,'salesman_id'=>$o_salesman_id,'order_date'=>$order_date,'order_status'=>$order_status,'order_invoice_id'=>$order_invoice_id,'order_amount'=>$order_amount,'customer_name'=>$customer_name,'city' => $city_name,'customer_id'=>$customer_id]);
 }
 $stmt->close();
 $conn->close();

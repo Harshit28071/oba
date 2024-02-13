@@ -27,7 +27,7 @@ $options_city = loadCity();
       <!-- Left navbar links -->
       <ul class="navbar-nav" style="margin-left:10px">
         <li class="nav-item">
-          <h4 class="m-0">Edit Order</h4>
+          <h4 class="m-0">Create Invoice</h4>
         </li>
       </ul>
 
@@ -42,7 +42,7 @@ $options_city = loadCity();
           <a  href="./add_customer.php" id="add-cust"><button type="button" class="btn btn-primary btn-sm">Add New Customer</button></a>
         </li>
         <li class="nav-item">
-          <a onclick="cancelOrder()" id="add-cust"><button type="button" style="margin-left:10px;" class="btn btn-danger btn-sm">Cancel</button></a>
+          <a onclick="cancelInvoice()" id="add-cust"><button type="button" style="margin-left:10px;" class="btn btn-danger btn-sm">Cancel</button></a>
         </li>
       </ul>
     </nav>
@@ -69,7 +69,7 @@ $options_city = loadCity();
             </form>
           </div>
           <div class="col-6" style="text-align: end;">
-          <a onclick="updateOrder()"><button type="button" id="save-order" class="btn btn-danger btn-sm">Update Order</button></a>
+          <a onclick="saveInvoice()"><button type="button" id="save-invoice" class="btn btn-danger btn-sm">Save Invoice</button></a>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ $options_city = loadCity();
             <table class="table table-bordered">
               <thead>
                 <tr>
-                <th style="width: 10px">#</th>
+                  <th style="width: 10px">#</th>
                   <th>Item</th>
                   <th>Qty</th>
                   <th>Unit</th>
@@ -88,7 +88,7 @@ $options_city = loadCity();
                   <th>Total</th>
                 </tr>
               </thead>
-              <tbody id="orderItems">
+              <tbody id="invoiceItems">
                
               </tbody>
             </table>
@@ -101,7 +101,7 @@ $options_city = loadCity();
 
       </section>
     </div>
- 
+
 
   </div>
   <!-- ./wrapper -->
@@ -127,7 +127,7 @@ $options_city = loadCity();
               </div>
               <div id="units"></div>
             </div>
-        
+         
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-danger" onclick="addNewItem()" id="edit-unit-save">ADD</button>
@@ -142,9 +142,15 @@ $options_city = loadCity();
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/pages/alert_messages.php"); ?>
   <!-- jQuery -->
   <?php require_once("./layout/footer_links.php"); ?>
+  <script>
+    if(localStorage.getItem('generate_invoice') == 'true'){
+  $("#city-value").prop( "disabled", true );
+  $("#show-customer").prop( "disabled", true );
+  
+}
+    </script>
+  <script src="/new/oba/accountant/js/create_web_invoice.js"></script>
 
-  <script src="/new/oba/accountant/js/create_web_order.js"></script>
-  <script src="/new/oba/accountant/js/edit_web_order.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@ $sid = $_SESSION["s_id"];
 $customerId = $data["customerId"];
 $products = "[";
 
-for($i=0;$i<sizeof($item);$i++){
+for($i=0;$i<sizeof($item);$i++){ 
     $unit = '';
     if(isset($item[$i]["unit"])){
         $unit = $item[$i]["unit"];
@@ -27,7 +27,7 @@ for($i=0;$i<sizeof($item);$i++){
     if($i>0){
         $products = $products . ',';
     }
-    $products = $products . '{"id":'.$item[$i]["id"].', "punit":"'.$item[$i]["punit"].'", "quantity":'.$item[$i]["quantity"].', "itemPrice":'.$item[$i]["itemPrice"].'}';
+    $products = $products . '{"id":'.$item[$i]["id"].', "punit":"'.$item[$i]["punit"].'", "quantity":'.$item[$i]["quantity"].', "itemPrice":'.$item[$i]["itemPrice"].', "discount":'.$item[$i]["discount"].'}';
     
 }
 $products = $products . ']';
@@ -36,7 +36,7 @@ $products = $products . ']';
 
 if(sizeof($item) > 0){
     
-$stmt = $conn->prepare("update `orders` set amount = ?,party_id = ?,products = ? where id = ? and salesman_id = ? and invoice_id = 0");
+$stmt = $conn->prepare("update `orders` set amount = ?,party_id = ?,products = ? where id = ? and salesman_id = ? and invoice_id = 0 and order_status = 'New'");
 $stmt->bind_param("disii",$amount,$customerId,$products,$oid,$sid);
 $stmt->execute();
 
