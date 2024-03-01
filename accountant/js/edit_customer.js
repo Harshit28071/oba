@@ -77,7 +77,6 @@ $.ajax({
         $("#cust-state").val(data[0].state_id);
         $("#cust-city").val(data[0].city_id);
         $("#cust-add").val(data[0].address);
-        $("#f-name").val(data[0].firm_name);
         $("#c-gstin").val(data[0].GSTIN);
         //$("#disop-v").val(data[0].type);
         $("#dis-select-box").val(data[0].distributor_id);

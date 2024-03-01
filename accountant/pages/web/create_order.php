@@ -88,7 +88,7 @@ $options_city = loadCity();
                   <th>Total</th>
                 </tr>
               </thead>
-              <tbody id="orderItems">
+              <tbody id="invoiceItems">
                
               </tbody>
             </table>
@@ -143,6 +143,7 @@ $options_city = loadCity();
   <!-- jQuery -->
   <?php require_once("./layout/footer_links.php"); ?>
 
+  <script src="/new/oba/accountant/js/common.js"></script>
   <script src="/new/oba/accountant/js/create_web_order.js"></script>
 
 </body>

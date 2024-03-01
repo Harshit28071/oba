@@ -40,6 +40,41 @@
         </a>
       </li>
 
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-copy"></i>
+          <p>
+            GST Invoice
+            <i class="fas fa-angle-left right"></i>
+           
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a onclick="redirect('/new/oba/accountant/pages/web/create_gst_invoice.php')" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Create GST Invoice</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="redirect('/new/oba/accountant/pages/web/all_invoices.php')" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Agarwal GST Invoices</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a onclick="redirect('/new/oba/accountant/pages/web/all_invoices.php')" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Harihar GST Invoices</p>
+            </a>
+          </li>
+         
+        </ul>
+      </li>
+
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-copy"></i>

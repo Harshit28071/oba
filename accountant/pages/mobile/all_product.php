@@ -40,7 +40,7 @@ session_start();
 <div class="input-group">
 <input type="search" id="search" class="form-control form-control-lg" placeholder="Type here">
 <div class="input-group-append">
-<button id="searchButton" class="btn btn-lg btn-default">
+<button id="searchButton" class="btn btn btn-default">
 <i class="fa fa-search"></i>
 </button>
 </div>

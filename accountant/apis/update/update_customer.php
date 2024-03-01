@@ -19,12 +19,12 @@ if(isset($_POST["CustName"])){
     $customer_add_edit = $_POST['custAddress'];
     $customer_type_edit = $_POST['custType'];
     $distributor_id_edit = isset($_POST['disName']) ? $_POST['disName']:"" ;
-    $firm_name_edit = $_POST['firmName'];
-    $firm_gstin_edit = $_POST['custgstin'];
+    
+    $gstin_edit = $_POST['custgstin'];
     //Update query
-    $SQL_UP ="UPDATE customer SET mobile_number = ?,state_id = ?,city = ?,address = ?,firm_name = ?,GSTIN = ?,type = ?,distributor_id = ? WHERE id = ?";
+    $SQL_UP ="UPDATE customer SET mobile_number = ?,state_id = ?,city = ?,address = ?,GSTIN = ?,type = ?,distributor_id = ? WHERE id = ?";
     $stmt = $conn->prepare($SQL_UP);
-    $stmt->bind_param("sisssssii",$customer_mobile_edit,$customer_state_edit,$customer_city_edit,$customer_add_edit,$firm_name_edit,$firm_gstin_edit,$customer_type_edit,$distributor_id_edit,$customer_id);
+    $stmt->bind_param("sissssii",$customer_mobile_edit,$customer_state_edit,$customer_city_edit,$customer_add_edit,$gstin_edit,$customer_type_edit,$distributor_id_edit,$customer_id);
     $updated = $stmt->execute(); 
     $id = $stmt->affected_rows; 
     if($id){ 

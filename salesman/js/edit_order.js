@@ -150,7 +150,7 @@ $("#items").html('');
 });
 
 
-
+ 
 function loadCategories(){
     $.ajax({
       url : "/new/oba/salesman/apis/select/get_all_category.php",
@@ -160,7 +160,7 @@ function loadCategories(){
         categories = data;
         localStorage.setItem('categories',JSON.stringify(data));
         afterCategoryLoad(); 
-        printMainCategoriesOptions(parentCategories);
+        
       }
   });
   }
@@ -174,6 +174,7 @@ function loadCategories(){
         childCategories.push(categories[i]);
       }
     }
+    printMainCategoriesOptions(parentCategories);
   }
 
   function loadProducts(){
@@ -202,6 +203,7 @@ function loadCategories(){
         }else{
           loadProducts();  
         }
+        
   }
 function getTotalAmount(){
   var total = 0;

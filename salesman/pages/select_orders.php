@@ -35,13 +35,13 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Salesman") {
             <div class="input-group input-group-lg">
               <input type="search" class="form-control form-control-lg" placeholder="Type Customer Name" id="customer-name">
               <div class="input-group-append">
-                <button type="submit" class="btn btn-lg btn-default">
+                <button type="submit" class="btn btn btn-default">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
           </form>
           <div class="input-group-append">
-            <button class="btn btn-lg btn-default" id="filter">
+            <button class="btn btn btn-default" id="filter">
               <i class="fa fa-filter"></i>
             </button>
           </div>

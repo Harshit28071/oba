@@ -59,12 +59,7 @@ $options_city = loadCity();
                   <?php echo  $options_city ?>
                 </select>
               </div>
-              <div class="col-md-6">
-              <label for="customer">Customer</label>
-                <select class="form-control-sm" id="customer">
-                  <option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
-                </select>
-              </div>
+              
               <div class="col-md-3">
               <label for="status">Status</label>
                 <select class="form-control-sm" id="status">
@@ -73,6 +68,20 @@ $options_city = loadCity();
                   <option value="Cancelled">Cancelled</option>
                   <option value="Paid">Paid</option>
                   <option value="Partial">Partial</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+              <label for="min">Start Date</label>
+              <input class="form-control-sm" type="date" id="min" name="min">
+              </div>
+              <div class="col-md-3">
+              <label for="max">End Date</label>
+              <input class="form-control-sm" type="date" id="max" name="max">
+              </div>
+              <div class="col-md-4">
+              <label for="customer">Customer</label>
+                <select class="form-control-sm" id="customer">
+                  <option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
                 </select>
               </div>
             </div>

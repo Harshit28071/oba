@@ -22,6 +22,14 @@ $('#city').change(function () {
 $('#status').change(function () {
   loadInvoices();
 });
+$('#min').change(function () {
+  loadInvoices();
+});
+
+$('#max').change(function () {
+  loadInvoices();
+});
+
 
 loadInvoices();
 
@@ -31,13 +39,13 @@ function loadCustomer() {
 
   $.ajax({
     type: 'POST',
-    url: '/new/oba/salesman/apis/select/get_city_customer.php',
+    url: '/new/oba/common/apis/select/get_city_customer.php',
     data: { id: cityId },
     success: function (data) {
       var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
       $.each(data, function (index, value) {
         // APPEND OR INSERT DATA TO SELECT ELEMENT.
-        html = html + ('<option value="' + value.id + '">' + value.cname + ' (' + value.cityname + ')' + '</option>');
+        html = html + ('<option value="' + value.id + '">' + value.cname + ' (' + value.address + ')' + '</option>');
       });
       $('#customer').html(html);
       if (localStorage.getItem('customer_id')) {
@@ -72,6 +80,8 @@ function loadInvoices() {
         d.city = $('#city').val();
         d.customer = $('#customer').val();
         d.status = $("#status").val();
+        d.min = $("#min").val();
+        d.max = $("#max").val();
       }
     },
     'columns': [
@@ -80,7 +90,13 @@ function loadInvoices() {
 
 
       },
-      { data: 'date' },
+      {
+        data: 'date',
+        render: function (data, type, row, meta) {
+
+          return formatDate(row.date);
+        }
+      },
       {
         data: 'name',
         render: function (data, type, row, meta) {
@@ -93,11 +109,11 @@ function loadInvoices() {
         data: 'status',
         render: function (data, type, row, meta) {
 
-          switch(row.status){
-            case 'UnPaid': return ('<p>'+row.status+'</p>');
-            case 'Cancelled': return ('<p style="color:red">'+row.status+'</p>');
-            case 'Paid': return ('<p style="color:green">'+row.status+'</p>');
-            case 'Partial': return ('<p style="color:blue">'+row.status+'</p>');
+          switch (row.status) {
+            case 'UnPaid': return ('<p>' + row.status + '</p>');
+            case 'Cancelled': return ('<p style="color:red">' + row.status + '</p>');
+            case 'Paid': return ('<p style="color:green">' + row.status + '</p>');
+            case 'Partial': return ('<p style="color:blue">' + row.status + '</p>');
           }
         }
       },
@@ -105,12 +121,17 @@ function loadInvoices() {
         data: 'id',
         render: function (data, type, row, meta) {
 
-          return '';
+          return '<button class="btn btn-sm btn-danger" onClick="viewInvoice(\'' + row.invoice_number + '\')">View Invoice</button>';
         }
       }
 
     ]
   });
+}
+
+function viewInvoice(invoice_number) {
+  localStorage.setItem('invoice_number', invoice_number);
+  window.location.href = './generate_invoice_pdf.php';
 }
 
 function Orders(status) {
@@ -128,8 +149,7 @@ function Orders(status) {
 function formatDate(d) {
   var d = new Date(d);
 
-  var datestring = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear() + " " +
-    d.getHours() + ":" + d.getMinutes();
+  var datestring = d.getDate() + " / " + (d.getMonth() + 1) + " / " + d.getFullYear();
   return datestring;
 }
 

@@ -32,7 +32,7 @@ $records = $stmt->fetch();
 $totalRecordwithFilter = $records['allcount'];
 
 // Fetch records
-$stmt = $conn->prepare("SELECT id ,name,mobile_number,state_id,city,address,firm_name,GSTIN,type,distributor_id FROM customer WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT id ,name,mobile_number,state_id,city,address,GSTIN,type,distributor_id FROM customer WHERE 1 ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
 
  // Bind values
  foreach ($searchArray as $key=>$search) {
@@ -54,7 +54,6 @@ $stmt = $conn->prepare("SELECT id ,name,mobile_number,state_id,city,address,firm
        "state_id"=>$row['state_id'],
        "city"=>$row['city'],
        "address"=>$row['address'],
-       "firm_name"=>$row['firm_name'],
        "GSTIN"=>$row['GSTIN'],
        "type"=>$row['type'],
        "distributor_id"=>$row['distributor_id']

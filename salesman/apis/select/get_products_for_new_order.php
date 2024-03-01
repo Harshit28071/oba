@@ -20,15 +20,14 @@ while($stmt->fetch()){
     array_push($products,[$id,$name,$category,$punit,$sunit,$itemPrice,$minPrice,$maxPrice,$qty_step]);
 }
 
-$stmt =$conn->prepare("SELECT product_id,price,unit FROM `invoice_item_mapping` 
-WHERE invoice_id in (select id from invoice where party_id = ?) and 
-id in (select max(id) from invoice_item_mapping group by product_id,invoice_id)");
+$stmt =$conn->prepare("SELECT max(invoice.id) as invoiceId,p.* from invoice,JSON_TABLE(products, '$[*]' COLUMNS (productId int(10) Path '$.id',  punit VARCHAR(50) Path '$.punit',quantity float(10) Path '$.quantity',itemPrice float(11) PATH '$.itemPrice',discount float(11) PATH '$.discount')) p 
+where invoice.party_id = ? group by p.productId");
 $stmt->bind_param("i", $customerId);
 $stmt->execute();
-$stmt->bind_result($product_id,$price,$unit);
+$stmt->bind_result($invoiceId,$product_id,$unit,$quantity,$price,$discount);
 
 while($stmt->fetch()){
-    array_push($pricing,[$product_id,$price,$unit]);
+    array_push($pricing,[$product_id,$price,$unit,$discount,$quantity]);
 }
 
 $stmt->close();
@@ -52,7 +51,12 @@ function getCustomerPrice($id){
     global $pricing;
     for($i=0;$i<sizeof($pricing);$i++){
         if($id == $pricing[$i][0]){
-            return $pricing[$i][1]." per ".$pricing[$i][2];
+            if($pricing[$i][3] == 0){
+                return $pricing[$i][1]." per ".$pricing[$i][2] ;
+            }else{
+                return $pricing[$i][1]." per ".$pricing[$i][2] ." & Discount of ".number_format($pricing[$i][3]/$pricing[$i][4],2);
+            }
+            
         }
     }
     return '-';

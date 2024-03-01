@@ -18,7 +18,6 @@ var obj = {cust_id : cust_id};
         $("#state").text(data[0].state);
         $("#city").text(data[0].city);
         $("#cust-add-v").text(data[0].address);
-        $("#f-name-v").text(data[0].firm_name);
         $("#c-gstin-v").text(data[0].GSTIN);
         $("#disop-v").text(data[0].type);
         $("#distributor").text(data[0].distributor);

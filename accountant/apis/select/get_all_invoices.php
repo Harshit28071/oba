@@ -15,14 +15,21 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    $city = $_POST['city'];
    $customer = $_POST['customer'];
    $status = $_POST['status'];
+   $min = $_POST['min'];
+   $max = $_POST['max'];
+
+  
+
    $searchArray = array();
    $query = '';
+
    if($customer != ''){
       $query = " party_id =".$customer;
    }else{
       if($city != '')
       $query = " party_id in (select id from customer where city =".$city.") ";
    }
+
    if($status != 'All'){
       if($query == ''){
          $query = " status ='".$status."'";
@@ -30,6 +37,26 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
          $query = $query." and status ='".$status."'";
       }
    }
+
+   if($min != ''){
+      if($query == ''){
+         $query = " date >='".$min."'";
+      }else{
+         $query = $query." and date >='".$min."'";
+      }
+   }
+
+   if($max != ''){
+     //$max = date('Y-m-d', strtotime($max. ' + 1 days'));   
+      if($query == ''){
+         $query = " date <='".$max."'";
+      }else{
+         $query = $query." and date <='".$max."'";
+      }
+   }
+
+   
+
    if($query == ''){
       $query = "1";
    }

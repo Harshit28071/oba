@@ -77,17 +77,14 @@
                         </select>
                     
                   </div>
-                <div class="col-md-6 form-group">
-                  <label>Firm Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Firm " name="firmName" autocomplete="off" id="f-name">
-                  </div>
+               
                   <div class="col-md-6 form-group">
                     <label>GSTIN</label>
                     <input type="text" class="form-control" placeholder="Enter GSTIN" name="custgstin" autocomplete="off" id="c-gstin">
                   </div>
 
                 </div>
-                <input type="submit"  class="btn btn-primary btn-lg float-right" id="edit-customer" value="Update"> 
+                <input type="submit"  class="btn btn-danger btn float-right" id="edit-customer" value="Update"> 
               </form>
               </div>
                <!-- /.card-body -->

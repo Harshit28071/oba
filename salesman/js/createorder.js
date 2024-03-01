@@ -7,13 +7,13 @@
 
     $.ajax({
        type : 'POST',
-       url : '/new/oba/salesman/apis/select/get_city_customer.php',
+       url : '/new/oba/common/apis/select/get_city_customer.php',
        data : {id:cityId},
        success: function(data){
            var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
            $.each(data, function (index, value) {
                // APPEND OR INSERT DATA TO SELECT ELEMENT.
-               html =   html + ('<option value="' + value.id + '">' + value.cname + ' ('+ value.cityname + ')' + '</option>');
+               html =   html + ('<option value="' + value.id + '">' + value.cname + ' ('+ value.address + ')' + '</option>');
            });
            $('#show-customer').html(html);
            if(localStorage.getItem('customer_id')){
