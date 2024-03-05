@@ -24,34 +24,34 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
    $query = '';
 
    if($customer != ''){
-      $query = " party_id =".$customer;
+      $query = " invoice.party_id =".$customer;
    }else{
       if($city != '')
-      $query = " party_id in (select id from customer where city =".$city.") ";
+      $query = " invoice.party_id in (select id from customer where city =".$city.") ";
    }
 
    if($status != 'All'){
       if($query == ''){
-         $query = " status ='".$status."'";
+         $query = " invoice.status ='".$status."'";
       }else{
-         $query = $query." and status ='".$status."'";
+         $query = $query." and invoice.status ='".$status."'";
       }
    }
 
    if($min != ''){
       if($query == ''){
-         $query = " date >='".$min."'";
+         $query = " invoice.date >='".$min."'";
       }else{
-         $query = $query." and date >='".$min."'";
+         $query = $query." and invoice.date >='".$min."'";
       }
    }
 
    if($max != ''){
      //$max = date('Y-m-d', strtotime($max. ' + 1 days'));   
       if($query == ''){
-         $query = " date <='".$max."'";
+         $query = " invoice.date <='".$max."'";
       }else{
-         $query = $query." and date <='".$max."'";
+         $query = $query." and invoice.date <='".$max."'";
       }
    }
 
@@ -93,11 +93,12 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
 
    // Fetch records
    $stmt = $conn->prepare("SELECT invoice.id,invoice.date,invoice.status,invoice.amount, customer.name,
-   customer.id as customer_id,city.name as city,city.id as city_id,invoice.invoice_number from invoice 
+   customer.id as customer_id,city.name as city,city.id as city_id,invoice.invoice_number,agarwal_invoices.invoice_number as agarwal,harihar_invoices.invoice_number as harihar from invoice 
    LEFT JOIN customer ON invoice.party_id = customer.id 
    left join city on customer.city = city.id 
+   left join agarwal_invoices on invoice.invoice_number = agarwal_invoices.invoice_id
+   left join harihar_invoices on invoice.invoice_number = harihar_invoices.invoice_id
    WHERE ".$query." ".$searchQuery." ORDER BY ".$columnName." ".$columnSortOrder." LIMIT :limit,:offset");
-
 
    // Bind values
    foreach ($searchArray as $key=>$search) {
@@ -121,7 +122,9 @@ if (!isset($_SESSION['s_username']) && $_SESSION["s_role"] != "Accountant") {
          "customer_id"=>$row['customer_id'],
          "city"=>$row['city'],
          "city_id"=>$row['city_id'],
-         "invoice_number"=>$row['invoice_number']        
+         "invoice_number"=>$row['invoice_number'],
+         "harihar"=>$row['harihar'],
+         "agarwal"=>$row['agarwal']    
          
       );
    }

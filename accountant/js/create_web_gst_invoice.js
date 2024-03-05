@@ -12,7 +12,12 @@ if (localStorage.getItem('city_id')) {
 }
 if (localStorage.getItem('firm_id')) {
     $('#show-firm').val(localStorage.getItem('firm_id'));
-
+    if (localStorage.getItem('prefix') && localStorage.getItem('suffix')) {
+        $("#prefix").html(localStorage.getItem('prefix'));
+        $("#suffix").val(localStorage.getItem('suffix'));
+    } else {
+        getInvoiceNumber();
+    }
     if (cat) {
         categories = JSON.parse(cat);
         fillCategories();
@@ -23,7 +28,25 @@ if (localStorage.getItem('firm_id')) {
     showselectedProducts();
 }
 
+function getInvoiceNumber() {
+    $.ajax({
+        type: 'POST',
+        url: '/new/oba/accountant/apis/select/get_gst_invoice_number.php',
+        data: { firmName: getFirmName() },
+        success: function (data) {
+            if (data) {
+                data = JSON.parse(data);
+                localStorage.setItem("prefix", data[0]);
+                localStorage.setItem("suffix", data[1]);
+                $("#prefix").html(data[0]);
+                $("#suffix").val(data[1]);
 
+            }
+
+
+        }
+    });
+}
 
 ///Modal Functions start
 
@@ -58,8 +81,7 @@ function loadProducts() {
         success: function (data) {
             products = data;
             localStorage.setItem('InvoiceData', JSON.stringify(data));
-            selectedProducts = [];
-            localStorage.removeItem('selectedProducts');
+
             showselectedProducts();
         }
     });
@@ -79,11 +101,11 @@ function showselectedProducts() {
 
         for (i = 0; i < data.length; i++) {
 
-            data[i].taxAmount = parseFloat(data[i].gst * data[i].quantity * data[i].itemPrice * 0.01).toFixed(2);
-            var totalAmount = parseFloat(data[i].itemPrice * data[i].quantity *1);
-             totalAmount = totalAmount + parseFloat(data[i].taxAmount);
-             totalAmount = parseFloat(totalAmount).toFixed(2);
-  debugger;
+            var taxAmount = data[i].gst * data[i].quantity * data[i].itemPrice * 0.01;
+            var totalAmount = (data[i].itemPrice * data[i].quantity);
+            totalAmount = totalAmount + taxAmount;
+            //totalAmount = (totalAmount);
+            debugger;
             html = html + '<tr>' +
                 '<td >' + (i + 1) + '.</td>' +
                 '<td >' + data[i].name + '</td>' +
@@ -92,8 +114,8 @@ function showselectedProducts() {
                 '<td >' + getUnitDropDown(data[i].unit, data[i].punit, data[i].sunit, data[i].id, i) + '</td>' +
                 '<td >' + getInput("rate", data[i].itemPrice, data[i].id, i) + '</td>' +
                 '<td >' + data[i].gst + '%</td>' +
-                '<td id="' + data[i].id + '_taxAmount_' + i + '">' + data[i].taxAmount + '</td>' +
-                '<td  id="' + data[i].id + '_amount_' + i + '">' + totalAmount+ '</td>' +
+                '<td id="' + data[i].id + '_taxAmount_' + i + '">' + parseFloat(taxAmount).toFixed(2) + '</td>' +
+                '<td  id="' + data[i].id + '_amount_' + i + '">' + parseFloat(totalAmount).toFixed(2) + '</td>' +
                 '<td ><a onclick="deleteItem(' + i + ')" style="color:red"><i class="fa fa-trash"></i></a></td>'
             '</tr>';
         }
@@ -119,6 +141,7 @@ function updateItemTotal(id, type, index) {
 
     var qty = parseFloat($("#" + id + "_qty_" + index).val()).toFixed(2);
     var rate = parseFloat($("#" + id + "_rate_" + index).val()).toFixed(2);
+    var taxAmount = 0;
     debugger;
     if (qty == 'NaN') {
         qty = 0;
@@ -139,8 +162,10 @@ function updateItemTotal(id, type, index) {
             data[index].itemPrice = rate
 
         }
-        data[index].taxAmount = parseFloat(data[index].quantity * data[index].itemPrice * data[index].gst * 0.01).toFixed(2);
+        taxAmount = (data[index].quantity * data[index].itemPrice * data[index].gst * 0.01);
+        data[index].taxAmount = parseFloat(taxAmount).toFixed(2);
         $("#" + id + "_taxAmount_" + index).html(data[index].taxAmount);
+
 
 
     }
@@ -148,10 +173,10 @@ function updateItemTotal(id, type, index) {
 
     selectedProducts = data;
     localStorage.setItem('selectedProducts', JSON.stringify(data));
-    var totalAmount = parseFloat(data[index].itemPrice * data[index].quantity *1);
-    totalAmount = totalAmount + parseFloat(data[index].taxAmount);
-    totalAmount = parseFloat(totalAmount).toFixed(2);
-    $("#" + id + "_amount_" + index).text(totalAmount);
+    var totalAmount = (data[index].itemPrice * data[index].quantity * 1);
+    totalAmount = totalAmount + taxAmount;
+
+    $("#" + id + "_amount_" + index).text(parseFloat(totalAmount).toFixed(2));
     displayTotalAmount();
 }
 
@@ -163,13 +188,13 @@ function displayTotalAmount() {
 
         var total = 0;
         for (var i = 0; i < data.length; i++) {
-            total = total + parseFloat((data[i].itemPrice * data[i].quantity)) + parseFloat(data[i].taxAmount);
+            total = total + (data[i].itemPrice * data[i].quantity) + (data[i].quantity * data[i].itemPrice * data[i].gst * 0.01);
         }
-        total = total.toFixed(2);
+        total = total;
         if ($("#totalAmount").length) {
-            $("#totalAmount").html("&#8377;&nbsp;" + total);
+            $("#totalAmount").html("&#8377;&nbsp;" + parseFloat(total).toFixed(2));
         } else {
-            $("#invoiceItems").append('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>Total</strong></td><td id="totalAmount">&#8377;&nbsp;' + total + '</td><td></td></tr>');
+            $("#invoiceItems").append('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>Total</strong></td><td id="totalAmount">&#8377;&nbsp;' + parseFloat(total).toFixed(2) + '</td><td></td></tr>');
         }
 
     }
@@ -187,7 +212,7 @@ function loadCustomer() {
             var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
             $.each(data, function (index, value) {
                 // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                html = html + ('<option value="' + value.id + '">' + value.cname + ' ('+value.state+')</option>');
+                html = html + ('<option value="' + value.id + '">' + value.cname + ' (' + value.state + ')</option>');
             });
             $('#show-customer').html(html);
             localStorage.setItem('customers', JSON.stringify(data));
@@ -235,15 +260,15 @@ function getCustomerDetails(id) {
 
 }
 
-function getTaxType(id){
+function getTaxType(id) {
     var customers = localStorage.getItem('customers');
     if (customers) {
         customers = JSON.parse(customers);
         for (var i = 0; i < customers.length; i++) {
             if (customers[i].id == id) {
-                if(customers[i].state == "Uttar Pradesh"){
+                if (customers[i].state == "Uttar Pradesh") {
                     return 'GST';
-                }else{
+                } else {
                     return 'IGST';
                 }
             }
@@ -270,7 +295,8 @@ function getTotalAmount() {
         data = JSON.parse(data);
         var total = 0;
         for (var i = 0; i < data.length; i++) {
-            total = total + parseFloat(data[i].quantity * data[i].itemPrice) + parseFloat(data[i].taxAmount);
+            debugger;
+            total = total + (data[i].quantity * data[i].itemPrice) + (data[i].taxAmount * 1.00);
         }
         return parseFloat(total).toFixed(2);
     } else {
@@ -289,7 +315,7 @@ function saveInvoice() {
             alert('Please select at least one item');
             return;
         }
-        if (selectedProducts.length > 0) {
+        if (selectedProducts.length > 0 && $("#suffix").val() != '' && $("#suffix").val() != 0 && $("#invoiceDate").val() != '') {
             $("#save-invoice").prop('disabled', true);
 
             var productData = {
@@ -298,7 +324,11 @@ function saveInvoice() {
                 firmName: getFirmName(),
                 totalAmount: getTotalAmount(),
                 customerId: $("#show-customer").val(),
-                taxType: getTaxType($("#show-customer").val())
+                taxType: getTaxType($("#show-customer").val()),
+                invoiceNumber: $("#prefix").html() + $("#suffix").val(),
+                date: $("#invoiceDate").val(),
+                invoiceId: localStorage.getItem('invoiceId')
+
             }
 
             $.ajax({
@@ -331,9 +361,9 @@ function saveInvoice() {
             });
         } else {
             // alert('Please add some items');
-            $("#modal-info-alert").modal('show');
-            $("#main-heading-info").html("Add Items");
-            $("#alert-message-info").html("Please add some items");
+            $("#modal-danger-alert").modal('show');
+            $("#main-heading-danger").html("Invoice Failed");
+            $("#alert-message-danger").html("Please add some items, or check invoice number or invoice date");
         }
     } else {
         alert('Please select a firm & Customer first');
@@ -350,10 +380,13 @@ $('#show-customer').change(function (event) {
 
 $('#show-firm').change(function (event) {
     localStorage.setItem('firm_id', $('#show-firm').val());
+    selectedProducts = [];
+    localStorage.removeItem('selectedProducts');
     loadCategories();
+    getInvoiceNumber();
 });
 
-function getFirmName(){
-    var name = $( "#show-firm option:selected" ).text();
+function getFirmName() {
+    var name = $("#show-firm option:selected").text();
     return name.split(" ")[0];
 }

@@ -103,6 +103,7 @@ $options_city = loadCity();
                 <th>Invoice</th>
                 <th>Date</th>
                 <th>Party Name</th>
+                <th>GSTIN</th>
                 <th>Amount</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -130,7 +131,7 @@ $options_city = loadCity();
   <!-- jQuery -->
   <?php require_once("./layout/footer_links.php"); ?>
   <script src="/new/oba/accountant/js/invoice_list_common.js"> </script>
-  <script src="/new/oba/accountant/js/all_invoices.js"> </script>
+  <script src="/new/oba/accountant/js/all_gst_invoices.js"> </script>
 
 </body>
 

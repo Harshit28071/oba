@@ -40,7 +40,7 @@ $firms = loadFirms();
         <!-- Notifications Dropdown Menu -->
 
         <li class="nav-item">
-          <a  href="./add_customer.php" id="add-cust"><button type="button" class="btn btn-primary btn-sm">Add New Customer</button></a>
+          <a href="./add_customer.php" id="add-cust"><button type="button" class="btn btn-primary btn-sm">Add New Customer</button></a>
         </li>
         <li class="nav-item">
           <a onclick="cancelInvoice()" id="add-cust"><button type="button" style="margin-left:10px;" class="btn btn-danger btn-sm">Cancel</button></a>
@@ -57,10 +57,10 @@ $firms = loadFirms();
       <section class="container" style="padding-top:20px">
         <div class="row">
           <div class="col-8">
-            <form role="form"> 
+            <form role="form">
               <div class="form-group">
-              <select class="form-control-sm" id="show-firm">
-                <?php echo  $firms ?>
+                <select class="form-control-sm" id="show-firm">
+                  <?php echo  $firms ?>
                 </select>
                 <select class="form-control-sm" id="city-value">
 
@@ -69,17 +69,20 @@ $firms = loadFirms();
                 <select class="form-control-sm" id="show-customer">
                   <option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
                 </select>
-               
+
               </div>
             </form>
           </div>
           <div class="col-4" style="text-align: end;">
-          <a onclick="saveInvoice()"><button type="button" id="save-invoice" class="btn btn-danger btn-sm">Save Invoice</button></a>
+            <a onclick="saveInvoice()"><button type="button" id="save-invoice" class="btn btn-danger btn-sm">Save Invoice</button></a>
           </div>
         </div>
         <div class="row">
-        <div class="col-md-6" id="customerData"></div>
-        <div class="col-md-6"></div>
+          <div class="col-md-6" id="customerData"></div>
+          <div class="col-md-6">
+            <p style="text-align: end"><b>Invoice No.: </b><span id="prefix"></span><input type="number" id="suffix" style="max-width:70px;" /></p>
+            <p style="text-align: end"><b>Date: </b><input type="date" id="invoiceDate" value="<?php echo date("Y-m-d"); ?>" style="max-width:150px;" /></p>  
+          </div>
         </div>
 
         <div class="row">
@@ -99,11 +102,11 @@ $firms = loadFirms();
                 </tr>
               </thead>
               <tbody id="invoiceItems">
-               
+
               </tbody>
             </table>
 
-            
+
           </div>
         </div>
 
@@ -116,51 +119,50 @@ $firms = loadFirms();
   </div>
   <!-- ./wrapper -->
   <div class="modal fade" id="modal-add-item">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <form id="additemForm">
-            <div class="modal-header">
-              <h5 class="modal-title">Select Item</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="additemForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Select Item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Select Category</label>
+              <select class="custom-select" id="mainCategory"></select>
             </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Select Category</label>
-                <select class="custom-select" id="mainCategory"></select>
-              </div>
-              <div id="sub-category"></div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Select Item</label>
-                <select class="custom-select" id="items"></select>
-              </div>
-              <div id="units"></div>
+            <div id="sub-category"></div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Select Item</label>
+              <select class="custom-select" id="items"></select>
             </div>
-         
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" onclick="addNewItem()" id="edit-unit-save">ADD</button>
-        </div>
+            <div id="units"></div>
+          </div>
+
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" onclick="addNewItem()" id="edit-unit-save">ADD</button>
+          </div>
         </form>
       </div>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-    </div>
-    
-    <?php require_once($_SERVER['DOCUMENT_ROOT']."/new/oba/common/pages/alert_messages.php"); ?>
+  </div>
+
+  <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/pages/alert_messages.php"); ?>
   <!-- jQuery -->
   <?php require_once("./layout/footer_links.php"); ?>
   <script>
-    if(localStorage.getItem('generate_invoice') == 'true'){
-  $("#city-value").prop( "disabled", true );
-  $("#show-customer").prop( "disabled", true );
-  $("#show-firm").prop( "disabled", true );
-}
-
-    </script>
-    <script src="/new/oba/accountant/js/common.js"></script>
+    if (localStorage.getItem('generate_invoice') == 'true') {
+      $("#city-value").prop("disabled", true);
+      $("#show-customer").prop("disabled", true);
+      $("#show-firm").prop("disabled", true);
+    }
+  </script>
+  <script src="/new/oba/accountant/js/common.js"></script>
   <script src="/new/oba/accountant/js/create_web_gst_invoice.js"></script>
 
 </body>

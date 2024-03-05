@@ -7,6 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/new/oba/common/pages/fetch_master_data.php");
 
 $options_city = loadCity();
+$firms = loadFirms();
 
 
 ?>
@@ -27,7 +28,7 @@ $options_city = loadCity();
       <!-- Left navbar links -->
       <ul class="navbar-nav" style="margin-left:10px">
         <li class="nav-item">
-          <h4 class="m-0">Create Invoice</h4>
+          <h4 class="m-0">Add Purchase</h4>
         </li>
       </ul>
 
@@ -55,9 +56,12 @@ $options_city = loadCity();
     <div class="content" style="margin-left:0px">
       <section class="container" style="padding-top:20px">
         <div class="row">
-          <div class="col-6">
+          <div class="col-8">
             <form role="form">
               <div class="form-group">
+                <select class="form-control-sm" id="show-firm">
+                  <?php echo  $firms ?>
+                </select>
                 <select class="form-control-sm" id="city-value">
 
                   <?php echo  $options_city ?>
@@ -65,35 +69,35 @@ $options_city = loadCity();
                 <select class="form-control-sm" id="show-customer">
                   <option selected style="text-align: center;" value="">SELECT CUSTOMER </option>
                 </select>
+
               </div>
             </form>
           </div>
-          <div class="col-6" style="text-align: end;">
-
+          <div class="col-4" style="text-align: end;">
             <a onclick="saveInvoice()"><button type="button" id="save-invoice" class="btn btn-danger btn-sm">Save Invoice</button></a>
           </div>
         </div>
         <div class="row">
+          <div class="col-md-6" id="customerData"></div>
           <div class="col-md-6">
-            <p><b>Invoice No.: </b><span id="prefix"></span><input type="number" id="suffix" style="max-width:70px;" /></p>
-            <p><b>Date: </b><input type="date" id="invoiceDate" value="<?php echo date("Y-m-d");?>" style="max-width:150px;"/></p>
-          </div>
-          <div class="col-md-6">
+            <p style="text-align: end"><b>Invoice No.: </b><input type="number" id="invoiceNumber" style="max-width:150px;" /></p>
+            <p style="text-align: end"><b>Date: </b><input type="date" id="invoiceDate" value="<?php echo date("Y-m-d"); ?>" style="max-width:150px;" /></p>  
           </div>
         </div>
 
-        <div class="row" >
-          <div class="col-12 table-responsive">
+        <div class="row">
+          <div class="col-12">
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Item</th>
+                  <th>HSN</th>
                   <th>Qty</th>
                   <th>Unit</th>
                   <th>Rate</th>
-                  <th>Discount(Rs)</th>
-                  <th>Discount(%)</th>
+                  <th>Tax Rate(%)</th>
+                  <th>Tax Amount(Rs.)</th>
                   <th>Total</th>
                 </tr>
               </thead>
@@ -155,12 +159,10 @@ $options_city = loadCity();
     if (localStorage.getItem('generate_invoice') == 'true') {
       $("#city-value").prop("disabled", true);
       $("#show-customer").prop("disabled", true);
-
+      $("#show-firm").prop("disabled", true);
     }
   </script>
-
-  <script src="/new/oba/accountant/js/common.js?r=dw2122"></script>
-  <script src="/new/oba/accountant/js/create_web_invoice.js?r=dw2122"></script>
+  <script src="/new/oba/accountant/js/add_purchase.js"></script>
 
 </body>
 

@@ -15,7 +15,6 @@ function loadCategory()
 
   while ($stmt->fetch()) {
     $options .= "<option value='$id'>$name</option>";
-    
   }
   return $options;
 }
@@ -36,7 +35,7 @@ function loadUnits()
   }
   return $options_unit;
 }
- 
+
 function loadFirms()
 {
   global $conn;
@@ -55,40 +54,43 @@ function loadFirms()
   return $options_firm;
 }
 
-function loadState(){
+
+
+function loadState()
+{
   global $conn;
   $id = "";
   $state = "";
 
-  $query ="SELECT id,state FROM state";
+  $query = "SELECT id,state FROM state";
   $stmt = $conn->prepare($query);
   $stmt->execute();
-  $stmt->bind_result($id,$state);
+  $stmt->bind_result($id, $state);
   $options = "";
   $selected = "";
-  while($stmt->fetch()){
-      $selected = ($state === 'UP') ? 'selected': '' ;
-      $options .="<option value='$id' $selected>$state</option>";
-      }
+  while ($stmt->fetch()) {
+    $selected = ($state === 'UP') ? 'selected' : '';
+    $options .= "<option value='$id' $selected>$state</option>";
+  }
 
-      return $options;
+  return $options;
 }
 
-function loadCity(){
+function loadCity()
+{
   global $conn;
   $id = "";
   $cityname = "";
 
-  $querycity ="SELECT id,name FROM city";
-    $stmt = $conn->prepare($querycity);
-    $stmt->execute();
-    $stmt->bind_result($id,$cityname);
-    $options_city = '<option selected style="text-align: center;" value="">Select City</option>';
-    
-    while($stmt->fetch()){
-      
-        $options_city .="<option value='$id' >$cityname</option>";
-    
-      }
-      return $options_city;
+  $querycity = "SELECT id,name FROM city";
+  $stmt = $conn->prepare($querycity);
+  $stmt->execute();
+  $stmt->bind_result($id, $cityname);
+  $options_city = '<option selected style="text-align: center;" value="">Select City</option>';
+
+  while ($stmt->fetch()) {
+
+    $options_city .= "<option value='$id' >$cityname</option>";
+  }
+  return $options_city;
 }

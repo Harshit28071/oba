@@ -49,14 +49,16 @@ function saveInvoice() {
             alert('Please select at least one item');
             return;
         }
-        if (selectedProducts.length > 0) {
+        if (selectedProducts.length > 0 && $("#suffix").val() != '' && $("#suffix").val() != 0) {
             $("#save-invoice").prop('disabled', true);
 
             var productData = {
                 products: selectedProducts,
                 customerId: $("#show-customer").val(),
                 totalAmount: getTotalAmount(),
-                order_id :localStorage.getItem('order_id')
+                order_id :localStorage.getItem('order_id'),
+                invoiceNumber: $("#prefix").html()+$("#suffix").val(),
+                date: $("#invoiceDate").val()
             }
 
             $.ajax({
@@ -78,20 +80,20 @@ function saveInvoice() {
                         localStorage.setItem('invoice_number',response);
                         window.location.replace("./generate_invoice_pdf.php");
                     }else{
-                        alert('Invoice is not created. Please try again.');
+                        alert('Invoice is not created. Please check invoice number or recreate Invoice.');
                     }
                 },
                 error: function (error) {
                     $("#modal-danger-alert").modal('show');
                     $("#main-heading-danger").html("Invoice Failed");
-                    $("#alert-message-danger").html("Invoice creation Failed");
+                    $("#alert-message-danger").html("Please check items or invoice number");
                 }
             });
         } else {
             // alert('Please add some items');
             $("#modal-info-alert").modal('show');
             $("#main-heading-info").html("Add Items");
-            $("#alert-message-info").html("Please add some items");
+            $("#alert-message-info").html("Please check items or invoice number");
         }
     }else{
         alert('Please select a customer first');

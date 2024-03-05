@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-default btn-sm" id="warring-done">Yes</button>
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="warring-done">Ok</button>
             </div>
         </div>
     </div>

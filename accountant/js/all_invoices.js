@@ -1,63 +1,5 @@
-if (localStorage.getItem('city')) {
-
-  $("#city option").filter(function () {
-    //may want to use $.trim in here
-    return $(this).text() == localStorage.getItem('city');
-  }).prop('selected', true);
-
-  loadCustomer();
-
-}
-
-$('#customer').change(function (event) {
-  localStorage.setItem('customer_id', $('#customer').val());
-  loadInvoices();
-  event.preventDefault();
-});
-
-$('#city').change(function () {
-  loadCustomer();
-  loadInvoices();
-});
-$('#status').change(function () {
-  loadInvoices();
-});
-$('#min').change(function () {
-  loadInvoices();
-});
-
-$('#max').change(function () {
-  loadInvoices();
-});
-
 
 loadInvoices();
-
-function loadCustomer() {
-  var cityId = $('#city').val();
-  var cityName = $('#city').find(":selected").text();
-
-  $.ajax({
-    type: 'POST',
-    url: '/new/oba/common/apis/select/get_city_customer.php',
-    data: { id: cityId },
-    success: function (data) {
-      var html = '<option selected style="text-align: center;" value="">SELECT CUSTOMER </option>';
-      $.each(data, function (index, value) {
-        // APPEND OR INSERT DATA TO SELECT ELEMENT.
-        html = html + ('<option value="' + value.id + '">' + value.cname + ' (' + value.address + ')' + '</option>');
-      });
-      $('#customer').html(html);
-      if (localStorage.getItem('customer_id')) {
-        $('#customer').val(localStorage.getItem('customer_id'));
-      }
-      // localStorage.setItem('customerList',data);
-      localStorage.setItem('city_id', cityId);
-      localStorage.setItem('city', cityName);
-
-    }
-  });
-}
 
 function loadInvoices() {
 
@@ -87,7 +29,6 @@ function loadInvoices() {
     'columns': [
       {
         data: 'invoice_number',
-
 
       },
       {
@@ -121,7 +62,7 @@ function loadInvoices() {
         data: 'id',
         render: function (data, type, row, meta) {
 
-          return '<button class="btn btn-sm btn-danger" onClick="viewInvoice(\'' + row.invoice_number + '\')">View Invoice</button>';
+          return getButtons(row.invoice_number,row.agarwal,row.harihar,row.city_id,row.customer_id);
         }
       }
 
@@ -129,47 +70,55 @@ function loadInvoices() {
   });
 }
 
-function viewInvoice(invoice_number) {
-  localStorage.setItem('invoice_number', invoice_number);
-  window.location.href = './generate_invoice_pdf.php';
+
+function getButtons(id,agarwal,harihar,city,customer){
+  // Static Code
+ 
+ var html = '<p><button class="btn btn-sm btn-danger" onClick="viewInvoice(\'' + id + '\')">View Invoice</button></p>';
+
+ if(agarwal){
+  html = html + '<p><a href="#" onClick="viewGSTInvoice(\'' + agarwal + '\')">'+agarwal+'</a></p>';
+ }else{
+  html = html + '<p><button class="btn btn-sm btn-primary" onClick="generateGSTInvoice(\'' + id + '\',1,\'' + city + '\',\'' + customer + '\')">Generate Agarwal Invoice</button></p>';
+ }
+
+ if(harihar){
+  html = html + '<p><a href="#" onClick="viewGSTInvoice(\'' + harihar + '\')">'+harihar+'</a></p>';
+ }else{
+  html = html + '<p><button class="btn btn-sm btn-primary" onClick="generateGSTInvoice(\'' + id + '\',2,\'' + city + '\',\'' + customer + '\')">Generate Harihar Invoice</button></p>';
+ }
+
+ return html;
 }
 
-function Orders(status) {
-  debugger;
-  if (!$.fn.DataTable.isDataTable('#' + status.toLowerCase() + "-table")) {
-    loadOrders(status);
-  }
 
+function generateGSTInvoice(invoiceId,firmId,city,customer) {
+  
+    
+    $.ajax({
+      type: 'POST',
+      url: '/new/oba/accountant/apis/select/get_invoice_selected_products_for_gst_invoice.php',
+      data: { firm_id: firmId,id: invoiceId},
+      success: function (data) {
+        if(data){
+          data = JSON.parse(data);
+          if(data.length == 0){
+            alert('No Item Exist for this firm');
+          }else{
+            debugger;
+            localStorage.clear();
+            localStorage.setItem('selectedProducts', JSON.stringify(data));
+            localStorage.setItem('firm_id',firmId);
+            localStorage.setItem('city_id',city);
+            localStorage.setItem('customer_id',customer);
+            localStorage.setItem('invoiceId',invoiceId);
+            window.location.href = './create_gst_invoice.php';
+          }
+        }
+  
+      }
+    });
+  
 }
-
-
-//Load orders
-
-
-function formatDate(d) {
-  var d = new Date(d);
-
-  var datestring = d.getDate() + " / " + (d.getMonth() + 1) + " / " + d.getFullYear();
-  return datestring;
-}
-
-function getAction(value) {
-  debugger;
-  var html = '<span class="info-box-text"><a data-id="' + value.id + '" onclick="viewOrder(' + value.customer_id + ',' + value.id + ',\'' + value.date + '\',\'' + value.name + '\',\'' + value.city + '\')"><i class="fa fa-eye padding-10" aria-hidden="true"></i></a>  ';
-  if (value.invoice_id == 0 && (value.order_status == 'New')) {
-    html = html + '<a data-id="' + value.id + '" onclick="editOrder(' + value.customer_id + ',' + value.id + ',\'' + value.date + '\',\'' + value.name + '\',\'' + value.city + '\')"><i class="fas fa-edit padding-10"></i></a>  ' +
-      '<a data-id="' + value.id + '" onclick="deleteOrder(' + value.id + ')"><i class="fa fa-trash" aria-hidden="true"></i></a>';
-  }
-  html = html + '</span>';
-  if (value.invoice_id == 0 && (value.order_status == 'New')) {
-    html = html + '<span class="info-box-text"><button type="button" onclick="sendForBilling(' + value.id + ')" class="btn btn-block btn-danger btn-xs">Send for Billing</button></span>';
-  }
-  if (value.invoice_id != 0 && (value.order_status == 'Completed')) {
-    html = html + '<span class="info-box-text"><strong>Bill No. </strong>#' + value.invoice_id + '</span>';
-  }
-
-  return html;
-}
-
 
 

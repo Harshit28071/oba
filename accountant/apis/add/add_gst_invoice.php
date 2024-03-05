@@ -19,8 +19,10 @@ $amount = $data["totalAmount"];
 $firmId = $data["firmId"];
 $firmName = $data["firmName"];
 $taxType = $data["taxType"];
+$invoiceNumber =$data["invoiceNumber"];
+$date = $data["date"];
 $cityName = '';
-$invoiceId = 0;
+$invoiceId = $data["invoiceId"];
 
 $year = date("Y");
 $products = "[";
@@ -36,10 +38,10 @@ for ($i = 0; $i < sizeof($item); $i++) {
 $products = $products . ']';
 
 $fy = getCurrentFinancalYear();
-$temp = $fy."/".$firmName."/GST/";
+/*$temp = $fy."/".$firmName."/GST/";
 
 
-$stmt = $conn->prepare("SELECT count(id) as id from gst_invoice where invoice_number = ? and firm_id = ?");
+$stmt = $conn->prepare("SELECT count(id) as id from gst_invoice where financial_year = ? and firm_id = ?");
 $stmt->bind_param("ss", $fy,$firmId);
 $stmt->execute();
 $stmt->bind_result($invoice);
@@ -50,15 +52,21 @@ while ($stmt->fetch()) {
 $stmt->close();
 
 $invoiceNumber = $temp . ($invoiceId + 1);
+*/
+$temp = explode("/",$invoiceNumber);
+if(count($temp) == 4 && $date !='' ){
 
 
-$stmt = $conn->prepare("INSERT INTO `gst_invoice`(`firm_id`,`party_id`, `amount`,products,`invoice_number`,`financial_year`,tax_type) VALUES (?,?,?,?,?,?,?)");
-$stmt->bind_param("iidssss", $firmId, $cid, $amount, $products, $invoiceNumber, $fy,$taxType);
+$stmt = $conn->prepare("INSERT INTO `gst_invoice`(`firm_id`,`party_id`, `amount`,products,`invoice_number`,`financial_year`,tax_type,`date`,invoice_id) VALUES (?,?,?,?,?,?,?,?,?)");
+$stmt->bind_param("iidssssss", $firmId, $cid, $amount, $products, $invoiceNumber, $fy,$taxType,$date,$invoiceId);
 $stmt->execute();
 
 $stmt->close();
 $conn->close();
 echo json_encode($invoiceNumber);
+}else{
+    echo 0;
+}
 
 function getCurrentFinancalYear(){
     if (date('m') <= 3) {//Upto June 2014-2015
@@ -68,3 +76,6 @@ function getCurrentFinancalYear(){
     }
     return $financial_year;
 }
+
+?>
+ 

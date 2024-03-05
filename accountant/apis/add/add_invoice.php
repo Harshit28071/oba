@@ -17,6 +17,8 @@ $item = $data["products"];
 $cid = $data["customerId"];
 $amount = $data["totalAmount"];
 $order_id = $data["order_id"];
+$invoiceNumber =$data["invoiceNumber"];
+$date = $data["date"];
 $cityName = '';
 $invoiceId = 0;
 if ($order_id == null || $order_id == "") {
@@ -36,7 +38,7 @@ for ($i = 0; $i < sizeof($item); $i++) {
 }
 $products = $products . ']';
 
-
+/*
 $stmt = $conn->prepare("SELECT b.name FROM `customer` a left join city b on a.city = b.id where a.id = ?");
 $stmt->bind_param("i", $cid);
 $stmt->execute();
@@ -59,10 +61,13 @@ while ($stmt->fetch()) {
 $stmt->close();
 
 $invoiceNumber = $year . $temp . ($invoiceId + 1);
+*/
+$temp = explode("/",$invoiceNumber);
+if(count($temp) == 3 && $date !='' ){
 
 
-$stmt = $conn->prepare("INSERT INTO `invoice`(`order_id`,`party_id`,  `amount`,products,`invoice_number`,`year`) VALUES (?,?,?,?,?,?)");
-$stmt->bind_param("iidssi", $order_id, $cid, $amount, $products, $invoiceNumber, $year);
+$stmt = $conn->prepare("INSERT INTO `invoice`(`order_id`,`party_id`,  `amount`,products,`invoice_number`,`year`,date) VALUES (?,?,?,?,?,?,?)");
+$stmt->bind_param("iidssis", $order_id, $cid, $amount, $products, $invoiceNumber, $year,$date);
 $stmt->execute();
 
 if ($order_id !=0) {
@@ -73,3 +78,6 @@ if ($order_id !=0) {
 $stmt->close();
 $conn->close();
 echo json_encode($invoiceNumber);
+}else{
+    echo 0;
+}

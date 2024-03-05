@@ -20,7 +20,7 @@ while($stmt->fetch()){
 
 $stmt =$conn->prepare("select id,name from category where name in (".$parents.") order by name ASC");
 $stmt->execute();
-$stmt->bind_result($id,$name,);
+$stmt->bind_result($id,$name);
 $parents = '';
 while($stmt->fetch()){
  
